@@ -1,0 +1,7 @@
+import(XML)
+
+exportClasses(
+	SDMX,
+	SDMXSchema,
+	SDMXHeader
+}

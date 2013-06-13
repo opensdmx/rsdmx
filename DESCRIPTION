@@ -1,0 +1,14 @@
+Package: rsdmx
+Version: 0.1
+Date: 2013-06-12
+Title: A package to read SDMX data.
+Authors@R: c(person("Emmanuel", "Blondel", role = c("aut", "cre"), email =
+    "emmanuel.blondel1@gmail.com"), person("Matthieu", "Stigler", rol = c("aut", "cre", "ctb"), comment = "initial co-author and maintainer"))
+Depends: R (>=2.15)
+Suggests: XML (>=3.96-1.1)
+Imports: XML
+Description: The package hosts a set of classes and methods to parse/read SDMX data.
+License: GPL (>= 2)
+URL: https://github.com/opensdmx/rsdmx
+Collate:
+	Class-SDMX.R Class-SDMXSchema.R Class-SDMXHeader.R
