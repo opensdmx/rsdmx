@@ -11,6 +11,8 @@ setClass("SDMXHeader",
 		),
 		prototype = list(ID = "An ID", Test = FALSE, Prepared = Sys.time(), Sender = "A Sender ID"),
 		validity = function(object){
+			
+			#eventual validation rules
 			return(TRUE);
 		}
 )

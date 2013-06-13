@@ -4,5 +4,33 @@ import(XML)
 exportClasses(
 	SDMX,
 	SDMXSchema,
-	SDMXHeader
+	SDMXHeader,
+	SDMXDataSetHeader,
+	SDMXType,
+	SDMXDataSet
 )
+
+export(
+	SDMX,
+	SDMXSchema,
+	SDMXHeader,
+	SDMXType,	
+	SDMXDataSet,
+	
+	type.SDMXType,
+	version.SDMXSchema,
+	readSDMX
+	
+)
+
+exportMethods(
+	getSDMXType,
+	getType,
+	getSDMXSchema,
+	getVersion,
+	getSDMXHeader,
+	as.XML
+	
+)
+
+S3method(as.data.frame, SDMXDataSet)

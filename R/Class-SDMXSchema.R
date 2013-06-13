@@ -8,7 +8,7 @@ setClass("SDMXSchema",
 		),
 		prototype = list(version = "2.0"),
 		validity = function(object){
-			VERSION <- version(object);
+			VERSION <- getVersion(object);
 			valid <- switch(VERSION,
 								"2.0" = TRUE,
 								FALSE
