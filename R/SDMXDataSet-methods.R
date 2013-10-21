@@ -23,7 +23,7 @@ as.data.frame.SDMXDataSet <- function(x, ...){
 	#series
 	seriesXML<-getNodeSet(xmlObj, paste('//',prefix2,':Series', sep=''))
 	seriesNb<-length(seriesXML)
-	
+	if(seriesNb == 0) return(NULL);
 
 	#converting SDMX series to a DataFrame R object
 	for(x in 1:seriesNb){
