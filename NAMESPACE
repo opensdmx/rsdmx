@@ -5,7 +5,6 @@ exportClasses(
 	SDMX,
 	SDMXSchema,
 	SDMXHeader,
-	SDMXDataSetHeader,
 	SDMXType,
 	SDMXDataSet
 )
@@ -15,8 +14,7 @@ export(
 	SDMXSchema,
 	SDMXHeader,
 	SDMXType,	
-	SDMXDataSet,
-	
+	SDMXDataSet,	
 	type.SDMXType,
 	version.SDMXSchema,
 	readSDMX
