@@ -17,7 +17,7 @@ as.data.frame.SDMXDataSet <- function(x, ...){
 	prefix2<-unlist(strsplit(xmlName(xmlChildren(getNodeSet(xmlObj,paste('//',prefix1,':DataSet', sep=''))[[1]])[[1]], full = T),':'))[1]
 	
 	#concepts (attributes)
-	conceptsXML<-getNodeSet(xmlObj, paste("//",prefix2,":SeriesKey/",prefix2,":Value", sep=""))
+	conceptsXML<-getNodeSet(xmlDoc(getNodeSet(xmlObj, paste("//",prefix2,":SeriesKey", sep=""))[[1]]), paste("//", prefix2, ":Value"))
 	concepts<-unique(sapply(conceptsXML, function(x) xmlGetAttr(x, "concept")))
 	
 	#series
