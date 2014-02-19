@@ -8,8 +8,8 @@ SDMXSchema <- function(xmlObj) {
 
 #default functions
 version.SDMXSchema <- function(xmlObj){
-	parsed <- gsub("_",".",strsplit(xmlAttrs(xmlRoot(xmlObj),FALSE,FALSE),"/")$schemaLocation);
-	schemaVersion <- substr(parsed[substr(parsed,0,1)=="v"],2,nchar(parsed));
+	parsed <- strsplit(xmlNamespaces(xmlObj)$message$uri,"/")[[1]];
+	schemaVersion <-  gsub("_",".",substr(parsed[substr(parsed,0,1)=="v"],2,nchar(parsed)));
 	return(schemaVersion);
 }
 
