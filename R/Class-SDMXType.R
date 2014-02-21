@@ -6,11 +6,12 @@ setClass("SDMXType",
 		representation(
 				type = "character"
 		),
-		prototype = list(type = "SDMXDataSet"),
+		prototype = list(type = "SDMXGenericData"),
 		validity = function(object){
 			type <- getType(object);
 			valid <- switch(type,
-					"SDMXDataSet" = TRUE,
+					"SDMXGenericData" = TRUE,
+					"SDMXMessageGroup" = TRUE,
 					FALSE
 			);
 			if(valid == FALSE)
