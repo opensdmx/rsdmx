@@ -6,32 +6,54 @@
 SDMXHeader <- function(xmlObj){
 
 	#header elements
-	node <- getNodeSet(xmlObj, "//message:Header");
-	p <- as.data.frame(sapply(node, function(x) (sapply(xmlChildren(x), function(x) xmlValue(x)))));
-	p[,1] <- as(p[,1], "character");
+	node <- xmlRoot(xmlObj)[[1]];
+	children <- xmlChildren(node)
 	
 	#header attributes
-	id <- p["ID",];
-	test <- as.logical(p["Test",]);
+	#-----------------
+	id <- xmlValue(children$ID);
+	test <- as.logical(xmlValue(children$Test));
 	if(is.null(test)) test <- FALSE;
-	truncated <- as.logical(p["Truncated",]);
-	name <- p["Name",];
-
+	truncated <- as.logical(xmlValue(children$Truncated));
+	name <- xmlValue(children$Name);	
 	
-	sender <- "NA";
-	senderNode <- getNodeSet(xmlDoc(node[[1]]), "//message:Sender");
-	if(length(senderNode) > 0) sender <- xmlGetAttr(getNodeSet(xmlDoc(node[[1]]), "//message:Sender")[[1]],"id");
-	receiver <- "NA"
-	receiverNode <- getNodeSet(xmlDoc(node[[1]]), "//message:Receiver");
-	if(length(receiverNode) > 0) receiver <- xmlGetAttr(getNodeSet(xmlDoc(node[[1]]), "//message:Receiver")[[1]], "id");
+	#sender
+	sender <- new.env()
+	sender$id <- xmlGetAttr(children$Sender,"id");
+	senderNames <- xmlChildren(children$Sender)
+	if(length(senderNames) == 0){
+		sender$name <- NA
+	}else{
+		sender$name <- new.env()
+		sapply(senderNames, function(x) {sender$name[[xmlGetAttr(x,"xml:lang")]] <- xmlValue(x)})
+		sender$name <- as.list(sender$name)
+	}
+	sender <- as.list(sender)
 	
-	source <- p["Source",];
+	#receiver
+	receiver <- list(id=NA,name=NA)
+	if(!is.null(children$Receiver)){
+		receiver <- new.env()
+		receiver$id <- xmlGetAttr(children$Receiver,"id");
+		receiverNames <- xmlChildren(children$Receiver)
+		if(length(receiverNames) == 0){
+			receiver$name <- NA
+		}else{
+			receiver$name <- new.env()
+			sapply(receiverNames, function(x) {receiver$name[[xmlGetAttr(x,"xml:lang")]] <- xmlValue(x)})
+			receiver$name <- as.list(receiver$name)
+		}
+		receiver <- as.list(receiver)
+	}
+	
+	#source
+	source <- xmlValue(children$Source);
 	
 	#Dates
 	preparedFormat <- NULL;
-	prepared <- p["Prepared",];
+	prepared <- xmlValue(children$Prepared);
 	if(!is.null(prepared)){
-		if(regexpr("T", prepared) != 1){
+		if(attr(regexpr("T", prepared),"match.length") != 1){
 			preparedFormat <- "%Y-%m-%d %H:%M:%S";
 		}else{
 			if(nchar(prepared) == 4){

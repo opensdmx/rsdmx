@@ -14,8 +14,8 @@
 #SDMXHeader class
 setClass("SDMXHeader",
 		representation(
-			ID 	= "character", Test = "logical", Truncated = "logical",
-			Name = "character", Sender = "character", Receiver = "character",
+			ID 	= "character", Test = "logical", Truncated = "logical", Name = "character",
+			Sender = "list", Receiver = "list",
 			Prepared = "POSIXlt",
 			#Extracted = "POSIXlt",
 			#ReportingBegin = "POSIXlt", ReportingEnd = "POSIXlt",
@@ -29,8 +29,8 @@ setClass("SDMXHeader",
 			Source = "character"
 		),
 		prototype = list(
-			ID = "Id", Test = FALSE, Truncated = FALSE,
-			Name = "name", Sender = "SenderID", Receiver = "ReceiverID",
+			ID = "Id", Test = FALSE, Truncated = FALSE, Name = "name",
+			Sender = list(id = "SenderID", en = "sender"), Receiver = list(id = "ReceiverID", en="receiver"),
 			Prepared = Sys.time(),
 			#Extracted = Sys.time(),
 			#ReportingBegin = Sys.time(), ReportingEnd = Sys.time(),
