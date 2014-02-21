@@ -7,9 +7,8 @@ SDMXType <- function(xmlObj){
 
 type.SDMXType <- function(xmlObj){
 	r <- xmlRoot(xmlObj); 
-	res <-xmlName(r[[2]]);
-	if(res == "Structures") res <-xmlName(r[[2]][[1]])
-	res <- paste("SDMX", res, sep="");
+	type <-strsplit(xmlName(xmlRoot(xmlObj), full=T), ":")[[1]][2]
+	res <- paste("SDMX", type, sep="");
 	return(res)
 }
 
