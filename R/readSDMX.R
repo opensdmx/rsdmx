@@ -19,7 +19,8 @@ readSDMX <- function(file, isURL = TRUE){
 	#encapsulate in S4 object
 	type <- SDMXType(xmlObj)@type
 	obj <- NULL;
-	if(type == "SDMXDataSet"){
+	if(type == "SDMXGenericData" ||
+	   type == "SDMXMessageGroup"){
 		obj <- SDMXDataSet(xmlObj);
 	}else{
 		obj <- SDMX(xmlObj);
