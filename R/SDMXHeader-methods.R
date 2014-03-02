@@ -52,7 +52,7 @@ SDMXHeader <- function(xmlObj){
 	#Dates
 	preparedFormat <- NULL;
 	prepared <- xmlValue(children$Prepared);
-	if(!is.null(prepared)){
+	if(!is.na(prepared)){
 		if(attr(regexpr("T", prepared),"match.length") != 1){
 			preparedFormat <- "%Y-%m-%d %H:%M:%S";
 		}else{
@@ -64,17 +64,27 @@ SDMXHeader <- function(xmlObj){
 			}
 		}
 		prepared <- as.POSIXlt(strptime(prepared, format = preparedFormat));
+	}else{
+		prepared <- as.POSIXlt(NA)
 	}
-	#extractedFormat <- NULL;
-	#extracted <- p["Extracted",];
-	#if(!is.na(extracted)){
-	#	if(regexpr("T", extracted) != 1){
-	#		extractedFormat <- "%Y-%m-%d %H:%M:%S";
-	#	}else{
-	#		extractedFormat <- "%Y-%m-%dT%H:%M:%S";
-	#	}
-	#	extracted <- as.POSIXlt(strptime(extracted, format = extractedFormat));
-	#}
+	
+	extractedFormat <- NULL;
+	extracted <- xmlValue(children$Extracted);
+	if(!is.na(extracted)){
+		if(attr(regexpr("T", extracted),"match.length") != 1){
+			extractedFormat <- "%Y-%m-%d %H:%M:%S";
+		}else{
+			if(nchar(extracted) == 4){
+				extracted <- ISOdate(as.integer(extracted),1,1)
+				extractedFormat <- "%Y-%m-%d";
+			}else{
+				extractedFormat <- "%Y-%m-%dT%H:%M:%S";
+			}
+		}
+		extracted <- as.POSIXlt(strptime(extracted, format = extractedFormat));
+	}else{
+		extracted <- as.POSIXlt(NA)
+	}
 		
 	#Reporting Dates
 	#beginFormat <- NULL;
@@ -115,7 +125,7 @@ SDMXHeader <- function(xmlObj){
 				ID = id, Test = test, Truncated = truncated,
 				Name = name, Sender = sender, Receiver = receiver,
 				Prepared = prepared,
-				#Extracted = extracted,
+				Extracted = extracted,
 				#ReportingBegin = reportBegin, ReportingEnd = reportEnd,
 				Source = source);
 

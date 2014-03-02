@@ -17,7 +17,7 @@ setClass("SDMXHeader",
 			ID 	= "character", Test = "logical", Truncated = "logical", Name = "character",
 			Sender = "list", Receiver = "list",
 			Prepared = "POSIXlt",
-			#Extracted = "POSIXlt",
+			Extracted = "POSIXlt",
 			#ReportingBegin = "POSIXlt", ReportingEnd = "POSIXlt",
 			#KeyFamilyRef = "character", # xs:NMTOKEN?
 			#KeyFamilyAgency = "character", # xs:NMTOKEN?
@@ -32,7 +32,7 @@ setClass("SDMXHeader",
 			ID = "Id", Test = FALSE, Truncated = FALSE, Name = "name",
 			Sender = list(id = "SenderID", en = "sender"), Receiver = list(id = "ReceiverID", en="receiver"),
 			Prepared = Sys.time(),
-			#Extracted = Sys.time(),
+			Extracted = Sys.time(),
 			#ReportingBegin = Sys.time(), ReportingEnd = Sys.time(),
 			#KeyFamilyRef = "character", # xs:NMTOKEN
 			#KeyFamilyAgency = "character", # xs:NMTOKEN
