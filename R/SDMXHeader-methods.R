@@ -53,14 +53,14 @@ SDMXHeader <- function(xmlObj){
 	preparedFormat <- NULL;
 	prepared <- xmlValue(children$Prepared);
 	if(!is.na(prepared)){
-		if(attr(regexpr("T", prepared),"match.length") != 1){
-			preparedFormat <- "%Y-%m-%d %H:%M:%S";
+		if(nchar(prepared) == 4){
+			prepared <- ISOdate(as.integer(prepared),1,1)
+			preparedFormat <- "%Y-%m-%d";
 		}else{
-			if(nchar(prepared) == 4){
-				prepared <- ISOdate(as.integer(prepared),1,1)
-				preparedFormat <- "%Y-%m-%d";
-			}else{
+			if(attr(regexpr("T", prepared),"match.length") != -1){
 				preparedFormat <- "%Y-%m-%dT%H:%M:%S";
+			}else{
+				preparedFormat <- "%Y-%m-%d %H:%M:%S";
 			}
 		}
 		prepared <- as.POSIXlt(strptime(prepared, format = preparedFormat));
@@ -71,14 +71,14 @@ SDMXHeader <- function(xmlObj){
 	extractedFormat <- NULL;
 	extracted <- xmlValue(children$Extracted);
 	if(!is.na(extracted)){
-		if(attr(regexpr("T", extracted),"match.length") != 1){
-			extractedFormat <- "%Y-%m-%d %H:%M:%S";
+		if(nchar(extracted) == 4){
+			extracted <- ISOdate(as.integer(extracted),1,1)
+			extractedFormat <- "%Y-%m-%d";
 		}else{
-			if(nchar(extracted) == 4){
-				extracted <- ISOdate(as.integer(extracted),1,1)
-				extractedFormat <- "%Y-%m-%d";
-			}else{
+			if(attr(regexpr("T", extracted),"match.length") != -1){
 				extractedFormat <- "%Y-%m-%dT%H:%M:%S";
+			}else{
+				extractedFormat <- "%Y-%m-%d %H:%M:%S";
 			}
 		}
 		extracted <- as.POSIXlt(strptime(extracted, format = extractedFormat));
@@ -87,46 +87,41 @@ SDMXHeader <- function(xmlObj){
 	}
 		
 	#Reporting Dates
-	#beginFormat <- NULL;
-	#reportBegin = p["ReportingBegin",];
-	#if(!is.na(reportBegin)){
-	#	if(regexpr("T", reportBegin) != 1){
-	#		beginFormat <- "%Y-%m-%d %H:%M:%S";
-	#	}else{
-	#		if(nchar(reportBegin) == 4){
-	#			reportBegin <- ISOdate(as.integer(reportBegin),1,1)
-	#			beginFormat <- "%Y-%m-%d";
-	#		}else{
-	#			beginFormat <- "%Y-%m-%dT%H:%M:%S";
-	#		}
-	#	}
-	#}
-	#reportBegin <- as.POSIXlt(strptime( reportBegin, format = beginFormat));
+	reportFormat <- NULL;
+	reportBegin = xmlValue(children$ReportingBegin)
+	if(!is.na(reportBegin)){
+		if(nchar(reportBegin) == 4){
+			reportBegin <- ISOdate(as.integer(reportBegin),1,1)
+			reportFormat <- "%Y-%m-%d";
+		}else{
+			if(attr(regexpr("T", extracted),"match.length") != -1){
+				reportFormat <- "%Y-%m-%dT%H:%M:%S";
+			}else{
+				reportFormat <- "%Y-%m-%d %H:%M:%S";
+			}
+		}
+		reportBegin <- as.POSIXlt(strptime( reportBegin, format = reportFormat));
+	}else{
+		reportBegin <- as.POSIXlt(NA)
+	}
 	
-	#endFormat <- NULL;
-	#reportEnd = p["ReportingEnd",];
-	#if(!is.na(reportEnd)){
-	#	if(regexpr("T", reportEnd) != 1){
-	#		endFormat <- "%Y-%m-%d %H:%M:%S";
-	#	}else{
-	#		if(nchar(reportEnd) == 4){
-	#			reportEnd <- ISOdate(as.integer(reportEnd),12,31)
-	#			endFormat <- "%Y-%m-%d";
-	#		}else{
-	#			endFormat <- "%Y-%m-%dT%H:%M:%S";
-	#		}
-	#	}
-	#}
-	#reportEnd <- as.POSIXlt(strptime( reportEnd, format = endFormat));
+	reportEnd = xmlValue(children$ReportingEnd)
+	if(!is.na(reportEnd)){
+		if(nchar(reportEnd) == 4){
+			reportEnd <- ISOdate(as.integer(reportEnd),12,31)
+		}
+		reportEnd <- as.POSIXlt(strptime( reportEnd, format = reportFormat));
+	}else{
+		reportEnd <- as.POSIXlt(NA)
+	}
 	
 	
 	#SDMXHeader object
 	obj <- new("SDMXHeader",
 				ID = id, Test = test, Truncated = truncated,
 				Name = name, Sender = sender, Receiver = receiver,
-				Prepared = prepared,
-				Extracted = extracted,
-				#ReportingBegin = reportBegin, ReportingEnd = reportEnd,
+				Prepared = prepared, Extracted = extracted,
+				ReportingBegin = reportBegin, ReportingEnd = reportEnd,
 				Source = source);
 
 	return(obj);

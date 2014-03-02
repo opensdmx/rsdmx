@@ -3,22 +3,13 @@
 # Author: Emmanuel Blondel
 #==========================
 
-#TODO for year (length=4) -> convert first to ISODate &then to POSIXlt/strptime
-# conversion to ISODates:
-# - Prepared: use 1st january
-# - reportingStart: use 1st january
-# - reportingYear: use 31th december
-#TODO for year-month-day -> usePOSIXlt/strptime (with format %Y-%m-%d)
-#TODO for dayTime --> usePOSIXlt/ check if T in the string, and apply appropriate format
-
 #SDMXHeader class
 setClass("SDMXHeader",
 		representation(
 			ID 	= "character", Test = "logical", Truncated = "logical", Name = "character",
 			Sender = "list", Receiver = "list",
-			Prepared = "POSIXlt",
-			Extracted = "POSIXlt",
-			#ReportingBegin = "POSIXlt", ReportingEnd = "POSIXlt",
+			Prepared = "POSIXlt", Extracted = "POSIXlt",
+			ReportingBegin = "POSIXlt", ReportingEnd = "POSIXlt",
 			#KeyFamilyRef = "character", # xs:NMTOKEN?
 			#KeyFamilyAgency = "character", # xs:NMTOKEN?
 			#DataSetAgency = "character", # xs:NMTOKEN?
@@ -31,9 +22,8 @@ setClass("SDMXHeader",
 		prototype = list(
 			ID = "Id", Test = FALSE, Truncated = FALSE, Name = "name",
 			Sender = list(id = "SenderID", en = "sender"), Receiver = list(id = "ReceiverID", en="receiver"),
-			Prepared = Sys.time(),
-			Extracted = Sys.time(),
-			#ReportingBegin = Sys.time(), ReportingEnd = Sys.time(),
+			Prepared = Sys.time(), Extracted = Sys.time(),
+			ReportingBegin = Sys.time(), ReportingEnd = Sys.time(),
 			#KeyFamilyRef = "character", # xs:NMTOKEN
 			#KeyFamilyAgency = "character", # xs:NMTOKEN
 			#DataSetAgency = "character", # xs:NMTOKEN
