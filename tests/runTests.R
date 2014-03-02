@@ -1,0 +1,1 @@
+testthat::test_package("rsdmx")
