@@ -16,10 +16,12 @@
   }
 }
 \section{Methods}{
+  \describe{
 	\item{\code{as.XML}}{Retrieves the object of class "XMLInternalDocument derived from XML package}
 	\item{\code{getSDMXSchema}}{Get the SDMX-ML schema version}
 	\item{\code{getSDMXHeader}}{Get the SDMX header object}
 	\item{\code{getSDMXType}}{Get an object of class "SDMXType"}
+  }
 }
 
 \usage{

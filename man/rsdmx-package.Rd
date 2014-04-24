@@ -23,12 +23,12 @@ License: \tab GPL(>=2.0)\cr
 LazyLoad: \tab yes\cr
 }
 
-RSDMX is a package to parse/read SDMX data in R. The package is for now at its earlier stages 
-and the aim is to make it evolving in the future. It will provide classes and methods to read SDMX data.
+RSDMX is a package to parse/read SDMX data in R. The package is for now at its earlier stages and the aim is 
+to make it evolving in the future. It will provide classes and methods to read SDMX data.
 
 }
 
-\author{Emmanuel Blondel <emmanuel.blondel1@gmail.com>}
+\author{Emmanuel Blondel \email{emmanuel.blondel1@gmail.com}}
 
 
 \keyword{SDMX}
