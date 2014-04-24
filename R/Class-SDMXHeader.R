@@ -15,8 +15,6 @@ setClass("SDMXHeader",
 			#DataSetAgency = "character", # xs:NMTOKEN?
 			#DataSetID = "character",
 			#DataSetAction = "character", #TODO see ActionType
-			#
-			
 			Source = "character"
 		),
 		prototype = list(
@@ -29,8 +27,6 @@ setClass("SDMXHeader",
 			#DataSetAgency = "character", # xs:NMTOKEN
 			#DataSetID = "datasetID",
 			#DataSetAction = "character", #TODO see ActionType
-			#Extracted = "POSIXt", #dateTime
-			
 			Source = "source"
 			),
 		validity = function(object){

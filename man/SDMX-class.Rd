@@ -17,10 +17,10 @@
 }
 \section{Methods}{
   \describe{
-	\item{\code{as.XML}}{Retrieves the object of class "XMLInternalDocument derived from XML package}
-	\item{\code{getSDMXSchema}}{Get the SDMX-ML schema version}
-	\item{\code{getSDMXHeader}}{Get the SDMX header object}
-	\item{\code{getSDMXType}}{Get an object of class "SDMXType"}
+	\item{as.XML}{\code{signature(obj = "SDMX")}: Retrieves the object of class "XMLInternalDocument derived from XML package}
+	\item{\code{getSDMXSchema}}{\code{signature(obj = "SDMX")}: Get the SDMX-ML schema version}
+	\item{\code{getSDMXHeader}}{\code{signature(obj = "SDMX")}: Get the SDMX header object}
+	\item{\code{getSDMXType}}{\code{signature(obj = "SDMX")}: Get an object of class "SDMXType"}
   }
 }
 
@@ -40,7 +40,5 @@ SDMX data could be huge and causes issues of memory if the complete XML tree is 
 }
 
 \section{Warning }{this class is not useful in itself, but all SDMX classes in this package derive from it }
-
-\seealso{}
 
 \keyword{classes}
