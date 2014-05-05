@@ -1,7 +1,6 @@
 \name{SDMX-class}
 \docType{class}
 \alias{SDMX-class}
-\alias{SDMX}
 \alias{SDMX-method}
 
 
@@ -22,10 +21,6 @@
 	\item{\code{getSDMXHeader}}{\code{signature(obj = "SDMX")}: Get the SDMX header object}
 	\item{\code{getSDMXType}}{\code{signature(obj = "SDMX")}: Get an object of class "SDMXType"}
   }
-}
-
-\usage{
-SDMX(xmlObj)
 }
 
 \arguments{
