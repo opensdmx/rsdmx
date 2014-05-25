@@ -6,8 +6,10 @@ SDMXType <- function(xmlObj){
 }
 
 type.SDMXType <- function(xmlObj){
-	r <- xmlRoot(xmlObj); 
-	type <-strsplit(xmlName(xmlRoot(xmlObj), full=T), ":")[[1]][2]
+  type <- xmlName(xmlRoot(xmlObj))
+  if(attr(regexpr(":", type, ignore.case = T),"match.length") > 0){
+    type <-strsplit(xmlName(xmlRoot(xmlObj), full=T), ":")[[1]][2]
+  }  
 	res <- paste("SDMX", type, sep="");
 	return(res)
 }
