@@ -11,9 +11,8 @@ readSDMX <- function(file, isURL = TRUE){
 			stop("File ", file, "not found\n")
 		xmlObj <- xmlTreeParse(file, useInternalNodes = TRUE)
 	}else{
-		tmpf<- tempfile(pattern = "RSDMX")
-		download.file(file, destfile=tmpf)
-		xmlObj <- xmlTreeParse(tmpf, useInternalNodes = TRUE)
+		content <- getURL(file)
+		xmlObj <- xmlTreeParse(content, useInternalNodes = TRUE)
 	}
 	
 	#encapsulate in S4 object
