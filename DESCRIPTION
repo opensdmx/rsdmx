@@ -7,7 +7,7 @@ Authors@R: c(person("Emmanuel", "Blondel", role = c("aut", "cre"), email =
 Maintainer: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 Depends: R (>= 2.15)
 Suggests: XML (>= 3.96-1.1)
-Imports: methods, XML, RCurl
+Imports: methods, XML, RCurl, plyr
 Suggests: testthat
 Description: The package hosts a set of classes and methods to parse/read SDMX data.
 License: GPL (>= 2)

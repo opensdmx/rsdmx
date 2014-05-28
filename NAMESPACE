@@ -1,6 +1,7 @@
 import(methods)
 import(XML)
 import(RCurl)
+import(plyr)
 
 exportClasses(
 	SDMX,

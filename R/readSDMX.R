@@ -18,11 +18,10 @@ readSDMX <- function(file, isURL = TRUE){
 	#encapsulate in S4 object
 	type <- SDMXType(xmlObj)@type
 	obj <- NULL;
-	if(type == "SDMXGenericData" ||
-	   type == "SDMXMessageGroup"){
+	if(type %in% c("SDMXGenericData", "SDMXMessageGroup", "SDMXCompactData")){
 		obj <- SDMXDataSet(xmlObj);
-	}else{
-		obj <- SDMX(xmlObj);
+  }else{
+		stop("Unsupported SDMX Type")
 	}
 	
 	return(obj);
