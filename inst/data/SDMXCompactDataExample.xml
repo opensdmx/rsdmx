@@ -86,5 +86,7 @@
 			<myorg:Obs YEA="2010" OBS_VALUE="4.25" />
 			<myorg:Obs YEA="2011" OBS_VALUE="1.245" />
 		</myorg:Series>
+		<myorg:Series VAR1="YFT" VAR2="VAL3" VAR3="VARIABLE_1990" VAR5="HOME" TIME_FORMAT="P1Y" UNIT="EUR" REFERENCEPERIOD="1990_100" />
+		<myorg:Series VAR1="YFT" VAR2="VAL4" VAR3="VARIABLE_1990" VAR5="HOME" TIME_FORMAT="P1Y" UNIT="EUR" REFERENCEPERIOD="1990_100" />
 	</myorg:DataSet>
 </message:CompactData>

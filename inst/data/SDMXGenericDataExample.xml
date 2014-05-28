@@ -125,5 +125,14 @@
 				<generic:ObsValue value="450.0" />
 			</generic:Obs>
 		</generic:Series>
+		<generic:Series>
+			<generic:SeriesKey>
+					<generic:Value concept="C1" value="YEAR" />
+					<generic:Value concept="C2" value="153" />
+					<generic:Value concept="C3" value="532" />
+					<generic:Value concept="C4" value="55" />
+					<generic:Value concept="C5" value="P" />
+				</generic:SeriesKey>
+		</generic:Series>
 	</message:DataSet>
 </message:GenericData>

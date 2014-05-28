@@ -70,19 +70,23 @@ as.data.frame.SDMXDataSet <- function(x, ...){
   		keyValues <- sapply(keyValuesXML, function(x) as.character(xmlGetAttr(x, "value")))
   		keydf <- structure(keyValues, .Names = keys) 
   		keydf <- data.frame(lapply(keydf, as.character), stringsAsFactors=FALSE)
-  		if(length(obsTime) > 0) keydf <- keydf[rep(row.names(keydf), length(obsTime)),]
-  		
+  		if(length(obsTime) > 0){
+        keydf <- keydf[rep(row.names(keydf), length(obsTime)),]
+  		  row.names(keydf) <- 1:length(obsTime)
+  		}
+        
   		#single Serie as DataFrame
   		if(length(obsTime) > 0){
   			serie <- cbind(keydf, obsTime, obsValue)
   		}else{
-  			serie <- NULL
+  		  #manage absence data
+  		  serie <- cbind(keydf, obsTime = rep(NA, dim(keydf)[1L]), obsValue = rep(NA, dim(keydf)[1L]))
   		}
   		return(serie)
   	}
   	
   	#converting SDMX series to a DataFrame R object
-  	dataset <- do.call("rbind", lapply(seriesXML, function(x){ serie <- parseSerie(x) }))
+  	dataset <- do.call("rbind.fill", lapply(seriesXML, function(x){ serie <- parseSerie(x) }))
   	
   
   }else if(type.SDMXType(xmlObj) == "SDMXCompactData"){
@@ -101,14 +105,18 @@ as.data.frame.SDMXDataSet <- function(x, ...){
                       row.names = 1:length(obsValueXML))
         
         #key values
-        keydf <- t(as.data.frame(xmlAttrs(x), stringAsFactors = FALSE))
-        if(nrow(obsValue) > 0) keydf <- keydf[rep(row.names(keydf), nrow(obsValue)),]
-        
+        keydf <- data.frame(t(as.data.frame(xmlAttrs(x), stringAsFactors = FALSE)), stringAsFactors = FALSE)
+        if(nrow(obsValue) > 0){
+          keydf <- keydf[rep(row.names(keydf), nrow(obsValue)),]
+          row.names(keydf) <- 1:nrow(obsValue)
+        }
+          
         #single Serie as DataFrame
-        if(nrow(obsValue) > 0){    
+        if(nrow(obsValue) > 0){  
           serie <- cbind(keydf, obsValue, row.names = 1:nrow(obsValue))
         }else{
-          serie <- NULL
+          #manage absence data
+          serie <- keydf
         }
         return(serie)
       }

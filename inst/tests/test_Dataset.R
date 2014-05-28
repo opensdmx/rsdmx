@@ -17,6 +17,10 @@ test_that("GenericData",{
 	df <- as.data.frame(ds)
 	expect_is(df, "data.frame")
 	expect_equal(c(paste(rep("C",5),1:5,sep=""), "obsTime", "obsValue"), names(df))
+  
+  #test absence data
+  expect_true(is.na(df[nrow(df),]$obsValue))
+  expect_true(is.na(df[nrow(df),]$obsTime))
 })
 
 test_that("CompactData",{
@@ -28,4 +32,10 @@ test_that("CompactData",{
   
   df <- as.data.frame(ds)
   expect_is(df, "data.frame")
+  
+  #test absence data
+  expect_true(is.na(df[nrow(df),]$YEA))
+  expect_true(is.na(df[nrow(df),]$OBS_VALUE))
+  expect_true(is.na(df[nrow(df)-1,]$YEA))
+  expect_true(is.na(df[nrow(df)-1,]$OBS_VALUE))
 })
