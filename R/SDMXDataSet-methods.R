@@ -70,7 +70,7 @@ as.data.frame.SDMXDataSet <- function(x, ...){
   		keyValues <- sapply(keyValuesXML, function(x) as.character(xmlGetAttr(x, "value")))
   		keydf <- structure(keyValues, .Names = keys) 
   		keydf <- data.frame(lapply(keydf, as.character), stringsAsFactors=FALSE)
-  		keydf <- keydf[rep(row.names(keydf), length(obsTime)),]
+  		if(length(obsTime) > 0) keydf <- keydf[rep(row.names(keydf), length(obsTime)),]
   		
   		#single Serie as DataFrame
   		if(length(obsTime) > 0){
@@ -102,7 +102,7 @@ as.data.frame.SDMXDataSet <- function(x, ...){
         
         #key values
         keydf <- t(as.data.frame(xmlAttrs(x), stringAsFactors = FALSE))
-        keydf <- keydf[rep(row.names(keydf), nrow(obsValue)),]
+        if(nrow(obsValue) > 0) keydf <- keydf[rep(row.names(keydf), nrow(obsValue)),]
         
         #single Serie as DataFrame
         if(nrow(obsValue) > 0){    
@@ -114,7 +114,7 @@ as.data.frame.SDMXDataSet <- function(x, ...){
       }
       
       #converting SDMX series to a DataFrame R object
-      dataset <- suppressWarnings(do.call("rbind.fill", lapply(seriesXML, function(x){serie <- parseSerie(x) })))
+      dataset <- do.call("rbind.fill", lapply(seriesXML, function(x){serie <- parseSerie(x) }))
       
     }else{
       #to see how to deal with this case
