@@ -1,7 +1,7 @@
 rsdmx
 =======
 
-R package to read SDMX data.
+R package to read SDMX data. [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.10939.png)](http://dx.doi.org/10.5281/zenodo.10939) (rsdmx v0.2)
 
 ============================
 
