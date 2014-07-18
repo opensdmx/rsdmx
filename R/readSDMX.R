@@ -3,7 +3,7 @@
 
 # function to read SDMX as character string
 # (required in order to encapsulate a S3 old class object in a S4 representation)
-readSDMX <- function(file, isURL = TRUE,hhead){
+readSDMX <- function(file, isURL = TRUE,hhead=list()){
 	
 	#load data
 	if(isURL == FALSE){

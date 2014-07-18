@@ -7,7 +7,7 @@
 \description{\code{readSDMX} is the main function to use to read SDMX data}
 
 \usage{
-readSDMX(file, isURL)
+readSDMX(file, isURL, hhead)
 }
 
 \arguments{
