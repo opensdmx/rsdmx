@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message:GenericData
+  xmlns:generic="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/generic"
+  xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common"
+  xmlns:message="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <message:Header>
+    <message:ID>17b06c4d3592781e6f5548c9abfac874</message:ID>
+    <message:Test>false</message:Test>
+    <message:Prepared>2013-05-29T05:58:10</message:Prepared>
+    <message:Sender id="ESTAT">
+      <message:Name xml:lang="en">Eurostat</message:Name>
+    </message:Sender>
+    <message:Receiver id="RECEIVER"/>
+    <message:KeyFamilyRef>DSD_acf_p_fa</message:KeyFamilyRef>
+    <message:KeyFamilyAgency>ESTAT</message:KeyFamilyAgency>
+    <message:DataSetID>acf_p_fa</message:DataSetID>
+    <message:DataSetAction>Append</message:DataSetAction>
+  </message:Header>
+  <message:DataSet>
+    <generic:KeyFamilyRef>DSD_acf_p_fa</generic:KeyFamilyRef>
+    <generic:Series>
+      <generic:SeriesKey>
+        <generic:Value concept="UNIT" value="PC"/>
+        <generic:Value concept="REASON" value="ECO"/>
+        <generic:Value concept="ENTERPR" value="OTH"/>
+        <generic:Value concept="NACE_R2" value="B-E"/>
+        <generic:Value concept="GEO" value="PL"/>
+        <generic:Value concept="FREQ" value="A"/>
+      </generic:SeriesKey>
+      <generic:Obs>
+        <generic:Time>2009</generic:Time>
+        <generic:ObsValue value="16.8"/>
+      </generic:Obs>
+    </generic:Series>
+    <generic:Series>
+      <generic:SeriesKey>
+        <generic:Value concept="UNIT" value="PC"/>
+        <generic:Value concept="REASON" value="ECO"/>
+        <generic:Value concept="ENTERPR" value="YHE"/>
+        <generic:Value concept="NACE_R2" value="M"/>
+        <generic:Value concept="GEO" value="PL"/>
+        <generic:Value concept="FREQ" value="A"/>
+      </generic:SeriesKey>
+      <generic:Obs>
+        <generic:Time>2009</generic:Time>
+        <generic:ObsValue value="18.0"/>
+      </generic:Obs>
+    </generic:Series>
+  </message:DataSet>
+</message:GenericData>
