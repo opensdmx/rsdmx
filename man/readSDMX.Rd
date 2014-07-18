@@ -31,8 +31,15 @@ head(stats1)
 #head(stats2)
 
 #example 3: Eurostat data (local file)
-tmp <- system.file("data","SDMXGenericDataExample_Eurostat.xml", package="rsdmx")
+#using SDMX 2.0
+tmp <- system.file("data","Example_Eurostat_2.0.xml", package="rsdmx")
 sdmx3 <- readSDMX(tmp, isURL = FALSE)
 stats3 <- as.data.frame(sdmx3)
 head(stats3)
+
+#using SDMX 2.1
+tmpnew <- system.file("data","Example_Eurostat_2.1.xml", package="rsdmx")
+sdmx4 <- readSDMX(tmpnew, isURL = FALSE)
+stats4 <- as.data.frame(sdmx4)
+head(stats4)
 }

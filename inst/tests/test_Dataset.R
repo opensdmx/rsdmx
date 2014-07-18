@@ -7,8 +7,8 @@ require(rsdmx, quietly = TRUE)
 require(testthat)
 context("SDMXDataSet")
 
-test_that("GenericData",{
-  file <- system.file("data", "SDMXGenericDataExample.xml", package = "rsdmx")
+test_that("GenericData 2.0",{
+  file <- system.file("data", "SDMXGenericDataExample_2.0.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
   
 	ds <- SDMXDataSet(xmlObj)
@@ -23,8 +23,8 @@ test_that("GenericData",{
   expect_true(is.na(df[nrow(df),]$obsTime))
 })
 
-test_that("CompactData",{
-  file <- system.file("data", "SDMXCompactDataExample.xml", package = "rsdmx")
+test_that("CompactData 2.0",{
+  file <- system.file("data", "SDMXCompactDataExample_2.0.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
   
   ds <- SDMXDataSet(xmlObj)
@@ -40,8 +40,8 @@ test_that("CompactData",{
   expect_true(is.na(df[nrow(df)-1,]$OBS_VALUE))
 })
 
-test_that("GenericData_Eurostat",{
-  file <- system.file("data", "SDMXGenericDataExample_Eurostat.xml", package = "rsdmx")
+test_that("GenericData - 2.0 - Eurostat",{
+  file <- system.file("data", "Example_Eurostat_2.0.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
   
   ds <- SDMXDataSet(xmlObj)
@@ -59,5 +59,31 @@ test_that("GenericData_Eurostat",{
                                   obsValue = c(16.8, 18)), .Names = c("UNIT", "REASON", "ENTERPR", "NACE_R2", "GEO", "FREQ", "obsTime", "obsValue"), class = "data.frame",
                              row.names = 1:2))
   
+})
+
+test_that("GenericData - 2.1",{
+  file <- system.file("data", "SDMXGenericDataExample_2.1.xml", package = "rsdmx")
+  xmlObj <- xmlParse(file)
   
+  ds <- SDMXDataSet(xmlObj)
+  expect_is(ds, "SDMXDataSet")
+  
+  df <- as.data.frame(ds)
+  expect_is(df, "data.frame")
+  
+  # test df content
+  expect_true(all(df == structure(list(UNIT = rep("PC",4),
+                                  Y_GRAD = c(rep("TOTAL",2),rep("Y_GE1990",2)), 
+                                  FOS07 = rep("FOS1",4),
+                                  GEO = rep("BE",4),
+                                  FREQ = rep("A",4),
+                                  obsTime = structure(
+                                    rep(c(1L, 2L),2),
+                                    .Label = c("2009","2006"),class = "factor"),
+                                  obsValue = c(NA, NA,43.75,NA)),
+                                  .Names = c("UNIT", "Y_GRAD","FOS07", "GE0",
+                                             "FREQ", "obsTime", "obsValue"),
+                                  class = "data.frame",
+                                  row.names = 1:4), na.rm = TRUE))
+ 
 })

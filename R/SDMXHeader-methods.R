@@ -5,7 +5,10 @@
 
 SDMXHeader <- function(xmlObj){
 
-	#header elements
+	sdmxVersion <- getVersion(SDMXSchema(xmlObj))
+  VERSION.21 <- sdmxVersion == "2.1"
+  
+  #header elements
 	node <- xmlRoot(xmlObj)[[1]];
 	children <- xmlChildren(node)
 	
@@ -23,9 +26,15 @@ SDMXHeader <- function(xmlObj){
 	senderNames <- xmlChildren(children$Sender)
 	if(length(senderNames) == 0){
 		sender$name <- NA
+    if(VERSION.21) sender$timezone <- NA
 	}else{
 		sender$name <- new.env()
-		sapply(senderNames, function(x) {sender$name[[xmlGetAttr(x,"xml:lang")]] <- xmlValue(x)})
+		if(VERSION.21){
+		  sender$timezone <- xmlValue(senderNames[["Timezone"]])
+      senderNames <- senderNames[-length(senderNames)]
+		}
+		sapply(senderNames,
+           function(x) {sender$name[[xmlGetAttr(x,"xml:lang")]] <- xmlValue(x)})
 		sender$name <- as.list(sender$name)
 	}
 	sender <- as.list(sender)
@@ -38,8 +47,13 @@ SDMXHeader <- function(xmlObj){
 		receiverNames <- xmlChildren(children$Receiver)
 		if(length(receiverNames) == 0){
 			receiver$name <- NA
+			if(VERSION.21) receiver$name <- NA
 		}else{
 			receiver$name <- new.env()
+			if(VERSION.21){
+			  receiver$timezone <- xmlValue(receiverNames[["Timezone"]])
+			  receiverNames <- receiverNames[-length(receiverNames)]
+			}
 			sapply(receiverNames, function(x) {receiver$name[[xmlGetAttr(x,"xml:lang")]] <- xmlValue(x)})
 			receiver$name <- as.list(receiver$name)
 		}
@@ -114,7 +128,6 @@ SDMXHeader <- function(xmlObj){
 	}else{
 		reportEnd <- as.POSIXlt(NA)
 	}
-	
 	
 	#SDMXHeader object
 	obj <- new("SDMXHeader",

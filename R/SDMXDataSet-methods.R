@@ -13,6 +13,9 @@ as.data.frame.SDMXDataSet <- function(x, ...){
 	xmlObj <- x@xmlObj;
   dataset <- NULL
   
+  sdmxVersion <- getVersion(SDMXSchema(xmlObj))
+  VERSION.21 <- sdmxVersion == "2.1"
+  
   #namespace
   nsDefs.df <-as.data.frame(
     do.call("rbind",
@@ -47,7 +50,9 @@ as.data.frame.SDMXDataSet <- function(x, ...){
     
   	#concepts (attributes)
   	keysXML <- getNodeSet(xmlDoc(getNodeSet(xmlObj, "//ns:SeriesKey", namespaces = ns)[[1]]), "//ns:Value", namespaces = ns)
-  	keys <- unique(sapply(keysXML, function(x) xmlGetAttr(x, "concept")))
+    conceptId <- "concept"
+    if(VERSION.21) conceptId <- "id"
+  	keys <- unique(sapply(keysXML, function(x) xmlGetAttr(x, conceptId)))
   	serieNames <- c(keys, "Time", "ObsValue")
   	
   	#function to parse a Serie
@@ -57,8 +62,14 @@ as.data.frame.SDMXDataSet <- function(x, ...){
   		serieXML <- xmlDoc(x)
   		
   		#obsTimes
-  		obsTimesXML <- getNodeSet(serieXML, "//ns:Series/ns:Obs/ns:Time", namespaces = ns)
-  		obsTime <- sapply(obsTimesXML, function(x) {xmlValue(x)})
+      timeElement <- "Time"
+      if(VERSION.21) timeElement <- "ObsDimension"
+  		obsTimesXML <- getNodeSet(serieXML,
+                                paste("//ns:Series/ns:Obs/ns:",timeElement,sep=""),
+                                namespaces = ns)
+  		obsTime <- sapply(obsTimesXML, function(x) {
+        if(!VERSION.21) xmlValue(x) else xmlGetAttr(x,"value")
+  	  })
   		
   		#obsValues
   		obsValuesXML <- getNodeSet(serieXML, "//ns:Series/ns:Obs/ns:ObsValue", namespaces = ns)
@@ -129,7 +140,10 @@ as.data.frame.SDMXDataSet <- function(x, ...){
       stop("Unsupported CompactData parset for generic SDMX namespace")
     }
   }
-  
+
+  if(any(as.character(dataset$obsValue) == "NaN", na.rm = TRUE)){
+    dataset[as.character(dataset$obsValue) == "NaN",]$obsValue <- NA
+  }
 	if(!is.null(dataset)) row.names(dataset) <- 1:nrow(dataset)
   
 	# output

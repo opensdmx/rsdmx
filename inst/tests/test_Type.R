@@ -8,21 +8,39 @@ require(testthat)
 context("SDMXType")
 
 #read test data
-file <- system.file("data", "SDMXMessageExample.xml", package = "rsdmx")
-xmlObj <- xmlParse(file)
+file1 <- system.file("data", "SDMXMessageExample_2.0.xml", package = "rsdmx")
+file2 <- system.file("data", "SDMXMessageExample_2.1.xml", package = "rsdmx")
+xmlObj1 <- xmlParse(file1)
+xmlObj2 <- xmlParse(file2)
 
-test_that("type.SDMXType",{
-	type <- type.SDMXType(xmlObj)		
-	expect_equal(type, "SDMXGenericData")
+test_that("type.SDMXType - 2.0",{
+	type1 <- type.SDMXType(xmlObj1)		
+	expect_equal(type1, "SDMXGenericData")
 })
 
-test_that("SDMXType",{
-	obj <- SDMXType(xmlObj)
-	expect_is(obj, "SDMXType")
+test_that("type.SDMXType - 2.1",{
+  type2 <- type.SDMXType(xmlObj2)		
+  expect_equal(type2, "SDMXGenericData")
 })
 
-test_that("getType",{
-	obj <- SDMXType(xmlObj)
-	type <- getType(obj)
-	expect_equal(type, "SDMXGenericData")
+test_that("SDMXType - 2.0",{
+	obj1 <- SDMXType(xmlObj1)
+	expect_is(obj1, "SDMXType")
+})
+
+test_that("SDMXType - 2.1",{
+  obj2 <- SDMXType(xmlObj2)
+  expect_is(obj2, "SDMXType")
+})
+
+test_that("getType - 2.0",{
+	obj1 <- SDMXType(xmlObj1)
+	type1 <- getType(obj1)
+	expect_equal(type1, "SDMXGenericData")
+})
+
+test_that("getType - 2.1",{
+  obj2 <- SDMXType(xmlObj2)
+  type2 <- getType(obj2)
+  expect_equal(type2, "SDMXGenericData")
 })
