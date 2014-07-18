@@ -3,7 +3,7 @@
 
 # function to read SDMX as character string
 # (required in order to encapsulate a S3 old class object in a S4 representation)
-readSDMX <- function(file, isURL = TRUE){
+readSDMX <- function(file, isURL = TRUE,hhead=list()){
 	
 	#load data
 	if(isURL == FALSE){
@@ -11,7 +11,7 @@ readSDMX <- function(file, isURL = TRUE){
 			stop("File ", file, "not found\n")
 		xmlObj <- xmlTreeParse(file, useInternalNodes = TRUE)
 	}else{
-		content <- getURL(file)
+		content <- getURL(file,httpheader=hhead)
 		xmlObj <- xmlTreeParse(content, useInternalNodes = TRUE)
 	}
 	
