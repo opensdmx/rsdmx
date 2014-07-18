@@ -5,7 +5,6 @@
 #=======================
 require(rsdmx, quietly = TRUE)
 require(testthat)
-require(XML)
 context("SDMXDataSet")
 
 test_that("GenericData",{
