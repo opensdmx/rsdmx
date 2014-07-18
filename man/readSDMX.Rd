@@ -14,6 +14,7 @@ readSDMX(file, isURL)
 \item{file}{path to SDMX-ML document that needs to be parsed}
 \item{isURL}{a value of class "logical" either the path is an url, and data has to be downloaded from a SDMX 
 web-repository. Default value is TRUE.}
+\item{hhead}{optional list of httpheader information passed to getURL }
 }
 
 \author{Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}}
@@ -42,4 +43,10 @@ tmpnew <- system.file("data","Example_Eurostat_2.1.xml", package="rsdmx")
 sdmx4 <- readSDMX(tmpnew, isURL = FALSE)
 stats4 <- as.data.frame(sdmx4)
 head(stats4)
+
+# Eurostat data via web-service (REST)
+url <- "http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/bop_euins_q/Q.EUR.100.NET.EUR.COMM/?startperiod=2013-Q1"
+sdmx <- readSDMX(url, hhead=list('User-Agent'='R'))
+stats <- as.data.frame(sdmx)
+head(stats)
 }
