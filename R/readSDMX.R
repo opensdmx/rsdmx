@@ -11,7 +11,11 @@ readSDMX <- function(file, isURL = TRUE){
 			stop("File ", file, "not found\n")
 		xmlObj <- xmlTreeParse(file, useInternalNodes = TRUE)
 	}else{
-		content <- getURL(file)
+    rsdmxAgent <- paste("rsdmx/",as.character(packageVersion("rsdmx")),sep="")
+		content <- getURL(
+      file,
+      httpheader = list('User-Agent' = rsdmxAgent)
+    )
 		xmlObj <- xmlTreeParse(content, useInternalNodes = TRUE)
 	}
 	
