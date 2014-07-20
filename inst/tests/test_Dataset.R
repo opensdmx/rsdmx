@@ -80,7 +80,9 @@ test_that("GenericData - 2.1",{
                                   obsTime = structure(
                                     rep(c(1L, 2L),2),
                                     .Label = c("2009","2006"),class = "factor"),
-                                  obsValue = c(NA, NA,43.75,NA)),
+                                  obsValue = c(NA, NA,43.75,NA),
+                                  OBS_STATUS = structure(rep(1L,4),
+                                                .Label = "na",class = "factor")),
                                   .Names = c("UNIT", "Y_GRAD","FOS07", "GE0",
                                              "FREQ", "obsTime", "obsValue"),
                                   class = "data.frame",

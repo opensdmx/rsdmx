@@ -59,9 +59,20 @@ as.data.frame.SDMXDataSet <- function(x, ...){
                           namespaces = ns)
   	keysNames <- unique(sapply(keysXML, function(x) xmlGetAttr(x, conceptId)))
     
+    #serie observation attributes
+    obsAttrsNames <- NULL
+    obsAttrsXML <- getNodeSet(xmlObj,
+                              "//ns:Obs/ns:Attributes/ns:Value",
+                              namespaces = ns)
+    if(length(obsAttrsXML) > 0){
+      obsAttrsNames <- unique(sapply(obsAttrsXML,function(x){
+        xmlGetAttr(x, conceptId)
+      }))
+    }
     
     #output structure
     serieNames <- c(keysNames, "Time", "ObsValue")
+    if(!is.null(obsAttrsNames)) serieNames <- c(serieNames, obsAttrsNames)
   	
   	#function to parse a Serie
   	parseSerie <- function(x){
@@ -86,7 +97,24 @@ as.data.frame.SDMXDataSet <- function(x, ...){
   		obsValue <- sapply(obsValuesXML, function(x) {
         as.numeric(xmlGetAttr(x, "value"))
       })
-  		
+      
+      #obsAttrs
+  		obsAttrs.df <- NULL
+      if(!is.null(obsAttrsNames)){
+    		obsAttrsXML <- getNodeSet(serieXML,
+    		                          "//ns:Series/ns:Obs/ns:Attributes/ns:Value",
+    		                          namespaces = ns)
+        if(length(obsAttrsXML) > 0){
+      		obsAttrsValues <- sapply(obsAttrsXML, function(x){
+      		  sapply(obsAttrsNames, function(t){
+      		    if((xmlGetAttr(x, conceptId) == t)) as.character(xmlGetAttr(x, "value"))
+      		  })
+      		})
+      		obsAttrs.df <- as.data.frame(t(obsAttrsValues), stringAsFactors = FALSE)
+    		  if(any(obsAttrs.df == "NULL")) obsAttrs.df[obsAttrs.df == "NULL"] <- NA
+        }
+      }
+        
   		#Key values
   		#SeriesKey (concept attributes/values) are duplicated according to the
       #number of Time observations
@@ -96,8 +124,8 @@ as.data.frame.SDMXDataSet <- function(x, ...){
   		keyValues <- sapply(keyValuesXML, function(x){
         as.character(xmlGetAttr(x, "value"))
       })
-  		keydf <- structure(keyValues, .Names = keys) 
-  		keydf <- data.frame(lapply(keydf, as.character), stringsAsFactors=FALSE)
+  		keydf <- structure(keyValues, .Names = keysNames) 
+  		keydf <- as.data.frame(lapply(keydf, as.character), stringsAsFactors=FALSE)
   		if(length(obsTime) > 0){
         keydf <- keydf[rep(row.names(keydf), length(obsTime)),]
   		  row.names(keydf) <- 1:length(obsTime)
@@ -106,11 +134,23 @@ as.data.frame.SDMXDataSet <- function(x, ...){
   		#single Serie as DataFrame
   		if(length(obsTime) > 0){
   			serie <- cbind(keydf, obsTime, obsValue)
+        if(!is.null(obsAttrsNames) && !is.null(obsAttrs.df)){
+          serie <- cbind(serie, obsAttrs.df)
+        }
   		}else{
   		  #manage absence data
   		  serie <- cbind(keydf,
                        obsTime = rep(NA, dim(keydf)[1L]),
-                       obsValue = rep(NA, dim(keydf)[1L]))
+                       obsValue = rep(NA, dim(keydf)[1L])
+                       )
+        if(!is.null(obsAttrsNames)){
+          obsAttrs.df <- as.data.frame(matrix(
+            nrow = dim(keydf)[1L],
+            ncol = length(obsAttrsNames)), stringAsFactors = FALSE)
+          colnames(obsAttrs.df) <- obsAttrsNames
+          serie <- cbind(serie, obsAttrs.df)
+        }
+        
   		}
   		return(serie)
   	}
@@ -119,7 +159,6 @@ as.data.frame.SDMXDataSet <- function(x, ...){
   	dataset <- do.call("rbind.fill", lapply(seriesXML, function(x){
       serie <- parseSerie(x)
     }))
-  	
   
   }else if(type.SDMXType(xmlObj) == "SDMXCompactData"){
     if(hasAuthorityNS){
@@ -136,10 +175,11 @@ as.data.frame.SDMXDataSet <- function(x, ...){
                         xmlAttrs(t)
                       })),
                       stringAsFactors = FALSE,
-                      row.names = 1:length(obsValueXML))
+                      row.names = 1:length(obsValueXML),
+                      stringAsFactors = FALSE)
         
         #key values
-        keydf <- data.frame(t(as.data.frame(xmlAttrs(x), stringAsFactors = FALSE)), stringAsFactors = FALSE)
+        keydf <- as.data.frame(t(as.data.frame(xmlAttrs(x), stringAsFactors = FALSE)), stringAsFactors = FALSE)
         if(nrow(obsValue) > 0){
           keydf <- keydf[rep(row.names(keydf), nrow(obsValue)),]
           row.names(keydf) <- 1:nrow(obsValue)
@@ -160,7 +200,7 @@ as.data.frame.SDMXDataSet <- function(x, ...){
       
     }else{
       #to see how to deal with this case
-      stop("Unsupported CompactData parset for generic SDMX namespace")
+      stop("Unsupported CompactData parser for generic SDMX namespace")
     }
   }
 
