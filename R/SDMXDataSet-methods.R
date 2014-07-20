@@ -52,8 +52,13 @@ as.data.frame.SDMXDataSet <- function(x, ...){
     if(VERSION.21) conceptId <- "id"
     
   	#serie keys
-  	keysXML <- getNodeSet(xmlDoc(getNodeSet(xmlObj, "//ns:SeriesKey", namespaces = ns)[[1]]), "//ns:Value", namespaces = ns)
+  	keysXML <- getNodeSet(xmlDoc(getNodeSet(xmlObj,
+                                            "//ns:SeriesKey",
+                                            namespaces = ns)[[1]]),
+                          "//ns:Value",
+                          namespaces = ns)
   	keysNames <- unique(sapply(keysXML, function(x) xmlGetAttr(x, conceptId)))
+    
     
     #output structure
     serieNames <- c(keysNames, "Time", "ObsValue")
