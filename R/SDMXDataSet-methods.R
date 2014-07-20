@@ -72,13 +72,21 @@ as.data.frame.SDMXDataSet <- function(x, ...){
   	  })
   		
   		#obsValues
-  		obsValuesXML <- getNodeSet(serieXML, "//ns:Series/ns:Obs/ns:ObsValue", namespaces = ns)
-  		obsValue <- sapply(obsValuesXML, function(x) { as.numeric(xmlGetAttr(x, "value")) })
+  		obsValuesXML <- getNodeSet(serieXML,
+                                 "//ns:Series/ns:Obs/ns:ObsValue",
+                                 namespaces = ns)
+  		obsValue <- sapply(obsValuesXML, function(x) {
+        as.numeric(xmlGetAttr(x, "value"))
+      })
   		
   		#Key values
   		#SeriesKey (concept attributes/values) are duplicated according to the number of Time observations)
-  		keyValuesXML <- getNodeSet(serieXML, "//ns:SeriesKey/ns:Value", namespaces = ns)
-  		keyValues <- sapply(keyValuesXML, function(x) as.character(xmlGetAttr(x, "value")))
+  		keyValuesXML <- getNodeSet(serieXML,
+                                 "//ns:SeriesKey/ns:Value",
+                                 namespaces = ns)
+  		keyValues <- sapply(keyValuesXML, function(x){
+        as.character(xmlGetAttr(x, "value"))
+      })
   		keydf <- structure(keyValues, .Names = keys) 
   		keydf <- data.frame(lapply(keydf, as.character), stringsAsFactors=FALSE)
   		if(length(obsTime) > 0){
@@ -91,13 +99,17 @@ as.data.frame.SDMXDataSet <- function(x, ...){
   			serie <- cbind(keydf, obsTime, obsValue)
   		}else{
   		  #manage absence data
-  		  serie <- cbind(keydf, obsTime = rep(NA, dim(keydf)[1L]), obsValue = rep(NA, dim(keydf)[1L]))
+  		  serie <- cbind(keydf,
+                       obsTime = rep(NA, dim(keydf)[1L]),
+                       obsValue = rep(NA, dim(keydf)[1L]))
   		}
   		return(serie)
   	}
   	
   	#converting SDMX series to a DataFrame R object
-  	dataset <- do.call("rbind.fill", lapply(seriesXML, function(x){ serie <- parseSerie(x) }))
+  	dataset <- do.call("rbind.fill", lapply(seriesXML, function(x){
+      serie <- parseSerie(x)
+    }))
   	
   
   }else if(type.SDMXType(xmlObj) == "SDMXCompactData"){
