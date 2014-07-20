@@ -54,8 +54,7 @@ test_that("GenericData - 2.0 - Eurostat",{
   expect_equal(df, structure(list(UNIT = c("PC", "PC"), REASON = c("ECO", "ECO"), 
                                   ENTERPR = c("OTH", "YHE"), NACE_R2 = c("B-E", "M"), 
                                   GEO = c("PL", "PL"), FREQ = c("A", "A"), 
-                                  obsTime = structure(c(1L, 1L), .Label = "2009", 
-                                                      class = "factor"), 
+                                  obsTime = rep("2009",2), 
                                   obsValue = c(16.8, 18)), .Names = c("UNIT", "REASON", "ENTERPR", "NACE_R2", "GEO", "FREQ", "obsTime", "obsValue"), class = "data.frame",
                              row.names = 1:2))
   
@@ -77,12 +76,9 @@ test_that("GenericData - 2.1",{
                                   FOS07 = rep("FOS1",4),
                                   GEO = rep("BE",4),
                                   FREQ = rep("A",4),
-                                  obsTime = structure(
-                                    rep(c(1L, 2L),2),
-                                    .Label = c("2009","2006"),class = "factor"),
+                                  obsTime = rep(c("2009","2006"),2),
                                   obsValue = c(NA, NA,43.75,NA),
-                                  OBS_STATUS = structure(rep(1L,4),
-                                                .Label = "na",class = "factor")),
+                                  OBS_STATUS = rep("na",4)),
                                   .Names = c("UNIT", "Y_GRAD","FOS07", "GE0",
                                              "FREQ", "obsTime", "obsValue"),
                                   class = "data.frame",

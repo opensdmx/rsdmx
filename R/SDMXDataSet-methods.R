@@ -134,7 +134,7 @@ as.data.frame.SDMXDataSet <- function(x, ...){
   		#single Serie as DataFrame
   		if(length(obsTime) > 0){
   			serie <- cbind(keydf, obsTime, obsValue)
-        if(!is.null(obsAttrsNames) && !is.null(obsAttrs.df)){
+        if(!is.null(obsAttrsNames) & !is.null(obsAttrs.df)){
           serie <- cbind(serie, obsAttrs.df)
         }
   		}else{
@@ -152,6 +152,14 @@ as.data.frame.SDMXDataSet <- function(x, ...){
         }
         
   		}
+      
+      #convert factor columns
+      serie[,"obsTime"] <- as.character(serie[,"obsTime"])
+      if(!is.null(obsAttrsNames) & !is.null(obsAttrs.df)){
+        for(i in 1:length(obsAttrsNames)){
+          serie[,obsAttrsNames[i]] <- as.character(serie[,obsAttrsNames[i]])
+        }
+  	  }
   		return(serie)
   	}
   	
