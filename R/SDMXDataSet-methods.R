@@ -48,12 +48,15 @@ as.data.frame.SDMXDataSet <- function(x, ...){
     seriesNb <- length(seriesXML)
     if(seriesNb == 0) return(NULL);
     
-  	#concepts (attributes)
-  	keysXML <- getNodeSet(xmlDoc(getNodeSet(xmlObj, "//ns:SeriesKey", namespaces = ns)[[1]]), "//ns:Value", namespaces = ns)
     conceptId <- "concept"
     if(VERSION.21) conceptId <- "id"
-  	keys <- unique(sapply(keysXML, function(x) xmlGetAttr(x, conceptId)))
-  	serieNames <- c(keys, "Time", "ObsValue")
+    
+  	#serie keys
+  	keysXML <- getNodeSet(xmlDoc(getNodeSet(xmlObj, "//ns:SeriesKey", namespaces = ns)[[1]]), "//ns:Value", namespaces = ns)
+  	keysNames <- unique(sapply(keysXML, function(x) xmlGetAttr(x, conceptId)))
+    
+    #output structure
+    serieNames <- c(keysNames, "Time", "ObsValue")
   	
   	#function to parse a Serie
   	parseSerie <- function(x){
@@ -80,7 +83,8 @@ as.data.frame.SDMXDataSet <- function(x, ...){
       })
   		
   		#Key values
-  		#SeriesKey (concept attributes/values) are duplicated according to the number of Time observations)
+  		#SeriesKey (concept attributes/values) are duplicated according to the
+      #number of Time observations
   		keyValuesXML <- getNodeSet(serieXML,
                                  "//ns:SeriesKey/ns:Value",
                                  namespaces = ns)
@@ -123,7 +127,9 @@ as.data.frame.SDMXDataSet <- function(x, ...){
         #obs values
         obsValueXML <- xmlChildren(x)
         obsValue <- as.data.frame(
-                      do.call("rbind", lapply(obsValueXML, function(t){ xmlAttrs(t) })),
+                      do.call("rbind", lapply(obsValueXML, function(t){
+                        xmlAttrs(t)
+                      })),
                       stringAsFactors = FALSE,
                       row.names = 1:length(obsValueXML))
         
