@@ -60,7 +60,7 @@ as.data.frame.SDMXDataSet <- function(x, ...){
   	keysNames <- unique(sapply(keysXML, function(x) xmlGetAttr(x, conceptId)))
     
     #serie observation attributes
-    obsAttrsNames <- NULL
+    obsAttrsNames <- NULL    
     obsAttrsXML <- getNodeSet(xmlObj,
                               "//ns:Obs/ns:Attributes/ns:Value",
                               namespaces = ns)
@@ -74,45 +74,77 @@ as.data.frame.SDMXDataSet <- function(x, ...){
     serieNames <- c(keysNames, "Time", "ObsValue")
     if(!is.null(obsAttrsNames)) serieNames <- c(serieNames, obsAttrsNames)
   	
+    #obs parser function
+    parseObs <- function(obs){
+      
+      obsXML <- xmlDoc(obs)
+      
+      #time
+      timeElement <- "Time"
+      if(VERSION.21) timeElement <- "ObsDimension"
+      obsTimeXML <- getNodeSet(obsXML,
+                               paste("//ns:",timeElement,sep=""),
+                               namespaces=ns)[[1]]
+      obsTime <- NA
+      if(!VERSION.21){
+        obsTime <- xmlValue(obsTimeXML)
+      } else {
+        obsTime <- xmlGetAttr(obsTimeXML,"value")
+      }
+      obsTime <- as.data.frame(obsTime)
+      
+      #value
+      obsValueXML <- getNodeSet(obsXML,
+                                "//ns:ObsValue",
+                                namespaces = ns)[[1]]
+      obsValue <- as.numeric(xmlGetAttr(obsValueXML, "value"))
+      obsValue <- as.data.frame(obsValue)
+      
+      #attributes
+      obsAttrs.df <- NULL
+      if(!is.null(obsAttrsNames)){
+        obsAttrsXML <- getNodeSet(obsXML,
+                                  "//ns:Attributes/ns:Value",
+                                  namespaces = ns)
+        if(length(obsAttrsXML) > 0){
+          obsAttrsValues <- sapply(obsAttrsXML, function(x){
+            sapply(obsAttrsNames, function(t){
+              if((xmlGetAttr(x, conceptId) == t)){
+                as.character(xmlGetAttr(x, "value"))
+              }
+            })
+          })
+          obsAttrs.df <- as.data.frame(t(obsAttrsValues), stringAsFactors = FALSE)
+          for(i in 1:ncol(obsAttrs.df)){
+            if(any(obsAttrs.df[,i] == "NA")){
+              obsAttrs.df[,i][obsAttrs.df[,i] == "NA"] <- NA
+            }
+            if(any(obsAttrs.df[,i] == "NULL")){
+              obsAttrs.df[,i][obsAttrs.df[,i] == "NULL"] <- NA
+            }
+          }
+        }
+      }
+      
+      #output
+      obsR <- cbind(obsTime, obsValue)
+      if(!is.null(obsAttrs.df)) obsR <- cbind(obsR, obsAttrs.df)
+      return(obsR)
+    }
+    
   	#function to parse a Serie
   	parseSerie <- function(x){
   		
   		# Single serie XMLInternalNode converted into a XMLInternalDocument
   		serieXML <- xmlDoc(x)
-  		
-  		#obsTimes
-      timeElement <- "Time"
-      if(VERSION.21) timeElement <- "ObsDimension"
-  		obsTimesXML <- getNodeSet(serieXML,
-                                paste("//ns:Series/ns:Obs/ns:",timeElement,sep=""),
-                                namespaces = ns)
-  		obsTime <- sapply(obsTimesXML, function(x) {
-        if(!VERSION.21) xmlValue(x) else xmlGetAttr(x,"value")
-  	  })
-  		
-  		#obsValues
-  		obsValuesXML <- getNodeSet(serieXML,
-                                 "//ns:Series/ns:Obs/ns:ObsValue",
-                                 namespaces = ns)
-  		obsValue <- sapply(obsValuesXML, function(x) {
-        as.numeric(xmlGetAttr(x, "value"))
-      })
       
-      #obsAttrs
-  		obsAttrs.df <- NULL
-      if(!is.null(obsAttrsNames)){
-    		obsAttrsXML <- getNodeSet(serieXML,
-    		                          "//ns:Series/ns:Obs/ns:Attributes/ns:Value",
-    		                          namespaces = ns)
-        if(length(obsAttrsXML) > 0){
-      		obsAttrsValues <- sapply(obsAttrsXML, function(x){
-      		  sapply(obsAttrsNames, function(t){
-      		    if((xmlGetAttr(x, conceptId) == t)) as.character(xmlGetAttr(x, "value"))
-      		  })
-      		})
-      		obsAttrs.df <- as.data.frame(t(obsAttrsValues), stringAsFactors = FALSE)
-    		  if(any(obsAttrs.df == "NULL")) obsAttrs.df[obsAttrs.df == "NULL"] <- NA
-        }
+      #parseobs
+      obssXML <- getNodeSet(serieXML, "//ns:Series/ns:Obs", namespaces = ns)
+
+      #apply obsParser
+      obsdf <- NULL
+      if(length(obssXML) > 0){
+        obsdf <- do.call("rbind.fill",lapply(obssXML, function(x) parseObs(x)))
       }
         
   		#Key values
@@ -126,38 +158,24 @@ as.data.frame.SDMXDataSet <- function(x, ...){
       })
   		keydf <- structure(keyValues, .Names = keysNames) 
   		keydf <- as.data.frame(lapply(keydf, as.character), stringsAsFactors=FALSE)
-  		if(length(obsTime) > 0){
-        keydf <- keydf[rep(row.names(keydf), length(obsTime)),]
-  		  row.names(keydf) <- 1:length(obsTime)
+  		if(!is.null(obsdf)){
+        keydf <- keydf[rep(row.names(keydf), nrow(obsdf)),]
+  		  row.names(keydf) <- 1:nrow(obsdf)
   		}
         
   		#single Serie as DataFrame
-  		if(length(obsTime) > 0){
-  			serie <- cbind(keydf, obsTime, obsValue)
-        if(!is.null(obsAttrsNames) & !is.null(obsAttrs.df)){
-          serie <- cbind(serie, obsAttrs.df)
-        }
-  		}else{
-  		  #manage absence data
-  		  serie <- cbind(keydf,
-                       obsTime = rep(NA, dim(keydf)[1L]),
-                       obsValue = rep(NA, dim(keydf)[1L])
-                       )
-        if(!is.null(obsAttrsNames)){
-          obsAttrs.df <- as.data.frame(matrix(
-            nrow = dim(keydf)[1L],
-            ncol = length(obsAttrsNames)), stringAsFactors = FALSE)
-          colnames(obsAttrs.df) <- obsAttrsNames
-          serie <- cbind(serie, obsAttrs.df)
-        }
-        
-  		}
+      serie <- keydf
+      if(!is.null(obsdf)){
+        serie <- cbind(serie, obsdf)
+      }
       
       #convert factor columns
-      serie[,"obsTime"] <- as.character(serie[,"obsTime"])
-      if(!is.null(obsAttrsNames) & !is.null(obsAttrs.df)){
-        for(i in 1:length(obsAttrsNames)){
-          serie[,obsAttrsNames[i]] <- as.character(serie[,obsAttrsNames[i]])
+      if("obsTime" %in% colnames(serie)){
+        serie[,"obsTime"] <- as.character(serie[,"obsTime"])
+      }
+      if(!is.null(obsAttrsNames) & !is.null(obsdf)){
+        for(i in 1:length(colnames(obsdf))){
+          serie[,colnames(obsdf)[i]] <- as.character(serie[,colnames(obsdf)[i]])
         }
   	  }
   		return(serie)
