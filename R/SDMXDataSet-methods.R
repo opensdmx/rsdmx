@@ -185,6 +185,8 @@ as.data.frame.SDMXDataSet <- function(x, ...){
   	dataset <- do.call("rbind.fill", lapply(seriesXML, function(x){
       serie <- parseSerie(x)
     }))
+    
+    dataset$obsValue <- as.numeric(dataset$obsValue)
   
   }else if(type.SDMXType(xmlObj) == "SDMXCompactData"){
     if(hasAuthorityNS){
