@@ -3,12 +3,12 @@
 
 #SDMX abstract class
 setClass("SDMXDataSet",
-		representation("SDMX"),
-		prototype = list(),
-		validity = function(object){
-			
-			#eventual validation rules
-			return(TRUE);
-		}
+         contains = "SDMX",
+         representation(),
+         prototype = list(),
+         validity = function(object){
+           #eventual validation rules
+           return(TRUE);
+         }
 )
 
