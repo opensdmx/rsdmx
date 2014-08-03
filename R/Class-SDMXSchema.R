@@ -15,7 +15,8 @@ setClass("SDMXSchema",
 								FALSE
 							);
 			if(valid == FALSE)
-				stop(paste("SDMXSchema version ", VERSION," not supported by RSDMX", sep=""));
-			return(TRUE);
+				warning(paste("SDMXSchema version ", VERSION," not supported by RSDMX",
+                      sep=""));
+			return(valid);
 		}
 )

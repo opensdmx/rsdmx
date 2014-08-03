@@ -24,6 +24,12 @@ readSDMX <- function(file, isURL = TRUE){
 	obj <- NULL;
 	if(type %in% c("SDMXGenericData", "SDMXMessageGroup", "SDMXCompactData")){
 		obj <- SDMXDataSet(xmlObj);
+  }else if(type == "SDMXStructure"){
+    strTypeObj <- SDMXStructureType(xmlObj)
+    strType <- getType(strTypeObj)
+    obj <- NULL
+    stop("Unsupported SDMX Structure Types")
+    
   }else{
 		stop("Unsupported SDMX Type")
 	}
