@@ -64,3 +64,12 @@ setMethod(f = "getNamespaces", signature = "SDMX", function(obj){
           }
 )
 
+#others non-S4 methods
+#====================
+
+#findNamespace
+findNamespace <- function(namespaces, messageType){
+  regexp <- paste(messageType, "$", sep = "")
+  ns <- c(ns = namespaces$uri[grep(regexp, namespaces$uri)])
+  return(ns)
+}

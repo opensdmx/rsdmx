@@ -20,6 +20,7 @@ export(
 	type.SDMXType,
 	version.SDMXSchema,
   namespaces.SDMX,
+  findNamespace,
 	readSDMX
 	
 )

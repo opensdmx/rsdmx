@@ -19,12 +19,12 @@ as.data.frame.SDMXDataSet <- function(x, ...){
   
   #namespace
   nsDefs.df <- getNamespaces(x)
-  ns <- c(ns = nsDefs.df$uri[grep("generic", nsDefs.df$uri[grep("metadata", nsDefs.df$uri, invert = TRUE)])])
+  ns <- findNamespace(nsDefs.df, "generic")
   if(length(ns) == 0){
     #in case no ns found, try to find specific namespace
-    ns.df <- nsDefs.df[regexpr("http://www.SDMX.org", nsDefs.df$uri, "match.length") == -1
-                       & regexpr("http://www.w3.org", nsDefs.df$uri, "match.length") == -1,]
-
+    ns.df <- nsDefs.df[
+        regexpr("http://www.SDMX.org", nsDefs.df$uri, "match.length") == -1
+      & regexpr("http://www.w3.org", nsDefs.df$uri, "match.length") == -1,]
     ns <- ns.df$uri
     if(length(ns) > 1){
       warning("More than one target dataset namespace found!")
