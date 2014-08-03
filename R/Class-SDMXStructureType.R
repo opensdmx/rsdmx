@@ -9,11 +9,12 @@ setClass("SDMXStructureType",
          validity = function(object){
            type <- getStructureType(object);
            valid <- switch(type,
-                           "DataStructureDefinitionsType" = FALSE,
+                           "DataStructureDefinitionsType" = TRUE,
+                           "CodelistsType" = TRUE,
                            FALSE
            );
            if(valid == FALSE)
-             warning(paste("Unknown SDMXStructureType ", type, sep=""));
+             warning(paste("Unknown SDMXStructureType '", type, "'", sep=""));
            
            return(valid);
          }

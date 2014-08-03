@@ -18,17 +18,34 @@ readSDMX <- function(file, isURL = TRUE){
     )
 		xmlObj <- xmlTreeParse(content, useInternalNodes = TRUE)
 	}
+  
+  #internal function for SDMX Structure-based document
+	getSDMXStructureObject <- function(xmlObj){
+	  strTypeObj <- SDMXStructureType(xmlObj)
+	  strType <- getStructureType(strTypeObj)
+	  strObj <- switch(strType,
+	                   "DataStructureDefinitionsType" = NULL, #TODO
+	                   "CodelistsType" = NULL, #TODO
+	                   NULL
+	  )
+	  return(strObj)
+	}  
 	
 	#encapsulate in S4 object
 	type <- SDMXType(xmlObj)@type
 	obj <- switch(type,
+                "StructureType" = getSDMXStructureObject(xmlObj),
                 "GenericDataType" = SDMXGenericData(xmlObj),
                 "CompactDataType" = SDMXCompactData(xmlObj),
                 "MessageGroupType" = SDMXMessageGroup(xmlObj),
                 NULL
-                )	
+        )	
 
   if(is.null(obj)){
+    if(type == "StructureType"){
+      strTypeObj <- SDMXStructureType(xmlObj)
+      type <- getStructureType(strTypeObj)
+    }
 		stop(paste("Unsupported SDMX Type '",type,"'",sep=""))
 	}
 	
