@@ -27,10 +27,10 @@ head(stats1)
 
 #example 2: OECD data
 ###########
-#url2 <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011"
-#sdmx2 <- readSDMX(url2)
-#stats2 <- as.data.frame(sdmx2)
-#head(stats2)
+url2 <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011"
+sdmx2 <- readSDMX(url2)
+stats2 <- as.data.frame(sdmx2)
+head(stats2)
 
 #example 3: Eurostat data 
 ###########

@@ -24,6 +24,7 @@ readSDMX <- function(file, isURL = TRUE){
 	obj <- switch(type,
                 "GenericDataType" = SDMXGenericData(xmlObj),
                 "CompactDataType" = SDMXCompactData(xmlObj),
+                "MessageGroupType" = SDMXMessageGroup(xmlObj),
                 NULL
                 )	
 
