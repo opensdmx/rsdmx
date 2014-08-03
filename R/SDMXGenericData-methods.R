@@ -2,9 +2,9 @@
 #=======================
 
 SDMXGenericData <- function(xmlObj){
-	new("SDMXGenericData",
-		SDMX(xmlObj)
-		)		
+  new("SDMXGenericData",
+      SDMX(xmlObj)
+  )		
 }
 
 #methods
@@ -22,7 +22,7 @@ as.data.frame.SDMXGenericData <- function(x, ...){
   if(length(ns) == 0){
     #in case no ns found, try to find specific namespace
     ns.df <- nsDefs.df[
-        regexpr("http://www.SDMX.org", nsDefs.df$uri, "match.length") == -1
+      regexpr("http://www.SDMX.org", nsDefs.df$uri, "match.length") == -1
       & regexpr("http://www.w3.org", nsDefs.df$uri, "match.length") == -1,]
     ns <- ns.df$uri
     if(length(ns) > 1){
@@ -32,7 +32,7 @@ as.data.frame.SDMXGenericData <- function(x, ...){
     hasAuthorityNS <- TRUE
     authorityId <- nsDefs.df[nsDefs.df$uri == ns,]$id
   }
-    
+  
   #series
   seriesXML <- getNodeSet(xmlObj, "//ns:Series", namespaces = ns)
   seriesNb <- length(seriesXML)
@@ -41,13 +41,13 @@ as.data.frame.SDMXGenericData <- function(x, ...){
   conceptId <- "concept"
   if(VERSION.21) conceptId <- "id"
   
-	#serie keys
-	keysXML <- getNodeSet(xmlDoc(getNodeSet(xmlObj,
+  #serie keys
+  keysXML <- getNodeSet(xmlDoc(getNodeSet(xmlObj,
                                           "//ns:SeriesKey",
                                           namespaces = ns)[[1]]),
                         "//ns:Value",
                         namespaces = ns)
-	keysNames <- unique(sapply(keysXML, function(x) xmlGetAttr(x, conceptId)))
+  keysNames <- unique(sapply(keysXML, function(x) xmlGetAttr(x, conceptId)))
   
   #serie observation attributes
   obsAttrsNames <- NULL    
@@ -63,7 +63,7 @@ as.data.frame.SDMXGenericData <- function(x, ...){
   #output structure
   serieNames <- c(keysNames, "Time", "ObsValue")
   if(!is.null(obsAttrsNames)) serieNames <- c(serieNames, obsAttrsNames)
-	
+  
   #obs parser function
   parseObs <- function(obs){
     
@@ -122,38 +122,38 @@ as.data.frame.SDMXGenericData <- function(x, ...){
     return(obsR)
   }
   
-	#function to parse a Serie
-	parseSerie <- function(x){
-		
-		# Single serie XMLInternalNode converted into a XMLInternalDocument
-		serieXML <- xmlDoc(x)
+  #function to parse a Serie
+  parseSerie <- function(x){
+    
+    # Single serie XMLInternalNode converted into a XMLInternalDocument
+    serieXML <- xmlDoc(x)
     
     #parseobs
     obssXML <- getNodeSet(serieXML, "//ns:Series/ns:Obs", namespaces = ns)
-
+    
     #apply obsParser
     obsdf <- NULL
     if(length(obssXML) > 0){
       obsdf <- do.call("rbind.fill",lapply(obssXML, function(x) parseObs(x)))
     }
-      
-		#Key values
-		#SeriesKey (concept attributes/values) are duplicated according to the
+    
+    #Key values
+    #SeriesKey (concept attributes/values) are duplicated according to the
     #number of Time observations
-		keyValuesXML <- getNodeSet(serieXML,
+    keyValuesXML <- getNodeSet(serieXML,
                                "//ns:SeriesKey/ns:Value",
                                namespaces = ns)
-		keyValues <- sapply(keyValuesXML, function(x){
+    keyValues <- sapply(keyValuesXML, function(x){
       as.character(xmlGetAttr(x, "value"))
     })
-		keydf <- structure(keyValues, .Names = keysNames) 
-		keydf <- as.data.frame(lapply(keydf, as.character), stringsAsFactors=FALSE)
-		if(!is.null(obsdf)){
+    keydf <- structure(keyValues, .Names = keysNames) 
+    keydf <- as.data.frame(lapply(keydf, as.character), stringsAsFactors=FALSE)
+    if(!is.null(obsdf)){
       keydf <- keydf[rep(row.names(keydf), nrow(obsdf)),]
-		  row.names(keydf) <- 1:nrow(obsdf)
-		}
-      
-		#single Serie as DataFrame
+      row.names(keydf) <- 1:nrow(obsdf)
+    }
+    
+    #single Serie as DataFrame
     serie <- keydf
     if(!is.null(obsdf)){
       serie <- cbind(serie, obsdf)
@@ -167,12 +167,12 @@ as.data.frame.SDMXGenericData <- function(x, ...){
       for(i in 1:length(colnames(obsdf))){
         serie[,colnames(obsdf)[i]] <- as.character(serie[,colnames(obsdf)[i]])
       }
-	  }
-		return(serie)
-	}
-	
-	#converting SDMX series to a DataFrame R object
-	dataset <- do.call("rbind.fill", lapply(seriesXML, function(x){
+    }
+    return(serie)
+  }
+  
+  #converting SDMX series to a DataFrame R object
+  dataset <- do.call("rbind.fill", lapply(seriesXML, function(x){
     serie <- parseSerie(x)
   }))
   
@@ -181,10 +181,10 @@ as.data.frame.SDMXGenericData <- function(x, ...){
   if(any(as.character(dataset$obsValue) == "NaN", na.rm = TRUE)){
     dataset[as.character(dataset$obsValue) == "NaN",]$obsValue <- NA
   }
-	if(!is.null(dataset)) row.names(dataset) <- 1:nrow(dataset)
+  if(!is.null(dataset)) row.names(dataset) <- 1:nrow(dataset)
   
-	# output
-	return(dataset)
+  # output
+  return(dataset)
 }
 
 setAs("SDMXGenericData", "data.frame",
