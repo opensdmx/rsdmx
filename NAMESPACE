@@ -19,6 +19,7 @@ export(
 	SDMXDataSet,	
 	type.SDMXType,
 	version.SDMXSchema,
+  namespaces.SDMX,
 	readSDMX
 	
 )
@@ -29,6 +30,7 @@ exportMethods(
 	getSDMXSchema,
 	getVersion,
 	getSDMXHeader,
+  getNamespaces,
 	as.XML
 	
 )

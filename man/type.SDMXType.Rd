@@ -13,6 +13,8 @@ type.SDMXType(xmlObj)
 \item{xmlObj}{an object of class "XMLInternalDocument"}
 }
 
+\value{an object of class "character"}
+
 \author{Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}}
 
 \section{Warning }{\code{type.SDMXType} is a function used internally to parse the SDMX type

@@ -13,24 +13,18 @@ as.data.frame.SDMXDataSet <- function(x, ...){
 	xmlObj <- x@xmlObj;
   dataset <- NULL
   
-  sdmxVersion <- getVersion(SDMXSchema(xmlObj))
+  schema <- getSDMXSchema(x)
+  sdmxVersion <- getVersion(schema)
   VERSION.21 <- sdmxVersion == "2.1"
   
   #namespace
-  nsDefs.df <-as.data.frame(
-    do.call("rbind",
-            lapply(xmlNamespaceDefinitions(xmlObj, simplify = F),
-                   function(x){c(x$id, x$uri)})),
-    stringAsFactors = FALSE
-  )
-  colnames(nsDefs.df) <- c("id","uri")
-  nsDefs.df$id <- as.character(nsDefs.df$id)
-  nsDefs.df$uri <- as.character(nsDefs.df$uri)
+  nsDefs.df <- getNamespaces(x)
   ns <- c(ns = nsDefs.df$uri[grep("generic", nsDefs.df$uri[grep("metadata", nsDefs.df$uri, invert = TRUE)])])
   if(length(ns) == 0){
     #in case no ns found, try to find specific namespace
     ns.df <- nsDefs.df[regexpr("http://www.SDMX.org", nsDefs.df$uri, "match.length") == -1
                        & regexpr("http://www.w3.org", nsDefs.df$uri, "match.length") == -1,]
+
     ns <- ns.df$uri
     if(length(ns) > 1){
       warning("More than one target dataset namespace found!")
