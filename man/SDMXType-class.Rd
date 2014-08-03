@@ -29,10 +29,9 @@ SDMXType(xmlObj)
 
 \author{ Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}}
 \note{
-At now, the following types have been implemented and tested: "SDMXGenericData", "SDMXMessageGroup"
+At now, the following types have been implemented and tested: "GenericDataType", "CompactDataType".
 }
 
-\section{Warning }{this class is not useful in itself, but all SDMX non-abstract classes will encapsulate it 
-as slot, when parsing an SDMX-ML document}
+\section{Warning }{this class is not useful in itself, but all SDMX non-abstract classes will encapsulate itas slot, when parsing an SDMX-ML document}
 
 \keyword{classes}
