@@ -15,12 +15,12 @@ xmlObj2 <- xmlParse(file2)
 
 test_that("type.SDMXType - 2.0",{
 	type1 <- type.SDMXType(xmlObj1)		
-	expect_equal(type1, "SDMXGenericData")
+	expect_equal(type1, "GenericDataType")
 })
 
 test_that("type.SDMXType - 2.1",{
   type2 <- type.SDMXType(xmlObj2)		
-  expect_equal(type2, "SDMXGenericData")
+  expect_equal(type2, "GenericDataType")
 })
 
 test_that("SDMXType - 2.0",{
@@ -36,11 +36,11 @@ test_that("SDMXType - 2.1",{
 test_that("getType - 2.0",{
 	obj1 <- SDMXType(xmlObj1)
 	type1 <- getType(obj1)
-	expect_equal(type1, "SDMXGenericData")
+	expect_equal(type1, "GenericDataType")
 })
 
 test_that("getType - 2.1",{
   obj2 <- SDMXType(xmlObj2)
   type2 <- getType(obj2)
-  expect_equal(type2, "SDMXGenericData")
+  expect_equal(type2, "GenericDataType")
 })

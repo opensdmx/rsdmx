@@ -1,18 +1,18 @@
-# test_Dataset.R
+# test_GenericData.R
 # Author: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 #
-# Description: Unit tests for SDMX Dataset methods
+# Description: Unit tests for SDMX GenericData methods
 #=======================
 require(rsdmx, quietly = TRUE)
 require(testthat)
-context("SDMXDataSet")
+context("SDMXGenericData")
 
 test_that("GenericData 2.0",{
   file <- system.file("data", "SDMXGenericDataExample_2.0.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
   
-	ds <- SDMXDataSet(xmlObj)
-	expect_is(ds, "SDMXDataSet")
+	ds <- SDMXGenericData(xmlObj)
+	expect_is(ds, "SDMXGenericData")
 	
 	df <- as.data.frame(ds)
 	expect_is(df, "data.frame")
@@ -23,29 +23,12 @@ test_that("GenericData 2.0",{
   expect_true(is.na(df[nrow(df),]$obsTime))
 })
 
-test_that("CompactData 2.0",{
-  file <- system.file("data", "SDMXCompactDataExample_2.0.xml", package = "rsdmx")
-  xmlObj <- xmlParse(file)
-  
-  ds <- SDMXDataSet(xmlObj)
-  expect_is(ds, "SDMXDataSet")
-  
-  df <- as.data.frame(ds)
-  expect_is(df, "data.frame")
-  
-  #test absence data
-  expect_true(is.na(df[nrow(df),]$YEA))
-  expect_true(is.na(df[nrow(df),]$OBS_VALUE))
-  expect_true(is.na(df[nrow(df)-1,]$YEA))
-  expect_true(is.na(df[nrow(df)-1,]$OBS_VALUE))
-})
-
 test_that("GenericData - 2.0 - Eurostat",{
   file <- system.file("data", "Example_Eurostat_2.0.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
   
-  ds <- SDMXDataSet(xmlObj)
-  expect_is(ds, "SDMXDataSet")
+  ds <- SDMXGenericData(xmlObj)
+  expect_is(ds, "SDMXGenericData")
   
   df <- as.data.frame(ds)
   expect_is(df, "data.frame")
@@ -64,8 +47,8 @@ test_that("GenericData - 2.1",{
   file <- system.file("data", "SDMXGenericDataExample_2.1.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
   
-  ds <- SDMXDataSet(xmlObj)
-  expect_is(ds, "SDMXDataSet")
+  ds <- SDMXGenericData(xmlObj)
+  expect_is(ds, "SDMXGenericData")
   
   df <- as.data.frame(ds)
   expect_is(df, "data.frame")

@@ -14,9 +14,9 @@ type.SDMXStructureType <- function(xmlObj){
   
   structuresXML <- getNodeSet(xmlObj, "//ns:Structures", namespaces = messageNs)
   if(length(structuresXML) == 0){
-    return("SDMXDataStructure")
+    return("DataStructureDefinitionsType")
   }else{
-    strType <- paste("SDMX", xmlName(xmlChildren(structuresXML[[1]])[[1]]), sep="") 
+    strType <- paste(xmlName(xmlChildren(structuresXML[[1]])[[1]]), "Type", sep="") 
     return(strType)
   }
   return(NULL)

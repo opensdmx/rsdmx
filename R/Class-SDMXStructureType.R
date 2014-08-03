@@ -9,8 +9,7 @@ setClass("SDMXStructureType",
          validity = function(object){
            type <- getStructureType(object);
            valid <- switch(type,
-                           "SDMXDataStructure" = FALSE,
-                           "SDMXCodelists" = TRUE,
+                           "DataStructureDefinitionsType" = FALSE,
                            FALSE
            );
            if(valid == FALSE)

@@ -1,17 +1,17 @@
-\name{SDMXDataSet-class}
+\name{SDMXGenericData-class}
 \docType{class}
-\alias{SDMXDataSet-class}
-\alias{SDMXDataSet}
-\alias{SDMXDataSet-method}
+\alias{SDMXGenericData-class}
+\alias{SDMXGenericData}
+\alias{SDMXGenericData-method}
 
 
-\title{Class "SDMXDataSet"}
-\description{ A basic class to handle a SDMX-ML dataset}
+\title{Class "SDMXGenericData"}
+\description{ A basic class to handle a SDMX-ML generic data set}
 \section{Objects from the Class}{are never to be generated; will be used by the \link{readSDMX} main parser function}
 
 
 \usage{
-SDMXDataSet(xmlObj)
+SDMXGenericData(xmlObj)
 }
 
 \arguments{

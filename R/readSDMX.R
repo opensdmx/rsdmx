@@ -21,17 +21,14 @@ readSDMX <- function(file, isURL = TRUE){
 	
 	#encapsulate in S4 object
 	type <- SDMXType(xmlObj)@type
-	obj <- NULL;
-	if(type %in% c("SDMXGenericData", "SDMXMessageGroup", "SDMXCompactData")){
-		obj <- SDMXDataSet(xmlObj);
-  }else if(type == "SDMXStructure"){
-    strTypeObj <- SDMXStructureType(xmlObj)
-    strType <- getType(strTypeObj)
-    obj <- NULL
-    stop("Unsupported SDMX Structure Types")
-    
-  }else{
-		stop("Unsupported SDMX Type")
+	obj <- switch(type,
+                "GenericDataType" = SDMXGenericData(xmlObj),
+                "CompactDataType" = SDMXCompactData(xmlObj),
+                NULL
+                )	
+
+  if(is.null(obj)){
+		stop(paste("Unsupported SDMX Type '",type,"'",sep=""))
 	}
 	
 	return(obj);

@@ -11,7 +11,7 @@ file <- system.file("data", "SDMXGenericDataExample_2.0.xml", package = "rsdmx")
 sdmxObj <- readSDMX(file, isURL = FALSE)
 
 test_that("readSDMX - 2.0",{
-	expect_is(sdmxObj, "SDMXDataSet")
+	expect_is(sdmxObj, "SDMXGenericData")
 })
 
 test_that("as.XML - 2.0",{
@@ -39,7 +39,7 @@ file2 <- system.file("data", "SDMXGenericDataExample_2.1.xml", package = "rsdmx"
 sdmxObj2 <- readSDMX(file2, isURL = FALSE)
 
 test_that("readSDMX - 2.1",{
-  expect_is(sdmxObj2, "SDMXDataSet")
+  expect_is(sdmxObj2, "SDMXGenericData")
 })
 
 test_that("as.XML - 2.1",{

@@ -10,10 +10,10 @@ setClass("SDMXType",
 		validity = function(object){
 			type <- getType(object);
 			valid <- switch(type,
-                      "SDMXStructure" = TRUE,
-                      "SDMXGenericData" = TRUE,
-                      "SDMXCompactData" = TRUE,
-                      "SDMXMessageGroup" = TRUE,
+                      "StructureType" = TRUE,
+                      "GenericDataType" = TRUE,
+                      "CompactDataType" = TRUE,
+                      "MessageGroupType" = TRUE,
 					FALSE
 			);
 			if(valid == FALSE)
