@@ -49,8 +49,19 @@ as.data.frame.SDMXGenericData <- function(x, ...){
                         namespaces = ns)
   keysNames <- unique(sapply(keysXML, function(x) xmlGetAttr(x, conceptId)))
   
+  #serie attributes
+  serieAttrsNames <- NULL
+  serieAttrsXML <- getNodeSet(xmlObj,
+                              "//ns:Series/ns:Attributes/ns:Value",
+                              namespaces = ns)
+  if(length(serieAttrsXML) > 0){
+    serieAttrsNames <- unique(sapply(serieAttrsXML, function(x){
+      xmlGetAttr(x, conceptId)
+    }))
+  }
+  
   #serie observation attributes
-  obsAttrsNames <- NULL    
+  obsAttrsNames <- NULL
   obsAttrsXML <- getNodeSet(xmlObj,
                             "//ns:Obs/ns:Attributes/ns:Value",
                             namespaces = ns)
@@ -63,6 +74,7 @@ as.data.frame.SDMXGenericData <- function(x, ...){
   #output structure
   serieNames <- c(keysNames, "Time", "ObsValue")
   if(!is.null(obsAttrsNames)) serieNames <- c(serieNames, obsAttrsNames)
+  if(!is.null(serieAttrsNames)) serieNames <- c(serieNames, serieAttrsNames)
   
   #obs parser function
   parseObs <- function(obs){
@@ -153,12 +165,32 @@ as.data.frame.SDMXGenericData <- function(x, ...){
       row.names(keydf) <- 1:nrow(obsdf)
     }
     
+    #serie attributes
+    attrs.df <- NULL
+    serieAttrsXML <- getNodeSet(serieXML,
+                             "//ns:Series/ns:Attributes/ns:Value",
+                             namespaces = ns)
+    if(!is.null(serieAttrsXML)){
+      if(length(serieAttrsXML) > 0){
+        attrsValues <- sapply(serieAttrsXML, function(x){
+          as.character(xmlGetAttr(x, "value"))
+        })
+        
+        attrs.df <- structure(attrsValues, .Names = serieAttrsNames) 
+        attrs.df <- as.data.frame(lapply(attrs.df, as.character),
+                                  stringsAsFactors=FALSE)
+        if(!is.null(obsdf)){
+          attrs.df <- attrs.df[rep(row.names(attrs.df), nrow(obsdf)),]
+          if(is(attrs.df, "data.frame")) row.names(attrs.df) <- 1:nrow(obsdf)
+        }
+      }
+    }  
+    
     #single Serie as DataFrame
     serie <- keydf
-    if(!is.null(obsdf)){
-      serie <- cbind(serie, obsdf)
-    }
-    
+    if(!is.null(attrs.df)) serie <- cbind(serie, attrs.df)
+    if(!is.null(obsdf)) serie <- cbind(serie, obsdf)
+      
     #convert factor columns
     if("obsTime" %in% colnames(serie)){
       serie[,"obsTime"] <- as.character(serie[,"obsTime"])

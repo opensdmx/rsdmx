@@ -16,7 +16,8 @@ test_that("GenericData 2.0",{
 	
 	df <- as.data.frame(ds)
 	expect_is(df, "data.frame")
-	expect_equal(c(paste(rep("C",5),1:5,sep=""), "obsTime", "obsValue"), names(df))
+	expect_equal(c(paste(rep("C",5),1:5,sep=""),
+                 "UNITS", "UNIT_MULTIPLIER", "obsTime", "obsValue"), names(df))
   
   #test absence data
   expect_true(is.na(df[nrow(df),]$obsValue))
