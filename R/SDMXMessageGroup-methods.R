@@ -15,5 +15,5 @@ as.data.frame.SDMXMessageGroup <- function(x, ...){
   return(dataset)
 }
 
-setAs("SDMXMessageGroupe", "data.frame",
+setAs("SDMXMessageGroup", "data.frame",
       function(from) as.data.frame.SDMXMessageGroup(from));
