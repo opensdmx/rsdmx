@@ -5,9 +5,13 @@ R package to read SDMX data. [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo
 
 ============================
 
-``rsdmx`` is a package to parse/read SDMX data in R. The package is for now at its earlier stages and the aim is to make it evolving in the future. It will provide classes and methods to read SDMX data.
+``rsdmx`` is a package to parse/read SDMX data in R. It provide classes and methods to read SDMX-ML data.
 
-At now, the package allows to read Datasets for SDMX-ML ``GenericData``, ``CompactData``, and ``MessageGroup`` types. In the medium-term, it is planned to add parsing of codelists.
+At now, the package allows to read:
+* Datasets (``GenericData``, ``CompactData`` and ``MessageGroup`` SDMX-ML Types)
+* Concepts (``Concept``, ``ConceptScheme`` and ``Concepts`` SDMX-ML Types).
+ 
+In the short-term, it is planned to extend its support to codelists, datastructures (key families), and the complete Data Structure Definitions (DSD).
 
 R package build tests:
 
