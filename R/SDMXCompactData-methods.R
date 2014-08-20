@@ -22,8 +22,10 @@ as.data.frame.SDMXCompactData <- function(x, ...){
   if(length(ns) == 0){
     #in case no ns found, try to find specific namespace
     ns.df <- nsDefs.df[
-      regexpr("http://www.SDMX.org", nsDefs.df$uri, "match.length") == -1
-      & regexpr("http://www.w3.org", nsDefs.df$uri, "match.length") == -1,]
+      regexpr("http://www.sdmx.org", nsDefs.df$uri,
+              "match.length", ignore.case = TRUE) == -1
+      & regexpr("http://www.w3.org", nsDefs.df$uri,
+              "match.length", ignore.case = TRUE) == -1,]
     ns <- ns.df$uri
     if(length(ns) > 1){
       warning("More than one target dataset namespace found!")
