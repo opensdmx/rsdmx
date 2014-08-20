@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mes:Structure xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message http://www.metadatatechnology.com/beta/SDMX2.0/SDMXMessage.xsd" xmlns:mes="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:str="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+  <mes:Header>
+    <mes:ID>IDREF1268</mes:ID>
+    <mes:Test>false</mes:Test>
+    <mes:Prepared>2014-08-19T21:36:54.460Z</mes:Prepared>
+    <mes:Sender id="FAO"/>
+    <mes:Receiver id="unknown"/>
+  </mes:Header>
+  <mes:Concepts>
+    <str:Concept id="COMMODITY" agency="FAO" version="0.1">
+      <str:Name xml:lang="en">COMMODITY</str:Name>
+    </str:Concept>
+    <str:Concept id="INDICATOR" agency="FAO" version="0.1">
+      <str:Name xml:lang="en">INDICATOR</str:Name>
+    </str:Concept>
+    <str:Concept id="REF_AREA" agency="FAO" version="0.1">
+      <str:Name xml:lang="en">REF_AREA</str:Name>
+    </str:Concept>
+    <str:Concept id="DOMAIN" agency="FAO" version="0.1">
+      <str:Name xml:lang="en">DOMAIN</str:Name>
+    </str:Concept>
+    <str:Concept id="UNIT_MEASURE" agency="FAO" version="0.1">
+      <str:Name xml:lang="en">UNIT_MEASURE</str:Name>
+    </str:Concept>
+    <str:Concept id="FREQ" agency="FAO" version="0.1">
+      <str:Name xml:lang="en">FREQ</str:Name>
+    </str:Concept>
+    <str:Concept id="FAO_MAJOR_AREA" agency="FAO" version="0.1">
+      <str:Name xml:lang="en">FAO Major Area</str:Name>
+    </str:Concept>
+    <str:Concept id="UN_COUNTRY" agency="FAO" version="0.1">
+      <str:Name xml:lang="en">UN Country</str:Name>
+    </str:Concept>
+    <str:Concept id="ENVIRONMENT" agency="FAO" version="0.1">
+      <str:Name xml:lang="en">Environment</str:Name>
+    </str:Concept>
+    <str:Concept id="SPECIES" agency="FAO" version="0.1">
+      <str:Name xml:lang="en">ASFIS Species Alpha 3 Code</str:Name>
+    </str:Concept>
+    <str:Concept id="OBS_VALUE" agency="FAO" version="0.1">
+      <str:Name xml:lang="en">OBS_VALUE</str:Name>
+    </str:Concept>
+    <str:Concept id="OBS_STATUS" agency="FAO" version="0.1">
+      <str:Name xml:lang="en">OBS_STATUS</str:Name>
+    </str:Concept>
+    <str:Concept id="UNIT" agency="FAO" version="0.1">
+      <str:Name xml:lang="en">Unit</str:Name>
+    </str:Concept>
+    <str:Concept id="UNIT_MULTIPLIER" agency="FAO" version="0.1">
+      <str:Name xml:lang="en">Unit Multiplier</str:Name>
+    </str:Concept>
+    <str:Concept id="TIME" agency="FAO" version="0.1">
+      <str:Name xml:lang="en">Time</str:Name>
+    </str:Concept>
+  </mes:Concepts>
+</mes:Structure>

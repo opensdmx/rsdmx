@@ -11,7 +11,10 @@ exportClasses(
   SDMXStructureType,
 	SDMXGenericData,
   SDMXCompactData,
-  SDMXMessageGroup
+  SDMXMessageGroup,
+  SDMXConcept,
+  SDMXConceptScheme,
+  SDMXConcepts
 )
 
 export(
@@ -23,13 +26,17 @@ export(
 	SDMXGenericData,
   SDMXCompactData,
   SDMXMessageGroup,
-	type.SDMXType,
-  type.SDMXStructureType,
+  SDMXConcept,
+  SDMXConceptScheme,
+  SDMXConcepts,
 	version.SDMXSchema,
   namespaces.SDMX,
   findNamespace,
+  type.SDMXType,
+  type.SDMXStructureType,
+  concepts.SDMXConcepts,
+  conceptSchemes.SDMXConcepts,
 	readSDMX
-	
 )
 
 exportMethods(
@@ -47,3 +54,4 @@ exportMethods(
 S3method(as.data.frame, SDMXGenericData)
 S3method(as.data.frame, SDMXCompactData)
 S3method(as.data.frame, SDMXMessageGroup)
+S3method(as.data.frame, SDMXConcepts)
