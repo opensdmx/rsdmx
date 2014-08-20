@@ -53,9 +53,11 @@ namespaces.SDMX <- function(xmlObj){
                    function(x){c(x$id, x$uri)})),
     stringAsFactors = FALSE
   )
-  colnames(nsDefs.df) <- c("id","uri")
-  nsDefs.df$id <- as.character(nsDefs.df$id)
-  nsDefs.df$uri <- as.character(nsDefs.df$uri)
+  if(nrow(nsDefs.df) > 0){
+    colnames(nsDefs.df) <- c("id","uri")
+    nsDefs.df$id <- as.character(nsDefs.df$id)
+    nsDefs.df$uri <- as.character(nsDefs.df$uri)
+  }
   return(nsDefs.df)
 }
 
