@@ -8,11 +8,13 @@ SDMXSchema <- function(xmlObj) {
 
 #default functions
 version.SDMXSchema <- function(xmlObj){
-  message <- xmlNamespaces(xmlObj)$message
-  if(is.null(message)){
-      message <- xmlNamespaces(xmlObj)[[1]]
-  }
-	parsed <- strsplit(message$uri,"/")[[1]];
+  nsDefs.df <- namespaces.SDMX(xmlObj)
+  ns.df <- nsDefs.df[
+    regexpr("http://www.sdmx.org", nsDefs.df$uri,
+            "match.length", ignore.case = TRUE) == 1
+    & regexpr("http://www.w3.org", nsDefs.df$uri,
+              "match.length", ignore.case = TRUE) == -1,]
+	parsed <- strsplit(ns.df[1,]$uri,"/")[[1]];
 	schemaVersion <-  gsub("_",".",substr(parsed[substr(parsed,0,1)=="v"],2,nchar(parsed)));
 	return(schemaVersion);
 }
