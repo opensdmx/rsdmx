@@ -61,4 +61,11 @@ csobj <- readSDMX(csUrl)
 csdf <- as.data.frame(csobj)
 head(csdf)
 
+# SDMX Codelists
+#---------------
+clUrl <- "http://data.fao.org/sdmx/registry/codelist/FAO/CL_FAO_MAJOR_AREA/0.1"
+clobj <- readSDMX(clUrl)
+cldf <- as.data.frame(clobj)
+head(cldf)
+
 }
