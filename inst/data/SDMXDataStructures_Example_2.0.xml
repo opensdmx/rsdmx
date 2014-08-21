@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<message:Structure xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" xmlns:generic="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/generic" xmlns:genericmetadata="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/genericmetadata" xmlns:message="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xmlns:cross="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/cross" xmlns:query="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/query" xmlns:metadatareport="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/metadatareport" xmlns:utility="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/utility" xmlns:registry="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/registry" xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure" xmlns:compact="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/compact" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message http://sdmx.org/docs/2_0/SDMXMessage.xsd">
+    <message:Header>
+        <message:ID>data.fao.org</message:ID>
+        <message:Test>false</message:Test>
+        <message:Prepared>2014-08-20T22:52:51</message:Prepared>
+        <message:Sender id="FAO"/>
+    </message:Header>
+    <message:KeyFamilies>
+        <structure:KeyFamily id="TRADE_DATASTRUCTURE" agencyID="FAO" version="0.1" urn="urn:sdmx:org.sdmx.infomodel.DataStructure=FAO:TRADE_DATASTRUCTURE[0.1]">
+            <structure:Name xml:lang="en">TRADE_DATASTRUCTURE</structure:Name>
+            <structure:Components>
+                <structure:Dimension conceptRef="UN_COUNTRY" conceptVersion="0.1" conceptAgency="FAO" conceptSchemeRef="GENERAL_CONCEPT_SCHEME" codelist="CL_UN_COUNTRY" codelistVersion="0.1" codelistAgency="FAO"/>
+                <structure:Dimension conceptRef="COMMODITY" conceptVersion="0.1" conceptAgency="FAO" conceptSchemeRef="GENERAL_CONCEPT_SCHEME" codelist="CL_COMMODITY" codelistVersion="0.1" codelistAgency="FAO"/>
+                <structure:Dimension conceptRef="TRADE_FLOW" conceptVersion="0.1" conceptAgency="FAO" conceptSchemeRef="GENERAL_CONCEPT_SCHEME" codelist="CL_TRADE_FLOW" codelistVersion="0.1" codelistAgency="FAO"/>
+                <structure:TimeDimension conceptRef="TIME" conceptVersion="0.1" conceptAgency="FAO" conceptSchemeRef="GENERAL_CONCEPT_SCHEME"/>
+                <structure:PrimaryMeasure conceptRef="OBS_VALUE" conceptVersion="0.1" conceptAgency="FAO" conceptSchemeRef="GENERAL_CONCEPT_SCHEME"/>
+                <structure:Attribute conceptRef="UNIT" conceptVersion="0.1" conceptAgency="FAO" conceptSchemeRef="GENERAL_CONCEPT_SCHEME" codelist="CL_UNIT" codelistVersion="0.1" codelistAgency="FAO" attachmentLevel="DataSet" assignmentStatus="Mandatory"/>
+                <structure:Attribute conceptRef="UNIT_MULTIPLIER" conceptVersion="0.1" conceptAgency="FAO" conceptSchemeRef="GENERAL_CONCEPT_SCHEME" codelist="CL_UNIT_MULTIPLIER" codelistVersion="0.1" codelistAgency="FAO" attachmentLevel="DataSet" assignmentStatus="Mandatory"/>
+            </structure:Components>
+        </structure:KeyFamily>
+    </message:KeyFamilies>
+</message:Structure>

@@ -39,6 +39,7 @@ type.SDMXStructureType <- function(xmlObj){
       #others
       if(length(ccXML)>0) return("ConceptsType")
       if(length(clXML)>0) return("CodelistsType")
+      if(length(dsXML)>0) return("DataStructuresType")
     }
   }
   return(NULL)

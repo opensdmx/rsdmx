@@ -26,6 +26,7 @@ readSDMX <- function(file, isURL = TRUE){
 	  strObj <- switch(strType,
 	             "ConceptsType" = SDMXConcepts(xmlObj),
 	             "CodelistsType" = SDMXCodelists(xmlObj),
+               "DataStructuresType" = SDMXDataStructures(xmlObj),
 	             "DataStructureDefinitionsType" = NULL, #TODO  
                NULL
 	  )
