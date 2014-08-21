@@ -74,9 +74,10 @@ as.data.frame.SDMXConcepts <- function(x, ...,
       conceptScheme <- x@conceptSchemes[[1]]
     }else{
       conceptScheme <- NULL
-      sapply(x@conceptSchemes, function(cs){
+      for(i in 1:length(x@conceptSchemes)){
+        cs <- x@conceptSchemes[[i]]
         if(cs@id == conceptSchemeId) conceptScheme <- cs
-      })
+      }
     }    
     conceptsList <- conceptScheme@Concept 
   }
