@@ -11,9 +11,9 @@ At now, the package allows to read:
 * Datasets (``GenericData``, ``CompactData`` and ``MessageGroup`` SDMX-ML types)
 * Concepts (``Concept``, ``ConceptScheme`` and ``Concepts`` SDMX-ML types)
 * Codelists (``Code``, ``Codelist`` and ``Codelists`` SDMX-ML types)
+* DataStructures / KeyFamilies
+* Data Structure Definitions (DSDs)
  
-In the short-term, it is planned to extend its support to datastructures (key families), and the complete Data Structure Definitions (DSD).
-
 R package build tests:
 
 branch | build status
