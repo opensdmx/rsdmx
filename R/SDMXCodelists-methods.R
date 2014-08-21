@@ -56,9 +56,14 @@ as.data.frame.SDMXCodelists <- function(x, ...,
                Specify 'codelistId' argument for a specific codelist")
       codelist <- x@codelists[[1]]
     }else{
-      sapply(x@codelists, function(cl){
-        if(cl@id == codelistId) codelist <- cl
-      })
+      selectedCodelist <- NULL
+      for(i in 1:length(x@codelists)){
+        cl <- x@codelists[[i]]
+        if(cl@id == codelistId){
+          selectedCodelist <- cl
+        }
+      }
+      codelist <- selectedCodelist
     }
   }else{
     codelist <- x@codelists[[1]]
