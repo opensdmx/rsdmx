@@ -19,10 +19,11 @@ Collate:
   Class-SDMXConcept.R Class-SDMXConceptScheme.R Class-SDMXConcepts.R Class-SDMXCode.R
   Class-SDMXCodelist.R Class-SDMXCodelists.R Class-SDMXDimension.R Class-SDMXTimeDimension.R
   Class-SDMXPrimaryMeasure.R Class-SDMXAttribute.R Class-SDMXComponents.R
-  Class-SDMXDataStructure.R Class-SDMXDataStructures.R
+  Class-SDMXDataStructure.R Class-SDMXDataStructures.R Class-SDMXDataStructureDefinition.R
   SDMXSchema-methods.R SDMXType-methods.R SDMXStructureType-methods.R SDMXHeader-methods.R
   SDMX-methods.R SDMXGenericData-methods.R SDMXCompactData-methods.R SDMXMessageGroup-methods.R
   SDMXConcept-methods.R SDMXConceptScheme-methods.R SDMXConcepts-methods.R SDMXCode-methods.R
   SDMXCodelist-methods.R SDMXCodelists-methods.R SDMXDimension-methods.R SDMXTimeDimension-methods.R
   SDMXPrimaryMeasure-methods.R SDMXAttribute-methods.R SDMXComponents-methods.R
-  SDMXDataStructure-methods.R SDMXDataStructures-methods.R readSDMX.R
+  SDMXDataStructure-methods.R SDMXDataStructures-methods.R SDMXDataStructureDefinition-methods.R
+  readSDMX.R

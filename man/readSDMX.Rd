@@ -68,4 +68,17 @@ clobj <- readSDMX(clUrl)
 cldf <- as.data.frame(clobj)
 head(cldf)
 
+# SDMX DataStructureDefinition (DSD)
+#-----------------------------------
+dsdUrl <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/TABLE1"
+dsd <- readSDMX(dsdUrl)
+
+#get codelists from DSD
+cls <- dsd@codelists
+codelists <- sapply(cls@codelists, function(x) x@id) #get list of codelists
+codelist <- as.data.frame(dsd@codelists, codelistId = "CL_TABLE1_FLOWS") #get a codelist
+
+#get concepts from DSD
+concepts <- as.data.frame(dsd@concepts)
+
 }

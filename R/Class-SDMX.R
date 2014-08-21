@@ -8,9 +8,11 @@ setClass("SDMX",
 			schema = "SDMXSchema",
 			header = "SDMXHeader"
 		),
-		prototype = list(xmlObj = NULL,
-                     schema = new("SDMXSchema"),
-                     header = new("SDMXHeader")),
+		prototype = list(
+      xmlObj = NULL,
+      schema = NULL,
+      header = NULL
+    ),
 		validity = function(object){
 			
 			#eventual validation rules

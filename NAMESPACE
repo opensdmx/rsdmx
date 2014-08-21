@@ -24,7 +24,8 @@ exportClasses(
   SDMXAttribute,
   SDMXComponents,
   SDMXDataStructure,
-  SDMXDataStructures
+  SDMXDataStructures,
+  SDMXDataStructureDefinition
 )
 
 export(
@@ -49,6 +50,7 @@ export(
   SDMXComponents,
   SDMXDataStructure,
   SDMXDataStructures,
+  SDMXDataStructureDefinition,
 	version.SDMXSchema,
   namespaces.SDMX,
   findNamespace,
