@@ -11,7 +11,8 @@ setClass("SDMX",
 		prototype = list(
       xmlObj = NULL,
 		  schema = new("SDMXSchema"),
-		  header = new("SDMXHeader"))
+		  header = new("SDMXHeader")
+    ),
 		validity = function(object){
 			
 			#eventual validation rules
