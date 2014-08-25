@@ -1,11 +1,11 @@
 rsdmx
 =======
 
-R package to read SDMX data. [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.10939.png)](http://dx.doi.org/10.5281/zenodo.10939) (rsdmx v0.2)
+R package to read SDMX data and metadata. [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.10939.png)](http://dx.doi.org/10.5281/zenodo.10939) (rsdmx v0.2)
 
 ============================
 
-``rsdmx`` is a package to parse/read SDMX data in R. It provide classes and methods to read SDMX-ML data.
+``rsdmx`` is a package to parse/read SDMX data and metadata in R. It provide classes and methods to read SDMX-ML data and metadata.
 
 At now, the package allows to read:
 * Datasets (``GenericData``, ``CompactData`` and ``MessageGroup`` SDMX-ML types)
