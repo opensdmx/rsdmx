@@ -6,9 +6,9 @@
 
 \docType{package}
 
-\title{A R package to read SDMX data}
+\title{A R package to read SDMX data and metadata}
 
-\description{RSDMX is a package to parse/read SDMX data in R. It provides classes and methods to read SDMX data.}
+\description{RSDMX is a package to parse/read SDMX documents in R. It provides classes and methods to read SDMX data and metadata.}
 
 \details{
 \tabular{ll}{
