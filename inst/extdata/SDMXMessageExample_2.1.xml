@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<message:GenericData xmlns:footer="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message/footer"
+					 xmlns:generic="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/generic"
+					 xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+					 xmlns:message="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message"
+					 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					 xmlns:xml="http://www.w3.org/XML/1998/namespace">
+	<message:Header>
+		<message:ID>176ea8e40bfc189c8113edf292a3abb4</message:ID>
+		<message:Test>false</message:Test>
+		<message:Prepared>2014-07-18T07:04:39</message:Prepared>
+		<message:Sender id="ESTAT">
+			<common:Name xml:lang="en">Eurostat</common:Name>
+			<message:Timezone>+01:00</message:Timezone>
+		</message:Sender>
+		<message:Receiver id="RECEIVER"/>
+		<message:Structure structureID="ESTAT_DSD_cdh_e_fos_1_0" dimensionAtObservation="TIME_PERIOD">
+			<common:Structure>
+				<Ref agencyID="ESTAT" id="DSD_cdh_e_fos" version="1.0"/>
+			</common:Structure>
+		</message:Structure>
+		<message:DataSetAction>Append</message:DataSetAction>
+		<message:DataSetID>cdh_e_fos</message:DataSetID>
+	</message:Header>
+</message:GenericData>

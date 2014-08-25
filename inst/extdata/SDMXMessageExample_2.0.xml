@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message:GenericData
+	xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common"
+	xmlns:generic="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/generic"
+	xmlns:genericmetadata="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/genericmetadata"
+	xmlns:message="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message"
+	xmlns:cross="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/cross"
+	xmlns:query="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/query"
+	xmlns:metadatareport="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/metadatareport"
+	xmlns:utility="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/utility"
+	xmlns:registry="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/registry"
+	xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure"
+	xmlns:compact="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/compact"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message http://sdmx.org/docs/2_0/SDMXMessage.xsd">
+	<message:Header>
+		<message:ID>data.organization.org</message:ID>
+		<message:Test>false</message:Test>
+		<message:Truncated>false</message:Truncated>
+		<message:Name>thename</message:Name>
+		<message:Prepared>2014-03-02T16:29:26</message:Prepared>
+		<message:Sender id="ORGANIZATION">
+			<message:Name xml:lang="en">Organization</message:Name>
+			<message:Name xml:lang="fr">Organisation</message:Name>
+		</message:Sender>
+		<message:ReportingBegin>2000</message:ReportingBegin>
+		<message:ReportingEnd>2008</message:ReportingEnd>
+	</message:Header>
+</message:GenericData>

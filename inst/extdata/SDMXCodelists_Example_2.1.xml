@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mes:Structure xsi:schemaLocation="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message http://www.metadatatechnology.com/beta/SDMX2.1/SDMXMessage.xsd" xmlns:mes="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:str="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure" xmlns:com="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <mes:Header>
+    <mes:ID>IDREF1287</mes:ID>
+    <mes:Test>false</mes:Test>
+    <mes:Prepared>2014-08-20T16:12:50.210Z</mes:Prepared>
+    <mes:Sender id="FAO"/>
+    <mes:Receiver id="unknown"/>
+  </mes:Header>
+  <mes:Structures>
+    <str:Codelists>
+      <str:Codelist id="CL_FAO_MAJOR_AREA" urn="urn:sdmx:org.sdmx.infomodel.codelist.Codelist=FAO:CL_FAO_MAJOR_AREA(0.1)" agencyID="FAO" version="0.1" isFinal="true">
+        <com:Name xml:lang="en">CL_FAO_MAJOR_AREA</com:Name>
+        <str:Code id="01" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).01">
+          <com:Name xml:lang="en">Africa - Inland waters</com:Name>
+          <com:Name xml:lang="fr">Afrique - Eaux continentales</com:Name>
+          <com:Name xml:lang="es">África - Aguas continentales</com:Name>
+        </str:Code>
+        <str:Code id="02" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).02">
+          <com:Name xml:lang="en">America, North - Inland waters</com:Name>
+          <com:Name xml:lang="fr">Amérique du Nord - Eaux continentales</com:Name>
+          <com:Name xml:lang="es">América del Norte - Aguas continentales</com:Name>
+        </str:Code>
+        <str:Code id="03" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).03">
+          <com:Name xml:lang="en">America, South - Inland waters</com:Name>
+          <com:Name xml:lang="fr">Amérique du Sud - Eaux continentales</com:Name>
+          <com:Name xml:lang="es">América del Sur - Aguas continentales</com:Name>
+        </str:Code>
+        <str:Code id="04" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).04">
+          <com:Name xml:lang="en">Asia - Inland waters</com:Name>
+          <com:Name xml:lang="fr">Asie - Eaux continentales</com:Name>
+          <com:Name xml:lang="es">Asia - Aguas continentales</com:Name>
+        </str:Code>
+        <str:Code id="05" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).05">
+          <com:Name xml:lang="en">Europe - Inland waters</com:Name>
+          <com:Name xml:lang="fr">Europe - Eaux continentales</com:Name>
+          <com:Name xml:lang="es">Europa - Aguas continentales</com:Name>
+        </str:Code>
+        <str:Code id="06" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).06">
+          <com:Name xml:lang="en">Oceania - Inland waters</com:Name>
+          <com:Name xml:lang="fr">Océanie - Eaux continentales</com:Name>
+          <com:Name xml:lang="es">Oceanía - Aguas continentales</com:Name>
+        </str:Code>
+        <str:Code id="07" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).07">
+          <com:Name xml:lang="en">Former USSR area - Inland waters</com:Name>
+          <com:Name xml:lang="fr">Zone de l'ex-URSS - Eaux continentales</com:Name>
+          <com:Name xml:lang="es">Área de la ex URSS - Aguas continentales</com:Name>
+        </str:Code>
+        <str:Code id="18" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).18">
+          <com:Name xml:lang="en">Arctic Sea</com:Name>
+          <com:Name xml:lang="fr">Mer Arctique</com:Name>
+          <com:Name xml:lang="es">Mar Ártico</com:Name>
+        </str:Code>
+        <str:Code id="21" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).21">
+          <com:Name xml:lang="en">Atlantic, Northwest</com:Name>
+          <com:Name xml:lang="fr">Atlantique, nord-ouest</com:Name>
+          <com:Name xml:lang="es">Atlántico, noroeste</com:Name>
+        </str:Code>
+        <str:Code id="27" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).27">
+          <com:Name xml:lang="en">Atlantic, Northeast</com:Name>
+          <com:Name xml:lang="fr">Atlantique, nord-est</com:Name>
+          <com:Name xml:lang="es">Atlántico, nordeste</com:Name>
+        </str:Code>
+        <str:Code id="31" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).31">
+          <com:Name xml:lang="en">Atlantic, Western Central</com:Name>
+          <com:Name xml:lang="fr">Atlantique, centre-ouest</com:Name>
+          <com:Name xml:lang="es">Atlántico, centro-occidental</com:Name>
+        </str:Code>
+        <str:Code id="34" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).34">
+          <com:Name xml:lang="en">Atlantic, Eastern Central</com:Name>
+          <com:Name xml:lang="fr">Atlantique, centre-est</com:Name>
+          <com:Name xml:lang="es">Atlántico, centro-oriental</com:Name>
+        </str:Code>
+        <str:Code id="37" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).37">
+          <com:Name xml:lang="en">Mediterranean and Black Sea</com:Name>
+          <com:Name xml:lang="fr">Méditerranée et mer Noire</com:Name>
+          <com:Name xml:lang="es">Mediterráneo y Mar Negro</com:Name>
+        </str:Code>
+        <str:Code id="41" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).41">
+          <com:Name xml:lang="en">Atlantic, Southwest</com:Name>
+          <com:Name xml:lang="fr">Atlantique, sud-ouest</com:Name>
+          <com:Name xml:lang="es">Atlántico, sudoccidental</com:Name>
+        </str:Code>
+        <str:Code id="47" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).47">
+          <com:Name xml:lang="en">Atlantic, Southeast</com:Name>
+          <com:Name xml:lang="fr">Atlantique, sud-est</com:Name>
+          <com:Name xml:lang="es">Atlántico, sudoriental</com:Name>
+        </str:Code>
+        <str:Code id="48" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).48">
+          <com:Name xml:lang="en">Atlantic, Antarctic</com:Name>
+          <com:Name xml:lang="fr">Atlantique, Antarctique</com:Name>
+          <com:Name xml:lang="es">Atlántico, Antártico</com:Name>
+        </str:Code>
+        <str:Code id="51" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).51">
+          <com:Name xml:lang="en">Indian Ocean, Western</com:Name>
+          <com:Name xml:lang="fr">Océan Indien, ouest</com:Name>
+          <com:Name xml:lang="es">Océano Índico, occidental</com:Name>
+        </str:Code>
+        <str:Code id="57" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).57">
+          <com:Name xml:lang="en">Indian Ocean, Eastern</com:Name>
+          <com:Name xml:lang="fr">Océan Indien, est</com:Name>
+          <com:Name xml:lang="es">Océano Índico, oriental</com:Name>
+        </str:Code>
+        <str:Code id="58" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).58">
+          <com:Name xml:lang="en">Indian Ocean, Antarctic</com:Name>
+          <com:Name xml:lang="fr">Océan Indien, Antarctique</com:Name>
+          <com:Name xml:lang="es">Océano Índico, Antártico</com:Name>
+        </str:Code>
+        <str:Code id="61" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).61">
+          <com:Name xml:lang="en">Pacific, Northwest</com:Name>
+          <com:Name xml:lang="fr">Pacifique, nord-ouest</com:Name>
+          <com:Name xml:lang="es">Pacífico, noroeste</com:Name>
+        </str:Code>
+        <str:Code id="67" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).67">
+          <com:Name xml:lang="en">Pacific, Northeast</com:Name>
+          <com:Name xml:lang="fr">Pacifique, nord-est</com:Name>
+          <com:Name xml:lang="es">Pacífico, nordeste</com:Name>
+        </str:Code>
+        <str:Code id="71" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).71">
+          <com:Name xml:lang="en">Pacific, Western Central</com:Name>
+          <com:Name xml:lang="fr">Pacifique, centre-ouest</com:Name>
+          <com:Name xml:lang="es">Pacífico, centro-occidental</com:Name>
+        </str:Code>
+        <str:Code id="77" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).77">
+          <com:Name xml:lang="en">Pacific, Eastern Central</com:Name>
+          <com:Name xml:lang="fr">Pacifique, centre-est</com:Name>
+          <com:Name xml:lang="es">Pacífico, centro-oriental</com:Name>
+        </str:Code>
+        <str:Code id="81" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).81">
+          <com:Name xml:lang="en">Pacific, Southwest</com:Name>
+          <com:Name xml:lang="fr">Pacifique, sud-ouest</com:Name>
+          <com:Name xml:lang="es">Pacífico, sudoccidental</com:Name>
+        </str:Code>
+        <str:Code id="87" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).87">
+          <com:Name xml:lang="en">Pacific, Southeast</com:Name>
+          <com:Name xml:lang="fr">Pacifique, sud-est</com:Name>
+          <com:Name xml:lang="es">Pacífico, sudoriental</com:Name>
+        </str:Code>
+        <str:Code id="88" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).88">
+          <com:Name xml:lang="en">Pacific, Antarctic</com:Name>
+          <com:Name xml:lang="fr">Pacifique, Antarctique</com:Name>
+          <com:Name xml:lang="es">Pacífico, Antártico</com:Name>
+        </str:Code>
+        <str:Code id="98" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).98">
+          <com:Name xml:lang="en">Antarctic areas nei</com:Name>
+          <com:Name xml:lang="fr">Zones antarctiques nca</com:Name>
+          <com:Name xml:lang="es">Áreas antárticas nep</com:Name>
+        </str:Code>
+        <str:Code id="99" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).99">
+          <com:Name xml:lang="en">Marine areas outside the Antarctic</com:Name>
+          <com:Name xml:lang="fr">Zones maritimes hors de l'Antarctique</com:Name>
+          <com:Name xml:lang="es">Áreas marítimas fuera del Antártico</com:Name>
+        </str:Code>
+        <str:Code id="08" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=FAO:CL_FAO_MAJOR_AREA(0.1).08">
+          <com:Name xml:lang="en">Antarctica - Inland waters</com:Name>
+          <com:Name xml:lang="fr">Antarctique - Eaux continentales</com:Name>
+          <com:Name xml:lang="es">Antártida - Aguas continentales</com:Name>
+        </str:Code>
+      </str:Codelist>
+    </str:Codelists>
+  </mes:Structures>
+</mes:Structure>

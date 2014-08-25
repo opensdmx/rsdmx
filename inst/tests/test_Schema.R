@@ -8,8 +8,8 @@ require(testthat)
 context("SDMXSchema")
 
 #read test data
-file1 <- system.file("data", "SDMXMessageExample_2.0.xml", package = "rsdmx")
-file2 <- system.file("data", "SDMXMessageExample_2.1.xml", package = "rsdmx")
+file1 <- system.file("extdata", "SDMXMessageExample_2.0.xml", package = "rsdmx")
+file2 <- system.file("extdata", "SDMXMessageExample_2.1.xml", package = "rsdmx")
 xmlObj1 <- xmlParse(file1)
 xmlObj2 <- xmlParse(file2)
 

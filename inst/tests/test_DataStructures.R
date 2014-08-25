@@ -8,7 +8,7 @@ require(testthat)
 context("SDMXDataStructures")
 
 test_that("DataStructures / KeyFamilies - 2.0",{
-  file <- system.file("data", "SDMXDataStructures_Example_2.0.xml",
+  file <- system.file("extdata", "SDMXDataStructures_Example_2.0.xml",
                       package = "rsdmx")
   xmlObj <- xmlParse(file)  
   ds <- SDMXDataStructures(xmlObj)

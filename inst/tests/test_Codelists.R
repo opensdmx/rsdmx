@@ -8,7 +8,7 @@ require(testthat)
 context("SDMXCodelists")
 
 test_that("Codelists - 2.0",{
-  file <- system.file("data", "SDMXCodelists_Example_2.0.xml", package = "rsdmx")
+  file <- system.file("extdata", "SDMXCodelists_Example_2.0.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)  
   codelists <- SDMXCodelists(xmlObj)
   expect_is(codelists, "SDMXCodelists")
@@ -19,7 +19,7 @@ test_that("Codelists - 2.0",{
 })
 
 test_that("Codelists - 2.1",{
-  file <- system.file("data", "SDMXCodelists_Example_2.1.xml", package = "rsdmx")
+  file <- system.file("extdata", "SDMXCodelists_Example_2.1.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)  
   codelists <- SDMXCodelists(xmlObj)
   expect_is(codelists, "SDMXCodelists")

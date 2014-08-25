@@ -8,7 +8,7 @@ require(testthat)
 context("SDMXDataStructureDefinition")
 
 test_that("DataStructureDefinition (DSD) - 2.0",{
-  file <- system.file("data", "SDMXDataStructureDefinition_Example_2.0.xml",
+  file <- system.file("extdata", "SDMXDataStructureDefinition_Example_2.0.xml",
                       package = "rsdmx")
   xmlObj <- xmlParse(file)  
   dsd <- SDMXDataStructureDefinition(xmlObj)

@@ -8,7 +8,7 @@ require(testthat)
 context("SDMXConcepts")
 
 test_that("Concepts 2.0 - with Concepts (backward compatibility with 1.0)",{
-  file <- system.file("data", "SDMXConcepts_Example_2.0.xml", package = "rsdmx")
+  file <- system.file("extdata", "SDMXConcepts_Example_2.0.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)  
   concepts <- SDMXConcepts(xmlObj)
   expect_is(concepts, "SDMXConcepts")
@@ -20,7 +20,7 @@ test_that("Concepts 2.0 - with Concepts (backward compatibility with 1.0)",{
 })
 
 test_that("Concepts - 2.0 - with ConceptSchemes",{
-  file <- system.file("data", "SDMXConceptSchemes_Example_2.0.xml",
+  file <- system.file("extdata", "SDMXConceptSchemes_Example_2.0.xml",
                       package = "rsdmx")
   xmlObj <- xmlParse(file)
   concepts <- SDMXConcepts(xmlObj)
@@ -33,7 +33,7 @@ test_that("Concepts - 2.0 - with ConceptSchemes",{
 })
 
 test_that("Concepts - 2.1 - with ConceptSchemes",{
-  file <- system.file("data", "SDMXConceptSchemes_Example_2.1.xml",
+  file <- system.file("extdata", "SDMXConceptSchemes_Example_2.1.xml",
                       package = "rsdmx")
   xmlObj <- xmlParse(file)
   concepts <- SDMXConcepts(xmlObj)

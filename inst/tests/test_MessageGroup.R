@@ -8,7 +8,7 @@ require(testthat)
 context("SDMXMessageGroup")
 
 test_that("MessageGroup - GenericData 2.0",{
-  file <- system.file("data", "SDMXMessageGroupExample_GenericData_2.0.xml",
+  file <- system.file("extdata", "SDMXMessageGroupExample_GenericData_2.0.xml",
                       package = "rsdmx")
   xmlObj <- xmlParse(file)
 

@@ -8,7 +8,7 @@ require(testthat)
 context("SDMXGenericData")
 
 test_that("GenericData 2.0",{
-  file <- system.file("data", "SDMXGenericDataExample_2.0.xml", package = "rsdmx")
+  file <- system.file("extdata", "SDMXGenericDataExample_2.0.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
   
 	ds <- SDMXGenericData(xmlObj)
@@ -25,7 +25,7 @@ test_that("GenericData 2.0",{
 })
 
 test_that("GenericData - 2.0 - Eurostat",{
-  file <- system.file("data", "Example_Eurostat_2.0.xml", package = "rsdmx")
+  file <- system.file("extdata", "Example_Eurostat_2.0.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
   
   ds <- SDMXGenericData(xmlObj)
@@ -45,7 +45,7 @@ test_that("GenericData - 2.0 - Eurostat",{
 })
 
 test_that("GenericData - 2.1",{
-  file <- system.file("data", "SDMXGenericDataExample_2.1.xml", package = "rsdmx")
+  file <- system.file("extdata", "SDMXGenericDataExample_2.1.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
   
   ds <- SDMXGenericData(xmlObj)

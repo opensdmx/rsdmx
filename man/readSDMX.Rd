@@ -24,7 +24,7 @@ web-repository. Default value is TRUE.}
 
 #example 1: FAO data
 url1 <- paste("http://data.fao.org/sdmx/repository/data/",
-              "CROP_PRODUCTION/.156.5312../FAO?startPeriod=2008&endPeriod=2008",
+              "CROP_PRODUCTION/.156.5312.515./FAO?startPeriod=2008&endPeriod=2008",
               sep = "")
 sdmx1 <- readSDMX(url1)
 stats1 <- as.data.frame(sdmx1)
@@ -32,7 +32,7 @@ head(stats1)
 
 #example 2: OECD data
 url2 <- paste("http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/",
-              "MIG/TOT../OECD?startTime=2000&endTime=2011",
+              "MIG/TOT../OECD?startTime=2011&endTime=2011",
               sep = "")
 sdmx2 <- readSDMX(url2)
 stats2 <- as.data.frame(sdmx2)
@@ -49,13 +49,13 @@ head(stats3)
 
 #using local files
 #with SDMX 2.0
-tmp <- system.file("data","Example_Eurostat_2.0.xml", package="rsdmx")
+tmp <- system.file("extdata","Example_Eurostat_2.0.xml", package="rsdmx")
 sdmx4 <- readSDMX(tmp, isURL = FALSE)
 stats4 <- as.data.frame(sdmx4)
 head(stats4)
 
 #with SDMX 2.1
-tmpnew <- system.file("data","Example_Eurostat_2.1.xml", package="rsdmx")
+tmpnew <- system.file("extdata","Example_Eurostat_2.1.xml", package="rsdmx")
 sdmx5 <- readSDMX(tmpnew, isURL = FALSE)
 stats5 <- as.data.frame(sdmx5)
 head(stats5)
@@ -78,13 +78,18 @@ head(cldf)
 
 # SDMX DataStructureDefinition (DSD)
 #-----------------------------------
-dsdUrl <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/TABLE1"
+dsdUrl <- paste("http://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/",
+                "WATER_ABSTRACT",
+                sep = "")
 dsd <- readSDMX(dsdUrl)
 
 #get codelists from DSD
 cls <- dsd@codelists
 codelists <- sapply(cls@codelists, function(x) x@id) #get list of codelists
-codelist <- as.data.frame(dsd@codelists, codelistId = "CL_TABLE1_FLOWS") #get a codelist
+
+#get a codelist
+codelist <- as.data.frame(dsd@codelists,
+                          codelistId = "CL_WATER_ABSTRACT_SOURCE")
 
 #get concepts from DSD
 concepts <- as.data.frame(dsd@concepts)

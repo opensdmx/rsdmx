@@ -1,0 +1,141 @@
+<message:MessageGroup xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/generic" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/generic http://www.sdmx.org/docs/2_0/SDMXGenericData.xsd http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message http://www.sdmx.org/docs/2_0/SDMXMessage.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:message="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message">
+	<Header xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message">
+		<ID>none</ID>
+		<Test>false</Test>
+		<Truncated>false</Truncated>
+		<Prepared>2014-08-03T18:02:00</Prepared>
+		<Sender id="OECD">
+			<Name xml:lang="en">Organisation for Economic Co-operation and Development</Name>
+			<Name xml:lang="fr">Organisation de coopération et de développement économiques</Name>
+		</Sender>
+	</Header>
+	<DataSet keyFamilyURI="http://stats.oecd.org/RestSDMX/sdmx.ashx/GetKeyFamily/MIG">
+		<KeyFamilyRef>MIG</KeyFamilyRef>
+		<Series>
+			<SeriesKey>
+				<Value concept="CO2" value="TOT" />
+				<Value concept="VAR" value="B11" />
+				<Value concept="GEN" value="TOT" />
+				<Value concept="COU" value="FRA" />
+			</SeriesKey>
+			<Attributes>
+				<Value concept="TIME_FORMAT" value="P1Y" />
+			</Attributes>
+			<Obs>
+				<Time>2000</Time>
+				<ObsValue value="91.875" />
+			</Obs>
+		</Series>
+		<Series>
+			<SeriesKey>
+				<Value concept="CO2" value="TOT" />
+				<Value concept="VAR" value="B13" />
+				<Value concept="GEN" value="TOT" />
+				<Value concept="COU" value="FRA" />
+			</SeriesKey>
+			<Attributes>
+				<Value concept="TIME_FORMAT" value="P1Y" />
+			</Attributes>
+			<Obs>
+				<Time>2000</Time>
+				<ObsValue value="39775" />
+			</Obs>
+		</Series>
+		<Series>
+			<SeriesKey>
+				<Value concept="CO2" value="TOT" />
+				<Value concept="VAR" value="B16" />
+				<Value concept="GEN" value="TOT" />
+				<Value concept="COU" value="FRA" />
+			</SeriesKey>
+			<Attributes>
+				<Value concept="TIME_FORMAT" value="P1Y" />
+			</Attributes>
+			<Obs>
+				<Time>2000</Time>
+				<ObsValue value="150026" />
+			</Obs>
+		</Series>
+		<Series>
+			<SeriesKey>
+				<Value concept="CO2" value="TOT" />
+				<Value concept="VAR" value="B21" />
+				<Value concept="GEN" value="TOT" />
+				<Value concept="COU" value="FRA" />
+			</SeriesKey>
+			<Attributes>
+				<Value concept="TIME_FORMAT" value="P1Y" />
+			</Attributes>
+			<Obs>
+				<Time>2000</Time>
+				<ObsValue value="6.942" />
+			</Obs>
+		</Series>
+		<Series>
+			<SeriesKey>
+				<Value concept="CO2" value="TOT" />
+				<Value concept="VAR" value="B22" />
+				<Value concept="GEN" value="TOT" />
+				<Value concept="COU" value="FRA" />
+			</SeriesKey>
+			<Attributes>
+				<Value concept="TIME_FORMAT" value="P1Y" />
+			</Attributes>
+			<Obs>
+				<Time>2000</Time>
+				<ObsValue value="7.927" />
+			</Obs>
+		</Series>
+		<Series>
+			<SeriesKey>
+				<Value concept="CO2" value="TOT" />
+				<Value concept="VAR" value="B24" />
+				<Value concept="GEN" value="TOT" />
+				<Value concept="COU" value="FRA" />
+			</SeriesKey>
+			<Attributes>
+				<Value concept="TIME_FORMAT" value="P1Y" />
+			</Attributes>
+			<Obs>
+				<Time>2000</Time>
+				<ObsValue value="1577.638" />
+			</Obs>
+		</Series>
+		<Series>
+			<SeriesKey>
+				<Value concept="CO2" value="TOT" />
+				<Value concept="VAR" value="B24" />
+				<Value concept="GEN" value="WMN" />
+				<Value concept="COU" value="FRA" />
+			</SeriesKey>
+			<Attributes>
+				<Value concept="TIME_FORMAT" value="P1Y" />
+			</Attributes>
+			<Obs>
+				<Time>2000</Time>
+				<ObsValue value="588.98" />
+			</Obs>
+		</Series>
+		<Annotations>
+			<common:Annotation>
+				<common:AnnotationTitle>Copyright OECD - All rights reserved</common:AnnotationTitle>
+			</common:Annotation>
+			<common:Annotation>
+				<common:AnnotationTitle>Terms and Conditions</common:AnnotationTitle>
+				<common:AnnotationURL>http://www.oecd.org/document/0,3746,en_2649_201185_1899066_1_1_1_1,00.html</common:AnnotationURL>
+			</common:Annotation>
+			<common:Annotation>
+				<common:AnnotationTitle>Privacy Policy</common:AnnotationTitle>
+				<common:AnnotationURL>http://www.oecd.org/document/0,3746,en_2649_201185_1899048_1_1_1_1,00.html</common:AnnotationURL>
+			</common:Annotation>
+			<common:Annotation>
+				<common:AnnotationTitle>MyOECD</common:AnnotationTitle>
+				<common:AnnotationURL>http://www.oecd.org/MyOECD/0,3359,en_17642234_17642806_1_1_1_1_1,00.html</common:AnnotationURL>
+			</common:Annotation>
+			<common:Annotation>
+				<common:AnnotationTitle>Contact Us</common:AnnotationTitle>
+				<common:AnnotationURL>http://www.oecd.org/document/0,3746,en_2649_201185_42516321_1_1_1_1,00.html</common:AnnotationURL>
+			</common:Annotation>
+		</Annotations>
+	</DataSet>
+</message:MessageGroup>

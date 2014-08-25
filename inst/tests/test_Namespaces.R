@@ -8,7 +8,7 @@ require(testthat)
 context("Namespaces")
 
 test_that("getNamespaces",{
-  file <- system.file("data", "SDMXGenericDataExample_2.0.xml", package = "rsdmx")
+  file <- system.file("extdata", "SDMXGenericDataExample_2.0.xml", package = "rsdmx")
   sdmx <- readSDMX(file, isURL = FALSE)
   
   namespaces <- getNamespaces(sdmx)
@@ -18,7 +18,7 @@ test_that("getNamespaces",{
 })
 
 test_that("findNamespace",{
-  file <- system.file("data", "SDMXGenericDataExample_2.0.xml", package = "rsdmx")
+  file <- system.file("extdata", "SDMXGenericDataExample_2.0.xml", package = "rsdmx")
   sdmx <- readSDMX(file, isURL = FALSE)
   
   namespaces <- getNamespaces(sdmx)

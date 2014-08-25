@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mes:Structure xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message http://www.metadatatechnology.com/beta/SDMX2.0/SDMXMessage.xsd" xmlns:mes="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:str="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+  <mes:Header>
+    <mes:ID>IDREF1267</mes:ID>
+    <mes:Test>false</mes:Test>
+    <mes:Prepared>2014-08-19T21:36:32.318Z</mes:Prepared>
+    <mes:Sender id="FAO"/>
+    <mes:Receiver id="unknown"/>
+  </mes:Header>
+  <mes:Concepts>
+    <str:ConceptScheme agencyID="FAO" id="FAO_CONCEPT_SCHEME" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.ConceptScheme=FAO:FAO_CONCEPT_SCHEME(0.1)" version="0.1" isFinal="false">
+      <str:Name xml:lang="en">Fishstat General Concept Scheme</str:Name>
+      <str:Concept id="COMMODITY" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=FAO:FAO_CONCEPT_SCHEME(0.1).COMMODITY">
+        <str:Name xml:lang="en">COMMODITY</str:Name>
+      </str:Concept>
+      <str:Concept id="INDICATOR" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=FAO:FAO_CONCEPT_SCHEME(0.1).INDICATOR">
+        <str:Name xml:lang="en">INDICATOR</str:Name>
+      </str:Concept>
+      <str:Concept id="REF_AREA" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=FAO:FAO_CONCEPT_SCHEME(0.1).REF_AREA">
+        <str:Name xml:lang="en">REF_AREA</str:Name>
+      </str:Concept>
+      <str:Concept id="DOMAIN" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=FAO:FAO_CONCEPT_SCHEME(0.1).DOMAIN">
+        <str:Name xml:lang="en">DOMAIN</str:Name>
+      </str:Concept>
+      <str:Concept id="UNIT_MEASURE" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=FAO:FAO_CONCEPT_SCHEME(0.1).UNIT_MEASURE">
+        <str:Name xml:lang="en">UNIT_MEASURE</str:Name>
+      </str:Concept>
+      <str:Concept id="FREQ" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=FAO:FAO_CONCEPT_SCHEME(0.1).FREQ">
+        <str:Name xml:lang="en">FREQ</str:Name>
+      </str:Concept>
+      <str:Concept id="FAO_MAJOR_AREA" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=FAO:FAO_CONCEPT_SCHEME(0.1).FAO_MAJOR_AREA">
+        <str:Name xml:lang="en">FAO Major Area</str:Name>
+      </str:Concept>
+      <str:Concept id="UN_COUNTRY" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=FAO:FAO_CONCEPT_SCHEME(0.1).UN_COUNTRY">
+        <str:Name xml:lang="en">UN Country</str:Name>
+      </str:Concept>
+      <str:Concept id="ENVIRONMENT" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=FAO:FAO_CONCEPT_SCHEME(0.1).ENVIRONMENT">
+        <str:Name xml:lang="en">Environment</str:Name>
+      </str:Concept>
+      <str:Concept id="SPECIES" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=FAO:FAO_CONCEPT_SCHEME(0.1).SPECIES">
+        <str:Name xml:lang="en">ASFIS Species Alpha 3 Code</str:Name>
+      </str:Concept>
+      <str:Concept id="OBS_VALUE" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=FAO:FAO_CONCEPT_SCHEME(0.1).OBS_VALUE">
+        <str:Name xml:lang="en">OBS_VALUE</str:Name>
+      </str:Concept>
+      <str:Concept id="OBS_STATUS" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=FAO:FAO_CONCEPT_SCHEME(0.1).OBS_STATUS">
+        <str:Name xml:lang="en">OBS_STATUS</str:Name>
+      </str:Concept>
+      <str:Concept id="UNIT" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=FAO:FAO_CONCEPT_SCHEME(0.1).UNIT">
+        <str:Name xml:lang="en">Unit</str:Name>
+      </str:Concept>
+      <str:Concept id="UNIT_MULTIPLIER" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=FAO:FAO_CONCEPT_SCHEME(0.1).UNIT_MULTIPLIER">
+        <str:Name xml:lang="en">Unit Multiplier</str:Name>
+      </str:Concept>
+      <str:Concept id="TIME" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=FAO:FAO_CONCEPT_SCHEME(0.1).TIME">
+        <str:Name xml:lang="en">Time</str:Name>
+      </str:Concept>
+    </str:ConceptScheme>
+  </mes:Concepts>
+</mes:Structure>

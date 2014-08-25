@@ -8,7 +8,7 @@ require(testthat)
 context("SDMXCompactData")
 
 test_that("CompactData 2.0",{
-  file <- system.file("data", "SDMXCompactDataExample_2.0.xml", package = "rsdmx")
+  file <- system.file("extdata", "SDMXCompactDataExample_2.0.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
   
   ds <- SDMXCompactData(xmlObj)

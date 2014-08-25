@@ -9,7 +9,7 @@ context("SDMXHeader")
 
 test_that("SDMXHeader - 2.0",{
   
-  file <- system.file("data", "SDMXMessageExample_2.0.xml", package = "rsdmx")
+  file <- system.file("extdata", "SDMXMessageExample_2.0.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
   
 	obj = SDMXHeader(xmlObj)
@@ -31,7 +31,7 @@ test_that("SDMXHeader - 2.0",{
 
 test_that("SDMXHeader - 2.1",{
   
-  file <- system.file("data", "SDMXMessageExample_2.1.xml", package = "rsdmx")
+  file <- system.file("extdata", "SDMXMessageExample_2.1.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
   
   obj = SDMXHeader(xmlObj)

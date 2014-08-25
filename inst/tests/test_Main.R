@@ -10,7 +10,7 @@ context("SDMX")
 #SDMX datasets
 #------------
 
-file <- system.file("data", "SDMXGenericDataExample_2.0.xml", package = "rsdmx")
+file <- system.file("extdata", "SDMXGenericDataExample_2.0.xml", package = "rsdmx")
 sdmxObj <- readSDMX(file, isURL = FALSE)
 
 test_that("readSDMX - 2.0",{
@@ -38,7 +38,7 @@ test_that("getSDMXType - 2.0",{
 })
 
 #tests for 2.1
-file2 <- system.file("data", "SDMXGenericDataExample_2.1.xml", package = "rsdmx")
+file2 <- system.file("extdata", "SDMXGenericDataExample_2.1.xml", package = "rsdmx")
 sdmxObj2 <- readSDMX(file2, isURL = FALSE)
 
 test_that("readSDMX - 2.1",{
@@ -68,21 +68,21 @@ test_that("getSDMXType - 2.1",{
 #SDMXConcepts
 #-----------
 test_that("readSDMX - SDMXConcepts - 2.0",{
-  file <- system.file("data", "SDMXConcepts_Example_2.0.xml",
+  file <- system.file("extdata", "SDMXConcepts_Example_2.0.xml",
                       package = "rsdmx")
   sdmxObj <- readSDMX(file, isURL = FALSE)
   expect_is(sdmxObj, "SDMXConcepts")
 })
 
 test_that("readSDMX - SDMXConcepts (conceptScheme) - 2.0",{
-  file <- system.file("data", "SDMXConceptSchemes_Example_2.0.xml",
+  file <- system.file("extdata", "SDMXConceptSchemes_Example_2.0.xml",
                        package = "rsdmx")
   sdmxObj <- readSDMX(file, isURL = FALSE)
   expect_is(sdmxObj, "SDMXConcepts")
 })
 
 test_that("readSDMX - SDMXConcepts (conceptScheme) - 2.1",{
-  file <- system.file("data", "SDMXConceptSchemes_Example_2.1.xml",
+  file <- system.file("extdata", "SDMXConceptSchemes_Example_2.1.xml",
                       package = "rsdmx")
   sdmxObj <- readSDMX(file, isURL = FALSE)
   expect_is(sdmxObj, "SDMXConcepts")
@@ -91,14 +91,14 @@ test_that("readSDMX - SDMXConcepts (conceptScheme) - 2.1",{
 #SDMXCodelists
 #-------------
 test_that("readSDMX - SDMXCodelists - 2.0",{
-  file <- system.file("data", "SDMXCodelists_Example_2.0.xml",
+  file <- system.file("extdata", "SDMXCodelists_Example_2.0.xml",
                       package = "rsdmx")
   sdmxObj <- readSDMX(file, isURL = FALSE)
   expect_is(sdmxObj, "SDMXCodelists")
 })
 
 test_that("readSDMX - SDMXCodelists - 2.0",{
-  file <- system.file("data", "SDMXCodelists_Example_2.1.xml",
+  file <- system.file("extdata", "SDMXCodelists_Example_2.1.xml",
                       package = "rsdmx")
   sdmxObj <- readSDMX(file, isURL = FALSE)
   expect_is(sdmxObj, "SDMXCodelists")
@@ -108,7 +108,7 @@ test_that("readSDMX - SDMXCodelists - 2.0",{
 #--------------------------------
 test_that("readSDMX - SDMXDataStructureDefinition (DSD) - 2.0",{
 
-  file <- system.file("data", "SDMXDataStructureDefinition_Example_2.0.xml",
+  file <- system.file("extdata", "SDMXDataStructureDefinition_Example_2.0.xml",
                       package = "rsdmx")
   dsd <- readSDMX(file, isURL = FALSE)
   expect_is(dsd, "SDMXDataStructureDefinition")
