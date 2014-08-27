@@ -19,6 +19,7 @@ R package build tests:
 branch | build status
 -------|-------------
 master | [![Build Status](https://travis-ci.org/opensdmx/rsdmx.svg?branch=master)](https://travis-ci.org/opensdmx/rsdmx.svg?branch=master)
+0.3 | [![Build Status](https://travis-ci.org/opensdmx/rsdmx.svg?branch=0.3)](https://travis-ci.org/opensdmx/rsdmx.svg?branch=0.3)
 0.2 | [![Build Status](https://travis-ci.org/opensdmx/rsdmx.svg?branch=0.2)](https://travis-ci.org/opensdmx/rsdmx.svg?branch=0.2)
 0.1 | [![Build Status](https://travis-ci.org/opensdmx/rsdmx.svg?branch=0.1)](https://travis-ci.org/opensdmx/rsdmx.svg?branch=0.1)
 
