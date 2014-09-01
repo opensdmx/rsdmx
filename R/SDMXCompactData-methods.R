@@ -18,66 +18,64 @@ as.data.frame.SDMXCompactData <- function(x, ...){
   
   #namespace
   nsDefs.df <- getNamespaces(x)
-  ns <- findNamespace(nsDefs.df, "generic")
-  if(length(ns) == 0){
-    #in case no ns found, try to find specific namespace
-    ns.df <- nsDefs.df[
-      regexpr("http://www.sdmx.org", nsDefs.df$uri,
-              "match.length", ignore.case = TRUE) == -1
-      & regexpr("http://www.w3.org", nsDefs.df$uri,
-              "match.length", ignore.case = TRUE) == -1,]
-    ns <- ns.df$uri
-    if(length(ns) > 1){
-      warning("More than one target dataset namespace found!")
-      ns <- ns[1L]
-    }
-    hasAuthorityNS <- TRUE
-    authorityId <- nsDefs.df[nsDefs.df$uri == ns,]$id
+  #in case no ns found, try to find specific namespace
+  ns.df <- nsDefs.df[
+    regexpr("http://www.sdmx.org", nsDefs.df$uri,
+            "match.length", ignore.case = TRUE) == -1
+    & regexpr("http://www.w3.org", nsDefs.df$uri,
+            "match.length", ignore.case = TRUE) == -1,]
+  ns <- ns.df$uri
+  if(length(ns) > 1){
+    warning("More than one target dataset namespace found!")
+    ns <- ns[1L]
   }
-  
+  authorityNs <- nsDefs.df[nsDefs.df$uri == ns,]
+  if(length(authorityNs) == 0L) authorityId <- NULL
+  if(is.null(authorityNs)){
+    hasAuthorityNS <- FALSE
+  }else{
+    hasAuthorityNS <- TRUE
+  }
   
   if(hasAuthorityNS){
+    seriesXML <- getNodeSet(xmlObj, "//ns:Series", c(ns = authorityNs$uri)) 
+  }else{
+    stop("Unsupported CompactData parser for empty target XML namespace")
+  }
+  
+  #function to parse a Serie
+  parseSerie <- function(x){
     
-    seriesXML <- getNodeSet(xmlObj, paste("//",authorityId,":Series",sep=""))
+    #obs values
+    obsValueXML <- xmlChildren(x)
+    obsValue <- as.data.frame(
+      do.call("rbind", lapply(obsValueXML, function(t){
+        xmlAttrs(t)
+      })),
+      stringAsFactors = FALSE,
+      row.names = 1:length(obsValueXML),
+      stringAsFactors = FALSE)
     
-    #function to parse a Serie
-    parseSerie <- function(x){
-      
-      #obs values
-      obsValueXML <- xmlChildren(x)
-      obsValue <- as.data.frame(
-        do.call("rbind", lapply(obsValueXML, function(t){
-          xmlAttrs(t)
-        })),
-        stringAsFactors = FALSE,
-        row.names = 1:length(obsValueXML),
-        stringAsFactors = FALSE)
-      
-      #key values
-      keydf <- as.data.frame(t(as.data.frame(xmlAttrs(x), stringAsFactors = FALSE)), stringAsFactors = FALSE)
-      if(nrow(obsValue) > 0){
-        keydf <- keydf[rep(row.names(keydf), nrow(obsValue)),]
-        row.names(keydf) <- 1:nrow(obsValue)
-      }
-      
-      #single Serie as DataFrame
-      if(nrow(obsValue) > 0){  
-        serie <- cbind(keydf, obsValue, row.names = 1:nrow(obsValue))
-      }else{
-        #manage absence data
-        serie <- keydf
-      }
-      return(serie)
+    #key values
+    keydf <- as.data.frame(t(as.data.frame(xmlAttrs(x), stringAsFactors = FALSE)), stringAsFactors = FALSE)
+    if(nrow(obsValue) > 0){
+      keydf <- keydf[rep(row.names(keydf), nrow(obsValue)),]
+      row.names(keydf) <- 1:nrow(obsValue)
     }
     
-    #converting SDMX series to a DataFrame R object
-    dataset <- do.call("rbind.fill",
-                       lapply(seriesXML, function(x){serie <- parseSerie(x) }))
-    
-  }else{
-    #to see how to deal with this case
-    stop("Unsupported CompactData parser for generic SDMX namespace")
+    #single Serie as DataFrame
+    if(nrow(obsValue) > 0){  
+      serie <- cbind(keydf, obsValue, row.names = 1:nrow(obsValue))
+    }else{
+      #manage absence data
+      serie <- keydf
+    }
+    return(serie)
   }
+  
+  #converting SDMX series to a DataFrame R object
+  dataset <- do.call("rbind.fill",
+                     lapply(seriesXML, function(x){serie <- parseSerie(x) }))
   
   if(any(as.character(dataset$obsValue) == "NaN", na.rm = TRUE)){
     dataset[as.character(dataset$obsValue) == "NaN",]$obsValue <- NA
