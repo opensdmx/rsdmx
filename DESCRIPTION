@@ -1,7 +1,7 @@
 Package: rsdmx
 Version: 0.4-1
 Date: 2014-09-01
-Title: A package to read SDMX data and metadata
+Title: Tools to read SDMX data and metadata
 Authors@R: c(
   person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com"),
   person("Matthieu", "Stigler", role = c("ctb")))
@@ -9,9 +9,11 @@ Maintainer: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 Depends: R (>= 2.15)
 Imports: methods, XML (>= 3.96-1.1), RCurl, plyr
 Suggests: testthat
-Description: The package hosts a set of classes and methods to parse/read SDMX data and metadata.
+Description: rsdmx is a set of classes and methods to read data and metadata documents
+  exchanged through the Statistical Data and Metadata Exchange (SDMX) framework. The
+  package currently focuses on the SDMX XML standard format (SDMX-ML).
 License: GPL (>= 2)
-URL: https://github.com/opensdmx/rsdmx
+URL: https://github.com/opensdmx/rsdmx, http://www.sdmx.org
 BugReports: https://github.com/opensdmx/rsdmx/issues
 LazyLoad: yes
 Collate:
