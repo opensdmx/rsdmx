@@ -9,7 +9,7 @@ Maintainer: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 Depends: R (>= 2.15)
 Imports: methods, XML (>= 3.96-1.1), RCurl, plyr
 Suggests: testthat
-Description: rsdmx is a set of classes and methods to read data and metadata documents
+Description: rsdmx provides a set of classes and methods to read data and metadata documents
   exchanged through the Statistical Data and Metadata Exchange (SDMX) framework. The
   package currently focuses on the SDMX XML standard format (SDMX-ML).
 License: GPL (>= 2)
