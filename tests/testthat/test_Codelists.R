@@ -14,8 +14,8 @@ test_that("Codelists - 2.0",{
   expect_is(codelists, "SDMXCodelists")
   expect_equal(length(codelists@codelists), 1L)
   
-  #df <- as.data.frame(codelists)
-  #expect_is(df, "data.frame")
+  df <- as.data.frame(codelists)
+  expect_is(df, "data.frame")
 })
 
 test_that("Codelists - 2.1",{
@@ -25,6 +25,6 @@ test_that("Codelists - 2.1",{
   expect_is(codelists, "SDMXCodelists")
   expect_equal(length(codelists@codelists), 1L)
   
-  #df <- as.data.frame(codelists)
-  #expect_is(df, "data.frame")
+  df <- as.data.frame(codelists)
+  expect_is(df, "data.frame")
 })
