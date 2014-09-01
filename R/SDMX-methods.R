@@ -47,17 +47,16 @@ setMethod(f = "getSDMXType", signature = "SDMX", function(obj){
 )
 
 namespaces.SDMX <- function(xmlObj){
-  nsDefs.df <-as.data.frame(
-    do.call("rbind",
-            lapply(xmlNamespaceDefinitions(xmlObj, simplify = F),
-                   function(x){c(x$id, x$uri)})),
-    stringAsFactors = FALSE
-  )
+  nsFromXML <- xmlNamespaceDefinitions(xmlObj, recursive = TRUE, simplify = FALSE)
+  nsDefs.df <- do.call("rbind", lapply(nsFromXML, function(x){c(x$id, x$uri)}))
+  row.names(nsDefs.df) <- 1:nrow(nsDefs.df)
+  nsDefs.df <-as.data.frame(nsDefs.df, stringAsFactors = FALSE)
   if(nrow(nsDefs.df) > 0){
     colnames(nsDefs.df) <- c("id","uri")
     nsDefs.df$id <- as.character(nsDefs.df$id)
     nsDefs.df$uri <- as.character(nsDefs.df$uri)
   }
+  ns.Defs.df <- unique(nsDefs.df)
   return(nsDefs.df)
 }
 
