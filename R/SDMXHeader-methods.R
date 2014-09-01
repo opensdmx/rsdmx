@@ -34,7 +34,11 @@ SDMXHeader <- function(xmlObj){
       senderNames <- senderNames[-length(senderNames)]
 		}
 		sapply(senderNames,
-           function(x) {sender$name[[xmlGetAttr(x,"xml:lang")]] <- xmlValue(x)})
+           function(x) {
+             if(xmlName(x) == "Name"){
+               sender$name[[xmlGetAttr(x,"xml:lang")]] <- xmlValue(x)
+             }            
+          })
 		sender$name <- as.list(sender$name)
 	}
 	sender <- as.list(sender)
