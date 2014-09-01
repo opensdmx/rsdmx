@@ -48,7 +48,11 @@ setMethod(f = "getSDMXType", signature = "SDMX", function(obj){
 
 namespaces.SDMX <- function(xmlObj){
   nsFromXML <- xmlNamespaceDefinitions(xmlObj, recursive = TRUE, simplify = FALSE)
-  nsDefs.df <- do.call("rbind", lapply(nsFromXML, function(x){c(x$id, x$uri)}))
+  nsDefs.df <- do.call("rbind",
+                       lapply(nsFromXML,
+                              function(x){
+                                c(x$id, x$uri) 
+                              }))
   row.names(nsDefs.df) <- 1:nrow(nsDefs.df)
   nsDefs.df <-as.data.frame(nsDefs.df, stringAsFactors = FALSE)
   if(nrow(nsDefs.df) > 0){
@@ -57,6 +61,7 @@ namespaces.SDMX <- function(xmlObj){
     nsDefs.df$uri <- as.character(nsDefs.df$uri)
   }
   nsDefs.df <- unique(nsDefs.df)
+  nsDefs.df <- nsDefs.df[!duplicated(nsDefs.df$uri),]
   return(nsDefs.df)
 }
 
