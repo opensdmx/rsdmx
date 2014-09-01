@@ -58,7 +58,11 @@ SDMXHeader <- function(xmlObj){
 			  receiver$timezone <- xmlValue(receiverNames[["Timezone"]])
 			  receiverNames <- receiverNames[-length(receiverNames)]
 			}
-			sapply(receiverNames, function(x) {receiver$name[[xmlGetAttr(x,"xml:lang")]] <- xmlValue(x)})
+			sapply(receiverNames, function(x) {
+			  if(xmlName(x) == "Name"){
+          receiver$name[[xmlGetAttr(x,"xml:lang")]] <- xmlValue(x)
+			  }
+      })
 			receiver$name <- as.list(receiver$name)
 		}
 		receiver <- as.list(receiver)
