@@ -56,7 +56,7 @@ namespaces.SDMX <- function(xmlObj){
     nsDefs.df$id <- as.character(nsDefs.df$id)
     nsDefs.df$uri <- as.character(nsDefs.df$uri)
   }
-  ns.Defs.df <- unique(nsDefs.df)
+  nsDefs.df <- unique(nsDefs.df)
   return(nsDefs.df)
 }
 
