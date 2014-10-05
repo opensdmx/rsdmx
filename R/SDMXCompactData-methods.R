@@ -30,8 +30,7 @@ as.data.frame.SDMXCompactData <- function(x, ...){
     ns <- ns[1L]
   }
   authorityNs <- nsDefs.df[nsDefs.df$uri == ns,]
-  if(length(authorityNs) == 0L) authorityId <- NULL
-  if(is.null(authorityNs)){
+  if(nrow(authorityNs) == 0){
     hasAuthorityNS <- FALSE
   }else{
     hasAuthorityNS <- TRUE
@@ -40,7 +39,11 @@ as.data.frame.SDMXCompactData <- function(x, ...){
   if(hasAuthorityNS){
     seriesXML <- getNodeSet(xmlObj, "//ns:Series", c(ns = authorityNs$uri)) 
   }else{
-    stop("Unsupported CompactData parser for empty target XML namespace")
+    if(nrow(nsDefs.df) > 0){
+      seriesXML <- getNodeSet(xmlObj, "//ns:Series", c(ns = nsDefs.df[1,"uri"])) 
+    }else{    
+      stop("Unsupported CompactData parser for empty target XML namespace")
+    }
   }
   
   #function to parse a Serie

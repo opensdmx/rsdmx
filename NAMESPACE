@@ -64,6 +64,7 @@ export(
   primarymeasure.SDMXComponents,
   attributes.SDMXComponents,
   datastructures.SDMXDataStructures,
+  class.SDMXMessageGroup,
 	readSDMX
 )
 

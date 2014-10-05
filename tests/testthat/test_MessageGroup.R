@@ -18,3 +18,15 @@ test_that("MessageGroup - GenericData 2.0",{
 	df <- as.data.frame(ds)
 	expect_is(df, "data.frame")
 })
+
+test_that("MessageGroup - CompactData 2.0",{
+  file <- system.file("extdata", "SDMXMessageGroupExample_CompactData_2.0.xml",
+                      package = "rsdmx")
+  xmlObj <- xmlParse(file)
+  
+  ds <- SDMXMessageGroup(xmlObj)
+  expect_is(ds, "SDMXMessageGroup")
+  
+  df <- as.data.frame(ds)
+  expect_is(df, "data.frame")
+})
