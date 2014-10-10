@@ -13,7 +13,7 @@ readSDMX <- function(file, isURL = TRUE){
 		xmlObj <- xmlTreeParse(file, useInternalNodes = TRUE)
     		status <- 1
 	}else{
-    	rsdmxAgent <- paste("rsdmx/",as.character(packageVersion("rsdmx")),sep="")
+		rsdmxAgent <- paste("rsdmx/",as.character(packageVersion("rsdmx")),sep="")
 		content <- getURL(file, httpheader = list('User-Agent' = rsdmxAgent))
     
 		status <- tryCatch({
@@ -32,16 +32,16 @@ readSDMX <- function(file, isURL = TRUE){
   
   	#internal function for SDMX Structure-based document
 	getSDMXStructureObject <- function(xmlObj){
-	strTypeObj <- SDMXStructureType(xmlObj)
-	strType <- getStructureType(strTypeObj)
-	strObj <- switch(strType,
-		"ConceptsType" = SDMXConcepts(xmlObj),
-	  	"CodelistsType" = SDMXCodelists(xmlObj),
-	  	"DataStructuresType" = SDMXDataStructures(xmlObj),
-	  	"DataStructureDefinitionsType" = SDMXDataStructureDefinition(xmlObj),
-	  	NULL
-	  )
-	  return(strObj)
+		strTypeObj <- SDMXStructureType(xmlObj)
+		strType <- getStructureType(strTypeObj)
+		strObj <- switch(strType,
+			"ConceptsType" = SDMXConcepts(xmlObj),
+	  		"CodelistsType" = SDMXCodelists(xmlObj),
+	  		"DataStructuresType" = SDMXDataStructures(xmlObj),
+	  		"DataStructureDefinitionsType" = SDMXDataStructureDefinition(xmlObj),
+	  		NULL
+	  	)
+	  	return(strObj)
 	}  
 	
 	#encapsulate in S4 object
@@ -54,7 +54,7 @@ readSDMX <- function(file, isURL = TRUE){
   			"CompactDataType" = SDMXCompactData(xmlObj),
   			"MessageGroupType" = SDMXMessageGroup(xmlObj),
   			NULL
-		)	
+			)	
   
     	if(is.null(obj)){
       		if(type == "StructureType"){
