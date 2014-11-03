@@ -12,8 +12,7 @@ readSDMX(file, isURL)
 
 \arguments{
 \item{file}{path to SDMX-ML document that needs to be parsed}
-\item{isURL}{a value of class "logical" either the path is an url, and data has to be downloaded from a SDMX 
-web-repository. Default value is TRUE.}
+\item{isURL}{a value of class "logical" either the path is an url, and data has to be downloaded from a SDMXweb-repository. Default value is TRUE.}
 }
 
 \author{Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}}
@@ -21,7 +20,7 @@ web-repository. Default value is TRUE.}
 
 # SDMX datasets
 #--------------
-
+\donttest{
 #using local files
 #with SDMX 2.0
 tmp <- system.file("extdata","Example_Eurostat_2.0.xml", package="rsdmx")
@@ -59,6 +58,7 @@ url3 <- paste("http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/",
 sdmx3 <- readSDMX(url3)
 stats3 <- as.data.frame(sdmx3)
 head(stats3)
+}
 
 # SDMX Concepts / ConceptSchemes
 #-------------------------------
