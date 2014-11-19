@@ -14,7 +14,7 @@ readSDMX <- function(file, isURL = TRUE){
     		status <- 1
 	}else{
 		rsdmxAgent <- paste("rsdmx/",as.character(packageVersion("rsdmx")),sep="")
-		content <- getURL(file, httpheader = list('User-Agent' = rsdmxAgent))
+		content <- getURL(file, httpheader = list('User-Agent' = rsdmxAgent), ssl.verifypeer = FALSE)
     
 		status <- tryCatch({
       		if(attr(regexpr("<!DOCTYPE html>", content), "match.length") == -1){
