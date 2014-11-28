@@ -164,7 +164,7 @@ as.data.frame.SDMXGenericData <- function(x, ...){
     keydf <- as.data.frame(lapply(keydf, as.character), stringsAsFactors=FALSE)
     if(!is.null(obsdf)){
       keydf <- keydf[rep(row.names(keydf), nrow(obsdf)),]
-      row.names(keydf) <- 1:nrow(obsdf)
+      if(class(keydf) == "data.frame") row.names(keydf) <- 1:nrow(obsdf)
     }
     
     #serie attributes

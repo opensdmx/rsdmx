@@ -63,7 +63,7 @@ as.data.frame.SDMXCompactData <- function(x, ...){
     keydf <- as.data.frame(t(as.data.frame(xmlAttrs(x), stringAsFactors = FALSE)), stringAsFactors = FALSE)
     if(nrow(obsValue) > 0){
       keydf <- keydf[rep(row.names(keydf), nrow(obsValue)),]
-      row.names(keydf) <- 1:nrow(obsValue)
+      if(class(keydf) == "data.frame") row.names(keydf) <- 1:nrow(obsValue)
     }
     
     #single Serie as DataFrame
