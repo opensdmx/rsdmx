@@ -6,7 +6,7 @@
 
 \docType{package}
 
-\title{Tools to read SDMX data and metadata}
+\title{Tools for Reading SDMX Data and Metadata}
 
 \description{RSDMX is a package to parse/read SDMX documents in R. It provides a set of classes and methods to read data and metadata documents exchanged through the Statistical Data and Metadata Exchange (SDMX) framework. The package currently focuses on the SDMX XML standard format (SDMX-ML).}
 
