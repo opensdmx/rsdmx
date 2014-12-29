@@ -25,22 +25,24 @@ as.data.frame.SDMXCompactData <- function(x, ...){
     & regexpr("http://www.w3.org", nsDefs.df$uri,
             "match.length", ignore.case = TRUE) == -1,]
   ns <- ns.df$uri
-  if(length(ns) > 1){
-    warning("More than one target dataset namespace found!")
-    ns <- ns[1L]
-  }
-  authorityNs <- nsDefs.df[nsDefs.df$uri == ns,]
-  if(nrow(authorityNs) == 0){
-    hasAuthorityNS <- FALSE
-  }else{
-    hasAuthorityNS <- TRUE
-  }
+  hasAuthorityNS <- FALSE
+  if(length(ns) > 0) hasAuthorityNS <- TRUE
   
   if(hasAuthorityNS){
-    seriesXML <- getNodeSet(xmlObj, "//ns:Series", c(ns = authorityNs$uri)) 
+    seriesXML <- unlist(
+      lapply(ns,
+             function(nsUri){
+                serieNs <- nsDefs.df[nsDefs.df$uri == nsUri,]
+                out <- NULL
+                s <- try(getNodeSet(xmlObj, "//ns:Series", c(ns = serieNs$uri)))
+                if(class(s) != "try-error") out <- s
+                return(out)
+             }))
+    
   }else{
     if(nrow(nsDefs.df) > 0){
-      seriesXML <- getNodeSet(xmlObj, "//ns:Series", c(ns = nsDefs.df[1,"uri"])) 
+      serieNs <- nsDefs.df[1,]
+      seriesXML <- getNodeSet(xmlObj, "//nt:Series", c(nt = serieNs$uri)) 
     }else{    
       stop("Unsupported CompactData parser for empty target XML namespace")
     }

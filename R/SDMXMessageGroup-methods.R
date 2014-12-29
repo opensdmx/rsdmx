@@ -25,8 +25,7 @@ class.SDMXMessageGroup <- function(xmlObj){
     ns <- ns[1L]
   }
   authorityNs <- nsDefs.df[nsDefs.df$uri == ns,]
-  if(nrow(authorityNs) == 0) authorityId <- NULL
-  if(is.null(authorityId)){
+  if(nrow(authorityNs) == 0){
     hasAuthorityNS <- FALSE
   }else{
     hasAuthorityNS <- TRUE
