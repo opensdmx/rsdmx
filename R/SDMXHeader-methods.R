@@ -34,6 +34,7 @@ SDMXHeader <- function(xmlObj){
 		       function(x) {
 		         if(xmlName(x) == "Name"){
                lang <- xmlGetAttr(x,"xml:lang")
+               if(is.null(lang)) lang <- xmlGetAttr(x,"lang")
                if(is.null(lang)) lang <- "en"
 		           sender$name[[lang]] <- xmlValue(x)
 		         }            
@@ -62,6 +63,7 @@ SDMXHeader <- function(xmlObj){
       sapply(receiverNames, function(x) {
         if(xmlName(x) == "Name"){
           lang <- xmlGetAttr(x,"xml:lang")
+          if(is.null(lang)) lang <- xmlGetAttr(x,"lang")
           if(is.null(lang)) lang <- "en"
           receiver$name[[lang]] <- xmlValue(x)
         }
