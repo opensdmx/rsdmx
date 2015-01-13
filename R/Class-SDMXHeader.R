@@ -32,19 +32,37 @@ setClass("SDMXHeader",
 		validity = function(object){
 			
 			# ID validation
-			if(is.null(object@ID)) return(FALSE)
-			if(attr(regexpr("[a-zA-Z0-9@-_@\\$]", object@ID),"match.length") == -1) return(FALSE)
-			
+			if(is.null(object@ID)){
+        message("Missing 'ID' in header")
+        return(FALSE)
+			}
+      if(attr(regexpr("[a-zA-Z0-9@-_@\\$]", object@ID),"match.length") == -1){
+        message("Invalid 'ID' in header")
+        return(FALSE)
+      }
+        
 			#Test/Truncated
-			if(!is.logical(object@Test)) return(FALSE)
-			if(!is.logical(object@Truncated)) return(FALSE)
-			
+			if(!is.logical(object@Test)){
+			  message("Invalid 'Test' value in header")
+        return(FALSE)
+			}
+			if(!is.logical(object@Truncated)){
+			  message("Invalid 'Truncated' value in header")
+        return(FALSE)
+			}
+        
 			#Dates/Time validation
-			if(is.na(object@Prepared)) return(FALSE)
+			if(is.na(object@Prepared)){
+			  message("Invalid 'Prepared' value in header")
+        return(FALSE)
+			}
 			
 			#Sender/Receiver validation
-			if(is.na(object@Sender$id) || nchar(object@Sender$id) == 0) return(FALSE)
-			if(nchar(object@Receiver$id) == 0) return(FALSE)
+			if(is.na(object@Sender$id) || nchar(object@Sender$id) == 0){
+			  message("Missing 'Sender' id in header") 
+        return(FALSE)
+			}
+      if(nchar(object@Receiver$id) == 0) return(FALSE)
 			
 			#TODO KeyFamilyRef validation
 			#TODO KeyFamilyAgency validation

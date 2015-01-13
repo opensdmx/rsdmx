@@ -6,7 +6,7 @@
 readSDMX <- function(file, isURL = TRUE){
 	
 	#load data
-  	status <- 0
+  status <- 0
 	if(isURL == FALSE){
 		if(!file.exists(file))
 			stop("File ", file, "not found\n")
@@ -46,24 +46,25 @@ readSDMX <- function(file, isURL = TRUE){
 	
 	#encapsulate in S4 object
 	obj <- NULL
-  	if(status){ 
-  		type <- SDMXType(xmlObj)@type
-  		obj <- switch(type,
-  			"StructureType" = getSDMXStructureObject(xmlObj),
-  			"GenericDataType" = SDMXGenericData(xmlObj),
-  			"CompactDataType" = SDMXCompactData(xmlObj),
-  			"MessageGroupType" = SDMXMessageGroup(xmlObj),
-  			NULL
-			)	
-  
-    	if(is.null(obj)){
-      		if(type == "StructureType"){
-        		strTypeObj <- SDMXStructureType(xmlObj)
-        		type <- getStructureType(strTypeObj)
-      		}
-  			stop(paste("Unsupported SDMX Type '",type,"'",sep=""))
-  		}
-  	}
+	if(status){ 
+		type <- SDMXType(xmlObj)@type
+		obj <- switch(type,
+			"StructureType"     = getSDMXStructureObject(xmlObj),
+			"GenericDataType"   = SDMXGenericData(xmlObj),
+			"CompactDataType"   = SDMXCompactData(xmlObj),
+      "UtilityDataType"    = SDMXUtilityData(xmlObj),
+			"MessageGroupType"  = SDMXMessageGroup(xmlObj),
+			NULL
+		)	
+
+  	if(is.null(obj)){
+    		if(type == "StructureType"){
+      		strTypeObj <- SDMXStructureType(xmlObj)
+      		type <- getStructureType(strTypeObj)
+    		}
+			stop(paste("Unsupported SDMX Type '",type,"'",sep=""))
+		}
+  }
 	return(obj);
 }
 

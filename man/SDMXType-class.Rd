@@ -29,7 +29,9 @@ SDMXType(xmlObj)
 
 \author{ Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}}
 \note{
-At now, the following types have been implemented and tested: \code{GenericDataType}, \code{CompactDataType}, and {MessageGroupType}. At now the \code{MessageGroupType} was only modeled to allow reading OECD generic data which is provided. Other message types handled in \code{MessageGroup} document type are not yet supported.
+At now, the following types have been implemented and tested: \code{GenericDataType}, \code{CompactDataType}, \code{UtilityDataType} and {MessageGroupType}.
+
+The \code{MessageGroupType} was only modeled to allow reading OECD generic data which is provided. Other message types handled in \code{MessageGroup} document type are not yet supported.
 }
 
 \section{Warning }{this class is not useful in itself, but all SDMX non-abstract classes will encapsulate itas slot, when parsing an SDMX-ML document}
