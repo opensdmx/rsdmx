@@ -17,9 +17,12 @@ SDMXHeader <- function(xmlObj){
 	#header attributes
 	#-----------------
 	id <- xmlValue(children$ID);
-	test <- as.logical(xmlValue(children$Test));
-	if(is.null(test)) test <- FALSE;
-	truncated <- as.logical(xmlValue(children$Truncated));
+  test <- FALSE
+  if(!is.null(children$Test))
+	  test <- as.logical(xmlValue(children$Test));
+	truncated <- FALSE
+  if(!is.null(children$Truncated))
+    truncated <- as.logical(xmlValue(children$Truncated));
 	name <- xmlValue(children$Name);	
 	
 	#sender
@@ -88,8 +91,9 @@ SDMXHeader <- function(xmlObj){
 	preparedFormat <- NULL;
 	prepared <- xmlValue(children$Prepared);
 	if(!is.na(prepared)){
-		if(nchar(prepared) == 4){
-			prepared <- ISOdate(as.integer(prepared),1,1)
+		if(nchar(prepared) %in% c(4,10)){
+      if(nchar(prepared) == 4)
+			  prepared <- ISOdate(as.integer(prepared),1,1)
 			preparedFormat <- "%Y-%m-%d";
 		}else{
 			if(attr(regexpr("T", prepared),"match.length") != -1){
@@ -106,8 +110,9 @@ SDMXHeader <- function(xmlObj){
 	extractedFormat <- NULL;
 	extracted <- xmlValue(children$Extracted);
 	if(!is.na(extracted)){
-		if(nchar(extracted) == 4){
-			extracted <- ISOdate(as.integer(extracted),1,1)
+		if(nchar(extracted) %in% c(4,10)){
+      if(nchar(extracted) == 4)
+			  extracted <- ISOdate(as.integer(extracted),1,1)
 			extractedFormat <- "%Y-%m-%d";
 		}else{
 			if(attr(regexpr("T", extracted),"match.length") != -1){
@@ -125,8 +130,9 @@ SDMXHeader <- function(xmlObj){
 	reportFormat <- NULL;
 	reportBegin = xmlValue(children$ReportingBegin)
 	if(!is.na(reportBegin)){
-		if(nchar(reportBegin) == 4){
-			reportBegin <- ISOdate(as.integer(reportBegin),1,1)
+		if(nchar(reportBegin) %in% c(4,10)){
+      if(nchar(reportBegin) == 4)
+			  reportBegin <- ISOdate(as.integer(reportBegin),1,1)
 			reportFormat <- "%Y-%m-%d";
 		}else{
 			if(attr(regexpr("T", extracted),"match.length") != -1){
