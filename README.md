@@ -3,12 +3,16 @@ rsdmx
 
 R package to read SDMX data and metadata
 
- ``rsdmx`` is looking for **[sponsors](https://github.com/opensdmx/rsdmx/wiki#package_development_funding) !!** Please help us to make the package growing!
-
 ============================
 
 ``rsdmx`` is a package to parse/read SDMX data and metadata in R. It provides a set of classes and methods to read data and metadata documents exchanged through the Statistical Data and Metadata Exchange (SDMX) framework. The package currently focuses on the SDMX XML standard format (SDMX-ML).
 
+**Citation**: We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.11551.png)](http://dx.doi.org/10.5281/zenodo.11551)
+
+**Fundings**
+ ``rsdmx`` is looking for **[sponsors](https://github.com/opensdmx/rsdmx/wiki#package_development_funding) !!** Please help us to make the package growing!
+
+**Status**
 At now, the package allows to read:
 * Datasets (``GenericData``, ``CompactData`` and ``MessageGroup`` SDMX-ML types)
 * Concepts (``Concept``, ``ConceptScheme`` and ``Concepts`` SDMX-ML types)
