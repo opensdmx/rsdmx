@@ -1,6 +1,6 @@
 Package: rsdmx
 Version: 0.4-4
-Date: 2014-12-29
+Date: 2015-01-13
 Title: Tools for Reading SDMX Data and Metadata
 Authors@R: c(
   person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com"),
@@ -17,7 +17,7 @@ URL: https://github.com/opensdmx/rsdmx, http://www.sdmx.org
 BugReports: https://github.com/opensdmx/rsdmx/issues
 LazyLoad: yes
 Collate:
-	Class-SDMXSchema.R Class-SDMXType.R Class-SDMXStructureType.R Class-SDMXHeader.R
+  Class-SDMXSchema.R Class-SDMXType.R Class-SDMXStructureType.R Class-SDMXHeader.R
   Class-SDMX.R Class-SDMXGenericData.R Class-SDMXCompactData.R Class-SDMXUtilityData.R
   Class-SDMXMessageGroup.R Class-SDMXConcept.R Class-SDMXConceptScheme.R Class-SDMXConcepts.R
   Class-SDMXCode.R Class-SDMXCodelist.R Class-SDMXCodelists.R Class-SDMXDimension.R
