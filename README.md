@@ -14,11 +14,13 @@ R package to read SDMX data and metadata
 
 **Status**
 At now, the package allows to read:
-* Datasets (``GenericData``, ``CompactData`` and ``MessageGroup`` SDMX-ML types)
+* Datasets (``GenericData``, ``CompactData``, ``UtilityData`` and ``MessageGroup`` SDMX-ML types)
 * Concepts (``Concept``, ``ConceptScheme`` and ``Concepts`` SDMX-ML types)
 * Codelists (``Code``, ``Codelist`` and ``Codelists`` SDMX-ML types)
-* DataStructures / KeyFamilies
-* Data Structure Definitions (DSDs)
+* DataStructures / KeyFamilies - with all subtypes
+* Data Structure Definitions (DSDs) - with all subtypes
+
+It has been tested mainly on SDMX standard versions ``2.0`` and ``2.1``, and in a less extent on version ``1.0``
  
 **R package build tests:**
 
