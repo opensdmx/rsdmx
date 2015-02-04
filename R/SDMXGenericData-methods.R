@@ -111,22 +111,25 @@ as.data.frame.SDMXGenericData <- function(x, ...){
                                 "//ns:Attributes/ns:Value",
                                 namespaces = ns)
       if(length(obsAttrsXML) > 0){
-        obsAttrsValues <- sapply(obsAttrsXML, function(x){
-          sapply(obsAttrsNames, function(t){
-            if((xmlGetAttr(x, conceptId) == t)){
-              as.character(xmlGetAttr(x, "value"))
-            }
-          })
-        })
-        obsAttrs.df <- as.data.frame(t(obsAttrsValues), stringAsFactors = FALSE)
-        for(i in 1:ncol(obsAttrs.df)){
-          if(any(obsAttrs.df[,i] == "NA")){
-            obsAttrs.df[,i][obsAttrs.df[,i] == "NA"] <- NA
-          }
-          if(any(obsAttrs.df[,i] == "NULL")){
-            obsAttrs.df[,i][obsAttrs.df[,i] == "NULL"] <- NA
-          }
+        obsAttrsValues <- sapply(obsAttrsXML,
+                                 function(x){
+                                    as.character(xmlGetAttr(x, "value"))
+                                })
+        obsAttrsNames <- sapply(obsAttrsXML,
+                                 function(x){
+                                   as.character(xmlGetAttr(x, conceptId))
+                                 })
+        
+        obsAttrs.df <- structure(obsAttrsValues, .Names = obsAttrsNames) 
+        obsAttrs.df <- as.data.frame(lapply(obsAttrs.df, as.character), stringsAsFactors=FALSE)
+        
+        if(any(obsAttrs.df == "NA")){
+          obsAttrs.df[obsAttrs.df == "NA"] <- NA
         }
+        if(any(obsAttrs.df == "NULL")){
+          obsAttrs.df[obsAttrs.df == "NULL"] <- NA
+        }
+  
       }
     }
     
@@ -160,11 +163,19 @@ as.data.frame.SDMXGenericData <- function(x, ...){
     keyValues <- sapply(keyValuesXML, function(x){
       as.character(xmlGetAttr(x, "value"))
     })
-    keydf <- structure(keyValues, .Names = keysNames) 
+    
+    keyNames <- sapply(keyValuesXML, function(x){
+      as.character(xmlGetAttr(x, conceptId))
+    })
+    
+    keydf <- structure(keyValues, .Names = keyNames) 
     keydf <- as.data.frame(lapply(keydf, as.character), stringsAsFactors=FALSE)
     if(!is.null(obsdf)){
       keydf <- keydf[rep(row.names(keydf), nrow(obsdf)),]
-      if(class(keydf) == "data.frame") row.names(keydf) <- 1:nrow(obsdf)
+      if(class(keydf) == "data.frame"){
+        row.names(keydf) <- 1:nrow(obsdf)
+        colnames(keydf) <- keyNames
+      }
     }
     
     #serie attributes
@@ -178,12 +189,19 @@ as.data.frame.SDMXGenericData <- function(x, ...){
           as.character(xmlGetAttr(x, "value"))
         })
         
-        attrs.df <- structure(attrsValues, .Names = serieAttrsNames) 
+        attrsNames <- sapply(serieAttrsXML, function(x){
+          as.character(xmlGetAttr(x, conceptId))
+        })
+        
+        attrs.df <- structure(attrsValues, .Names = attrsNames) 
         attrs.df <- as.data.frame(lapply(attrs.df, as.character),
                                   stringsAsFactors=FALSE)
         if(!is.null(obsdf)){
           attrs.df <- attrs.df[rep(row.names(attrs.df), nrow(obsdf)),]
-          if(is(attrs.df, "data.frame")) row.names(attrs.df) <- 1:nrow(obsdf)
+          if(is(attrs.df, "data.frame")){
+            row.names(attrs.df) <- 1:nrow(obsdf)
+            colnames(attrs.df) <- attrsNames
+          }
         }
       }
     }  
