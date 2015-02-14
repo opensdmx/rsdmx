@@ -20,8 +20,9 @@ readSDMX(file, isURL)
 
 # SDMX datasets
 #--------------
-\donttest{
-#using local files
+\dontrun{
+# Not run
+# (local dataset examples)
 #with SDMX 2.0
 tmp <- system.file("extdata","Example_Eurostat_2.0.xml", package="rsdmx")
 sdmx4 <- readSDMX(tmp, isURL = FALSE)
@@ -33,7 +34,12 @@ tmpnew <- system.file("extdata","Example_Eurostat_2.1.xml", package="rsdmx")
 sdmx5 <- readSDMX(tmpnew, isURL = FALSE)
 stats5 <- as.data.frame(sdmx5)
 head(stats5)
+## End(**Not run**)
+}
 
+\donttest{
+# Not run by 'R CMD check'
+# (reliable remote datasource but with possible occasional unavailability)
 #example 1: FAO data
 url1 <- paste("http://data.fao.org/sdmx/repository/data/",
               "CROP_PRODUCTION/.156.5312.515./FAO?startPeriod=2008&endPeriod=2008",
@@ -58,31 +64,41 @@ url3 <- paste("http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/",
 sdmx3 <- readSDMX(url3)
 stats3 <- as.data.frame(sdmx3)
 head(stats3)
+
+## End(**Not run**)
 }
 
 # SDMX Concepts / ConceptSchemes
 #-------------------------------
 \donttest{
+# Not run by 'R CMD check'
+# (reliable remote datasource but with possible occasional unavailability)
 csUrl <- paste("http://data.fao.org/sdmx/registry/conceptscheme",
                "/FAO/ALL/LATEST/?detail=full&references=none&version=2.1",
                sep = "")
 csobj <- readSDMX(csUrl)
 csdf <- as.data.frame(csobj)
 head(csdf)
+## End(**Not run**)
 }
 
 # SDMX Codelists
 #---------------
 \donttest{
+# Not run by 'R CMD check'
+# (reliable remote datasource but with possible occasional unavailability)
 clUrl <- "http://data.fao.org/sdmx/registry/codelist/FAO/CL_FAO_MAJOR_AREA/0.1"
 clobj <- readSDMX(clUrl)
 cldf <- as.data.frame(clobj)
 head(cldf)
+## End(**Not run**)
 }
 
 # SDMX DataStructureDefinition (DSD)
 #-----------------------------------
 \donttest{
+# Not run by 'R CMD check'
+# (reliable remote datasource but with possible occasional unavailability)
 dsdUrl <- paste("http://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/",
                 "WATER_ABSTRACT",
                 sep = "")
@@ -98,5 +114,7 @@ codelist <- as.data.frame(dsd@codelists,
 
 #get concepts from DSD
 concepts <- as.data.frame(dsd@concepts)
+
+## End(**Not run**)
 }
 }
