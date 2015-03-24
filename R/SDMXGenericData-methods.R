@@ -98,10 +98,14 @@ as.data.frame.SDMXGenericData <- function(x, ...){
     obsTime <- as.data.frame(obsTime)
     
     #value
-    obsValueXML <- getNodeSet(obsXML,
-                              "//ns:ObsValue",
-                              namespaces = ns)[[1]]
-    obsValue <- as.numeric(xmlGetAttr(obsValueXML, "value"))
+    obsValue <- NA
+    obsValuesXML <-  getNodeSet(obsXML,
+                                "//ns:ObsValue",
+                                namespaces = ns)
+    if(length(obsValuesXML) > 0){
+      obsValueXML <- obsValuesXML[[1]]
+      obsValue <- as.numeric(xmlGetAttr(obsValueXML, "value")) 
+    }
     obsValue <- as.data.frame(obsValue)
     
     #attributes
@@ -126,7 +130,7 @@ as.data.frame.SDMXGenericData <- function(x, ...){
         if(any(obsAttrs.df == "NA")){
           obsAttrs.df[obsAttrs.df == "NA"] <- NA
         }
-        if(any(obsAttrs.df == "NULL")){
+        if(!is.na(obsAttrs.df) && any(obsAttrs.df == "NULL")){
           obsAttrs.df[obsAttrs.df == "NULL"] <- NA
         }
   
