@@ -6,12 +6,14 @@ setClass("SDMX",
 	representation(
 		xmlObj = "XMLInternalDocument",
 		schema = "SDMXSchema",
-		header = "SDMXHeader"
+		header = "SDMXHeader",
+    footer = "SDMXFooter"
 	),
 	prototype = list(
       		xmlObj = NULL,
       		schema = new("SDMXSchema"),
-      		header = new("SDMXHeader")
+      		header = new("SDMXHeader"),
+          footer = new("SDMXFooter")
       	),
 	validity = function(object){
 		return(TRUE);

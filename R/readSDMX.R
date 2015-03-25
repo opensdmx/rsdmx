@@ -55,7 +55,7 @@ readSDMX <- function(file, isURL = TRUE){
       "UtilityDataType"    = SDMXUtilityData(xmlObj),
 			"MessageGroupType"  = SDMXMessageGroup(xmlObj),
 			NULL
-		)	
+		) 
 
   	if(is.null(obj)){
     		if(type == "StructureType"){
@@ -63,6 +63,26 @@ readSDMX <- function(file, isURL = TRUE){
       		type <- getStructureType(strTypeObj)
     		}
 			stop(paste("Unsupported SDMX Type '",type,"'",sep=""))
+      
+		}else{
+      
+      #handling footer messages
+      footer <- slot(obj, "footer")
+      footer.msg <- slot(footer, "messages") 
+      if(length(footer.msg) > 0){
+        invisible(
+          lapply(footer.msg,
+                 function(x){
+                   code <- slot(x,"code")
+                   severity <- slot(x,"severity")
+                   lapply(slot(x,"messages"),
+                          function(msg){
+                            warning(paste(severity," (Code ",code,"): ",msg,sep=""),
+                                    call. = FALSE)
+                          })
+                 }))
+      }
+      
 		}
   }
 	return(obj);

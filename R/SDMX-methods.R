@@ -5,10 +5,12 @@
 SDMX <- function(xmlObj){
 	schema <- SDMXSchema(xmlObj);
 	header <- SDMXHeader(xmlObj);
+  footer <- SDMXFooter(xmlObj);
 	new("SDMX",
 			xmlObj = xmlObj,
 			schema = schema,
-			header = header); 
+			header = header,
+      footer = footer); 
 }
 
 
@@ -28,6 +30,9 @@ if (!isGeneric("getSDMXType"))
 if (!isGeneric("getNamespaces"))
   setGeneric("getNamespaces", function(obj) standardGeneric("getNamespaces"));
 
+if (!isGeneric("getSDMXFooter"))
+  setGeneric("getSDMXFooter", function(obj) standardGeneric("getSDMXFooter"));
+
 #methods
 setMethod(f = "as.XML", signature = "SDMX", function(obj){
 									return(obj@xmlObj);
@@ -45,6 +50,11 @@ setMethod(f = "getSDMXType", signature = "SDMX", function(obj){
 									return(SDMXType(obj@xmlObj));
 							}
 )
+setMethod(f = "getSDMXFooter", signature = "SDMX", function(obj){
+                return(SDMXFooter(obj@xmlObj));
+              }
+)
+
 
 namespaces.SDMX <- function(xmlObj){
   nsFromXML <- xmlNamespaceDefinitions(xmlObj, recursive = TRUE, simplify = FALSE)

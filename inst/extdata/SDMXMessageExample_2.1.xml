@@ -22,4 +22,15 @@
 		<message:DataSetAction>Append</message:DataSetAction>
 		<message:DataSetID>cdh_e_fos</message:DataSetID>
 	</message:Header>
+  <footer:Footer>
+    <footer:Message code="413" severity="Information">
+      <common:Text xml:lang="en">info message 1</common:Text>
+      <common:Text xml:lang="en">info message 2</common:Text>
+      <common:Text xml:lang="en">info message 3</common:Text>
+    </footer:Message>
+    <footer:Message code="413" severity="Warning">
+      <common:Text xml:lang="en">warning message 1</common:Text>
+      <common:Text xml:lang="en">warning message 2</common:Text>
+    </footer:Message>
+  </footer:Footer>
 </message:GenericData>

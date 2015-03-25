@@ -11,7 +11,8 @@
   \describe{
     \item{\code{xmlObj}}{Object of class "XMLInternalDocument" derived from XML package}  
     \item{\code{schema}}{Object of class "SDMXSchema" which handles the version of SDMX-ML implementation}
-    \item{\code{header}}{Object of class "SDMXHeader"}
+    \item{\code{header}}{Object of class "SDMXHeader" which handles the SDMX-ML document header}
+    \item{\code{footer}}{Object of class "SDMXFooter"which handles the SDMX-ML document footer}
   }
 }
 \section{Methods}{
@@ -20,6 +21,7 @@
 	\item{\code{getSDMXSchema}}{\code{signature(obj = "SDMX")}: Get the SDMX-ML schema version}
 	\item{\code{getSDMXHeader}}{\code{signature(obj = "SDMX")}: Get the SDMX header object}
 	\item{\code{getSDMXType}}{\code{signature(obj = "SDMX")}: Get an object of class "SDMXType"}
+  \item{\code{getSDMXFooter}}{\code{signature(obj = "SDMX")}: Get an object of class "SDMXFooter"}
   }
 }
 

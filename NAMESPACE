@@ -7,6 +7,8 @@ exportClasses(
 	SDMX,
 	SDMXSchema,
 	SDMXHeader,
+  SDMXFooterMessage,
+  SDMXFooter,
 	SDMXType,
   SDMXStructureType,
 	SDMXGenericData,
@@ -33,6 +35,8 @@ export(
 	SDMX,
 	SDMXSchema,
 	SDMXHeader,
+  SDMXFooterMessage,
+  SDMXFooter,
 	SDMXType,
   SDMXStructureType,
 	SDMXGenericData,
@@ -77,6 +81,7 @@ exportMethods(
 	getSDMXSchema,
 	getVersion,
 	getSDMXHeader,
+  getSDMXFooter,
   getNamespaces,
 	as.XML
 	

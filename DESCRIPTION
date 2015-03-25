@@ -1,6 +1,6 @@
 Package: rsdmx
 Version: 0.4-6
-Date: 2015-03-24
+Date: 2015-03-25
 Title: Tools for Reading SDMX Data and Metadata
 Authors@R: c(
   person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com"),
@@ -17,13 +17,15 @@ URL: https://github.com/opensdmx/rsdmx, http://www.sdmx.org
 BugReports: https://github.com/opensdmx/rsdmx/issues
 LazyLoad: yes
 Collate:
-  Class-SDMXSchema.R Class-SDMXType.R Class-SDMXStructureType.R Class-SDMXHeader.R
+  Class-SDMXSchema.R Class-SDMXType.R Class-SDMXStructureType.R
+  Class-SDMXHeader.R Class-SDMXFooterMessage.R Class-SDMXFooter.R
   Class-SDMX.R Class-SDMXGenericData.R Class-SDMXCompactData.R Class-SDMXUtilityData.R
   Class-SDMXMessageGroup.R Class-SDMXConcept.R Class-SDMXConceptScheme.R Class-SDMXConcepts.R
   Class-SDMXCode.R Class-SDMXCodelist.R Class-SDMXCodelists.R Class-SDMXDimension.R
   Class-SDMXTimeDimension.R Class-SDMXPrimaryMeasure.R Class-SDMXAttribute.R Class-SDMXComponents.R
   Class-SDMXDataStructure.R Class-SDMXDataStructures.R Class-SDMXDataStructureDefinition.R
-  SDMXSchema-methods.R SDMXType-methods.R SDMXStructureType-methods.R SDMXHeader-methods.R SDMX-methods.R
+  SDMXSchema-methods.R SDMXType-methods.R SDMXStructureType-methods.R SDMXHeader-methods.R
+  SDMXFooterMessage-methods.R SDMXFooter-methods.R SDMX-methods.R
   SDMXGenericData-methods.R SDMXCompactData-methods.R SDMXUtilityData-methods.R SDMXMessageGroup-methods.R
   SDMXConcept-methods.R SDMXConceptScheme-methods.R SDMXConcepts-methods.R SDMXCode-methods.R
   SDMXCodelist-methods.R SDMXCodelists-methods.R SDMXDimension-methods.R SDMXTimeDimension-methods.R
