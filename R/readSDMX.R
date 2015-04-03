@@ -25,7 +25,7 @@ readSDMX <- function(file, isURL = TRUE){
       		}
 		},error = function(err){
 			print(err)
-			status <- 0
+			status <<- 0
 			return(status)
 		})
 	}
@@ -87,4 +87,3 @@ readSDMX <- function(file, isURL = TRUE){
   }
 	return(obj);
 }
-

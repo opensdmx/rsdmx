@@ -17,3 +17,15 @@ test_that("DataStructureDefinition (DSD) - 2.0",{
   expect_is(dsd@codelists, "SDMXCodelists")
   expect_is(dsd@datastructures, "SDMXDataStructures")
 })
+
+test_that("DataStructureDefinition (DSD) - 2.1",{
+  file <- system.file("extdata", "SDMXDataStructureDefinition_Example_2.1.xml",
+                      package = "rsdmx")
+  xmlObj <- xmlParse(file)  
+  dsd <- SDMXDataStructureDefinition(xmlObj)
+  expect_is(dsd, "SDMXDataStructureDefinition")
+  expect_is(dsd@concepts, "SDMXConcepts")
+  expect_is(dsd@codelists, "SDMXCodelists")
+  expect_is(dsd@datastructures, "SDMXDataStructures")
+})
+

@@ -21,11 +21,18 @@ dimensions.SDMXComponents <- function(xmlObj){
   
   namespaces <- namespaces.SDMX(xmlDoc(xmlObj))
   strNs <- findNamespace(namespaces, "structure")
-  
-  dimensionsXML <- getNodeSet(xmlDoc(xmlObj),
-                              "//str:Components/str:Dimension",
-                              namespaces = c(str = as.character(strNs)))
 
+  dimensionsXML <- NULL
+  if(VERSION.21){
+    dimensionsXML <- getNodeSet(xmlDoc(xmlObj),
+                              "//str:DimensionList/str:Dimension",
+                              namespaces = c(str = as.character(strNs)))
+  }else{
+    dimensionsXML <- getNodeSet(xmlDoc(xmlObj),
+                                "//str:Dimension",
+                                namespaces = c(str = as.character(strNs))) 
+  }
+  
   if(!is.null(dimensionsXML)){
     dimensions <- lapply(dimensionsXML, function(x){ SDMXDimension(x)})
   }
@@ -42,9 +49,18 @@ timedimension.SDMXComponents <- function(xmlObj){
   
   namespaces <- namespaces.SDMX(xmlDoc(xmlObj))
   strNs <- findNamespace(namespaces, "structure")
-  timeDimXML <- getNodeSet(xmlDoc(xmlObj),
-                           "//str:Components/str:TimeDimension",
+  
+  timeDimXML <- NULL
+  if(VERSION.21){
+    timeDimXML <- getNodeSet(xmlDoc(xmlObj),
+                             "//str:DimensionList/str:TimeDimension",
+                             namespaces = c(str = as.character(strNs)))
+  }else{
+    timeDimXML <- getNodeSet(xmlDoc(xmlObj),
+                           "//str:TimeDimension",
                            namespaces = c(str = as.character(strNs)))
+  }
+  
   if(length(timeDimXML) > 0){
     timeDimensionXML <- timeDimXML[[1]]
     timedimension <- SDMXTimeDimension(timeDimensionXML)
@@ -62,9 +78,17 @@ primarymeasure.SDMXComponents <- function(xmlObj){
   
   namespaces <- namespaces.SDMX(xmlDoc(xmlObj))
   strNs <- findNamespace(namespaces, "structure")
-  measureXML <- getNodeSet(xmlDoc(xmlObj),
-                           "//str:Components/str:PrimaryMeasure",
+  
+  if(VERSION.21){
+    measureXML <- getNodeSet(xmlDoc(xmlObj),
+                             "//str:MeasureList/str:PrimaryMeasure",
+                             namespaces = c(str = as.character(strNs)))
+  }else{
+    measureXML <- getNodeSet(xmlDoc(xmlObj),
+                           "//str:PrimaryMeasure",
                            namespaces = c(str = as.character(strNs)))
+  }
+  
   if(length(measureXML) > 0){
     measureXML <- measureXML[[1]]
     primarymeasure <- SDMXPrimaryMeasure(measureXML)
@@ -84,10 +108,15 @@ attributes.SDMXComponents <- function(xmlObj){
   namespaces <- namespaces.SDMX(xmlDoc(xmlObj))
   strNs <- findNamespace(namespaces, "structure")
   
-  attributesXML <- getNodeSet(xmlDoc(xmlObj),
-                              "//str:Components/str:Attribute",
+  if(VERSION.21){
+    attributesXML <- getNodeSet(xmlDoc(xmlObj),
+                                "//str:AttributeList/str:Attribute",
+                                namespaces = c(str = as.character(strNs)))
+  }else{
+    attributesXML <- getNodeSet(xmlDoc(xmlObj),
+                              "//str:Attribute",
                               namespaces = c(str = as.character(strNs)))
-  
+  }
   if(!is.null(attributesXML)){
     attributes <- lapply(attributesXML, function(x){ SDMXDimension(x)})
   }

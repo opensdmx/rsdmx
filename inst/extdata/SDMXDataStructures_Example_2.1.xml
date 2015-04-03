@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mes:Structure xsi:schemaLocation="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message http://www.metadatatechnology.com/beta/SDMX2.1/SDMXMessage.xsd" xmlns:mes="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:str="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure" xmlns:com="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <mes:Header>
+    <mes:ID>IDREF491694</mes:ID>
+    <mes:Test>false</mes:Test>
+    <mes:Prepared>2015-04-03T17:20:52.237Z</mes:Prepared>
+    <mes:Sender id="ECB"/>
+    <mes:Receiver id="unknown"/>
+  </mes:Header>
+  <mes:Structures>
+    <str:DataStructures>
+      <str:DataStructure id="ECB_EXR1" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=ECB:ECB_EXR1(1.0)" agencyID="ECB" version="1.0">
+        <com:Name xml:lang="en">Exchange Rates</com:Name>
+        <str:DataStructureComponents>
+          <str:DimensionList id="DimensionDescriptor" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DimensionDescriptor=ECB:ECB_EXR1(1.0).DimensionDescriptor">
+            <str:Dimension id="FREQ" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dimension=ECB:ECB_EXR1(1.0).FREQ" position="1">
+              <str:ConceptIdentity>
+                <Ref id="FREQ" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:Enumeration>
+                  <Ref id="CL_FREQ" version="1.0" agencyID="ECB" package="codelist" class="Codelist"/>
+                </str:Enumeration>
+              </str:LocalRepresentation>
+            </str:Dimension>
+            <str:Dimension id="CURRENCY" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dimension=ECB:ECB_EXR1(1.0).CURRENCY" position="2">
+              <str:ConceptIdentity>
+                <Ref id="CURRENCY" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:Enumeration>
+                  <Ref id="CL_CURRENCY" version="1.0" agencyID="ECB" package="codelist" class="Codelist"/>
+                </str:Enumeration>
+              </str:LocalRepresentation>
+            </str:Dimension>
+            <str:Dimension id="CURRENCY_DENOM" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dimension=ECB:ECB_EXR1(1.0).CURRENCY_DENOM" position="3">
+              <str:ConceptIdentity>
+                <Ref id="CURRENCY_DENOM" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:Enumeration>
+                  <Ref id="CL_CURRENCY" version="1.0" agencyID="ECB" package="codelist" class="Codelist"/>
+                </str:Enumeration>
+              </str:LocalRepresentation>
+            </str:Dimension>
+            <str:Dimension id="EXR_TYPE" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dimension=ECB:ECB_EXR1(1.0).EXR_TYPE" position="4">
+              <str:ConceptIdentity>
+                <Ref id="EXR_TYPE" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:Enumeration>
+                  <Ref id="CL_EXR_TYPE" version="1.0" agencyID="ECB" package="codelist" class="Codelist"/>
+                </str:Enumeration>
+              </str:LocalRepresentation>
+            </str:Dimension>
+            <str:Dimension id="EXR_SUFFIX" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dimension=ECB:ECB_EXR1(1.0).EXR_SUFFIX" position="5">
+              <str:ConceptIdentity>
+                <Ref id="EXR_SUFFIX" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:Enumeration>
+                  <Ref id="CL_EXR_SUFFIX" version="1.0" agencyID="ECB" package="codelist" class="Codelist"/>
+                </str:Enumeration>
+              </str:LocalRepresentation>
+            </str:Dimension>
+            <str:TimeDimension id="TIME_PERIOD" urn="urn:sdmx:org.sdmx.infomodel.datastructure.TimeDimension=ECB:ECB_EXR1(1.0).TIME_PERIOD" position="6">
+              <str:ConceptIdentity>
+                <Ref id="TIME_PERIOD" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:TextFormat textType="ObservationalTimePeriod"/>
+              </str:LocalRepresentation>
+            </str:TimeDimension>
+          </str:DimensionList>
+          <str:Group id="Group" urn="urn:sdmx:org.sdmx.infomodel.datastructure.GroupDimensionDescriptor=ECB:ECB_EXR1(1.0).Group">
+            <str:GroupDimension>
+              <str:DimensionReference>
+                <Ref id="CURRENCY"/>
+              </str:DimensionReference>
+            </str:GroupDimension>
+            <str:GroupDimension>
+              <str:DimensionReference>
+                <Ref id="CURRENCY_DENOM"/>
+              </str:DimensionReference>
+            </str:GroupDimension>
+            <str:GroupDimension>
+              <str:DimensionReference>
+                <Ref id="EXR_TYPE"/>
+              </str:DimensionReference>
+            </str:GroupDimension>
+            <str:GroupDimension>
+              <str:DimensionReference>
+                <Ref id="EXR_SUFFIX"/>
+              </str:DimensionReference>
+            </str:GroupDimension>
+          </str:Group>
+          <str:AttributeList id="AttributeDescriptor" urn="urn:sdmx:org.sdmx.infomodel.datastructure.AttributeDescriptor=ECB:ECB_EXR1(1.0).AttributeDescriptor">
+            <str:Attribute id="TIME_FORMAT" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).TIME_FORMAT" assignmentStatus="Mandatory">
+              <str:ConceptIdentity>
+                <Ref id="TIME_FORMAT" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:TextFormat textType="String" minLength="3" maxLength="3"/>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="FREQ"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="OBS_STATUS" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).OBS_STATUS" assignmentStatus="Mandatory">
+              <str:ConceptIdentity>
+                <Ref id="OBS_STATUS" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:Enumeration>
+                  <Ref id="CL_OBS_STATUS" version="1.0" agencyID="ECB" package="codelist" class="Codelist"/>
+                </str:Enumeration>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:PrimaryMeasure>
+                  <Ref id="OBS_VALUE"/>
+                </str:PrimaryMeasure>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="OBS_CONF" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).OBS_CONF" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref id="OBS_CONF" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:Enumeration>
+                  <Ref id="CL_OBS_CONF" version="1.0" agencyID="ECB" package="codelist" class="Codelist"/>
+                </str:Enumeration>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:PrimaryMeasure>
+                  <Ref id="OBS_VALUE"/>
+                </str:PrimaryMeasure>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="OBS_PRE_BREAK" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).OBS_PRE_BREAK" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref id="OBS_PRE_BREAK" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:TextFormat textType="String" maxLength="15"/>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:PrimaryMeasure>
+                  <Ref id="OBS_VALUE"/>
+                </str:PrimaryMeasure>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="OBS_COM" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).OBS_COM" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref id="OBS_COM" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:TextFormat textType="String" maxLength="1050"/>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:PrimaryMeasure>
+                  <Ref id="OBS_VALUE"/>
+                </str:PrimaryMeasure>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="BREAKS" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).BREAKS" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref id="BREAKS" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:TextFormat textType="String" maxLength="350"/>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="FREQ"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="COLLECTION" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).COLLECTION" assignmentStatus="Mandatory">
+              <str:ConceptIdentity>
+                <Ref id="COLLECTION" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:Enumeration>
+                  <Ref id="CL_COLLECTION" version="1.0" agencyID="ECB" package="codelist" class="Codelist"/>
+                </str:Enumeration>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="FREQ"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="DOM_SER_IDS" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).DOM_SER_IDS" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref id="DOM_SER_IDS" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:TextFormat textType="String" maxLength="70"/>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="FREQ"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="PUBL_ECB" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).PUBL_ECB" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref id="PUBL_ECB" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:TextFormat textType="String" maxLength="1050"/>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="FREQ"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="PUBL_MU" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).PUBL_MU" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref id="PUBL_MU" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:TextFormat textType="String" maxLength="1050"/>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="FREQ"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="PUBL_PUBLIC" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).PUBL_PUBLIC" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref id="PUBL_PUBLIC" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:TextFormat textType="String" maxLength="1050"/>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="FREQ"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="UNIT_INDEX_BASE" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).UNIT_INDEX_BASE" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref id="UNIT_INDEX_BASE" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:TextFormat textType="String" maxLength="35"/>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="FREQ"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="COMPILATION" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).COMPILATION" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref id="COMPILATION" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:TextFormat textType="String" maxLength="1050"/>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="COVERAGE" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).COVERAGE" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref id="COVERAGE" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:TextFormat textType="String" maxLength="350"/>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="DECIMALS" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).DECIMALS" assignmentStatus="Mandatory">
+              <str:ConceptIdentity>
+                <Ref id="DECIMALS" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:Enumeration>
+                  <Ref id="CL_DECIMALS" version="1.0" agencyID="ECB" package="codelist" class="Codelist"/>
+                </str:Enumeration>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="NAT_TITLE" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).NAT_TITLE" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref id="NAT_TITLE" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:TextFormat textType="String" maxLength="350"/>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="SOURCE_AGENCY" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).SOURCE_AGENCY" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref id="SOURCE_AGENCY" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:Enumeration>
+                  <Ref id="CL_ORGANISATION" version="1.0" agencyID="ECB" package="codelist" class="Codelist"/>
+                </str:Enumeration>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="SOURCE_PUB" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).SOURCE_PUB" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref id="SOURCE_PUB" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:TextFormat textType="String" maxLength="350"/>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="TITLE" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).TITLE" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref id="TITLE" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:TextFormat textType="String" maxLength="70"/>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="TITLE_COMPL" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).TITLE_COMPL" assignmentStatus="Mandatory">
+              <str:ConceptIdentity>
+                <Ref id="TITLE_COMPL" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:TextFormat textType="String" maxLength="1050"/>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="UNIT" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).UNIT" assignmentStatus="Mandatory">
+              <str:ConceptIdentity>
+                <Ref id="UNIT" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:Enumeration>
+                  <Ref id="CL_UNIT" version="1.0" agencyID="ECB" package="codelist" class="Codelist"/>
+                </str:Enumeration>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="UNIT_MULT" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ECB:ECB_EXR1(1.0).UNIT_MULT" assignmentStatus="Mandatory">
+              <str:ConceptIdentity>
+                <Ref id="UNIT_MULT" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:LocalRepresentation>
+                <str:Enumeration>
+                  <Ref id="CL_UNIT_MULT" version="1.0" agencyID="ECB" package="codelist" class="Codelist"/>
+                </str:Enumeration>
+              </str:LocalRepresentation>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="CURRENCY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="CURRENCY_DENOM"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_TYPE"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="EXR_SUFFIX"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+          </str:AttributeList>
+          <str:MeasureList id="MeasureDescriptor" urn="urn:sdmx:org.sdmx.infomodel.datastructure.MeasureDescriptor=ECB:ECB_EXR1(1.0).MeasureDescriptor">
+            <str:PrimaryMeasure id="OBS_VALUE" urn="urn:sdmx:org.sdmx.infomodel.datastructure.PrimaryMeasure=ECB:ECB_EXR1(1.0).OBS_VALUE">
+              <str:ConceptIdentity>
+                <Ref id="OBS_VALUE" maintainableParentID="ECB_CONCEPTS" maintainableParentVersion="1.0" agencyID="ECB" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+            </str:PrimaryMeasure>
+          </str:MeasureList>
+        </str:DataStructureComponents>
+      </str:DataStructure>
+    </str:DataStructures>
+  </mes:Structures>
+</mes:Structure>

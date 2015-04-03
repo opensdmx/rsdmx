@@ -55,7 +55,7 @@ setClass("SDMXDimension",
          ),
          validity = function(object){
            #eventual validation rules
-           if(is.na(object@conceptRef)) return(FALSE)
+           #if(is.na(object@conceptRef)) return(FALSE)
            return(TRUE);
          }
 )

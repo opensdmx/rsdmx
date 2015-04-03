@@ -19,7 +19,8 @@ type.SDMXStructureType <- function(xmlObj){
   if(VERSION.21){
     dsXML <- getNodeSet(xmlObj, "//ns:DataStructures", namespaces = strNs)
     ccXML <- getNodeSet(xmlObj, "//ns:Concepts", namespaces = strNs)
-    clXML <- getNodeSet(xmlObj, "//ns:CodeLists", namespaces = strNs)   
+    clXML <- getNodeSet(xmlObj, "//ns:Codelists", namespaces = strNs)
+    
     if(all(c(length(dsXML)>0,length(ccXML)>0,length(clXML)>0))){
       return("DataStructureDefinitionsType")
     }else{

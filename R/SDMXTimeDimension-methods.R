@@ -10,61 +10,118 @@ SDMXTimeDimension <- function(xmlObj){
   messageNs <- findNamespace(namespaces, "message")
   strNs <- findNamespace(namespaces, "structure")
   
+  #manage SDMX 2.1 conceptIdentity
+  conceptRefXML <- NULL
+  if(VERSION.21){
+    conceptIdentityXML <- getNodeSet(xmlDoc(xmlObj),
+                                     "//str:ConceptIdentity",
+                                     namespaces = c(str = as.character(strNs)))
+    if(length(conceptIdentityXML) > 0)
+      conceptRefXML <- xmlChildren(conceptIdentityXML[[1]])[[1]]
+  }
+  
+  codelistRefXML <- NULL
+  if(VERSION.21){
+    enumXML <- getNodeSet(xmlDoc(xmlObj),
+                          "//str:Enumeration",
+                          namespaces = c(str = as.character(strNs)))
+    if(length(enumXML) > 0)
+      codelistRefXML <- xmlChildren(enumXML[[1]])[[1]]
+  }
+  
+  
   #attributes
   #=========
-  conceptRef = xmlGetAttr(xmlObj, "conceptRef")
+  
+  conceptRef <- NULL
+  conceptVersion <- NULL
+  conceptAgency <- NULL
+  conceptSchemeRef <- NULL
+  conceptSchemeAgency <- NULL
+  codelist <- NULL
+  codelistVersion <- NULL
+  codelistAgency <- NULL
+  crossSectionalAttachDataset <- NULL
+  crossSectionalAttachGroup <- NULL
+  crossSectionalAttachSection <- NULL
+  crossSectionalAttachObservation <- NULL
+  
+  if(VERSION.21){
+    #concepts
+    if(!is.null(conceptRefXML)){
+      conceptRef = xmlGetAttr(conceptRefXML, "id")
+      conceptVersion = xmlGetAttr(conceptRefXML, "maintainableParentVersion")
+      conceptAgency = xmlGetAttr(conceptRefXML, "agencyID")
+      #TODO conceptSchemeRef?
+      #TODO conceptSchemeAgency
+    }
+    
+    #codelists
+    if(!is.null(codelistRefXML)){
+      codelist <- xmlGetAttr(codelistRefXML, "id")
+      codelistVersion <- xmlGetAttr(codelistRefXML, "version")
+      codelistAgency <- xmlGetAttr(codelistRefXML, "agencyID")
+    }
+    
+    #crossSectionalAttach
+    #TODO crossSectionalAttachDataset?
+    #TODO crossSectionalAttachGroup?
+    #TODO crossSectionalAttachSection?
+    #TODO crossSectionalAttachObservation?
+    
+  }else{
+    #concepts
+    conceptRef = xmlGetAttr(xmlObj, "conceptRef")
+    conceptVersion = xmlGetAttr(xmlObj, "conceptVersion")
+    conceptAgency = xmlGetAttr(xmlObj, "conceptAgency")
+    conceptSchemeRef = xmlGetAttr(xmlObj, "conceptSchemeRef")    
+    conceptSchemeAgency = xmlGetAttr(xmlObj, "conceptSchemeAgency")
+    
+    #codelists
+    codelist = xmlGetAttr(xmlObj, "codelist")
+    codelistVersion = xmlGetAttr(xmlObj, "codelistVersion")    
+    codelistAgency = xmlGetAttr(xmlObj, "codelistAgency")
+
+    #crossSectionalAttach
+    crossSectionalAttachDataset = xmlGetAttr(xmlObj, "crossSectionalAttachDataset")
+    crossSectionalAttachGroup = xmlGetAttr(xmlObj, "crossSectionalAttachGroup")
+    crossSectionalAttachSection = xmlGetAttr(xmlObj, "crossSectionalAttachSection")
+    crossSectionalAttachObservation = xmlGetAttr(xmlObj,"crossSectionalAttachObservation")
+  }
+  
   if(is.null(conceptRef)) conceptRef <- as.character(NA)
-  
-  conceptVersion = xmlGetAttr(xmlObj, "conceptVersion")
   if(is.null(conceptVersion)) conceptVersion <- as.character(NA)
-  
-  conceptAgency = xmlGetAttr(xmlObj, "conceptAgency")
   if(is.null(conceptAgency)) conceptAgency <- as.character(NA)
-  
-  conceptSchemeRef = xmlGetAttr(xmlObj, "conceptSchemeRef")
   if(is.null(conceptSchemeRef)) conceptSchemeRef <- as.character(NA)
-  
-  conceptSchemeAgency = xmlGetAttr(xmlObj, "conceptSchemeAgency")
   if(is.null(conceptSchemeAgency)) conceptSchemeAgency <- as.character(NA)
   
-  codelist = xmlGetAttr(xmlObj, "codelist")
   if(is.null(codelist)) codelist <- as.character(NA)
-  
-  codelistVersion = xmlGetAttr(xmlObj, "codelistVersion")
   if(is.null(codelistVersion)) codelistVersion <- as.character(NA)
-  
-  codelistAgency = xmlGetAttr(xmlObj, "codelistAgency")
   if(is.null(codelistAgency)) codelistAgency <- as.character(NA)
   
-  crossSectionalAttachDataset = xmlGetAttr(xmlObj, "crossSectionalAttachDataset")
   if(is.null(crossSectionalAttachDataset)){
     crossSectionalAttachDataset <- NA
   }else{
     crossSectionalAttachDataset <- as.logical(crossSectionalAttachDataset)
   }
   
-  crossSectionalAttachGroup = xmlGetAttr(xmlObj, "crossSectionalAttachGroup")
   if(is.null(crossSectionalAttachGroup)){
     crossSectionalAttachGroup <- NA
   }else{
     crossSectionalAttachGroup <- as.logical(crossSectionalAttachGroup)
   }
   
-  crossSectionalAttachSection = xmlGetAttr(xmlObj, "crossSectionalAttachSection")
   if(is.null(crossSectionalAttachSection)){
     crossSectionalAttachSection <- NA
   }else{
     crossSectionalAttachSection <- as.logical(crossSectionalAttachSection)
   }
   
-  crossSectionalAttachObservation = xmlGetAttr(xmlObj,
-                                               "crossSectionalAttachObservation")
   if(is.null(crossSectionalAttachObservation)){
     crossSectionalAttachObservation <- NA
   }else{
     crossSectionalAttachObservation <- as.logical(crossSectionalAttachObservation)
   }
-  
   #elements
   #========
   #TextFormat TODO

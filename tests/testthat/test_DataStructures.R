@@ -16,3 +16,13 @@ test_that("DataStructures / KeyFamilies - 2.0",{
   expect_equal(length(ds@datastructures), 1L)
 
 })
+
+test_that("DataStructures / KeyFamilies - 2.1",{
+  file <- system.file("extdata", "SDMXDataStructures_Example_2.1.xml",
+                      package = "rsdmx")
+  xmlObj <- xmlParse(file)  
+  ds <- SDMXDataStructures(xmlObj)
+  expect_is(ds, "SDMXDataStructures")
+  expect_equal(length(ds@datastructures), 1L)
+  
+})
