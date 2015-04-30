@@ -70,7 +70,7 @@ as.data.frame.SDMXCompactData <- function(x, ...){
       obsKeyNames <- names(lapply(obsValueXML, xmlChildren)[["Key"]])
       obsValues[,obsKeyNames] <- obsValues[1,obsKeyNames]
       obsValues <- obsValues[-1,]
-      invisible(lapply(obsKeyNames, function(t) obsValues[nchar(obsValues[,t])==0,t] <<- NA))
+      invisible(lapply(obsKeyNames, function(t) obsValues[nchar(obsValues[,t],"w")==0,t] <<- NA))
     }
     
     #key values

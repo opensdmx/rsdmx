@@ -58,11 +58,11 @@ setClass("SDMXHeader",
 			}
 			
 			#Sender/Receiver validation
-			if(is.na(object@Sender$id) || nchar(object@Sender$id) == 0){
+			if(is.na(object@Sender$id) || nchar(object@Sender$id,"w") == 0){
 			  message("Missing 'Sender' id in header") 
         return(FALSE)
 			}
-      if(nchar(object@Receiver$id) == 0) return(FALSE)
+      if(nchar(object@Receiver$id,"w") == 0) return(FALSE)
 			
 			#TODO KeyFamilyRef validation
 			#TODO KeyFamilyAgency validation

@@ -15,7 +15,7 @@ version.SDMXSchema <- function(xmlObj){
     & regexpr("http://www.w3.org", nsDefs.df$uri,
               "match.length", ignore.case = TRUE) == -1,]
 	parsed <- strsplit(ns.df[1,]$uri,"/")[[1]];
-	schemaVersion <-  gsub("_",".",substr(parsed[substr(parsed,0,1)=="v"],2,nchar(parsed)));
+	schemaVersion <-  gsub("_",".",substr(parsed[substr(parsed,0,1)=="v"],2,nchar(parsed,"w")));
 	return(schemaVersion);
 }
 
