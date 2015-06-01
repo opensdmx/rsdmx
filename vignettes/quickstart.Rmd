@@ -1,6 +1,3 @@
----
-output: html_document
----
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{rsdmx quickstart guide}
@@ -19,18 +16,18 @@ For more information about SDMX, you can visit the [SDMX website](http://sdmx.or
 
 ## Install rsdmx
 
-``rsdmx`` can be installed from CRAN or from its development repository hosted in Github (using the ``devtools`` package):
+``rsdmx`` can be installed from CRAN
+```{r, echo = FALSE}
+install.packages("rsdmx")
+```
+
+or from its development repository hosted in Github (using the ``devtools`` package):
 
 ```{r, echo = FALSE}
 devtools::install_github("opensdmx/rsdmx")
 ```
 
 ## Load rsdmx
-
-```{r, echo = FALSE}
-library(rsdmx)
-knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
-```
 
 To load rsdmx in R, do the following:
 
@@ -58,7 +55,6 @@ You can try it out with other datasources, such as:
 * [**European Central Bank (ECB)**](https://sdw-wsrest.ecb.europa.eu): [https://sdw-wsrest.ecb.europa.eu/service/data/DD/M.SE.BSI_STF.RO.4F_N](https://sdw-wsrest.ecb.europa.eu/service/data/DD/M.SE.BSI_STF.RO.4F_N)
 
 The online rsdmx documentation also provides a list of data providers, either from international or national institutions.
-
 
 ##### Read _local_ datasets
 
@@ -113,9 +109,7 @@ dsdUrl <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/TABLE1"
 dsd <- readSDMX(dsdUrl)
 ```
 
-``rsdmx`` is implemented in object-oriented way with ``S4`` classes and methods. The properties of ``S4`` objects are named ``slots`` and can be accessed with the ``slot`` method:
-
-The following code snippet allows to extract the list of ``codelists`` contained in the DSD document, and read one codelist as ``data.frame``.
+``rsdmx`` is implemented in object-oriented way with ``S4`` classes and methods. The properties of ``S4`` objects are named ``slots`` and can be accessed with the ``slot`` method. The following code snippet allows to extract the list of ``codelists`` contained in the DSD document, and read one codelist as ``data.frame``.
 
 ```{r, echo = FALSE}
 #get codelists from DSD
