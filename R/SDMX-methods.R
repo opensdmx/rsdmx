@@ -89,3 +89,19 @@ findNamespace <- function(namespaces, messageType){
   ns <- c(ns = namespaces$uri[grep(regexp, namespaces$uri)])
   return(ns)
 }
+
+#isSoapRequestEnvelope
+isSoapRequestEnvelope <- function(xmlObj){
+  namespaces <- namespaces.SDMX(xmlObj)
+  ns <- c(ns = namespaces$uri[grep("soap", namespaces$uri)])
+  return(length(ns) > 0)
+}
+
+#getSoapRequestResult
+getSoapRequestResult <- function(xmlObj){
+  body <- xmlChildren(xmlRoot(xmlObj))
+  response <- xmlChildren(body[[1]]); rm(body);
+  result <- xmlChildren(response[[1]]); rm(response);
+  sdmxDoc <- xmlDoc(xmlChildren(result[[1]])[[1]]); rm(result);
+  return(sdmxDoc)
+}

@@ -3,7 +3,63 @@ import(XML)
 import(RCurl)
 import(plyr)
 
+exportClasses(
+  SDMX,
+  SDMXSchema,
+  SDMXHeader,
+  SDMXFooterMessage,
+  SDMXFooter,
+  SDMXType,
+  SDMXStructureType,
+  SDMXGenericData,
+  SDMXCompactData,
+  SDMXUtilityData,
+  SDMXMessageGroup,
+  SDMXConcept,
+  SDMXConceptScheme,
+  SDMXConcepts,
+  SDMXCode,
+  SDMXCodelist,
+  SDMXCodelists,
+  SDMXDimension,
+  SDMXTimeDimension,
+  SDMXPrimaryMeasure,
+  SDMXAttribute,
+  SDMXComponents,
+  SDMXDataStructure,
+  SDMXDataStructures,
+  SDMXDataStructureDefinition
+)
+
 export(
+  SDMX,
+  SDMXSchema,
+  SDMXHeader,
+  SDMXFooterMessage,
+  SDMXFooter,
+  SDMXType,
+  SDMXStructureType,
+  SDMXGenericData,
+  SDMXCompactData,
+  SDMXUtilityData,
+  SDMXMessageGroup,
+  SDMXConcept,
+  SDMXConceptScheme,
+  SDMXConcepts,
+  SDMXCode,
+  SDMXCodelist,
+  SDMXCodelists,
+  SDMXDimension,
+  SDMXTimeDimension,
+  SDMXPrimaryMeasure,
+  SDMXAttribute,
+  SDMXComponents,
+  SDMXDataStructure,
+  SDMXDataStructures,
+  SDMXDataStructureDefinition,
+  findNamespace,
+  isSoapRequestEnvelope,
+  getSoapRequestResult,
 	readSDMX
 )
 
@@ -17,7 +73,6 @@ exportMethods(
   getSDMXFooter,
   getNamespaces,
 	as.XML
-	
 )
 
 S3method(as.data.frame, SDMXGenericData)

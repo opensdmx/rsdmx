@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <GetCompactDataResponse xmlns="http://ec.europa.eu/eurostat/sri/service/2.0/extended">
+      <GetCompactDataResult>
+        <message:CompactData
+          xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message"
+        	xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common"
+        	xmlns:compact="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/compact"
+        	xmlns:myorg="http://myorg.stat.org/SDMXData"
+        	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        	xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message http://www.sdmx.org/docs/2_0/SDMXMessage.xsd http://myorg.stat.org/SDMXData http://myorg.stat.org/RestSDMX/sdmx.ashx/GetSchema/VARIABLE" xmlns:message="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message">
+        	<Header>
+        		<ID>none</ID>
+        		<Test>false</Test>
+        		<Truncated>false</Truncated>
+        		<Prepared>2014-05-25T17:54:03</Prepared>
+        		<Sender id="MYORG" />
+        	</Header>
+        	<myorg:DataSet keyFamilyURI="http://myorg.stats.org/RestSDMX/sdmx.ashx/GetKeyFamily/VARIABLE/MYORG/?resolveRef=true" xmlns:myorg="http://myorg.stat.org/SDMXData">
+        		<myorg:Series VAR1="YFT" VAR2="VAL1" VAR3="VARIABLE_1990" VAR5="HOME" TIME_FORMAT="P1Y" UNIT="EUR" REFERENCEPERIOD="1990_100">
+        			<myorg:Obs YEA="1990" OBS_VALUE="145.2" />
+        			<myorg:Obs YEA="1991" OBS_VALUE="45.12" />
+        			<myorg:Obs YEA="1992" OBS_VALUE="45.23" />
+        			<myorg:Obs YEA="1993" OBS_VALUE="12.252" />
+        			<myorg:Obs YEA="1994" OBS_VALUE="14.25" />
+        			<myorg:Obs YEA="1995" OBS_VALUE="145.254" />
+        			<myorg:Obs YEA="1996" OBS_VALUE="12.23" />
+        			<myorg:Obs YEA="1997" OBS_VALUE="16.12" />
+        			<myorg:Obs YEA="1998" OBS_VALUE="56" />
+        			<myorg:Obs YEA="1999" OBS_VALUE="12.56" />
+        			<myorg:Obs YEA="2000" OBS_VALUE="7.4" />
+        			<myorg:Obs YEA="2001" OBS_VALUE="9.5" />
+        			<myorg:Obs YEA="2002" OBS_VALUE="86.5" />
+        			<myorg:Obs YEA="2003" OBS_VALUE="8.2" />
+        			<myorg:Obs YEA="2004" OBS_VALUE="1.25" />
+        			<myorg:Obs YEA="2005" OBS_VALUE="7.7" />
+        			<myorg:Obs YEA="2006" OBS_VALUE="62.1" />
+        			<myorg:Obs YEA="2007" OBS_VALUE="3.8" />
+        			<myorg:Obs YEA="2008" OBS_VALUE="1.23" />
+        			<myorg:Obs YEA="2009" OBS_VALUE="5.25" />
+        			<myorg:Obs YEA="2010" OBS_VALUE="4.25" />
+        			<myorg:Obs YEA="2011" OBS_VALUE="1.245" />
+        		</myorg:Series>
+        		<myorg:Series VAR1="YFT" VAR2="VAL1" VAR3="VARIABLE_1990" VAR4="FRA" TIME_FORMAT="P1Y" UNIT="EUR" REFERENCEPERIOD="1990_100">
+        			<myorg:Obs YEA="1990" OBS_VALUE="145.2" />
+        			<myorg:Obs YEA="1991" OBS_VALUE="45.12" />
+        			<myorg:Obs YEA="1992" OBS_VALUE="45.23" />
+        			<myorg:Obs YEA="1993" OBS_VALUE="12.252" />
+        			<myorg:Obs YEA="1994" OBS_VALUE="14.25" />
+        			<myorg:Obs YEA="1995" OBS_VALUE="145.254" />
+        			<myorg:Obs YEA="1996" OBS_VALUE="12.23" />
+        			<myorg:Obs YEA="1997" OBS_VALUE="16.12" />
+        			<myorg:Obs YEA="1998" OBS_VALUE="56" />
+        			<myorg:Obs YEA="1999" OBS_VALUE="12.56" />
+        			<myorg:Obs YEA="2000" OBS_VALUE="7.4" />
+        			<myorg:Obs YEA="2001" OBS_VALUE="9.5" />
+        			<myorg:Obs YEA="2002" OBS_VALUE="86.5" />
+        			<myorg:Obs YEA="2003" OBS_VALUE="8.2" />
+        			<myorg:Obs YEA="2004" OBS_VALUE="1.25" />
+        			<myorg:Obs YEA="2005" OBS_VALUE="7.7" />
+        			<myorg:Obs YEA="2006" OBS_VALUE="62.1" />
+        			<myorg:Obs YEA="2007" OBS_VALUE="3.8" />
+        			<myorg:Obs YEA="2008" OBS_VALUE="1.23" />
+        			<myorg:Obs YEA="2009" OBS_VALUE="5.25" />
+        			<myorg:Obs YEA="2010" OBS_VALUE="4.25" />
+        			<myorg:Obs YEA="2011" OBS_VALUE="1.245" />
+        		</myorg:Series>
+        		<myorg:Series VAR1="YFT" VAR2="VAL1" VAR3="VARIABLE_1990" VAR4="FRA" VAR5="WORK" TIME_FORMAT="P1Y" UNIT="EUR" REFERENCEPERIOD="1990_100">
+        			<myorg:Obs YEA="1990" OBS_VALUE="145.2" />
+        			<myorg:Obs YEA="1991" OBS_VALUE="45.12" />
+        			<myorg:Obs YEA="1992" OBS_VALUE="45.23" />
+        			<myorg:Obs YEA="1993" OBS_VALUE="12.252" />
+        			<myorg:Obs YEA="1994" OBS_VALUE="14.25" />
+        			<myorg:Obs YEA="1995" OBS_VALUE="145.254" />
+        			<myorg:Obs YEA="1996" OBS_VALUE="12.23" />
+        			<myorg:Obs YEA="1997" OBS_VALUE="16.12" />
+        			<myorg:Obs YEA="1998" OBS_VALUE="56" />
+        			<myorg:Obs YEA="1999" OBS_VALUE="12.56" />
+        			<myorg:Obs YEA="2000" OBS_VALUE="7.4" />
+        			<myorg:Obs YEA="2001" OBS_VALUE="9.5" />
+        			<myorg:Obs YEA="2002" OBS_VALUE="86.5" />
+        			<myorg:Obs YEA="2003" OBS_VALUE="8.2" />
+        			<myorg:Obs YEA="2004" OBS_VALUE="1.25" />
+        			<myorg:Obs YEA="2005" OBS_VALUE="7.7" />
+        			<myorg:Obs YEA="2006" OBS_VALUE="62.1" />
+        			<myorg:Obs YEA="2007" OBS_VALUE="3.8" />
+        			<myorg:Obs YEA="2008" OBS_VALUE="1.23" />
+        			<myorg:Obs YEA="2009" OBS_VALUE="5.25" />
+        			<myorg:Obs YEA="2010" OBS_VALUE="4.25" />
+        			<myorg:Obs YEA="2011" OBS_VALUE="1.245" />
+        		</myorg:Series>
+        		<myorg:Series VAR1="YFT" VAR2="VAL3" VAR3="VARIABLE_1990" VAR5="HOME" TIME_FORMAT="P1Y" UNIT="EUR" REFERENCEPERIOD="1990_100" />
+        		<myorg:Series VAR1="YFT" VAR2="VAL4" VAR3="VARIABLE_1990" VAR5="HOME" TIME_FORMAT="P1Y" UNIT="EUR" REFERENCEPERIOD="1990_100" />
+        	</myorg:DataSet>
+        </message:CompactData>
+      </GetCompactDataResult>
+    </GetCompactDataResponse>
+  </soap:Body>
+</soap:Envelope>

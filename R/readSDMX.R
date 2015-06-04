@@ -47,6 +47,12 @@ readSDMX <- function(file, isURL = TRUE){
 	#encapsulate in S4 object
 	obj <- NULL
 	if(status){ 
+    
+    #convenience for SDMX documents embedded in SOAP XML responses
+	  if(isSoapRequestEnvelope(xmlObj)){
+      xmlObj <- getSoapRequestResult(xmlObj)
+	  }
+    
 		type <- SDMXType(xmlObj)@type
 		obj <- switch(type,
 			"StructureType"     = getSDMXStructureObject(xmlObj),
