@@ -8,7 +8,7 @@ SDMXCompactData <- function(xmlObj){
 }
 
 #methods
-as.data.frame.SDMXCompactData <- function(x, ...){
+as.data.frame.SDMXAllCompactData <- function(x, nsExpr, ...) {
   xmlObj <- x@xmlObj;
   dataset <- NULL
   
@@ -17,36 +17,48 @@ as.data.frame.SDMXCompactData <- function(x, ...){
   VERSION.21 <- sdmxVersion == "2.1"
   
   #namespace
+  hasAuthorityNS <- FALSE
   nsDefs.df <- getNamespaces(x)
-  #in case no ns found, try to find specific namespace
+  ns <- findNamespace(nsDefs.df, nsExpr)
+
   ns.df <- nsDefs.df[
     regexpr("http://www.sdmx.org", nsDefs.df$uri,
             "match.length", ignore.case = TRUE) == -1
     & regexpr("http://www.w3.org", nsDefs.df$uri,
-            "match.length", ignore.case = TRUE) == -1,]
-  ns <- ns.df$uri
-  hasAuthorityNS <- FALSE
-  if(length(ns) > 0) hasAuthorityNS <- TRUE
+              "match.length", ignore.case = TRUE) == -1,]
+  authorityNs <- ns.df
+  if(nrow(authorityNs) > 0){
+    hasAuthorityNS <- TRUE
+  }
+  if(nrow(authorityNs) > 1){
+    warning("More than one target dataset namespace found!")
+    authorityNs <- authorityNs[1L]
+  }
   
   if(hasAuthorityNS){
-    seriesXML <- unlist(
-      lapply(ns,
-             function(nsUri){
-                serieNs <- nsDefs.df[nsDefs.df$uri == nsUri,]
-                out <- NULL
-                s <- try(getNodeSet(xmlObj, "//ns:Series", c(ns = serieNs$uri)))
-                if(class(s) != "try-error") out <- s
-                return(out)
-             }))
-    
+    seriesXML <- getNodeSet(xmlObj, "//ns:Series", namespaces = c(ns = authorityNs$uri))
+    if(length(seriesXML) == 0){
+      seriesXML <- getNodeSet(xmlObj, "//ns:Series", namespaces = ns)
+    }
   }else{
-    if(nrow(nsDefs.df) > 0){
-      serieNs <- nsDefs.df[1,]
-      seriesXML <- getNodeSet(xmlObj, "//nt:Series", c(nt = serieNs$uri)) 
-    }else{    
-      stop("Unsupported CompactData parser for empty target XML namespace")
+    if(length(ns) > 0){
+      seriesXML <- getNodeSet(xmlObj, "//ns:Series", namespaces = ns)
+    }else{
+      if(nrow(nsDefs.df) > 0){
+        serieNs <- nsDefs.df[1,]
+        seriesXML <- getNodeSet(xmlObj, "//nt:Series", c(nt = serieNs$uri)) 
+      }else{    
+        stop("Unsupported CompactData parser for empty target XML namespace")
+      }
     }
   }
+  
+  if(length(seriesXML) == 0){
+    seriesXML <- getNodeSet(xmlObj, "//Series")
+  }
+  
+  seriesNb <- length(seriesXML)
+  if(seriesNb == 0) return(NULL);
   
   #function to parse a Serie
   parseSerie <- function(x){
@@ -105,6 +117,11 @@ as.data.frame.SDMXCompactData <- function(x, ...){
   
   # output
   return(dataset)
+}
+
+
+as.data.frame.SDMXCompactData <- function(x, ...){
+  return(as.data.frame.SDMXAllCompactData(x, "compact"));
 }
 
 setAs("SDMXCompactData", "data.frame",

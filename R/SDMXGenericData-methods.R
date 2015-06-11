@@ -37,6 +37,9 @@ as.data.frame.SDMXGenericData <- function(x, ...){
   
   #series
   seriesXML <- getNodeSet(xmlObj, "//ns:Series", namespaces = ns)
+  if(length(seriesXML) == 0){
+    seriesXML <- getNodeSet(xmlObj, "//Series")
+  }
   seriesNb <- length(seriesXML)
   if(seriesNb == 0) return(NULL);
   
