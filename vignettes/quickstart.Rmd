@@ -12,12 +12,14 @@ The goal of this document is to get you up and running with rsdmx as quickly as 
 ## SDMX - a short introduction
 
 The SDMX framework provides two sets of standard specifications to facilitate the exchange of statistical data:
-(1) standard formats
-(2) web-service specifications
+
+* standard formats
+* web-service specifications
 
 SDMX allows to disseminate both **data** (a dataset) and **metadata** (the description of the dataset).
 
 For this, the SDMX standard provides various types of _documents_, also known as _messages_. Hence there will be:
+
 * **data** SDMX-ML _documents_. The two main _document_ types are the ``Generic`` and ``Compact`` ones. The latter aims to provide a more compact XML document. They are other data _document_ derivating from the main types.
 * **metadata** SDMX-ML _documents_. The main metadata _document_ is known a ``Data Structure Definition`` (DSD). As its name indicates, it _describes_ the structure and organization of a dataset, and will generally include all the master/reference data used to characterize a dataset. The 2 main types of metadata are (1) the ``concepts``, which correspond the _dimensions_ and/or _attributes_ of the dataset, and (2) the ``codelists`` which inventory the possible values to be used in the representation of _dimensions_ and _attributes_.
 
@@ -34,14 +36,9 @@ Let's see then how to use ``rsdmx``!
 
 ## Install rsdmx
 
-``rsdmx`` can be installed from CRAN
-```{r, echo = FALSE}
-install.packages("rsdmx")
-```
+``rsdmx`` can be installed from CRAN or from its development repository hosted in Github (using the ``devtools`` package). For the latter, you will need the ``devtools`` package and run:
 
-or from its development repository hosted in Github (using the ``devtools`` package):
-
-```{r, echo = FALSE}
+```{r, eval=FALSE}
 devtools::install_github("opensdmx/rsdmx")
 ```
 
@@ -49,7 +46,7 @@ devtools::install_github("opensdmx/rsdmx")
 
 To load rsdmx in R, do the following:
 
-```{r, echo = FALSE}
+```{r, eval=FALSE}
 library(rsdmx)
 ```
 
@@ -57,28 +54,29 @@ library(rsdmx)
 
 This section will introduce you on how to read SDMX *dataset* documents, either from remote datasources, or from local SDMX files.
 
-##### Read _remote_ datasets
+### Read _remote_ datasets
 
 The following code snipet shows you how to read a dataset from a remote data source, taking as example the [FAO data portal](http://data.fao.org/sdmx/index.html): [http://data.fao.org/sdmx/repository/data/CROP_PRODUCTION/.156.5312../FAO?startPeriod=2008&endPeriod=2008](http://data.fao.org/sdmx/repository/data/CROP_PRODUCTION/.156.5312../FAO?startPeriod=2008&endPeriod=2008)
 
-```{r, echo = FALSE}
+```{r, eval=FALSE}
 myUrl <- "http://data.fao.org/sdmx/repository/data/CROP_PRODUCTION/.156.5312../FAO?startPeriod=2008&endPeriod=2008"
 dataset <- readSDMX(myUrl)
 stats <- as.data.frame(dataset) 
 ```
 
 You can try it out with other datasources, such as:
+
 * [**OECD StatExtracts portal**](http://stats.oecd.org): [http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011](http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011)
 * [**EUROSTAT portal**](http://epp.eurostat.ec.europa.eu/portal/page/portal/sdmx_web_services/getting_started/rest_sdmx_2.1): [http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..PC.FOS1.BE/?startperiod=2005&endPeriod=2011](http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..PC.FOS1.BE/?startperiod=2005&endPeriod=2011)
 * [**European Central Bank (ECB)**](https://sdw-wsrest.ecb.europa.eu): [https://sdw-wsrest.ecb.europa.eu/service/data/DD/M.SE.BSI_STF.RO.4F_N](https://sdw-wsrest.ecb.europa.eu/service/data/DD/M.SE.BSI_STF.RO.4F_N)
 
 The online rsdmx documentation also provides a list of data providers, either from international or national institutions.
 
-##### Read _local_ datasets
+### Read _local_ datasets
 
 This example shows you how to use ``rsdmx`` with _local_ SDMX files, previously downloaded from [EUROSTAT](http://ec.europa.eu/eurostat).
 
-```{r, echo = FALSE}
+```{r, eval=FALSE}
 #bulk download from Eurostat
 tf <- tempfile(tmpdir = tdir <- tempdir()) #temp file and folder
 download.file("http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2Frd_e_gerdsc.sdmx.zip", tf)
@@ -86,7 +84,6 @@ sdmx_files <- unzip(tf, exdir = tdir)
 
 sdmx <- readSDMX(sdmx_files[2], isURL = FALSE)
 stats <- as.data.frame(sdmx)
-head(stats)
 
 ```
 
@@ -101,35 +98,33 @@ This section will introduce you on how to read SDMX **metadata** documents, incl
 
 Read concept schemes from [FAO data portal](http://data.fao.org/sdmx/index.html)
 
-```{r, echo = FALSE}
+```{r, eval=FALSE}
 csUrl <- "http://data.fao.org/sdmx/registry/conceptscheme/FAO/ALL/LATEST/?detail=full&references=none&version=2.1"
 csobj <- readSDMX(csUrl)
 csdf <- as.data.frame(csobj)
-head(csdf)
 ```
 
 ### Codelists
 
 Read codelists from [FAO data portal](http://data.fao.org/sdmx/index.html)
-```{r, echo = FALSE}
+```{r, eval=FALSE}
 clUrl <- "http://data.fao.org/sdmx/registry/codelist/FAO/CL_FAO_MAJOR_AREA/0.1"
 clobj <- readSDMX(clUrl)
 cldf <- as.data.frame(clobj)
-head(cldf)
 ```
 
 ###Data Structure Definition (DSD)
 
 This example illustrates how to read a complete DSD using a [OECD StatExtracts portal](http://stats.oecd.org) data source.
 
-```{r, echo = FALSE}
+```{r, eval=FALSE}
 dsdUrl <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/TABLE1"
 dsd <- readSDMX(dsdUrl)
 ```
 
 ``rsdmx`` is implemented in object-oriented way with ``S4`` classes and methods. The properties of ``S4`` objects are named ``slots`` and can be accessed with the ``slot`` method. The following code snippet allows to extract the list of ``codelists`` contained in the DSD document, and read one codelist as ``data.frame``.
 
-```{r, echo = FALSE}
+```{r, eval=FALSE}
 #get codelists from DSD
 cls <- slot(dsd, "codelists")
 codelists <- sapply(slot(cls, "codelists"), function(x) slot(x, "id")) #get list of codelists
@@ -138,7 +133,7 @@ codelist <- as.data.frame(slot(dsd, "codelists"), codelistId = "CL_TABLE1_FLOWS"
 
 In a similar way, the ``concepts`` of the dataset can be extracted from the DSD and read as ``data.frame``.
 
-```{r, echo = FALSE}
+```{r, eval=FALSE}
 #get concepts from DSD
 concepts <- as.data.frame(slot(dsd, "concepts"))
 ```
