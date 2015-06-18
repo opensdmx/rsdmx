@@ -7,12 +7,30 @@
 
 The goal of this document is to get you up and running with rsdmx as quickly as possible.
 
-``rsdmx`` provides a set of classes and methods to read data and metadata documents exchanged through the Statistical Data and Metadata Exchange (SDMX) framework. The package currently focuses on the SDMX XML standard format (SDMX-ML).
+``rsdmx`` provides a set of classes and methods to read data and metadata documents exchanged through the Statistical Data and Metadata Exchange (SDMX) framework.
 
-For more information about SDMX, you can visit the [SDMX website](http://sdmx.org/). 
+## SDMX - a short introduction
 
-[rsdmx](http://cran.r-project.org/web/packages/rsdmx/index.html) offers a low-level set of tools to read **data** and **metadata** in SDMX format. Its strategy is to make it very easy for the user. For this, a unique function named ``readSDMX`` has to be used, whatever it is a ``data`` or ``metadata`` document, or if it is ``local`` or ``remote`` datasource.
+The SDMX framework provides two sets of standard specifications to facilitate the exchange of statistical data:
+(1) standard formats
+(2) web-service specifications
 
+SDMX allows to disseminate both **data** (a dataset) and **metadata** (the description of the dataset).
+
+For this, the SDMX standard provides various types of _documents_, also known as _messages_. Hence there will be:
+* **data** SDMX-ML _documents_. The two main _document_ types are the ``Generic`` and ``Compact`` ones. The latter aims to provide a more compact XML document. They are other data _document_ derivating from the main types.
+* **metadata** SDMX-ML _documents_. The main metadata _document_ is known a ``Data Structure Definition`` (DSD). As its name indicates, it _describes_ the structure and organization of a dataset, and will generally include all the master/reference data used to characterize a dataset. The 2 main types of metadata are (1) the ``concepts``, which correspond the _dimensions_ and/or _attributes_ of the dataset, and (2) the ``codelists`` which inventory the possible values to be used in the representation of _dimensions_ and _attributes_.
+
+For more information about the SDMX standards, you can visit the [SDMX website](http://sdmx.org/), or this [introduction by EUROSTAT](https://webgate.ec.europa.eu/fpfis/mwikis/sdmx/index.php/SDMX).
+
+## How to deal with SDMX in R
+
+[rsdmx](http://cran.r-project.org/web/packages/rsdmx/index.html) offers a low-level set of tools to read **data** and **metadata** in the SDMX-ML format. Its strategy is to make it very easy for the user. For this, a unique function named ``readSDMX`` has to be used, whatever it is a ``data`` or ``metadata`` document, or if it is ``local`` or ``remote`` datasource.
+
+* what ``rsdmx`` does support: a SDMX format abstraction library, with focus on the the main SDMX standard XML format (SDMX-ML), and the support of the three format standard versions (``1.0``, ``2.0``, ``2.1``)
+* what ``rsdmx`` does NOT support: an interface to SDMX web-services. Although in a near future ``rsdmx`` plans to support ``helpers`` to build SDMX data queries according to SDMX web-services, its primary strategy is to give an emphasis on the SDMX-ML **format**. As result, ``rsdmx`` can be applied to a wider range of datasources, that do not necessarily provide SDMX standard compliant web-services or even may require to download the data prior its reading in R. 
+
+Let's see then how to use ``rsdmx``!
 
 ## Install rsdmx
 
