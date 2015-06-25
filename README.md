@@ -15,13 +15,13 @@
 
 **Status**
 At now, the package allows to read:
-* Datasets (``GenericData``, ``CompactData``, ``UtilityData`` and ``MessageGroup`` SDMX-ML types)
+* Datasets (``GenericData``, ``CompactData``, ``StructureSpecificData``, ``UtilityData`` and ``MessageGroup`` SDMX-ML types)
 * Concepts (``Concept``, ``ConceptScheme`` and ``Concepts`` SDMX-ML types)
 * Codelists (``Code``, ``Codelist`` and ``Codelists`` SDMX-ML types)
 * DataStructures / KeyFamilies - with all subtypes
 * Data Structure Definitions (DSDs) - with all subtypes
 
-It has been tested mainly on SDMX standard versions ``2.0`` and ``2.1``, and in a less extent on version ``1.0``
+It has been tested on all SDMX standard format versions ``1.0``, ``2.0`` and ``2.1``
  
 **R CRAN rsdmx check results:**
 
