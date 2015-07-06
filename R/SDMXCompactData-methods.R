@@ -65,14 +65,12 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, ...) {
     
     #obs attributes (which may include observations)
     obsValueXML <- xmlChildren(x)
-    obsAttrs <- as.data.frame(
-      suppressWarnings(do.call("rbind", lapply(obsValueXML, function(t){
-        xmlAttrs(t)
-      }))),
-      stringAsFactors = FALSE,
-      row.names = 1:length(obsValueXML),
-      stringAsFactors = FALSE
-    )
+    obsAttrs <- data.frame()
+    if(length(obsValueXML) > 0){
+      obsAttrs <- do.call("rbind.fill", lapply(obsValueXML, function(t){
+          data.frame(as.list(xmlAttrs(t)), stringsAsFactors = FALSE)
+      }))
+    }
     
     #obs children (in case we have)
     obsValues <- try(xmlToDataFrame(obsValueXML, stringsAsFactors = FALSE), silent=TRUE)
