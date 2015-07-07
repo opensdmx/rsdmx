@@ -6,12 +6,12 @@
 readSDMX <- function(file, isURL = TRUE){
 	
 	#load data
-  status <- 0
+	status <- 0
 	if(isURL == FALSE){
 		if(!file.exists(file))
 			stop("File ", file, "not found\n")
 		xmlObj <- xmlTreeParse(file, useInternalNodes = TRUE)
-    status <- 1
+    		status <- 1
 	}else{
 		rsdmxAgent <- paste("rsdmx/",as.character(packageVersion("rsdmx")),sep="")
 		content <- getURL(file, httpheader = list('User-Agent' = rsdmxAgent), ssl.verifypeer = FALSE)
@@ -48,49 +48,50 @@ readSDMX <- function(file, isURL = TRUE){
 	obj <- NULL
 	if(status){ 
     
-    #convenience for SDMX documents embedded in SOAP XML responses
-	  if(isSoapRequestEnvelope(xmlObj)){
-      xmlObj <- getSoapRequestResult(xmlObj)
-	  }
-    
+	    	#convenience for SDMX documents embedded in SOAP XML responses
+		if(isSoapRequestEnvelope(xmlObj)){
+			xmlObj <- getSoapRequestResult(xmlObj)
+		}
+	    
 		type <- SDMXType(xmlObj)@type
 		obj <- switch(type,
 			"StructureType"             = getSDMXStructureObject(xmlObj),
 			"GenericDataType"           = SDMXGenericData(xmlObj),
 			"CompactDataType"           = SDMXCompactData(xmlObj),
-      "UtilityDataType"           = SDMXUtilityData(xmlObj),
-      "StructureSpecificDataType" = SDMXStructureSpecificData(xmlObj),
+			"UtilityDataType"           = SDMXUtilityData(xmlObj),
+			"StructureSpecificDataType" = SDMXStructureSpecificData(xmlObj),
 			"MessageGroupType"          = SDMXMessageGroup(xmlObj),
 			NULL
 		) 
-
-  	if(is.null(obj)){
-    		if(type == "StructureType"){
-      		strTypeObj <- SDMXStructureType(xmlObj)
-      		type <- getStructureType(strTypeObj)
-    		}
+	
+	  	if(is.null(obj)){
+	    		if(type == "StructureType"){
+	      			strTypeObj <- SDMXStructureType(xmlObj)
+	      			type <- getStructureType(strTypeObj)
+	    		}
 			stop(paste("Unsupported SDMX Type '",type,"'",sep=""))
-      
+	      
 		}else{
-      
-      #handling footer messages
-      footer <- slot(obj, "footer")
-      footer.msg <- slot(footer, "messages") 
-      if(length(footer.msg) > 0){
-        invisible(
-          lapply(footer.msg,
-                 function(x){
-                   code <- slot(x,"code")
-                   severity <- slot(x,"severity")
-                   lapply(slot(x,"messages"),
-                          function(msg){
-                            warning(paste(severity," (Code ",code,"): ",msg,sep=""),
-                                    call. = FALSE)
-                          })
-                 }))
-      }
-      
+	      
+	      		#handling footer messages
+	      		footer <- slot(obj, "footer")
+	      		footer.msg <- slot(footer, "messages") 
+	      		if(length(footer.msg) > 0){
+			        invisible(
+			          lapply(footer.msg,
+			          	function(x){
+			          		code <- slot(x,"code")
+			          		severity <- slot(x,"severity")
+			          		lapply(slot(x,"messages"),
+			          			function(msg){
+			          				warning(paste(severity," (Code ",code,"): ",msg,sep=""),
+			          					call. = FALSE)
+			                          	}
+						)
+			                 })	
+				)
+	      		}
 		}
-  }
+  	}
 	return(obj);
 }
