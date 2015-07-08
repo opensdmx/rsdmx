@@ -18,19 +18,19 @@ readSDMX <- function(file, isURL = TRUE){
                       ssl.verifypeer = FALSE, .encoding = "UTF-8")
     
 		status <- tryCatch({
-      if(attr(regexpr("<!DOCTYPE html>", content), "match.length") == -1){
+			if(attr(regexpr("<!DOCTYPE html>", content), "match.length") == -1){
         
-        #check the presence of a BOM
-        BOM <- "\ufeff"
-        if(attr(regexpr(BOM, content), "match.length") != - 1){
-          content <- gsub(BOM, "", content)
-        }
+			        #check the presence of a BOM
+			        BOM <- "\ufeff"
+			        if(attr(regexpr(BOM, content), "match.length") != - 1){
+			          content <- gsub(BOM, "", content)
+			        }
         
-        xmlObj <- xmlTreeParse(content, useInternalNodes = TRUE)
-        status <- 1
-      }else{
-        stop("The SDMX web-request failed. Please retry")
-      }
+			        xmlObj <- xmlTreeParse(content, useInternalNodes = TRUE)
+			        status <- 1
+			}else{
+				stop("The SDMX web-request failed. Please retry")
+		      	}
 		},error = function(err){
 			print(err)
 			status <<- 0
