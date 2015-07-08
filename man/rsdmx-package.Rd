@@ -16,7 +16,7 @@ Package: \tab rsdmx\cr
 Type: \tab Package\cr
 Version
 : \tab 0.4-7\cr
-Date: \tab 2015-06-11\cr
+Date: \tab 2015-07-07\cr
 License: \tab GPL(>=2.0)\cr
 LazyLoad: \tab yes\cr
 }

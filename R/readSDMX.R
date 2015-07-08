@@ -14,15 +14,23 @@ readSDMX <- function(file, isURL = TRUE){
     status <- 1
 	}else{
 		rsdmxAgent <- paste("rsdmx/",as.character(packageVersion("rsdmx")),sep="")
-		content <- getURL(file, httpheader = list('User-Agent' = rsdmxAgent), ssl.verifypeer = FALSE)
+		content <- getURL(file, httpheader = list('User-Agent' = rsdmxAgent),
+                      ssl.verifypeer = FALSE, .encoding = "UTF-8")
     
 		status <- tryCatch({
-      		if(attr(regexpr("<!DOCTYPE html>", content), "match.length") == -1){
-        		xmlObj <- xmlTreeParse(content, useInternalNodes = TRUE)
-        		status <- 1
-      		}else{
-        		stop("The SDMX web-request failed. Please retry")
-      		}
+      if(attr(regexpr("<!DOCTYPE html>", content), "match.length") == -1){
+        
+        #check the presence of a BOM
+        BOM <- "\ufeff"
+        if(attr(regexpr(BOM, content), "match.length") != - 1){
+          content <- gsub(BOM, "", content)
+        }
+        
+        xmlObj <- xmlTreeParse(content, useInternalNodes = TRUE)
+        status <- 1
+      }else{
+        stop("The SDMX web-request failed. Please retry")
+      }
 		},error = function(err){
 			print(err)
 			status <<- 0
