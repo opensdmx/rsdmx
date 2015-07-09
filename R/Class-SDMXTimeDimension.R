@@ -42,7 +42,12 @@ setClass("SDMXTimeDimension",
          validity = function(object){
            
            #eventual validation rules
-           if(is.na(object@conceptRef)) return(FALSE)
+           if(!is.null(object)){
+             if(is.na(object@conceptRef)) return(FALSE)
+           }
+           
            return(TRUE);
          }
 )
+
+setClassUnion("SDMXTimeDimension_OR_NULL", c("SDMXTimeDimension","NULL"))

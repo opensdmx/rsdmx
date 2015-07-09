@@ -5,7 +5,7 @@
 setClass("SDMXComponents",
          representation(
            Dimensions = "list",
-           TimeDimension = "SDMXTimeDimension",
+           TimeDimension = "SDMXTimeDimension_OR_NULL",
            PrimaryMeasure = "SDMXPrimaryMeasure",
            Attributes = "list"
            #crossSectionalMeasures = "list",
