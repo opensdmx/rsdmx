@@ -1,7 +1,8 @@
-import(methods)
-import(XML)
-import(RCurl)
-import(plyr)
+import("methods")
+import("XML")
+import("RCurl")
+importFrom("plyr", "rbind.fill")
+importFrom("utils", "packageVersion")
 
 exportClasses(
   SDMX,
