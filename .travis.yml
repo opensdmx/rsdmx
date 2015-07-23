@@ -12,9 +12,8 @@ before_install:
 install:
   - ./travis-tool.sh install_deps
 script: ./travis-tool.sh run_tests
-r_github_packages:
-  - jimhester/covr
 after_success:
+  - Rscript -e 'devtools::install_github("jimhester/covr")'
   - Rscript -e 'library(covr); codecov()'
 after_failure:
   - ./travis-tool.sh dump_logs
