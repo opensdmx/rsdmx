@@ -15,6 +15,7 @@ Description: Set of classes and methods to read data and metadata documents
 License: GPL (>= 2)
 URL: https://github.com/opensdmx/rsdmx, http://www.sdmx.org
 BugReports: https://github.com/opensdmx/rsdmx/issues
+VignetteBuilder: knitr
 LazyLoad: yes
 Collate:
   Class-SDMXSchema.R Class-SDMXType.R Class-SDMXStructureType.R
