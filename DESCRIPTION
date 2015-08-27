@@ -8,7 +8,7 @@ Authors@R: c(
 Maintainer: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 Depends: R (>= 2.15)
 Imports: methods, XML (>= 3.96-1.1), RCurl, plyr, utils
-Suggests: testthat
+Suggests: testthat, knitr
 Description: Set of classes and methods to read data and metadata documents
   exchanged through the Statistical Data and Metadata Exchange (SDMX) framework,
   currently focusing on the SDMX XML standard format (SDMX-ML).
