@@ -11,6 +11,7 @@ setClass("SDMXStructureType",
            valid <- switch(type,
                            "ConceptsType" = TRUE,
                            "CodelistsType" = TRUE,
+                           "DataStructuresType" = TRUE,
                            "DataStructureDefinitionsType" = TRUE,
                            FALSE
            );
