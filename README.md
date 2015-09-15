@@ -1,6 +1,6 @@
 **rsdmx**
 =======
-[![Build Status](https://travis-ci.org/opensdmx/rsdmx.svg?branch=master)](https://travis-ci.org/opensdmx/rsdmx.svg?branch=master)
+[![Build Status](https://travis-ci.org/opensdmx/rsdmx.svg?branch=master)](https://travis-ci.org/opensdmx/rsdmx)
 [![codecov.io](http://codecov.io/github/opensdmx/rsdmx/coverage.svg?branch=master)](http://codecov.io/github/opensdmx/rsdmx?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rsdmx)](http://cran.r-project.org/web/packages/rsdmx)
 
@@ -107,7 +107,6 @@ By default, ``readSDMX`` considers the data source is remote. To read a local fi
 
 This section will introduce you on how to read SDMX **metadata** documents, including ``concepts``, ``codelists`` and complete ``data structure definitions`` (DSD)
 
-
 #### Concepts
 
 Read concept schemes from [FAO data portal](http://data.fao.org/sdmx/index.html)
@@ -127,6 +126,17 @@ clUrl <- "http://data.fao.org/sdmx/registry/codelist/FAO/CL_FAO_MAJOR_AREA/0.1"
 clobj <- readSDMX(clUrl)
 cldf <- as.data.frame(clobj)
 head(cldf)
+```
+
+#### Data Structures (Key Families)
+
+This example illustrates how to read the complete list of data structures (or key families) from the [OECD StatExtracts portal](http://stats.oecd.org)
+
+```{r, echo = FALSE}
+dsUrl <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/ALL"
+ds <- readSDMX(dsUrl)
+dsdf <- as.data.frame(ds)
+head(dsdf)
 ```
 
 #### Data Structure Definition (DSD)
