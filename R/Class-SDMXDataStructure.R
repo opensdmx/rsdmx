@@ -18,7 +18,7 @@ setClass("SDMXDataStructure",
            #elements
            Name = "list", #at least one
            Description = "list", #optional
-           Components = "SDMXComponents"
+           Components = "SDMXComponents_OR_NULL" #optional
          ),
          prototype = list(
            #attributes

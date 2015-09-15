@@ -99,7 +99,18 @@ SDMXDataStructure <- function(xmlObj){
   }
   
   #Components
-  components <- SDMXComponents(xmlObj)
+  compXML <- NULL
+  if(VERSION.21){
+    compXML <- getNodeSet(xmlDoc(xmlObj),
+                          "//str:DataStructureComponents",
+                          namespaces = c(str = as.character(strNs)))
+  }else{
+    compXML <- getNodeSet(xmlDoc(xmlObj),
+                          "//str:Components",
+                          namespaces = c(str = as.character(strNs)))
+  }
+  components <- NULL
+  if(length(compXML) > 0) components <- SDMXComponents(xmlObj)
   
   #instantiate the object
   obj<- new("SDMXDataStructure",    

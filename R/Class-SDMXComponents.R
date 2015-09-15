@@ -17,3 +17,5 @@ setClass("SDMXComponents",
            return(TRUE);
          }
 )
+
+setClassUnion("SDMXComponents_OR_NULL", c("SDMXComponents","NULL"))
