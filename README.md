@@ -4,7 +4,7 @@
 [![codecov.io](http://codecov.io/github/opensdmx/rsdmx/coverage.svg?branch=master)](http://codecov.io/github/opensdmx/rsdmx?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rsdmx)](http://cran.r-project.org/web/packages/rsdmx)
 
-```rsdmx``: Tools  for reading SDMX data and metadata documents in R
+``rsdmx``: Tools  for reading SDMX data and metadata documents in R
 
 ## Overview
 
