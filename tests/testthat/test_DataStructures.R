@@ -42,7 +42,7 @@ test_that("DataStructures / KeyFamilies - 2.1",{
   expect_is(ds.df, "data.frame")
   expect_equal(nrow(ds.df), 1L)
   expect_equal(colnames(ds.df), c("id","agencyID","Name.en", "version",
-                                "uri", "urn, isExternalReference", "isFinal",
+                                "uri", "urn", "isExternalReference", "isFinal",
                                 "validFrom", "validTo"))
   expect_equal(ds.df[1,"id"], "ECB_EXR1")
   expect_equal(ds.df[1, "agencyID"], "ECB")
