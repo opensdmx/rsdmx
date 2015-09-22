@@ -2,7 +2,7 @@
 =======
 [![Build Status](https://travis-ci.org/opensdmx/rsdmx.svg?branch=master)](https://travis-ci.org/opensdmx/rsdmx)
 [![codecov.io](http://codecov.io/github/opensdmx/rsdmx/coverage.svg?branch=master)](http://codecov.io/github/opensdmx/rsdmx?branch=master)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rsdmx)](http://cran.r-project.org/web/packages/rsdmx)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rsdmx)](http://cran.r-project.org/package=rsdmx)
 [![Github_Status_Badge](https://img.shields.io/badge/Github-0.5--0-blue.svg)](https://github.com/opensdmx/rsdmx)
 
 ``rsdmx``: Tools  for reading SDMX data and metadata documents in R
@@ -40,7 +40,7 @@ To unsubscribe, send an email to: [rsdmx+unsubscribe@googlegroups.com](rsdmx+uns
 
 ## Quickstart
 
-[rsdmx](http://cran.r-project.org/web/packages/rsdmx/index.html) offers a low-level set of tools to read **data** and **metadata** in SDMX format. Its strategy is to make it very easy for the user. For this, a unique function named ``readSDMX`` has to be used, whatever it is a ``data`` or ``metadata`` document, or if it is ``local`` or ``remote`` datasource.
+[rsdmx](http://cran.r-project.org/package=rsdmx) offers a low-level set of tools to read **data** and **metadata** in SDMX format. Its strategy is to make it very easy for the user. For this, a unique function named ``readSDMX`` has to be used, whatever it is a ``data`` or ``metadata`` document, or if it is ``local`` or ``remote`` datasource.
 
 
 ### Install rsdmx

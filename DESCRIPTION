@@ -1,6 +1,6 @@
 Package: rsdmx
 Version: 0.5-0
-Date: 2015-09-15
+Date: 2015-09-22
 Title: Tools for Reading SDMX Data and Metadata
 Authors@R: c(
   person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com"),
@@ -25,6 +25,7 @@ Collate:
   Class-SDMXCode.R Class-SDMXCodelist.R Class-SDMXCodelists.R Class-SDMXDimension.R
   Class-SDMXTimeDimension.R Class-SDMXPrimaryMeasure.R Class-SDMXAttribute.R Class-SDMXComponents.R
   Class-SDMXDataStructure.R Class-SDMXDataStructures.R Class-SDMXDataStructureDefinition.R
+  Class-SDMXRequestBuilder.R Class-SDMX21RequestBuilder.R Class-SDMXServiceProvider.R
   SDMXSchema-methods.R SDMXType-methods.R SDMXStructureType-methods.R SDMXHeader-methods.R
   SDMXFooterMessage-methods.R SDMXFooter-methods.R SDMX-methods.R
   SDMXGenericData-methods.R SDMXCompactData-methods.R SDMXUtilityData-methods.R
@@ -33,4 +34,5 @@ Collate:
   SDMXCodelist-methods.R SDMXCodelists-methods.R SDMXDimension-methods.R SDMXTimeDimension-methods.R
   SDMXPrimaryMeasure-methods.R SDMXAttribute-methods.R SDMXComponents-methods.R
   SDMXDataStructure-methods.R SDMXDataStructures-methods.R SDMXDataStructureDefinition-methods.R
-  readSDMX.R
+  SDMXRequestBuilder-methods.R SDMX21RequestBuilder-methods.R SDMXServiceProvider-methods.R
+  readSDMX.R profile.R

@@ -30,7 +30,10 @@ exportClasses(
   SDMXComponents,
   SDMXDataStructure,
   SDMXDataStructures,
-  SDMXDataStructureDefinition
+  SDMXDataStructureDefinition,
+  SDMXRequestBuilder,
+  SDMX21RequestBuilder,
+  SDMXServiceProvider
 )
 
 export(
@@ -60,9 +63,16 @@ export(
   SDMXDataStructure,
   SDMXDataStructures,
   SDMXDataStructureDefinition,
+  SDMXRequestBuilder,
+  SDMX21RequestBuilder,
+  SDMXServiceProvider,
   findNamespace,
   isSoapRequestEnvelope,
   getSoapRequestResult,
+  addSDMXServiceProvider,
+  findSDMXServiceProvider,
+  setSDMXServiceProviders,
+  getSDMXServiceProviders,
 	readSDMX
 )
 

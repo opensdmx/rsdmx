@@ -7,12 +7,23 @@
 \description{\code{readSDMX} is the main function to use to read SDMX data}
 
 \usage{
-readSDMX(file, isURL)
+readSDMX(file, isURL,
+         provider, id,
+         operation, key, filter, start, end)
 }
 
 \arguments{
 \item{file}{path to SDMX-ML document that needs to be parsed}
-\item{isURL}{a value of class "logical" either the path is an url, and data has to be downloaded from a SDMXweb-repository. Default value is TRUE.}
+\item{isURL}{a value of class "logical" either the path is an url, and data has to be downloaded from a SDMXweb-repository. Default value is TRUE. Ignored in case \code{readSDMX} is used with helpers (based on the embedded list of \code{SDMXServiceProvider} or a
+specific provider given as argument)}
+\item{provider}{an object of class "SDMXServiceProvider". If specified, \code{file} and \code{isURL} arguments will be ignored.}
+\item{id}{an object of class "character" representing a provider id. It has to be match a default provider as listed in \code{getSDMXServiceProviders()}}
+\item{operation}{An object of class "character" giving the SDMX service request operation to perform. e.g. "GetData". Recognized if 
+a valid provider or provide id has been specified as argument.}
+\item{key}{An object of class "character" giving the SDMX key family (data structure) id. Recognized if valid provider or provide id has been specified as argument.}
+\item{filter}{An object of class "character" giving the SDMX data filter to apply. Recognized if a valid provider or provide id has been specified as argument.}
+\item{start}{An object of class "integer" or "character" giving the SDMX start time to apply. Recognized if a valid provider or provide id has been specified as argument.}
+\item{end}{An object of class "integer" or "character" giving the SDMX end time to apply. Recognized if a valid provider or provide id has been specified as argument.}
 }
 
 \author{Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}}
@@ -40,6 +51,8 @@ head(stats5)
 \donttest{
 # Not run by 'R CMD check'
 # (reliable remote datasource but with possible occasional unavailability)
+
+#examples using 'file' argument
 #example 1: FAO data
 url1 <- paste("http://data.fao.org/sdmx/repository/data/",
               "CROP_PRODUCTION/.156.5312.515./FAO?startPeriod=2008&endPeriod=2008",
@@ -64,6 +77,12 @@ url3 <- paste("http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/",
 sdmx3 <- readSDMX(url3)
 stats3 <- as.data.frame(sdmx3)
 head(stats3)
+
+#examples using helpers!
+sdmx4 <- readSDMX(id = "OECD", operation = "GetData", key = "MIG",
+                  filter = "TOT..", start = 2011, end = 2011)
+stats4 <- as.data.frame(sdmx4)
+head(stats4)
 
 ## End(**Not run**)
 }
