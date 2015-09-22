@@ -21,7 +21,6 @@ readSDMX <- function(file = NULL, isURL = TRUE,
     if(is.null(provider)){
       stop("No provider with identifier ", id)
     }
-    provider <- provider[[1]]
     buildRequest <- TRUE
   }
   
@@ -29,9 +28,12 @@ readSDMX <- function(file = NULL, isURL = TRUE,
   if(buildRequest){
     if(is.null(operation)) stop("SDMX service operation cannot be null")
     if(is.null(key)) stop("SDMX service key cannot be null")
-    file <- provider@builder@handler(operation = operation,
+    file <- provider@builder@handler(
+                             baseUrl = provider@builder@baseUrl,
+                             operation = operation,
                              key = key,
                              filter = filter,
+                             suffix = provider@builder@suffix,
                              start = start,
                              end = end)
     message(file)

@@ -4,7 +4,7 @@
 #constructor
 SDMX21RequestBuilder <- function(baseUrl, suffix){
   
-  serviceRequestHandler <- function(operation, key, filter = NULL, start = NULL, end = NULL){    
+  serviceRequestHandler <- function(baseUrl, operation, key, filter = NULL, suffix, start = NULL, end = NULL){    
     
     if(is.null(operation))
       stop("Missing SDMX service operation")

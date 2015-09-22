@@ -65,5 +65,6 @@ getSDMXServiceProviders <- function(){
 #find a service provider
 findSDMXServiceProvider <- function(id){
   res <- unlist(lapply(getSDMXServiceProviders(), function(x) {if(x@id == id){return(x)}}))
+  if(!is.null(res) && length(res) > 0) res <- res[[1]]
   return(res)
 }
