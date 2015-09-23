@@ -42,6 +42,8 @@ To unsubscribe, send an email to: [rsdmx+unsubscribe@googlegroups.com](rsdmx+uns
 
 [rsdmx](http://cran.r-project.org/package=rsdmx) offers a low-level set of tools to read **data** and **metadata** in SDMX format. Its strategy is to make it very easy for the user. For this, a unique function named ``readSDMX`` has to be used, whatever it is a ``data`` or ``metadata`` document, or if it is ``local`` or ``remote`` datasource.
 
+It is important to highlight that one of the major benefits of ``rsdmx`` is to focus first on the SDMX **format** specifications (acting as format abstraction library). This allows ``rsdmx`` reading SDMX data from _remote_ datasources, or from _local_ SDMX files. For accessing _remote_ datasources, it also means that ``rsdmx`` does not bound to SDMX **service** specifications, and can read a wider ranger of datasources.
+
 
 ### Install rsdmx
 
@@ -64,11 +66,110 @@ To load rsdmx in R, do the following:
 library(rsdmx)
 ```
 
+### readSDMX & helper functions
+
+
+#### readSDMX as low-level function
+
+The ``readSDMX`` function is then first designed at low-level so it can take as parameters a _url_ (``isURL=TRUE`` by default) or a _file_. So wherever is located the SDMX document, ``readSDMX`` will allow you to read it, as follows:
+
+```{r, echo = FALSE}
+
+  #read a remote file
+  sdmx <- readSDMX(file = "someUrl")
+  
+  #read a local file
+  sdmx <- readSDMX(file = "somelocalfile", isURL = FALSE)
+
+```
+
+In addition, in order to facilitate querying datasources, ``readSDMX`` also providers helpers to query well-known remote datasources. This allows not to specify the entire URL, but rather specify a simple provider ID, and the different parameters to build a SDMX query (e.g. for a dataset query: operation, key, filter, startPeriod and endPeriod). 
+
+This is made possible as a list of SDMX service providers is embedded within ``rsdmx``, and such list provides all the information required for ``readSDMX`` to build the SDMX request (url) before accessing the datasource.
+
+
+#### get list of SDMX service providers
+
+The list of known SDMX service providers can be queried as follows:
+
+```{r, echo = FALSE}
+
+providers <- getSDMXServiceProviders()
+
+#list all provider ids
+sapply(providers, function(x) slot(x, "id"))
+
+```
+
+#### create/add a SDMX service provider
+
+It also also possible to create and add a new SDMX service providers in this list (so ``readSDMX`` can be aware of it). A provider can be created with the ``SDMXServiceProvider``, and is made of three parameters: an ``id``, its ``name``, and a request ``builder``.
+
+The request builder can be created with ``SDMXRequestBuilder`` which takes 3 arguments: the ``baseUrl`` of the service endpoint, a service url ``suffix``, and a ``handler`` function which will allow to build the web request.
+
+``rsdmx`` intends to provider specific request builder that embedds yet an handler function (not need to implement it), and is now attempting to provide a ``SDMX21RequestBuilder`` to build SDMX 2.1 REST web-requests. All this is still under experiments.
+
+Let's see it with an example:
+
+First create a request builder for our provider:
+
+```{r, echo = FALSE}
+
+myBuilder <- SDMXRequestBuilder(
+  baseUrl = "http://www.myorg.org/sdmx",
+  suffix = "service",
+  handler = function(baseUrl, operation, key, filter, suffix, start, end){
+    paste(baseUrl, operation, key, filter, paste0(suffix, "?startPeriod=", start, "&endPeriod=", end), sep="/")
+  }
+)
+```
+
+As you can see, we built a handler that will be in charge of creating a web-request such as [http://www.myorg.org/sdmx/operation/key/filter/suffix?startPeriod=start&endPeriod=end](http://www.myorg.org/sdmx/operation/key/filter/suffix?startPeriod=start&endPeriod=end)
+
+We can create a provider with the above request builder, and add it to the list of known SDMX service providers:
+
+```{r, echo = FALSE}
+
+#create the provider
+provider <- SDMXServiceProvider(
+id = "MYORG",
+name = "My Organization",
+builder = myBuilder
+)
+
+#add it to the list
+addSDMXServiceProvider(provider)
+
+#check provider has been added
+sapply(getSDMXServiceProviders(), function(x){slot(x, "id")})
+
+
+```
+
+#### find a SDMX service provider
+
+A another helper allows you to interrogate ``rsdmx`` if a specific provider is known, given an id:
+
+```{r, echo = FALSE}
+oecd <- findSDMXServiceProvider("OECD")
+```
+
+#### readSDMX as helper function
+
+Now you know how to add a SDMX provider, you can consider using ``readSDMX`` without having to specifying a entire URL, but just by specifying the ``id`` of the provider, and the different query parameters to reach your SDMX document:
+
+```{r, echo = FALSE}
+sdmx <- readSDMX(id = "MYORG", operation = "data", key="MYSERIE", filter="ALL", start = 2000, end = 2015)
+```
+
+The following sections will show you how to query SDMX documents, by using ``readSDMX`` in different ways: either for _local_ or _remote_ files, using ``readSDMX`` as low-level or with the helpers.
+
 ### Read dataset documents
 
-This section will introduce you on how to read SDMX *dataset* documents, either from remote datasources, or from local SDMX files.
+This section will introduce you on how to read SDMX *dataset* documents.
 
 #### Read _remote_ datasets
+
 
 The following code snipet shows you how to read a dataset from a remote data source, taking as example the [FAO data portal](http://data.fao.org/sdmx/index.html): [http://data.fao.org/sdmx/repository/data/CROP_PRODUCTION/.156.5312../FAO?startPeriod=2008&endPeriod=2008](http://data.fao.org/sdmx/repository/data/CROP_PRODUCTION/.156.5312../FAO?startPeriod=2008&endPeriod=2008)
 
@@ -85,6 +186,15 @@ You can try it out with other datasources, such as:
 * [**UN International Labour Organization (ILO)**](http://www.ilo.org/ilostat/faces/home/statisticaldata/technical_page?_adf.ctrl-state=25zdozvi8_9&_afrLoop=1131342564621899): [http://www.ilo.org/ilostat/sdmx/ws/rest/data/ILO,DF_CPI_FRA_CPI_TCPI_COI_RT/ALL?startPeriod=2000-01-01&endPeriod=2014-12-31](http://www.ilo.org/ilostat/sdmx/ws/rest/data/ILO,DF_CPI_FRA_CPI_TCPI_COI_RT/ALL?startPeriod=2000-01-01&endPeriod=2014-12-31)
 
 The online rsdmx documentation also provides a list of data providers, either from international or national institutions.
+
+Now, the service providers above mentioned are known by ``rsdmx`` which let users using ``readSDMX`` with the helper parameters. Let's see how it would look like for querying an OECD datasource:
+
+```{r, echo = FALSE}
+sdmx <- readSDMX(id = "OECD", operation = "GetData", key = "MIG", filter = "TOT..", start = 2011, end = 2011)
+df <- as.data.frame(sdmx)
+head(df)
+```
+
 
 #### Read _local_ datasets
 
