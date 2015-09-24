@@ -8,8 +8,8 @@
 
 \usage{
 readSDMX(file, isURL,
-         provider, id,
-         operation, key, filter, start, end)
+         provider, id, operation, key,
+         filter, filter.native, start, end)
 }
 
 \arguments{
@@ -21,7 +21,8 @@ specific provider given as argument)}
 \item{operation}{An object of class "character" giving the SDMX service request operation to perform. e.g. "GetData". Recognized if 
 a valid provider or provide id has been specified as argument.}
 \item{key}{An object of class "character" giving the SDMX key family (data structure) id. Recognized if valid provider or provide id has been specified as argument.}
-\item{filter}{An object of class "character" giving the SDMX data filter to apply. Recognized if a valid provider or provide id has been specified as argument.}
+\item{filter}{An object of class "character" or "list" giving the SDMX data filter to apply. Recognized if a valid provider or provide id has been specified as argument. If \code{filter.native} is \code{TRUE} (default value), filter has to be an object of class "list" representing the filters to apply to the dataset, otherwise the filter will be a string.}
+\item{filter.native}{An object of class "boolean" indicating if the filter has to be provided in the native way, ie a object of class "list" representing the filter(s) to apply. Default value is \code{TRUE}}
 \item{start}{An object of class "integer" or "character" giving the SDMX start time to apply. Recognized if a valid provider or provide id has been specified as argument.}
 \item{end}{An object of class "integer" or "character" giving the SDMX end time to apply. Recognized if a valid provider or provide id has been specified as argument.}
 }

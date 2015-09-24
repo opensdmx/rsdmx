@@ -11,10 +11,11 @@
 
 ``rsdmx`` is a package to parse/read SDMX data and metadata in R. It provides a set of classes and methods to read data and metadata documents exchanged through the Statistical Data and Metadata Exchange (SDMX) framework. The package currently focuses on the SDMX XML standard format (SDMX-ML). [Learn more](https://github.com/opensdmx/rsdmx/wiki#package_overview).
 
-**Citation**: We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.11551.png)](http://dx.doi.org/10.5281/zenodo.11551)
+**SDMX standards compliance**
 
-**Fundings**
- ``rsdmx`` is looking for **[sponsors](https://github.com/opensdmx/rsdmx/wiki#package_development_funding) !!** Please help us to make the package growing!
+[![SDMX_Compliance_Badge_1.0](https://img.shields.io/badge/SDMX--ML-1.0-blue.svg)](https://github.com/opensdmx/rsdmx)
+[![SDMX_Compliance_Badge_2.0](https://img.shields.io/badge/SDMX--ML-2.0-blue.svg)](https://github.com/opensdmx/rsdmx)
+[![SDMX_Compliance_Badge_2.1](https://img.shields.io/badge/SDMX--ML-2.1-blue.svg)](https://github.com/opensdmx/rsdmx)
 
 **Status**
 At now, the package allows to read:
@@ -24,13 +25,21 @@ At now, the package allows to read:
 * DataStructures / KeyFamilies - with all subtypes
 * Data Structure Definitions (DSDs) - with all subtypes
 
-It has been tested on all SDMX standard format versions ``1.0``, ``2.0`` and ``2.1``
- 
+
+**Fundings**
+ ``rsdmx`` is looking for **[sponsors](https://github.com/opensdmx/rsdmx/wiki#package_development_funding) **. You have been using ``rsdmx`` and you wish to support its development? Please help us to make the package growing!
+
+
+**Citation**:
+We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.11551.png)](http://dx.doi.org/10.5281/zenodo.11551)
+
+
 **R CRAN rsdmx check results:**
 
 [http://cran.r-project.org/web/checks/check_results_rsdmx.html](http://cran.r-project.org/web/checks/check_results_rsdmx.html)
 
 Please note that following a new submission to CRAN, or eventually a modification of CRAN policies, the package might be temporarily archived, and removed from CRAN. In case you notice that the package is not back in few time, please contact me.
+
 
 **Mailing list:<br/>**
 [https://groups.google.com/forum/#!forum/rsdmx](https://groups.google.com/forum/#!forum/rsdmx)<br/>
@@ -190,7 +199,8 @@ The online rsdmx documentation also provides a list of data providers, either fr
 Now, the service providers above mentioned are known by ``rsdmx`` which let users using ``readSDMX`` with the helper parameters. Let's see how it would look like for querying an OECD datasource:
 
 ```{r, echo = FALSE}
-sdmx <- readSDMX(id = "OECD", operation = "GetData", key = "MIG", filter = "TOT..", start = 2011, end = 2011)
+sdmx <- readSDMX(id = "OECD", operation = "GetData", key = "MIG",
+                 filter = list("TOT", NULL, NULL), start = 2011, end = 2011)
 df <- as.data.frame(sdmx)
 head(df)
 ```
