@@ -27,7 +27,7 @@ At now, the package allows to read:
 
 
 **Fundings**
- ``rsdmx`` is looking for **[sponsors](https://github.com/opensdmx/rsdmx/wiki#package_development_funding) **. You have been using ``rsdmx`` and you wish to support its development? Please help us to make the package growing!
+``rsdmx`` is looking for **[sponsors](https://github.com/opensdmx/rsdmx/wiki#package_development_funding)**. You have been using ``rsdmx`` and you wish to support its development? Please help us to make the package growing!
 
 
 **Citation**:
