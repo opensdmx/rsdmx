@@ -168,7 +168,7 @@ oecd <- findSDMXServiceProvider("OECD")
 Now you know how to add a SDMX provider, you can consider using ``readSDMX`` without having to specifying a entire URL, but just by specifying the ``id`` of the provider, and the different query parameters to reach your SDMX document:
 
 ```{r, echo = FALSE}
-sdmx <- readSDMX(id = "MYORG", operation = "data", key="MYSERIE", filter="ALL", start = 2000, end = 2015)
+sdmx <- readSDMX(agencyId = "MYORG", operation = "data", key="MYSERIE", filter="ALL", start = 2000, end = 2015)
 ```
 
 The following sections will show you how to query SDMX documents, by using ``readSDMX`` in different ways: either for _local_ or _remote_ files, using ``readSDMX`` as low-level or with the helpers.

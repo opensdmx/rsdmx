@@ -6,11 +6,11 @@
 \description{function that allows searching by provider id in the list of known \link{SDMXServiceProvider}. This function can be used for interrogating the list of default providers known by \pkg{rsdmx}, and is used internally by \link{readSDMX}}
 
 \usage{
-findSDMXServiceProvider(id)
+findSDMXServiceProvider(agencyId)
 }
 
 \arguments{
-\item{id}{an object of class "character" representing a provider identifier}
+\item{agencyId}{an object of class "character" representing a provider identifier}
 }
 
 \value{an object of class "SDMXServiceProvider" (or NULL if no matching)}
@@ -23,4 +23,4 @@ findSDMXServiceProvider(id)
 
 }
 
-\seealso{\link{getSDMXServiceProviders} \link{findSDMXServiceProvider} \link{readSDMX}}
+\seealso{\link{getSDMXServiceProviders} \link{addSDMXServiceProvider} \link{readSDMX}}

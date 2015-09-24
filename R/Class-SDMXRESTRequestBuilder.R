@@ -1,8 +1,8 @@
 # E.Blondel - 2015/09/22
 #=======================
 
-#SDMX 2.1 Request builder class
-setClass("SDMX21RequestBuilder",
+#SDMX REST Request builder class (still experimental)
+setClass("SDMXRESTRequestBuilder",
          contains = "SDMXRequestBuilder",
          representation(),
          prototype = list(),

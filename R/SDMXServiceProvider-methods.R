@@ -2,8 +2,8 @@
 #========================
 
 #constructor
-SDMXServiceProvider <- function(id, name, builder) {
-  new("SDMXServiceProvider", id = id, name = name, builder = builder);
+SDMXServiceProvider <- function(agencyId, name, builder) {
+  new("SDMXServiceProvider", agencyId = agencyId, name = name, builder = builder);
 }
 
 #other non-S4 methods
@@ -17,31 +17,31 @@ setSDMXServiceProviders <- function(){
       #ECB
       SDMXServiceProvider(
         "ECB", "European Central Bank",
-        SDMX21RequestBuilder("https://sdw-wsrest.ecb.europa.eu/service", "")
+        SDMXRESTRequestBuilder("https://sdw-wsrest.ecb.europa.eu/service", TRUE)
       ),
     
       #EUROSTAT
       SDMXServiceProvider(
-        "EUROSTAT", "Eurostat (Statistical office of the European Union)",
-        SDMX21RequestBuilder("http://ec.europa.eu/eurostat/SDMX/diss-web/rest", "")
+        "ESTAT", "Eurostat (Statistical office of the European Union)",
+        SDMXRESTRequestBuilder("http://ec.europa.eu/eurostat/SDMX/diss-web/rest", TRUE)
       ),
     
       #OECD
       SDMXServiceProvider(
         "OECD", "Organisation for Economic Cooperation and Development ",
-        SDMX21RequestBuilder("http://stats.oecd.org/restsdmx/sdmx.ashx", "OECD")
+        SDMXRESTRequestBuilder("http://stats.oecd.org/restsdmx/sdmx.ashx", TRUE)
       ),
       
       #UN-FAO
       SDMXServiceProvider(
-        "UN-FAO", "Food and Agriculture Organization of the United Nations",
-        SDMX21RequestBuilder("http://data.fao.org/sdmx/repository", "FAO")
+        "FAO", "Food and Agriculture Organization of the United Nations",
+        SDMXRESTRequestBuilder("http://data.fao.org/sdmx/repository", TRUE)
       ),
       
       #UN-ILO
       SDMXServiceProvider(
-        "UN-ILO", "International Labour Organization of the United Nations",
-        SDMX21RequestBuilder("http://www.ilo.org/ilostat/sdmx/ws/rest", "")                  
+        "ILO", "International Labour Organization of the United Nations",
+        SDMXRESTRequestBuilder("http://www.ilo.org/ilostat/sdmx/ws/rest", FALSE)                  
       )
       
   )
@@ -63,8 +63,8 @@ getSDMXServiceProviders <- function(){
 
 
 #find a service provider
-findSDMXServiceProvider <- function(id){
-  res <- unlist(lapply(getSDMXServiceProviders(), function(x) {if(x@id == id){return(x)}}))
+findSDMXServiceProvider <- function(agencyId){
+  res <- unlist(lapply(getSDMXServiceProviders(), function(x) {if(x@agencyId == agencyId){return(x)}}))
   if(!is.null(res) && length(res) > 0) res <- res[[1]]
   return(res)
 }

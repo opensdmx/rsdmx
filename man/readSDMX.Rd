@@ -8,7 +8,7 @@
 
 \usage{
 readSDMX(file, isURL,
-         provider, id, operation, key,
+         provider, agencyId, operation, key,
          filter, filter.native, start, end)
 }
 
@@ -17,7 +17,7 @@ readSDMX(file, isURL,
 \item{isURL}{a value of class "logical" either the path is an url, and data has to be downloaded from a SDMXweb-repository. Default value is TRUE. Ignored in case \code{readSDMX} is used with helpers (based on the embedded list of \code{SDMXServiceProvider} or a
 specific provider given as argument)}
 \item{provider}{an object of class "SDMXServiceProvider". If specified, \code{file} and \code{isURL} arguments will be ignored.}
-\item{id}{an object of class "character" representing a provider id. It has to be match a default provider as listed in \code{getSDMXServiceProviders()}}
+\item{agencyId}{an object of class "character" representing a provider id. It has to be match a default provider as listed in \code{getSDMXServiceProviders()}}
 \item{operation}{An object of class "character" giving the SDMX service request operation to perform. e.g. "GetData". Recognized if 
 a valid provider or provide id has been specified as argument.}
 \item{key}{An object of class "character" giving the SDMX key family (data structure) id. Recognized if valid provider or provide id has been specified as argument.}
@@ -80,8 +80,8 @@ stats3 <- as.data.frame(sdmx3)
 head(stats3)
 
 #examples using helpers!
-sdmx4 <- readSDMX(id = "OECD", operation = "GetData", key = "MIG",
-                  filter = "TOT..", start = 2011, end = 2011)
+sdmx4 <- readSDMX(agencyId = "OECD", operation = "GetData", key = "MIG",
+                  filter = list("TOT", NULL, NULL), start = 2011, end = 2011)
 stats4 <- as.data.frame(sdmx4)
 head(stats4)
 

@@ -5,14 +5,14 @@
 setClass("SDMXRequestBuilder",
          representation(
            baseUrl = "character",
-           suffix = "character",
+           suffix = "logical",
            handler = "function"
          ),
          prototype = list(
            baseUrl = "http://www.myorg.org/sdmx",
-           suffix = "service?",
-           handler = function(baseUrl, suffix){
-             paste(baseUrl,suffix,sep="/")
+           suffix = TRUE,
+           handler = function(baseUrl, agencyId){
+             paste(baseUrl, agencyId,sep="/")
            }
          ),
          validity = function(object){

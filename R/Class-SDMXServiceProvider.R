@@ -4,12 +4,12 @@
 #SDMX Service Provider class
 setClass("SDMXServiceProvider",
          representation(
-           id = "character",
+           agencyId = "character",
            name = "character",
            builder = "SDMXRequestBuilder"
          ),
          prototype = list(
-           id = "MYORG",
+           agencyId = "MYORG",
            name = "My Organization",
            footer = new("SDMXRequestBuilder")
          ),

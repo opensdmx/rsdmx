@@ -17,14 +17,18 @@ addSDMXServiceProvider(provider)
 \examples{
 
   #create a provider
-  myBuilder <- SDMX21RequestBuilder(baseUrl = "http://www.myorg.", suffix = "service?")
-  myProvider <- SDMXServiceProvider(id = "MYORG", name = "My Organization", builder = myBuilder)
+  myBuilder <- SDMXRESTRequestBuilder(baseUrl = "http://www.myorg.",
+                                      suffix = TRUE)
+  myProvider <- SDMXServiceProvider(
+    agencyId = "MYORG", name = "My Organization",
+    builder = myBuilder
+  )
 
   #add it
   addSDMXServiceProvider(myProvider)
   
-  #check out the list of existing provider (only list the ids)
-  sapply(getSDMXServiceProviders(), function(x){slot(x, "id")})
+  #check out the list of existing provider (only list the agency Ids)
+  sapply(getSDMXServiceProviders(), function(x){slot(x, "agencyId")})
 
 }
 

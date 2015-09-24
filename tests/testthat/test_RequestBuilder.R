@@ -11,38 +11,35 @@ test_that("SDMXRequestBuilder",{
   
   request <- SDMXRequestBuilder(
     baseUrl = "http://www.myorg.org",
-    suffix = "service",
-    handler = function(baseUrl, operation, key, filter, suffix, start, end){
-      return(paste(baseUrl, operation, key, filter, suffix, start, end, sep="/"))
+    suffix = TRUE,
+    handler = function(baseUrl, agencyId, suffix, operation, key, filter, start, end){
+      return(paste(baseUrl, agencyId, operation, key, filter, start, end, sep="/"))
     })
   
   expect_is(request, "SDMXRequestBuilder")
   expect_equal(request@baseUrl, "http://www.myorg.org")
-  expect_equal(request@suffix, "service")
+  expect_equal(request@suffix, TRUE)
   expect_is(request@handler, "function")
   
-  webRequest <- request@handler(baseUrl = "http://www.myorg.org", operation = "data", key = "KEY",
-                                filter = "FILTER", suffix = "service", start = 2000, end = 2010)
-  expect_equal(webRequest, "http://www.myorg.org/data/KEY/FILTER/service/2000/2010")
+  webRequest <- request@handler(baseUrl = "http://www.myorg.org", agencyId = "MYORG", suffix = TRUE, operation = "data", key = "KEY",
+                                filter = "FILTER", start = 2000, end = 2010)
+  expect_equal(webRequest, "http://www.myorg.org/MYORG/data/KEY/FILTER/2000/2010")
   
 })
 
 
-test_that("SDMX21RequestBuilder",{
+test_that("SDMXRESTRequestBuilder",{
   
-  request <- SDMX21RequestBuilder(
-    baseUrl = "http://www.myorg.org",
-    suffix = "service"
-  )
+  request <- SDMXRESTRequestBuilder(baseUrl = "http://www.myorg.org", suffix = TRUE)
   
-  expect_is(request, "SDMX21RequestBuilder")
+  expect_is(request, "SDMXRESTRequestBuilder")
   expect_equal(request@baseUrl, "http://www.myorg.org")
-  expect_equal(request@suffix, "service")
+  expect_equal(request@suffix, TRUE)
   expect_is(request@handler, "function")
   
-  webRequest <- request@handler(baseUrl = "http://www.myorg.org", operation = "data", key = "KEY",
-                                filter = "FILTER", suffix = "service", start = 2000, end = 2010)
-  expect_equal(webRequest, "http://www.myorg.org/data/KEY/FILTER/service?startPeriod=2000&endPeriod=2010")
+  webRequest <- request@handler(baseUrl = "http://www.myorg.org", agencyId = "MYORG", suffix = TRUE, operation = "data", key = "KEY",
+                                filter = "FILTER", start = 2000, end = 2010)
+  expect_equal(webRequest, "http://www.myorg.org/data/KEY/FILTER/MYORG?startPeriod=2000&endPeriod=2010")
   
 })
 

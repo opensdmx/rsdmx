@@ -32,7 +32,7 @@ exportClasses(
   SDMXDataStructures,
   SDMXDataStructureDefinition,
   SDMXRequestBuilder,
-  SDMX21RequestBuilder,
+  SDMXRESTRequestBuilder,
   SDMXServiceProvider
 )
 
@@ -64,7 +64,7 @@ export(
   SDMXDataStructures,
   SDMXDataStructureDefinition,
   SDMXRequestBuilder,
-  SDMX21RequestBuilder,
+  SDMXRESTRequestBuilder,
   SDMXServiceProvider,
   findNamespace,
   isSoapRequestEnvelope,

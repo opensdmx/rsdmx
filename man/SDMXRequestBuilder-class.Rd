@@ -11,7 +11,7 @@
 \section{Slots}{
   \describe{
     \item{\code{baseUrl}}{an object of class "character" giving the base Url of the SDMX service endpoint}
-    \item{\code{suffix}}{an object of class "character" giving an url suffix to append, before start/end url parameters} 
+    \item{\code{suffix}}{an object of class "logical" indicating if the provider \code{agencyId} has to be used as suffix in the data web-request, before start/end url parameters} 
     \item{\code{handler}}{an object of class "function" that will be in charge of build a web request.} 
   }
 }
@@ -22,7 +22,7 @@ SDMXRequestBuilder(baseUrl, suffix, handler)
 
 \arguments{
 \item{baseUrl}{an object of class "character" giving the base Url of the SDMX service endpoint}
-\item{suffix}{an object of class "character" giving an url suffix to append, e.g. "service?", before start/end url parameters}
+\item{suffix}{an object of class "logical" indicating if the provider \code{agencyId} has to be used as suffix in the data web-request, before start/end url parameters}
 \item{handler}{an object of class "function" that will be in charge of build a web request.}
 }
 
@@ -31,8 +31,8 @@ SDMXRequestBuilder(baseUrl, suffix, handler)
 The \code{handler} function must have the following structure in term of arguments (baseUrl, operation, key, filter, suffix, 
 start, end) and output (a string representing the web request to build).
 
-The rsdmx package will as much as possible try to handler generic handlers, e.g. an handler for SDMX 2.1 web-services.
-For the latter example, a specific builder is provided and made part of the specific \link{SDMX21RequestBuilder}.
+The rsdmx package will as much as possible try to handler generic handlers, e.g. an handler for SDMX REST web-services.
+For the latter example, a specific builder is provided and made part of the specific and still experimental \link{SDMXRESTRequestBuilder}.
 
 }
 
@@ -40,15 +40,15 @@ For the latter example, a specific builder is provided and made part of the spec
 \examples{
 
   #an handler
-  myHandler <- function(baseUrl, operation, key, filter, suffix, start, end){
-    req <- paste(baseUrl, operation, key, filter, suffix, start, end, sep="/")
+  myHandler <- function(baseUrl, agencyId, suffix, operation, key, filter, start, end){
+    req <- paste(baseUrl, agencyId, operation, key, filter, start, end, sep="/")
     return(req)
   }
   
   #how to create a SDMXRequestBuilder
   requestBuilder <- SDMXRequestBuilder(
                       baseUrl = "http://www.myorg.",
-                      suffix = "service",
+                      suffix = TRUE,
                       handler = myHandler)
 }
 \keyword{classes}
