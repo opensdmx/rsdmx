@@ -106,17 +106,17 @@ The list of known SDMX service providers can be queried as follows:
 providers <- getSDMXServiceProviders()
 
 #list all provider ids
-sapply(providers, function(x) slot(x, "id"))
+sapply(providers, function(x) slot(x, "agencyId"))
 
 ```
 
 #### create/add a SDMX service provider
 
-It also also possible to create and add a new SDMX service providers in this list (so ``readSDMX`` can be aware of it). A provider can be created with the ``SDMXServiceProvider``, and is made of three parameters: an ``id``, its ``name``, and a request ``builder``.
+It also also possible to create and add a new SDMX service providers in this list (so ``readSDMX`` can be aware of it). A provider can be created with the ``SDMXServiceProvider``, and is made of three parameters: an ``agencyId``, its ``name``, and a request ``builder``.
 
-The request builder can be created with ``SDMXRequestBuilder`` which takes 3 arguments: the ``baseUrl`` of the service endpoint, a service url ``suffix``, and a ``handler`` function which will allow to build the web request.
+The request builder can be created with ``SDMXRequestBuilder`` which takes 3 arguments: the ``baseUrl`` of the service endpoint, a ``suffix`` logical parameter (either the ``agencyId`` has to be used as suffix in the web-request), and a ``handler`` function which will allow to build the web request.
 
-``rsdmx`` intends to provider specific request builder that embedds yet an handler function (not need to implement it), and is now attempting to provide a ``SDMX21RequestBuilder`` to build SDMX 2.1 REST web-requests. All this is still under experiments.
+``rsdmx`` intends to provider specific request builder that embedds yet an handler function (not need to implement it), and is now attempting to provide a ``SDMXRESTRequestBuilder`` to build SDMX REST web-requests. All this is still under experiments.
 
 Let's see it with an example:
 
@@ -126,14 +126,14 @@ First create a request builder for our provider:
 
 myBuilder <- SDMXRequestBuilder(
   baseUrl = "http://www.myorg.org/sdmx",
-  suffix = "service",
-  handler = function(baseUrl, operation, key, filter, suffix, start, end){
-    paste(baseUrl, operation, key, filter, paste0(suffix, "?startPeriod=", start, "&endPeriod=", end), sep="/")
+  suffix = TRUE,
+  handler = function(baseUrl, agencyId, suffix, operation, key, filter, suffix, start, end){
+    paste(baseUrl, operation, key, filter, paste0(agencyId, "?startPeriod=", start, "&endPeriod=", end), sep="/")
   }
 )
 ```
 
-As you can see, we built a handler that will be in charge of creating a web-request such as [http://www.myorg.org/sdmx/operation/key/filter/suffix?startPeriod=start&endPeriod=end](http://www.myorg.org/sdmx/operation/key/filter/suffix?startPeriod=start&endPeriod=end)
+As you can see, we built a handler that will be in charge of creating a web-request such as [http://www.myorg.org/sdmx/operation/key/filter/agencyId?startPeriod=start&endPeriod=end](http://www.myorg.org/sdmx/operation/key/filter/agencyId?startPeriod=start&endPeriod=end)
 
 We can create a provider with the above request builder, and add it to the list of known SDMX service providers:
 
@@ -141,7 +141,7 @@ We can create a provider with the above request builder, and add it to the list 
 
 #create the provider
 provider <- SDMXServiceProvider(
-id = "MYORG",
+agencyId = "MYORG",
 name = "My Organization",
 builder = myBuilder
 )
@@ -150,7 +150,7 @@ builder = myBuilder
 addSDMXServiceProvider(provider)
 
 #check provider has been added
-sapply(getSDMXServiceProviders(), function(x){slot(x, "id")})
+sapply(getSDMXServiceProviders(), function(x){slot(x, "agencyId")})
 
 
 ```
@@ -165,10 +165,11 @@ oecd <- findSDMXServiceProvider("OECD")
 
 #### readSDMX as helper function
 
-Now you know how to add a SDMX provider, you can consider using ``readSDMX`` without having to specifying a entire URL, but just by specifying the ``id`` of the provider, and the different query parameters to reach your SDMX document:
+Now you know how to add a SDMX provider, you can consider using ``readSDMX`` without having to specifying a entire URL, but just by specifying the ``agencyId`` of the provider, and the different query parameters to reach your SDMX document:
 
 ```{r, echo = FALSE}
-sdmx <- readSDMX(agencyId = "MYORG", operation = "data", key="MYSERIE", filter="ALL", start = 2000, end = 2015)
+sdmx <- readSDMX(agencyId = "MYORG", operation = "data", key="MYSERIE",
+                filter="ALL", filter.native = FALSE, start = 2000, end = 2015)
 ```
 
 The following sections will show you how to query SDMX documents, by using ``readSDMX`` in different ways: either for _local_ or _remote_ files, using ``readSDMX`` as low-level or with the helpers.
@@ -199,7 +200,7 @@ The online rsdmx documentation also provides a list of data providers, either fr
 Now, the service providers above mentioned are known by ``rsdmx`` which let users using ``readSDMX`` with the helper parameters. Let's see how it would look like for querying an OECD datasource:
 
 ```{r, echo = FALSE}
-sdmx <- readSDMX(id = "OECD", operation = "GetData", key = "MIG",
+sdmx <- readSDMX(agencyId = "OECD", operation = "GetData", key = "MIG",
                  filter = list("TOT", NULL, NULL), start = 2011, end = 2011)
 df <- as.data.frame(sdmx)
 head(df)
