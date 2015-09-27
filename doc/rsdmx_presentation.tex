@@ -1,0 +1,611 @@
+\documentclass{beamer}
+  \usepackage[utf8]{inputenc}
+  \usepackage{hyperref}
+  \usepackage{xspace}
+  \usepackage{xcolor}
+  \usepackage{graphicx}
+  \usepackage{Sweave}
+  \usepackage{multicol}
+  
+  \definecolor{links}{HTML}{2A1B81}
+  \hypersetup{colorlinks,linkcolor=,urlcolor=links}  
+  
+  %Beamer properties
+  \usetheme{Warsaw} %{Boadilla}
+  \useoutertheme{miniframes}
+  \usecolortheme{seahorse}
+  \usecolortheme{rose}
+  \setbeamerfont{footnote}{size=\tiny}
+
+  % Add R Logo
+  \definecolor{Rcolor}{RGB}{150,160,190}
+
+  \newcommand{\Rx}{\fontsize{10pt}{12pt}\selectfont
+  	\raisebox{.3em}{\hspace{1.2em}%
+  		\llap{\resizebox{1.09em}{.5em}{\color{black}$\bigcirc$}}%
+  		\llap{\resizebox{1.199em}{.55em}{\color{darkgray}$\bigcirc$}}%
+  		\llap{\resizebox{1.19em}{.52em}{\color{gray!50}$\bigcirc$}}%
+		\llap{\resizebox{1.1em}{.5em}{\color{gray}$\bigcirc$}}%
+		\llap{\resizebox{1.25em}{.55em}{\color{gray}$\bigcirc$}}%
+	}%
+	\hspace{-.85em}%
+	\textbf{%
+		%\resizebox{.55em}{1.5ex}{\textcolor{black!80}{\textsf{R}}}%
+		\textcolor{black}{\textsf{R}}%
+		\hspace{-.025em}\raisebox{.01em}{\llap{\textcolor{Rcolor}{\textsf{R}}}}%
+	}}%
+
+  \newbox\rbox
+  \savebox\rbox{\scalebox{0.1}{\Rx}}
+  \makeatletter
+  \def\R{\scalebox{\f@size}{\usebox\rbox}\xspace}
+  \makeatletter
+  
+  %S4 representations
+  \newenvironment<>{rsdmx}[1]{%
+  \DefineVerbatimEnvironment{Soutput}{Verbatim}{fontsize=\tiny,formatcom=\color{black}}
+  \setbeamerfont{block title}{size=\normalsize}
+  \setbeamerfont{block body}{size=\scriptsize}
+  \setbeamercolor{block title}{fg=white,bg=gray!90!black}%
+  \begin{block}#2{#1 \R representation}}{\end{block}}
+  
+  %R code
+  \DefineVerbatimEnvironment{Sinput}{Verbatim}{fontsize=\scriptsize,formatcom=\color{blue}}
+  \DefineVerbatimEnvironment{Soutput}{Verbatim}{fontsize=\tiny,formatcom=\color{gray}}
+
+  %RSDMX Presentation%
+  %------------------%
+
+  \title{rsdmx - Tools for reading SDMX data and metadata documents in \R}
+  \author[E. Blondel]{Emmanuel Blondel \\ \texttt{emmanuel.blondel1@gmail.com}}
+  \institute{CEO - International Consultant}
+  \date{November 12, 2014}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+%\setbeamertemplate{section in toc}{\protect\block{Research Question~\inserttocsectionnumber}\inserttocsection\protect\endblock}
+
+\begin{document}
+
+  \begin{frame}
+  	\titlepage
+  \end{frame}
+
+\section{Introduction}
+  
+  %Introducing SDMX%
+  %----------------%
+  \begin{frame}
+  	\frametitle{SDMX}
+  	\framesubtitle{Statistical Data and Metadata Exchange (SDMX)}
+  	Joint initiative created in 2001 by international \& regional institutions \footnotemark
+  	\begin{itemize}
+		\item Promote and develop standards and guidelines for the exchange and sharing of statistical \textbf{data} and \textbf{metadata}
+			\begin{itemize}
+				\item Definition of an abstract information model
+				\item Development of standard formats
+				\item Design of web-services architectures and tools 
+			\end{itemize}
+		\item Continuous process of improving the exchange of statistical data \& metadata
+			\begin{itemize}
+				\item an evolving set of specifications: SDMX 1.0, 2.0, 2.1
+				\item a variety of formats: SDMX-ML, SDMX-EDI, SDMX-JSON
+				\item a variety of service architectures: SOAP, REST
+			\end{itemize}	
+		\item Main SDMX format used across institutions: SDMX-ML
+  		
+  	\end{itemize}
+  	
+  	 \footnotetext[1]{Bank for International Settlements (BIS), European Central Bank (ECB), Statistical Office of the European Union (EUROSTAT), International Monetary Fund (IMF), Organization for Economic Co-operation and Development (OECD),United Nations (UN) and World Bank}
+  \end{frame}
+
+  %Conciliating SDMX and R%
+  %-----------------------%
+  \begin{frame}
+  	\frametitle{Motivation}
+  	\framesubtitle{Conciliating SDMX and R}
+  	\begin{itemize}
+		\item Need of Interoperability between statistical systems, formats and tools
+		\item Need to co-analyse and process statistical data
+			\begin{itemize}
+				\item from a variety of domains (demography, socio-economics, health, environment, agriculture, fishery, etc.)
+				\item from scattered data providers (national, regional \& international institutions)
+				\item by a growing range of actors (\textit{e.g.} government institutions, statistical institutes, non-profit organizations, universities, research centers, companies)
+			\end{itemize}						
+		\item Fundamental and growing role of \R as plateform for statistical computing
+		\item ...and the need of tools to facilitate reading of SDMX data and metadata in \R 
+  	
+  	\end{itemize}
+  \end{frame}
+  
+\section{Architecture of rsdmx}
+  
+  %rsdmx package%
+  %-------------%
+  \begin{frame}
+  	\frametitle{rsdmx}
+  	\framesubtitle{A package for reading SDMX data and metadata documents in R}
+  	The rsdmx package:
+  	\begin{itemize}
+		\item provides a set of tools to read SDMX-ML data and metadata documents
+		\item focuses on the SDMX-ML format (main SDMX format)
+		\item provides a single end-user \texttt{readSDMX} function to read any SDMX-ML document, whatever its type
+		\item provides a set of methods to convert SDMX data into tabular data (\texttt{data.frame})
+  	\end{itemize}
+  \end{frame}
+  
+  %rsdmx package - S4 model%
+  %------------------------%
+  \begin{frame}[containsverbatim]
+  	\frametitle{rsdmx}
+  	\framesubtitle{Architecture - Object-oriented model}
+  	\begin{itemize}
+  		\item SDMX model represented in \R with \texttt{S4} classes and methods
+  		\item In \texttt{S4} modelling, a \texttt{class} is made of \textit{slots} (properties)
+  		\item the general structure of SDMX-ML document is represented with an \texttt{SDMX} abstract class
+		\item each SDMX-ML document has a corresponding \R \texttt{SDMX*} class that extends the \texttt{SDMX} class	
+  	\end{itemize}
+  	
+\begin{rsdmx}{SDMX}
+\begin{multicols}{2}
+
+\begin{Schunk}
+\begin{Soutput}
+Class "SDMX" [package "rsdmx"]
+Slots:
+                                                                  
+Name:               xmlObj        schema        header
+Class: XMLInternalDocument    SDMXSchema    SDMXHeader
+				
+Known Subclasses:
+"SDMXGenericData", "SDMXCompactData", "SDMXMessageGroup",
+"SDMXConcepts", "SDMXCodelists", "SDMXDataStructures",
+"SDMXDataStructureDefinition"
+\end{Soutput}
+\end{Schunk} 
+
+\columnbreak
+\hspace{2cm}
+\raggedleft
+	\includegraphics[width=3.5cm]{img/SDMX.png}
+
+
+\end{multicols}
+\end{rsdmx}
+  \end{frame}
+  
+  %rsdmx package - supported messages %
+  %-----------------------------------%
+  \begin{frame}
+  	\frametitle{rsdmx}
+  	\framesubtitle{Architecture - Supported SDMX-ML documents}
+	\begin{itemize}
+		\item \textit{Structure} types, \textit{i.e.} the elements that define the data structure, including:
+		\begin{itemize}
+			\item \texttt{Concepts}: characteristics of a statistical dataset (dimensions, attributes, measures)
+			\item \texttt{Codelists}: description of a \textit{dimension} with a list of codes and labels
+			\item \texttt{Datastructures}: description of the dataset structure
+			\item \texttt{Data Structure Definitions (DSD)}: complete description of a data structure including the 3 previous types
+		\end{itemize}
+		\item \textit{Dataset} types:
+		\begin{itemize}
+			\item \texttt{GenericData}: generic SDMX data format
+			\item \texttt{CompactData}: compacted data format
+			\item \texttt{MessageGroup}: specific message type developed to enable the exchange of several data or metadata messages of a single type in a unique SDMX-ML document. Currently enabled for datasets only.
+		\end{itemize}
+	\end{itemize}
+  \end{frame}
+ 
+  %rsdmx package - S4 model (Concepts)%
+  %-----------------------------------%
+  \begin{frame}[containsverbatim]
+  	\frametitle{rsdmx}
+  	\framesubtitle{Architecture - Object-oriented model (SDMX Concepts)}
+  	\begin{itemize}
+  		\item an \texttt{SDMXConcepts} object handles concepts either through \texttt{concepts} or \texttt{conceptSchemes} (depending on the SDMX version)
+  		\item each concept is modeled with the \texttt{SDMXConcept} class
+  	\end{itemize}
+  	
+	\centering
+	\includegraphics[scale=0.2]{img/SDMXConcepts.png}
+	
+  \end{frame} 
+
+  
+  %rsdmx package - S4 model (Codelists)%
+  %-----------------------------------%
+  \begin{frame}[containsverbatim]
+  	\frametitle{rsdmx}
+  	\framesubtitle{Architecture - Object-oriented model (SDMX Codelists)}
+  	\begin{itemize}
+  		\item an \texttt{SDMXCodelists} object handles one or more codelists
+  		\item each codelist is modeled with the \texttt{SDMXCodelist} class. It includes a list of \texttt{SDMXCode}
+  	\end{itemize}
+  	
+  	\centering
+	\includegraphics[scale=0.2]{img/SDMXCodelists.png}
+
+  \end{frame} 
+  
+  %rsdmx package - S4 model (Data structures)%
+  %------------------------------------------%
+  \begin{frame}[containsverbatim]
+  	\frametitle{rsdmx}
+  	\framesubtitle{Architecture - Object-oriented model (SDMX Data structures / Key Families)}
+  	\begin{itemize}
+  		\item an \texttt{SDMXDataStructures} object handles one or more data structures (or key families)
+  		\item each data structure is modeled with the \texttt{SDMXDataStructure} class. It includes a \texttt{SDMXComponents} object handling the dimensions, attributes, time dimension and measure
+  	\end{itemize}
+  	
+  	\centering
+	\includegraphics[scale=0.2]{img/SDMXDataStructures.png}
+
+  \end{frame} 
+
+  %rsdmx package - S4 model (DSD)%
+  %------------------------------%
+  \begin{frame}[containsverbatim]
+  	\frametitle{rsdmx}
+  	\framesubtitle{Architecture - Object-oriented model (SDMX Data structure Definition - DSD)}
+  	an \texttt{SDMXDataStructures} object handles concepts, codelists and data structures.
+
+  	\centering
+	\includegraphics[scale=0.2]{img/SDMXDataStructureDefinition.png}
+
+  \end{frame}
+
+
+    %rsdmx package - object-oriented model%
+  %-------------------------------------%
+  \begin{frame}
+  	\frametitle{rsdmx}
+  	\framesubtitle{Architecture - readSDMX end-user function}
+  	\texttt{readSDMX} is the main function of \texttt{rsdmx} package. The function will do the following:
+  	\begin{itemize}
+  		\item download the SDMX-ML document (done by default, unless \texttt{fromURL} argument is set to \texttt{TRUE})
+  		\item determine the SDMX-ML message type and instantiate the corresponding \R \texttt{SDMX*} object
+  		\item in case of \textit{Structure} message types, parse completely the document into a \texttt{S4} sub-model specific to the message type
+  	\end{itemize}
+  \end{frame}
+
+  %rsdmx package - XML parsing technics %
+  %-------------------------------------%
+  \begin{frame}
+  	\frametitle{rsdmx}
+  	\framesubtitle{Architecture - XML Parsing technics \& strategies}
+  	
+  	2 different parsing technics:
+  		\begin{itemize}
+  			\item Initial and current technic: using \textbf{XPath}
+  			\begin{itemize}
+				\item requires loading the XML document tree in \R
+				\item can cause R memory issues with large SDMX-ML documents
+  			\end{itemize}
+  			\vspace{0.1cm}
+  			\item Alternative approach (under investigation): using the \textbf{Simple API for XML (SAX)}
+  			\begin{itemize}
+  				\item does not require loading the XML document tree in \R
+  				\item avoids R memory issues with large SDMX-ML documents
+  			\end{itemize}
+  			\vspace{0.1cm}
+  			\item capacity to parse remote or local SDMX-ML files
+  			\vspace{0.1cm}
+  		\end{itemize}
+  	\vspace{0.1cm}	
+  	2 different parsing strategies:
+  		\begin{itemize}
+  			\item for \textit{Structure} types: when instantiating the \texttt{SDMX*} object (done by \texttt{readSDMX})
+  			\item for \textit{Dataset} types: when coercing the \texttt{SDMX*} object to a \texttt{data.frame} (done by \texttt{as.data.frame})
+  		\end{itemize}
+
+  \end{frame}
+ 
+\section{Using rsdmx} 
+ 
+  %rsdmx package - Usage %
+  %----------------------%
+  %Installing rsdmx%
+  \begin{frame}[containsverbatim]
+  	\frametitle{rsdmx}
+  	\framesubtitle{Usage - Installing rsdmx}
+  	rsdmx can be installed:
+  	\begin{itemize}
+  		\item from CRAN
+\begin{Schunk}
+\begin{Sinput}
+R> install.packages("rsdmx")
+\end{Sinput}
+\end{Schunk}
+ 	 
+ 	 	\vspace{0.1cm}
+  		\item from Github (requires \texttt{devtools} package)
+\begin{Schunk}
+\begin{Sinput}
+R> require(devtools)
+R> install_github("rsdmx", "opensdmx")
+\end{Sinput}
+\end{Schunk}
+  	\end{itemize}
+	
+	\vspace{0.1cm}
+	Load rsdmx in R using:
+\begin{Schunk}
+\begin{Sinput}
+     R> require(rsdmx)
+\end{Sinput}
+\end{Schunk}
+		 
+  \end{frame}
+ 
+  %Datasets%
+  \begin{frame}[containsverbatim]
+  	\frametitle{rsdmx}
+  	\framesubtitle{Usage - datasets}
+
+Read a SDMX generic dataset in \R
+
+\begin{Schunk}
+\begin{Sinput}
+R> url <- paste("http://data.fao.org/sdmx/repository/data/CROP_PRODUCTION/",
+		".156.5312../FAO?startPeriod=2008&endPeriod=2008", sep="")
+R> sdmxObj <- readSDMX(url)
+R> class(sdmxObj)
+\end{Sinput}
+\begin{Soutput}
+[1] "SDMXGenericData"
+attr(,"package")
+[1] "rsdmx"
+\end{Soutput}
+\end{Schunk}
+
+Convert the \texttt{SDMXGenericData} into tabular data (\texttt{data.frame})
+
+\begin{Schunk}
+\begin{Sinput}
+R> myData <- as.data.frame(sdmxObj)
+R> head(myData)
+\end{Sinput}
+\begin{Soutput}
+  FREQ REF_AREA INDICATOR COMMODITY DOMAIN UNITS UNIT_MULTIPLIER obsTime obsValue OBS_STATUS
+1 YEAR      156      5312       515      Q    No            1000    2008     8832       <NA>
+2 YEAR      156      5312       526      Q    No            1000    2008      450          E
+3 YEAR      156      5312       367      Q    No            1000    2008      700          E
+4 YEAR      156      5312       572      Q    No            1000    2008     4000          E
+5 YEAR      156      5312        44      Q    No            1000    2008    67435       <NA>
+6 YEAR      156      5312       414      Q    No            1000    2008      730          E
+\end{Soutput}
+\end{Schunk} 
+
+  \end{frame}
+  
+   
+  %Concepts%
+  \begin{frame}[containsverbatim]
+  	\frametitle{rsdmx}
+  	\framesubtitle{Usage - concepts}
+  	
+Read a SDMX concepts document in \R
+
+\begin{Schunk}
+\begin{Sinput}
+R> url <- paste("http://data.fao.org/sdmx/registry/conceptscheme/FAO/",
+		"ALL/LATEST/?detail=full&references=none&version=2.1", sep="")
+R> sdmxObj <- readSDMX(url)
+R> class(sdmxObj)
+\end{Sinput}
+\begin{Soutput}
+[1] "SDMXConcepts"
+attr(,"package")
+[1] "rsdmx"
+\end{Soutput}
+\end{Schunk}
+
+Convert the \texttt{SDMXConcepts} into tabular data (\texttt{data.frame})
+
+\begin{Schunk}
+\begin{Sinput}
+R> concepts <- as.data.frame(sdmxObj)
+R> head(concepts[,c("id","en")])
+\end{Sinput}
+\begin{Soutput}
+                id                         en
+1        COMMODITY                  COMMODITY
+2        INDICATOR                  INDICATOR
+3         REF_AREA                   REF_AREA
+4           DOMAIN                     DOMAIN
+5     UNIT_MEASURE               UNIT_MEASURE
+6             FREQ                       FREQ
+7   FAO_MAJOR_AREA             FAO Major Area
+8       UN_COUNTRY                 UN Country
+9      ENVIRONMENT                Environment
+10         SPECIES ASFIS Species Alpha 3 Code
+11       OBS_VALUE                  OBS_VALUE
+12      OBS_STATUS                 OBS_STATUS
+13            UNIT                       Unit
+14 UNIT_MULTIPLIER            Unit Multiplier
+15            TIME                       Time
+
+\end{Soutput}
+\end{Schunk}   	
+  	
+  	
+  \end{frame}
+  
+  %Codelists%
+  \begin{frame}[containsverbatim]
+  	\frametitle{rsdmx}
+  	\framesubtitle{Usage - codelists}
+
+Read a SDMX codelists document in \R
+
+\begin{Schunk}
+\begin{Sinput}
+R> clUrl <- paste("http://data.fao.org/sdmx/registry/codelist/FAO/",
+		"CL_FAO_MAJOR_AREA/0.1", sep="")
+R> clObj <- readSDMX(clUrl)
+R> class(clObj)
+\end{Sinput}
+\begin{Soutput}
+[1] "SDMXCodelists"
+attr(,"package")
+[1] "rsdmx"
+\end{Soutput}
+\end{Schunk}
+
+Convert the \texttt{SDMXCodelists} into tabular data (\texttt{data.frame})
+
+\begin{Schunk}
+\begin{Sinput}
+R> codelist <- as.data.frame(clObj)
+R> head(codelist[,c("id", "label.fr", "label.es")])
+\end{Sinput}
+\begin{Soutput}
+  id                              label.fr                                label.es
+1 01          Afrique - Eaux continentales            África - Aguas continentales
+2 02 Amérique du Nord - Eaux continentales América del Norte - Aguas continentales
+3 03  Amérique du Sud - Eaux continentales   América del Sur - Aguas continentales
+4 04             Asie - Eaux continentales              Asia - Aguas continentales
+5 05           Europe - Eaux continentales            Europa - Aguas continentales
+6 06          Océanie - Eaux continentales           Oceanía - Aguas continentales
+\end{Soutput}
+\end{Schunk}   	
+  	  	
+ 
+  \end{frame}
+  
+ %DSD% 
+ \begin{frame}[containsverbatim]
+  	\frametitle{rsdmx}
+  	\framesubtitle{Usage - Data structures}
+  	
+Read a SDMX Data Structure Definitions (DSD) document in \R
+
+\begin{Schunk}
+\begin{Sinput}
+R> dsdUrl <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/TABLE1"
+R> dsd <- readSDMX(dsdUrl)
+R> class(dsd)
+\end{Sinput}
+\begin{Soutput}
+[1] "SDMXDataStructureDefinition"
+attr(,"package")
+[1] "rsdmx"
+\end{Soutput}
+\end{Schunk}
+
+Get the codelists contained in this DSD...
+
+\begin{Schunk}
+\begin{Sinput}
+R> cls <- slot(dsd, "codelists")
+R> codelists <- sapply(slot(cls, "codelists"), function(x) slot(x, "id"))
+R> codelists
+\end{Sinput}
+\begin{Soutput}
+ [1] "CL_TABLE1_OBS_STATUS"  "CL_TABLE1_DAC_DONOR"   "CL_TABLE1_DAC_PART"   
+ [4] "CL_TABLE1_TRANSACTYPE" "CL_TABLE1_FLOWS"       "CL_TABLE1_DATATYPE"   
+ [7] "CL_TABLE1_TIME"        "CL_TABLE1_UNIT"        "CL_TABLE1_POWERCODE"  "CL_TABLE1_TIME_FORMAT"
+\end{Soutput}
+\end{Schunk}
+
+...and convert one codelist into tabular data (\texttt{data.frame})
+
+\begin{Schunk}
+\begin{Sinput}
+R> cl <- as.data.frame(slot(dsd, "codelists"),codelistId = "CL_TABLE1_FLOWS")
+R> cl
+\end{Sinput}
+\begin{Soutput}
+    id          label.fr            label.en
+1 1121   Versements Dons Grant Disbursements
+2 1122  Versements PrOts  Loan Disbursements
+3 1120  Versements Bruts Gross Disbursements
+4 1130    Montants Recus    Amounts Received
+5 1140   Versements Nets   Net Disbursements
+6 1151  Engagements Dons   Grant Commitments
+7 1152 Engagements PrOts    Loan Commitments
+8 1150  Engagements nets         Commitments
+\end{Soutput}
+\end{Schunk}	
+ 
+  \end{frame}
+
+\section{Conclusions \& Perspectives}
+  
+  %rsdmx package - Success stories %
+  %--------------------------------%
+  \begin{frame}
+  	\frametitle{rsdmx}
+  	\framesubtitle{Success stories}
+  	Used on a variety of datasources:
+  	\begin{itemize}
+  		\item with \textbf{international} \& \textbf{regional} data sources: \href{http://data.fao.org/sdmx/index.html}{UN Food \& Agriculture Organization (FAO)}, \href{http://stats.oecd.org/}{Organisation for Economic Co-operation and Development (OECD)}, \href{http://epp.eurostat.ec.europa.eu/portal/page/portal/sdmx_web_services/getting_started/rest_sdmx_2.1}{EUROSTAT}, \href{http://sdw.ecb.europa.eu/}{European Central Bank (ECB)}, \href{http://sdmxws.imf.org/Gateway2/}{International Monetary Fund (IMF)}, \href{http://databank.worldbank.org/data/home.aspx}{World Bank}
+    	\item with \textbf{national} data sources: \href{http://stat.abs.gov.au/}{Australian Bureau of Statistics (ABS)}, \href{https://www.ons.gov.uk/ons/apiservice/web/apiservice/home}{UK's Office of National Statistics (ONS)}, \href{http://www.bundesbank.de/}{Deutsche Bundesbank}
+  	\end{itemize}
+  	
+  	Used in web projects, such as:
+  	\begin{itemize}
+  		\item the \href{http://www.i-marine.eu/Pages/Home.aspx}{iMarine data e-infrastructure}: within R statistical analysis processings made available through Web Processing Services (WPS).
+    	\item the \href{http://hackerspace.govhack.org/content/live-labour-force}{Live Labour Force project}: to allow reading SDMX datasets from the Australian Bureau of Statistics (ABS) portal (ABS.Stat).
+  	\end{itemize}
+  \end{frame}
+  
+  %rsdmx package - Perspectives %
+  %-----------------------------%
+  \begin{frame}
+  	\frametitle{rsdmx}
+  	\framesubtitle{Perspectives}
+  	\begin{itemize}
+  		\item enable the \textbf{Simple API for XML (SAX)} parsing technic for large datasets
+  		\item improve the existing functionalities, \textit{e.g.} dataset time dimension format
+  		\item support for additional SDMX document types and formats
+  		\item develop a generic SDMX web-client with the \texttt{shiny} R web-framework (\href{http://shiny.rstudio.com}{http://shiny.rstudio.com})
+  	\end{itemize}
+  \end{frame}
+  
+   %rsdmx package - Fundings %
+  %--------------------------%
+  \begin{frame}
+  	\frametitle{rsdmx} 
+   	\framesubtitle{Looking for Sponsors}	
+  	\texttt{rsdmx} can play a \textbf{fundamental role} for \textbf{exploiting} and \textbf{co-analyzing statistics} from scattered data sources by means of a \textbf{simple \R tool}.
+  	
+  	Until now, \texttt{rsdmx} was born from a \textbf{voluntary initiative}, and is now a \textbf{published library} with a \textbf{growing number of users}. To guarantee the sustainability of \texttt{rsdmx}, we are seeking for \href{https://github.com/opensdmx/rsdmx/wiki\#package_development_funding}{\textbf{fundings}} to:
+  	\begin{itemize}
+		\item \textbf{implement, validate and release improvements}, especially core enhancements (e.g. support for SAX XML Parser)
+		\item \textbf{guarantee a quality maintenance} of the package
+		\item \textbf{provide support} to users \& institutions that take advantage of \texttt{rsdmx}
+  	\end{itemize}
+  \end{frame}
+  
+  %rsdmx package - rsdmx on the web %
+  %---------------------------------%
+  \begin{frame}
+  	\frametitle{rsdmx}
+  	\framesubtitle{on the web}
+  	\begin{itemize}
+		\item on Github:
+		\begin{itemize}
+			\item source code: \href{https://github.com/opensdmx/rsdmx}{https://github.com/opensdmx/rsdmx}
+			\vspace{0.1cm}
+			\item wiki page: \href{https://github.com/opensdmx/rsdmx/wiki}{https://github.com/opensdmx/rsdmx/wiki}
+			\vspace{0.1cm}
+		\end{itemize}
+		\item mailing lists:
+		\begin{itemize}		
+			\item \href{https://groups.google.com/forum/\#!forum/rsdmx}{rsdmx}
+			\item \href{https://groups.google.com/forum/\#!forum/rsdmx-dev}{rsdmx-dev}
+		\end{itemize}				
+		\vspace{0.1cm}
+		\item on the Comprehensive R Archive Network (CRAN): \href{http://cran.r-project.org/web/packages/rsdmx}{http://cran.r-project.org/web/package/rsdmx}
+  	\end{itemize}  	
+  \end{frame}  
+  
+
+\end{document}
