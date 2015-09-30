@@ -59,7 +59,7 @@
   \title{rsdmx - Tools for reading SDMX data and metadata documents in \R}
   \author[E. Blondel]{Emmanuel Blondel \\ \texttt{emmanuel.blondel1@gmail.com}}
   \institute{CEO - International Consultant}
-  \date{November 12, 2014}
+  \date{September 27, 2015}
 
 \AtBeginSection[]
 {
@@ -124,21 +124,70 @@
   	\end{itemize}
   \end{frame}
   
-\section{Architecture of rsdmx}
-  
-  %rsdmx package%
-  %-------------%
+  %rsdmx package introduction - 1%
+  %------------------------------%
   \begin{frame}
   	\frametitle{rsdmx}
-  	\framesubtitle{A package for reading SDMX data and metadata documents in R}
-  	The rsdmx package:
+  	\framesubtitle{Introduction}
+
   	\begin{itemize}
-		\item provides a set of tools to read SDMX-ML data and metadata documents
-		\item focuses on the SDMX-ML format (main SDMX format)
-		\item provides a single end-user \texttt{readSDMX} function to read any SDMX-ML document, whatever its type
-		\item provides a set of methods to convert SDMX data into tabular data (\texttt{data.frame})
+		\item First initiative to read SDMX in R made available to the R community		
+		\item Set of tools to read SDMX-ML data and metadata documents				
   	\end{itemize}
+	  	
   \end{frame}
+
+  %rsdmx package introduction - 2%
+  %------------------------------%
+  \begin{frame}
+  	\frametitle{rsdmx}
+  	\framesubtitle{Introduction}
+  	
+  	\begin{itemize}
+		\item Generic SDMX abstraction library for R
+		\item Read SDMX documents in a flexible way:
+			\begin{itemize}
+				\item Support for SDMX-ML 1.0, 2.0 and 2.1 standard formats
+				\item Support for \textit{remote} or \textit{local} sources,
+				\item No restriction to the SDMX web-services standard specifications (for \textit{remote} sources)
+			\end{itemize}
+		\item Variety of SDMX documents:
+			\begin{itemize}
+				\item \textbf{Data} (generic, compact, structure-specific, etc.)
+				\item \textbf{Metadata} (Data structure definition - DSD, Codelists, Concepts, etc.)
+			\end{itemize}						
+  	\end{itemize}
+	  	
+  \end{frame}
+  
+  
+  %rsdmx package introduction - 3%
+  %------------------------------%
+  \begin{frame}
+  	\frametitle{rsdmx}
+  	\framesubtitle{Introduction}
+  	
+  	\begin{multicols}{2}
+  	  	
+  	\begin{itemize}
+		\item a single \texttt{readSDMX} function, with a \textbf{large bandwidth of use}:
+			\begin{itemize}
+				\item "raw" approach (read from \textit{url} or \textit{file})
+				\item "helping" approach (read from a list of well-known service providers, with no need to specify the entire request)
+			\end{itemize}
+		\item a set of generic methods to convert SDMX data into tabular data (\texttt{data.frame})
+  	\end{itemize}
+  	
+  	\columnbreak
+	\hspace{2cm}
+	\raggedleft
+	\includegraphics[width=6cm]{img/rsdmx.png}
+
+	\end{multicols}
+	  	
+  \end{frame}
+ 
+\section{Architecture of rsdmx} 
   
   %rsdmx package - S4 model%
   %------------------------%
@@ -197,6 +246,8 @@ Known Subclasses:
 		\begin{itemize}
 			\item \texttt{GenericData}: generic SDMX data format
 			\item \texttt{CompactData}: compacted data format
+			\item \texttt{StructureSpecificData}: structure specific data format
+			\item \texttt{UtilityData}: utility data format
 			\item \texttt{MessageGroup}: specific message type developed to enable the exchange of several data or metadata messages of a single type in a unique SDMX-ML document. Currently enabled for datasets only.
 		\end{itemize}
 	\end{itemize}
@@ -261,14 +312,14 @@ Known Subclasses:
   \end{frame}
 
 
-    %rsdmx package - object-oriented model%
+   %rsdmx package - object-oriented model%
   %-------------------------------------%
   \begin{frame}
   	\frametitle{rsdmx}
   	\framesubtitle{Architecture - readSDMX end-user function}
   	\texttt{readSDMX} is the main function of \texttt{rsdmx} package. The function will do the following:
   	\begin{itemize}
-  		\item download the SDMX-ML document (done by default, unless \texttt{fromURL} argument is set to \texttt{TRUE})
+  		\item download the SDMX-ML document
   		\item determine the SDMX-ML message type and instantiate the corresponding \R \texttt{SDMX*} object
   		\item in case of \textit{Structure} message types, parse completely the document into a \texttt{S4} sub-model specific to the message type
   	\end{itemize}
@@ -288,7 +339,7 @@ Known Subclasses:
 				\item can cause R memory issues with large SDMX-ML documents
   			\end{itemize}
   			\vspace{0.1cm}
-  			\item Alternative approach (under investigation): using the \textbf{Simple API for XML (SAX)}
+  			\item Alternative approach (in factory): using the \textbf{Simple API for XML (SAX)}
   			\begin{itemize}
   				\item does not require loading the XML document tree in \R
   				\item avoids R memory issues with large SDMX-ML documents
@@ -328,7 +379,7 @@ R> install.packages("rsdmx")
 \begin{Schunk}
 \begin{Sinput}
 R> require(devtools)
-R> install_github("rsdmx", "opensdmx")
+R> install_github("opensdmx/rsdmx")
 \end{Sinput}
 \end{Schunk}
   	\end{itemize}
@@ -348,7 +399,7 @@ R> install_github("rsdmx", "opensdmx")
   	\frametitle{rsdmx}
   	\framesubtitle{Usage - datasets}
 
-Read a SDMX generic dataset in \R
+Read a SDMX generic dataset in \R using the \textit{raw} approach.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -535,24 +586,81 @@ R> cl
 \end{Schunk}	
  
   \end{frame}
+  
+  
+  %Datasets%
+  \begin{frame}[containsverbatim]
+  	\frametitle{rsdmx}
+  	\framesubtitle{Usage - readSDMX with the helping approach}
+
+\texttt{rsdmx} now brings the capacity to query data from a set of well-known data providers, still using the single \texttt{readSDMX} function. \texttt{rsdmx} embedds a list of SDMX service providers by default.
+
+\vspace{\baselineskip}
+
+The list of data providers "known" by \texttt{readSDMX} can be queried as follows:
+
+\begin{Schunk}
+\begin{Sinput}
+R> providers <- getSDMXServiceProviders()
+R> sapply(providers, slot, "agencyId")
+\end{Sinput}
+\begin{Soutput}
+[1] "ECB"   "ESTAT" "OECD"  "FAO"   "ILO"  
+\end{Soutput}
+\end{Schunk}
+
+The following example shows how to use \texttt{readSDMX} based on one of known data provider, OECD:
+
+\begin{Schunk}
+\begin{Sinput}
+R> sdmx <- readSDMX(agencyId = "OECD", operation = "GetData", key = "MIG",
+					filter = list("TOT", NULL, NULL),
+					start = 2011, end = 2011)
+\end{Sinput}
+\end{Schunk}
+  \end{frame}
+  
+  %Datasets%
+  \begin{frame}[containsverbatim]
+  	\frametitle{rsdmx}
+  	\framesubtitle{Usage - readSDMX with the helping approach}
+
+It is also possible to \textbf{add your own SDMX service provider}, and make it "known" by \texttt{readSDMX}!
+
+\vspace{\baselineskip}
+
+If you are interested, you can checkout the \texttt{rsdmx} documentation available \href{https://github.com/opensdmx/rsdmx/wiki}{online}!
+
+\vspace{\baselineskip}
+
+If you want to register your SDMX service endpoint in the default list of providers, please contact me.
+
+    \end{frame}
 
 \section{Conclusions \& Perspectives}
   
-  %rsdmx package - Success stories %
-  %--------------------------------%
+  %rsdmx package - Success stories (Data sources) %
+  %-----------------------------------------------%
   \begin{frame}
   	\frametitle{rsdmx}
-  	\framesubtitle{Success stories}
+  	\framesubtitle{Success stories - Variety of datasources}
   	Used on a variety of datasources:
   	\begin{itemize}
-  		\item with \textbf{international} \& \textbf{regional} data sources: \href{http://data.fao.org/sdmx/index.html}{UN Food \& Agriculture Organization (FAO)}, \href{http://stats.oecd.org/}{Organisation for Economic Co-operation and Development (OECD)}, \href{http://epp.eurostat.ec.europa.eu/portal/page/portal/sdmx_web_services/getting_started/rest_sdmx_2.1}{EUROSTAT}, \href{http://sdw.ecb.europa.eu/}{European Central Bank (ECB)}, \href{http://sdmxws.imf.org/Gateway2/}{International Monetary Fund (IMF)}, \href{http://databank.worldbank.org/data/home.aspx}{World Bank}
-    	\item with \textbf{national} data sources: \href{http://stat.abs.gov.au/}{Australian Bureau of Statistics (ABS)}, \href{https://www.ons.gov.uk/ons/apiservice/web/apiservice/home}{UK's Office of National Statistics (ONS)}, \href{http://www.bundesbank.de/}{Deutsche Bundesbank}
-  	\end{itemize}
-  	
-  	Used in web projects, such as:
+  		\item with \textbf{international} \& \textbf{regional} data sources: \href{http://data.un.org/Host.aspx?Content=API}{UN data portal}, \href{http://data.fao.org/sdmx/index.html}{UN Food \& Agriculture Organization (FAO)}, \href{http://www.ilo.org/ilostat/faces/home/statisticaldata/technical_page?_adf.ctrl-state=25zdozvi8_9&_afrLoop=1131342564621899}{UN International Labour Organization (ILO)} \href{http://stats.oecd.org/}{Organisation for Economic Co-operation and Development (OECD)}, \href{http://epp.eurostat.ec.europa.eu/portal/page/portal/sdmx_web_services/getting_started/rest_sdmx_2.1}{EUROSTAT}, \href{http://sdw.ecb.europa.eu/}{European Central Bank (ECB)}, \href{http://sdmxws.imf.org/Gateway2/}{International Monetary Fund (IMF)}, \href{http://databank.worldbank.org/data/home.aspx}{World Bank}
+    	\item with \textbf{national} data sources: \href{http://govhack.abs.gov.au/}{Australian Bureau of Statistics (ABS)}, \href{https://www.ons.gov.uk/ons/apiservice/web/apiservice/home}{UK's Office of National Statistics (ONS)}, \href{http://www.bundesbank.de/}{Deutsche Bundesbank}, \href{http://www.bdm.insee.fr/bdm2/statique?page=sdmx}{INSEE (France)}, and more!!
+  	\end{itemize} 	
+  \end{frame}
+    	
+	%rsdmx package - Success stories (Projects) %
+  %---------------------------------------------%
+  \begin{frame}
+  	\frametitle{rsdmx}
+  	\framesubtitle{Success stories - Use in Projects}
+  	Used in different web projects, such as:
   	\begin{itemize}
   		\item the \href{http://www.i-marine.eu/Pages/Home.aspx}{iMarine data e-infrastructure}: within R statistical analysis processings made available through Web Processing Services (WPS).
     	\item the \href{http://hackerspace.govhack.org/content/live-labour-force}{Live Labour Force project}: to allow reading SDMX datasets from the Australian Bureau of Statistics (ABS) portal (ABS.Stat).
+    	\item the \href{http://syrtoproject.eu/}{SYRTO project}
   	\end{itemize}
   \end{frame}
   
@@ -562,9 +670,10 @@ R> cl
   	\frametitle{rsdmx}
   	\framesubtitle{Perspectives}
   	\begin{itemize}
-  		\item enable the \textbf{Simple API for XML (SAX)} parsing technic for large datasets
+  		\item enable the Simple API for XML (SAX) parsing technic for large datasets
   		\item improve the existing functionalities, \textit{e.g.} dataset time dimension format
   		\item support for additional SDMX document types and formats
+  		\item extend the embedded list of SDMX service providers (\texttt{rsdmx} as web-service interface)
   		\item develop a generic SDMX web-client with the \texttt{shiny} R web-framework (\href{http://shiny.rstudio.com}{http://shiny.rstudio.com})
   	\end{itemize}
   \end{frame}
@@ -574,15 +683,20 @@ R> cl
   \begin{frame}
   	\frametitle{rsdmx} 
    	\framesubtitle{Looking for Sponsors}	
-  	\texttt{rsdmx} can play a \textbf{fundamental role} for \textbf{exploiting} and \textbf{co-analyzing statistics} from scattered data sources by means of a \textbf{simple \R tool}.
+  	\texttt{rsdmx} can play a \textbf{fundamental role} for \textbf{exploiting} and \textbf{co-analyzing statistics} from scattered data sources in \R.
   	
-  	Until now, \texttt{rsdmx} was born from a \textbf{voluntary initiative}, and is now a \textbf{published library} with a \textbf{growing number of users}. To guarantee the sustainability of \texttt{rsdmx}, we are seeking for \href{https://github.com/opensdmx/rsdmx/wiki\#package_development_funding}{\textbf{fundings}} to:
+  	Until now, \texttt{rsdmx} was born from a \textbf{voluntary initiative}, and is now a \textbf{published library} with a \textbf{growing number of users}. To guarantee the sustainability of \texttt{rsdmx}, we are seeking for \href{https://github.com/opensdmx/rsdmx/wiki\#package_development_funding}{\textbf{fundings}}, throught \textit{sponsoring} or \textit{donations} to:
   	\begin{itemize}
-		\item \textbf{implement, validate and release improvements}, especially core enhancements (e.g. support for SAX XML Parser)
+		\item \textbf{implement, test, validate and release improvements}
 		\item \textbf{guarantee a quality maintenance} of the package
 		\item \textbf{provide support} to users \& institutions that take advantage of \texttt{rsdmx}
   	\end{itemize}
+  	
+	If you are interesting in supporting \texttt{rsdmx}, please do not hesitate to contact \href{mailto:emmanuel.blondel1@gmail.com}{me}!  	
+  	
   \end{frame}
+  
+  
   
   %rsdmx package - rsdmx on the web %
   %---------------------------------%
@@ -594,16 +708,12 @@ R> cl
 		\begin{itemize}
 			\item source code: \href{https://github.com/opensdmx/rsdmx}{https://github.com/opensdmx/rsdmx}
 			\vspace{0.1cm}
-			\item wiki page: \href{https://github.com/opensdmx/rsdmx/wiki}{https://github.com/opensdmx/rsdmx/wiki}
+			\item online documentation: \href{https://github.com/opensdmx/rsdmx/wiki}{https://github.com/opensdmx/rsdmx/wiki}
 			\vspace{0.1cm}
 		\end{itemize}
-		\item mailing lists:
-		\begin{itemize}		
-			\item \href{https://groups.google.com/forum/\#!forum/rsdmx}{rsdmx}
-			\item \href{https://groups.google.com/forum/\#!forum/rsdmx-dev}{rsdmx-dev}
-		\end{itemize}				
+		\item mailing list: \href{https://groups.google.com/forum/\#!forum/rsdmx}{rsdmx}			
 		\vspace{0.1cm}
-		\item on the Comprehensive R Archive Network (CRAN): \href{http://cran.r-project.org/web/packages/rsdmx}{http://cran.r-project.org/web/package/rsdmx}
+		\item on the Comprehensive R Archive Network (CRAN): \href{http://cran.r-project.org/package=rsdmx}{http://cran.r-project.org/package=rsdmx}
   	\end{itemize}  	
   \end{frame}  
   
