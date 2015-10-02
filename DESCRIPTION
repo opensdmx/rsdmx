@@ -1,6 +1,6 @@
 Package: rsdmx
 Version: 0.5-0
-Date: 2015-09-24
+Date: 2015-10-01
 Title: Tools for Reading SDMX Data and Metadata
 Authors@R: c(
   person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com"),
@@ -8,11 +8,12 @@ Authors@R: c(
 Maintainer: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 Depends: R (>= 2.15)
 Imports: methods, XML (>= 3.96-1.1), RCurl, plyr, utils
-Suggests: testthat
+Suggests: testthat, knitr
 Description: Set of classes and methods to read data and metadata documents
   exchanged through the Statistical Data and Metadata Exchange (SDMX) framework,
   currently focusing on the SDMX XML standard format (SDMX-ML).
 License: GPL (>= 2)
+VignetteBuilder: knitr
 URL: https://github.com/opensdmx/rsdmx, http://www.sdmx.org
 BugReports: https://github.com/opensdmx/rsdmx/issues
 LazyLoad: yes

@@ -27,10 +27,13 @@ For more information about the SDMX standards, you can visit the [SDMX website](
 
 ## How to deal with SDMX in R
 
-[rsdmx](http://cran.r-project.org/web/packages/rsdmx/index.html) offers a low-level set of tools to read **data** and **metadata** in the SDMX-ML format. Its strategy is to make it very easy for the user. For this, a unique function named ``readSDMX`` has to be used, whatever it is a ``data`` or ``metadata`` document, or if it is ``local`` or ``remote`` datasource.
+[rsdmx](http://cran.r-project.org/package=rsdmx) offers a low-level set of tools to read **data** and **metadata** in the SDMX-ML format. Its strategy is to make it very easy for the user. For this, a unique function named ``readSDMX`` has to be used, whatever it is a ``data`` or ``metadata`` document, or if it is ``local`` or ``remote`` datasource.
 
-* what ``rsdmx`` does support: a SDMX format abstraction library, with focus on the the main SDMX standard XML format (SDMX-ML), and the support of the three format standard versions (``1.0``, ``2.0``, ``2.1``)
-* what ``rsdmx`` does NOT support: an interface to SDMX web-services. Although in a near future``rsdmx`` plans to support ``helpers`` to build SDMX data queries according to SDMX web-services (e.g. SDMX REST API), its primary strategy is to give an emphasis on the SDMX-ML **format**. As result, ``rsdmx`` can be applied to a wider range of datasources, that do not necessarily provide SDMX standard compliant web-services or even may require to download the data prior its reading in R. 
+* what ``rsdmx`` does support:
+
+- a SDMX format abstraction library, with focus on the the main SDMX standard XML format (SDMX-ML), and the support of the three format standard versions (``1.0``, ``2.0``, ``2.1``)
+
+- an interface to SDMX web-services for a list of well-known data providers, such as OECD, EUROSTAT, ECB, UN FAO, UN ILO, etc (a list that should grow in a near future!). See it [in action](https://github.com/opensdmx/rsdmx/blob/master/vignettes/quickstart.Rmd#using-the-helper-approach)!
 
 Let's see then how to use ``rsdmx``!
 
