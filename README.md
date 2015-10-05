@@ -5,7 +5,7 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rsdmx)](http://cran.r-project.org/package=rsdmx)
 [![Github_Status_Badge](https://img.shields.io/badge/Github-0.5--0-blue.svg)](https://github.com/opensdmx/rsdmx)
 
-``rsdmx``: Tools  for reading SDMX data and metadata documents in R
+``rsdmx``: Tools for reading SDMX data and metadata documents in R
 
 ## Overview
 
@@ -187,16 +187,15 @@ This section will introduce you on how to read SDMX *dataset* documents.
 #### Read _remote_ datasets
 
 
-The following code snipet shows you how to read a dataset from a remote data source, taking as example the [FAO data portal](http://data.fao.org/sdmx/index.html): [http://data.fao.org/sdmx/repository/data/CROP_PRODUCTION/.156.5312../FAO?startPeriod=2008&endPeriod=2008](http://data.fao.org/sdmx/repository/data/CROP_PRODUCTION/.156.5312../FAO?startPeriod=2008&endPeriod=2008)
+The following code snipet shows you how to read a dataset from a remote data source, taking as example the [OECD StatExtracts portal](http://stats.oecd.org): [http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011](http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011)
 
 ```{r, echo = FALSE}
-myUrl <- "http://data.fao.org/sdmx/repository/data/CROP_PRODUCTION/.156.5312../FAO?startPeriod=2008&endPeriod=2008"
+myUrl <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011"
 dataset <- readSDMX(myUrl)
 stats <- as.data.frame(dataset) 
 ```
 
 You can try it out with other datasources, such as:
-* [**OECD StatExtracts portal**](http://stats.oecd.org): [http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011](http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011)
 * [**EUROSTAT portal**](http://epp.eurostat.ec.europa.eu/portal/page/portal/sdmx_web_services/getting_started/rest_sdmx_2.1): [http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..PC.FOS1.BE/?startperiod=2005&endPeriod=2011](http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..PC.FOS1.BE/?startperiod=2005&endPeriod=2011)
 * [**European Central Bank (ECB)**](https://sdw-wsrest.ecb.europa.eu): [https://sdw-wsrest.ecb.europa.eu/service/data/DD/M.SE.BSI_STF.RO.4F_N](https://sdw-wsrest.ecb.europa.eu/service/data/DD/M.SE.BSI_STF.RO.4F_N)
 * [**UN International Labour Organization (ILO)**](http://www.ilo.org/ilostat/faces/home/statisticaldata/technical_page?_adf.ctrl-state=25zdozvi8_9&_afrLoop=1131342564621899): [http://www.ilo.org/ilostat/sdmx/ws/rest/data/ILO,DF_CPI_FRA_CPI_TCPI_COI_RT/ALL?startPeriod=2000-01-01&endPeriod=2014-12-31](http://www.ilo.org/ilostat/sdmx/ws/rest/data/ILO,DF_CPI_FRA_CPI_TCPI_COI_RT/ALL?startPeriod=2000-01-01&endPeriod=2014-12-31)
@@ -207,7 +206,7 @@ Now, the service providers above mentioned are known by ``rsdmx`` which let user
 
 ```{r, echo = FALSE}
 sdmx <- readSDMX(agencyId = "OECD", operation = "GetData", key = "MIG",
-                 filter = list("TOT", NULL, NULL), start = 2011, end = 2011)
+                 filter = list("TOT", NULL, NULL), start = 2010, end = 2011)
 df <- as.data.frame(sdmx)
 head(df)
 ```
