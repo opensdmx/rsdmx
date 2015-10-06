@@ -25,7 +25,7 @@ test_that("SDMXRequestBuilder",{
   expect_equal(request@compliant, TRUE)
   
   webRequest <- request@handler(regUrl = "http://www.myorg.org/registry", repoUrl = "http://www.myorg.org/repository",
-                                agencyId = "MYORG", resource = "data", flowRef = "FLOW",
+                                agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
                                 key = "KEY", start = 2000, end = 2010, compliant = TRUE)
   expect_equal(webRequest, "http://www.myorg.org/repository/MYORG/data/FLOW/KEY/2000/2010")
   
@@ -45,7 +45,7 @@ test_that("SDMXRESTRequestBuilder",{
   expect_equal(request@compliant, TRUE)
   
   webRequest <- request@handler(regUrl = "http://www.myorg.org/registry", repoUrl = "http://www.myorg.org/repository",
-                                agencyId = "MYORG", resource = "data", flowRef = "FLOW",
+                                agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
                                 key = "KEY", start = 2000, end = 2010, compliant = TRUE)
   expect_equal(webRequest, "http://www.myorg.org/repository/data/FLOW/KEY/?startPeriod=2000&endPeriod=2010")
   
