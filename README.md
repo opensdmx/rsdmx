@@ -110,17 +110,15 @@ The list of known SDMX service providers can be queried as follows:
 ```{r, echo = FALSE}
 
 providers <- getSDMXServiceProviders()
-
-#list all provider ids
-sapply(providers, function(x) slot(x, "agencyId"))
+as.data.frame(providers)
 
 ```
 
 #### create/add a SDMX service provider
 
-It also also possible to create and add a new SDMX service providers in this list (so ``readSDMX`` can be aware of it). A provider can be created with the ``SDMXServiceProvider``, and is made of three parameters: an ``agencyId``, its ``name``, and a request ``builder``.
+It also also possible to create and add a new SDMX service providers in this list (so ``readSDMX`` can be aware of it). A provider can be created with the ``SDMXServiceProvider``, and is made of five parameters: an ``agencyId``, its ``name``, ``scale`` (international or national), a ``country`` ISO 3-alpha code (if national) and a request ``builder``.
 
-The request builder can be created with ``SDMXRequestBuilder`` which takes 3 arguments: the ``baseUrl`` of the service endpoint, a ``suffix`` logical parameter (either the ``agencyId`` has to be used as suffix in the web-request), and a ``handler`` function which will allow to build the web request.
+The request builder can be created with ``SDMXRequestBuilder`` which takes 3 arguments: the ``baseUrl`` of the service endpoint, a ``handler`` function which will allow to build the web request, and a ``compliant`` logical parameter (either the request builder is compliant with some web-service specifications), .
 
 ``rsdmx`` intends to provider specific request builder that embedds yet an handler function (not need to implement it), and is now attempting to provide a ``SDMXRESTRequestBuilder`` to build SDMX REST web-requests. All this is still under experiments.
 
@@ -132,10 +130,10 @@ First create a request builder for our provider:
 
 myBuilder <- SDMXRequestBuilder(
   baseUrl = "http://www.myorg.org/sdmx",
-  suffix = TRUE,
   handler = function(baseUrl, agencyId, resource, flowRef, key, start, end, compliant){
     paste(baseUrl, agencyId, resource, flowRef, key, start, end, sep="/")
-  }
+  },
+  compliant = FALSE
 )
 ```
 
@@ -156,7 +154,7 @@ builder = myBuilder
 addSDMXServiceProvider(provider)
 
 #check provider has been added
-sapply(getSDMXServiceProviders(), function(x){slot(x, "agencyId")})
+as.data.frame(getSDMXServiceProviders())
 
 
 ```

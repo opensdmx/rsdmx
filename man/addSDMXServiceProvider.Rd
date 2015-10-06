@@ -28,7 +28,7 @@ addSDMXServiceProvider(provider)
   addSDMXServiceProvider(myProvider)
   
   #check out the list of existing provider (only list the agency Ids)
-  sapply(getSDMXServiceProviders(), function(x){slot(x, "agencyId")})
+  sapply(slot(getSDMXServiceProviders(), "providers"), function(x){slot(x, "agencyId")})
 
 }
 

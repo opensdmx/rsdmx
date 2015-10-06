@@ -12,17 +12,21 @@
   \describe{
     \item{\code{agencyId}}{an object of class "character" giving the a provider identifier}
     \item{\code{name}}{an object of class "character" giving the name of the provider}
+    \item{\code{scale}}{an object of class "character" giving the scale of the datasource, either "international" or "national"}
+    \item{\code{country}}{an object of class "character" giving the ISO 3-alpha code of the country (if scale is "national")}
     \item{\code{builder}}{an object of class "SDMXRequestBuilder" that will performs the web request building}
   }
 }
 
 \usage{
-SDMXServiceProvider(agencyId, name, builder)
+SDMXServiceProvider(agencyId, name, scale, country, builder)
 }
 
 \arguments{
 \item{agencyId}{an object of class "character" giving the a provider identifier}
 \item{name}{an object of class "character" giving the name of the provider}
+\item{scale}{an object of class "character" giving the scale of the datasource, either "international" or "national". Default value is "international".}
+\item{country}{an object of class "character" giving the ISO 3-alpha code of the country (if scale is "national"). Default value is \code{NA}}
 \item{builder}{an object of class "SDMXRequestBuilder" that will performs the web request building for this specific provider}
 }
 
@@ -34,7 +38,8 @@ SDMXServiceProvider(agencyId, name, builder)
   myBuilder <- SDMXRESTRequestBuilder(baseUrl = "http://www.myorg.org", compliant = TRUE)
                       
   #create a SDMXServiceProvider
-  provider <- SDMXServiceProvider(agencyId = "MYORG", name = "My Organization", builder = myBuilder)
+  provider <- SDMXServiceProvider(agencyId = "MYORG", name = "My Organization",
+                                  builder = myBuilder)
 }
 
 \keyword{classes}

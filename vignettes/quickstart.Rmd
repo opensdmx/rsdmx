@@ -79,7 +79,7 @@ Now, the service providers above mentioned are known by ``rsdmx`` which let user
 
 ```{r}
 providers <- getSDMXServiceProviders();
-sapply(providers, slot, "agencyId")
+as.data.frame(providers)
 ```
 
 Note it is also possible to add an SDMX service provider at runtime. For registering a new SDMX service provider by default, please contact me!

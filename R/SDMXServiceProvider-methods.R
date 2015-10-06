@@ -2,8 +2,15 @@
 #========================
 
 #constructor
-SDMXServiceProvider <- function(agencyId, name, builder) {
-  new("SDMXServiceProvider", agencyId = agencyId, name = name, builder = builder);
+SDMXServiceProvider <- function(agencyId, name,
+                                scale = "international", country = as.character(NA),
+                                builder) {
+  new("SDMXServiceProvider",
+      agencyId = agencyId,
+      name = name,
+      scale = scale,
+      country = country,
+      builder = builder);
 }
 
 #other non-S4 methods
@@ -16,61 +23,65 @@ setSDMXServiceProviders <- function(){
     
       #ECB
       SDMXServiceProvider(
-        "ECB", "European Central Bank",
-        SDMXRESTRequestBuilder("https://sdw-wsrest.ecb.europa.eu/service", TRUE)
+        agencyId = "ECB", name = "European Central Bank",
+        builder = SDMXRESTRequestBuilder("https://sdw-wsrest.ecb.europa.eu/service", TRUE)
       ),
     
       #EUROSTAT
-      SDMXServiceProvider(
-        "ESTAT", "Eurostat (Statistical office of the European Union)",
-        SDMXRESTRequestBuilder("http://ec.europa.eu/eurostat/SDMX/diss-web/rest", TRUE)
+      SDMXServiceProvider( 
+        agencyId = "ESTAT", name = "Eurostat (Statistical office of the European Union)",
+        builder = SDMXRESTRequestBuilder("http://ec.europa.eu/eurostat/SDMX/diss-web/rest", TRUE)
       ),
     
       #OECD
       SDMXServiceProvider(
-        "OECD", "Organisation for Economic Cooperation and Development ",
-        SDMXRESTRequestBuilder("http://stats.oecd.org/restsdmx/sdmx.ashx", FALSE)
+        agencyId = "OECD", name = "Organisation for Economic Cooperation and Development ",
+        builder = SDMXRESTRequestBuilder("http://stats.oecd.org/restsdmx/sdmx.ashx", FALSE)
       ),
       
       #UN-FAO
       SDMXServiceProvider(
-        "FAO", "Food and Agriculture Organization of the United Nations",
-        SDMXRESTRequestBuilder("http://data.fao.org/sdmx/repository", TRUE)
+        agencyId = "FAO", name = "Food and Agriculture Organization of the United Nations",
+        builder = SDMXRESTRequestBuilder("http://data.fao.org/sdmx/repository", TRUE)
       ),
       
       #UN-ILO
       SDMXServiceProvider(
-        "ILO", "International Labour Organization of the United Nations",
-        SDMXRESTRequestBuilder("http://www.ilo.org/ilostat/sdmx/ws/rest", TRUE)                  
+        agencyId = "ILO", name = "International Labour Organization of the United Nations",
+        builder = SDMXRESTRequestBuilder("http://www.ilo.org/ilostat/sdmx/ws/rest", TRUE)                  
       ),
       
       #UIS (UNESCO)
       SDMXServiceProvider(
-        "UIS", "UNESCO Institute of Statistics",
-        SDMXRESTRequestBuilder("http://data.uis.unesco.org/RestSDMX/sdmx.ashx", TRUE)
+        agencyId = "UIS", name = "UNESCO Institute of Statistics",
+        builder = SDMXRESTRequestBuilder("http://data.uis.unesco.org/RestSDMX/sdmx.ashx", TRUE)
       )
       
   )
-  .rsdmx.options$providers <- listOfProviders
+  .rsdmx.options$providers <- new("SDMXServiceProviders", providers = listOfProviders)
 }
 
 
 #function to add a SDMX provider
 addSDMXServiceProvider <- function(provider){
-  .rsdmx.options$providers <- c(.rsdmx.options$providers, provider)
+  .rsdmx.options$providers <- new("SDMXServiceProviders",
+                                  providers = c(slot(.rsdmx.options$providers, "providers"), provider)
+                              )
 }
 
 
 #function to retrieve the list of SDMX service providers
 #(default ones, and/or providers configured by the user)
 getSDMXServiceProviders <- function(){
-  return(.rsdmx.options$providers)
+  out <- .rsdmx.options$providers
+  return(out)
 }
 
 
 #find a service provider
 findSDMXServiceProvider <- function(agencyId){
-  res <- unlist(lapply(getSDMXServiceProviders(), function(x) {if(x@agencyId == agencyId){return(x)}}))
+  res <- unlist(lapply(slot(getSDMXServiceProviders(),"providers"),
+                       function(x) {if(x@agencyId == agencyId){return(x)}}))
   if(!is.null(res) && length(res) > 0) res <- res[[1]]
   return(res)
 }

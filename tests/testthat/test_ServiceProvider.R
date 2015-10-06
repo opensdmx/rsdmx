@@ -11,10 +11,10 @@ test_that("SDMXServiceProvider - constructor",{
   
   requestBuilder <- SDMXRequestBuilder(
     baseUrl = "http://www.myorg.org",
-    suffix = TRUE,
     handler = function(baseUrl, agencyId, resource, flowRef, key, start, end, compliant){
       return(paste(baseUrl, agencyId, resource, flowRef, key, start, end, sep="/"))
-    })
+    },
+    compliant = TRUE)
   
   
   provider <- SDMXServiceProvider(
@@ -25,6 +25,8 @@ test_that("SDMXServiceProvider - constructor",{
   expect_is(provider, "SDMXServiceProvider")
   expect_equal(provider@agencyId, "MYORG")
   expect_equal(provider@name, "My Organization")
+  expect_equal(provider@scale, "international")
+  expect_true(is.na(provider@country))
   expect_is(provider@builder, "SDMXRequestBuilder")
   
 })
@@ -33,18 +35,19 @@ test_that("SDMXServiceProvider - constructor",{
 test_that("SDMXServiceProvider - methods",{
     
   providers <- getSDMXServiceProviders()
-  expect_is(providers, "list")
-  expect_equal(length(providers), 6L)
-  expect_equal(sapply(providers, function(x){slot(x,"agencyId")}),
+  expect_is(providers, "SDMXServiceProviders")
+  expect_equal(length(providers@providers), 6L)
+  expect_equal(sapply(providers@providers, function(x){slot(x,"agencyId")}),
                c("ECB", "ESTAT", "OECD", "FAO", "ILO", "UIS"))
+  expect_is(as.data.frame(providers), "data.frame")
   
   #add a provider
   requestBuilder <- SDMXRequestBuilder(
     baseUrl = "http://www.myorg.org",
-    suffix = TRUE,
-    handler = function(baseUrl, agencyId, suffix, operation, key, filter, start, end){
-      return(paste(baseUrl, agencyId, operation, key, filter, start, end, sep="/"))
-    })
+    handler = function(baseUrl, agencyId, resource, flowRef, key, start, end, compliant){
+      return(paste(baseUrl, agencyId, resource, flowRef, key, start, end, sep="/"))
+    },
+    compliant = TRUE)
   
   provider <- SDMXServiceProvider(
     agencyId = "MYORG", name = "My Organization",
@@ -53,8 +56,8 @@ test_that("SDMXServiceProvider - methods",{
   
   addSDMXServiceProvider(provider)
   providers <- getSDMXServiceProviders()
-  expect_equal(length(providers), 7L)
-  expect_equal(sapply(providers, function(x){slot(x,"agencyId")}),
+  expect_equal(length(providers@providers), 7L)
+  expect_equal(sapply(providers@providers, function(x){slot(x,"agencyId")}),
                c("ECB", "ESTAT", "OECD", "FAO", "ILO", "UIS", "MYORG"))
   
   #find a provider
