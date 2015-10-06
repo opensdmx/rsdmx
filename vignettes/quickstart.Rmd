@@ -77,7 +77,7 @@ The online rsdmx documentation also provides a list of data providers, either fr
 
 Now, the service providers above mentioned are known by ``rsdmx`` which let users using ``readSDMX`` with the helper parameters. The list of service providers can be retrieved doing:
 
-```{r, echo = FALSE}
+```{r}
 providers <- getSDMXServiceProviders();
 sapply(providers, slot, "agencyId")
 ```
@@ -86,7 +86,7 @@ Note it is also possible to add an SDMX service provider at runtime. For registe
 
 Let's see how it would look like for querying an ``OECD`` datasource:
 
-```{r, echo = FALSE}
+```{r}
 sdmx <- readSDMX(agencyId = "OECD", operation = "GetData", key = "MIG",
                 filter = list("TOT", NULL, NULL), start = 2010, end = 2011)
 df <- as.data.frame(sdmx)
