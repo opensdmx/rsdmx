@@ -8,6 +8,9 @@ require(rsdmx, quietly = TRUE)
 require(testthat)
 context("SDMXHelpers")
 
+
+#international data providers
+
 #ECB
 #---
 test_that("ECB - data",{
@@ -139,3 +142,27 @@ test_that("UIS - datastructure",{
   }
 })
 
+
+#national data providers
+
+#NBB (Belgium)
+#-------------
+test_that("NBB - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "NBB", resource = "data",
+                   flowRef = "QNA", key = "all", key.mode = "SDMX",
+                   start = "2000", end = "2015")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXMessageGroup")
+  }
+})
+
+test_that("NBB - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "NBB", resource = "datastructure", resourceId = "QNA")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})

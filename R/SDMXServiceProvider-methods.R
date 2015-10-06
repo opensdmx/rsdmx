@@ -21,6 +21,9 @@ setSDMXServiceProviders <- function(){
   
   listOfProviders <- list(
     
+      #international data providers
+      #----------------------------
+    
       #ECB
       SDMXServiceProvider(
         agencyId = "ECB", name = "European Central Bank",
@@ -73,6 +76,19 @@ setSDMXServiceProviders <- function(){
           regUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx",
           repoUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx", 
           compliant = TRUE)
+      ),
+      
+      #national data providers
+      #-----------------------
+      
+      #NBB {Belgium}
+      SDMXServiceProvider(
+        agencyId = "NBB", name = "National Bank of Belgium",
+        scale = "national", country = "BEL",
+        builder = SDMXRESTRequestBuilder(
+          regUrl = "http://stat.nbb.be/RestSDMX/sdmx.ashx",
+          repoUrl = "http://stat.nbb.be/RestSDMX/sdmx.ashx", 
+          compliant = FALSE)
       )
       
   )
