@@ -2,7 +2,7 @@ language: c
 
 env:
   global:
-    - R_BUILD_ARGS="--no-manual"
+    - R_BUILD_ARGS="--no-manual --no-build-vignettes"
     - R_CHECK_ARGS="--no-manual --no-examples --as-cran --no-build-vignettes"
 
 before_install:
