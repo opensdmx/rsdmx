@@ -11,28 +11,26 @@
 \section{Slots}{
   \describe{
     \item{\code{baseUrl}}{an object of class "character" giving the base Url of the SDMX service endpoint}
-    \item{\code{suffix}}{an object of class "logical" indicating if the provider \code{agencyId} has to be used as suffix in the data web-request, before start/end url parameters} 
-    \item{\code{handler}}{an object of class "function" that will be in charge of build a web request.} 
+    \item{\code{handler}}{an object of class "function" that will be in charge of build a web request.}
+    \item{\code{compliant}}{an object of class "logical" indicating if the request builder is somehow compliant with a service specification} 
   }
 }
 
 \usage{
-SDMXRequestBuilder(baseUrl, suffix, handler)
+SDMXRequestBuilder(baseUrl, handler, compliant)
 }
 
 \arguments{
 \item{baseUrl}{an object of class "character" giving the base Url of the SDMX service endpoint}
-\item{suffix}{an object of class "logical" indicating if the provider \code{agencyId} has to be used as suffix in the data web-request, before start/end url parameters}
 \item{handler}{an object of class "function" that will be in charge of build a web request.}
+\item{compliant}{an object of class "logical" indicating if the request builder is somehow compliant with a service specification} 
 }
 
 \details{
 
-The \code{handler} function must have the following structure in term of arguments (baseUrl, operation, key, filter, suffix, 
-start, end) and output (a string representing the web request to build).
+The \code{handler} function must have the following structure in term of arguments (baseUrl, agencyId, resource, flowRef, key = NULL, start = NULL, end = NULL, compliant) and output (a string representing the web request to build).
 
-The rsdmx package will as much as possible try to handler generic handlers, e.g. an handler for SDMX REST web-services.
-For the latter example, a specific builder is provided and made part of the specific and still experimental \link{SDMXRESTRequestBuilder}.
+The rsdmx package will as much as possible try to handler generic handlers, e.g. an handler for SDMX REST web-services. For the latter example, a specific builder is provided and made part of the specific and still experimental \link{SDMXRESTRequestBuilder}.
 
 }
 
@@ -40,16 +38,15 @@ For the latter example, a specific builder is provided and made part of the spec
 \examples{
 
   #an handler
-  myHandler <- function(baseUrl, agencyId, suffix, operation, key, filter, start, end){
-    req <- paste(baseUrl, agencyId, operation, key, filter, start, end, sep="/")
+  myHandler <- function(baseUrl, agencyId, resource, flowRef, key, start, end, compliant){
+    req <- paste(baseUrl, agencyId, resource, flowRef, key, start, end, sep="/")
     return(req)
   }
   
   #how to create a SDMXRequestBuilder
   requestBuilder <- SDMXRequestBuilder(
                       baseUrl = "http://www.myorg.",
-                      suffix = TRUE,
-                      handler = myHandler)
+                      handler = myHandler, compliant = FALSE)
 }
 \keyword{classes}
 \keyword{builder}

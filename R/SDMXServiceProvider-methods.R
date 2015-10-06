@@ -29,7 +29,7 @@ setSDMXServiceProviders <- function(){
       #OECD
       SDMXServiceProvider(
         "OECD", "Organisation for Economic Cooperation and Development ",
-        SDMXRESTRequestBuilder("http://stats.oecd.org/restsdmx/sdmx.ashx", TRUE)
+        SDMXRESTRequestBuilder("http://stats.oecd.org/restsdmx/sdmx.ashx", FALSE)
       ),
       
       #UN-FAO
@@ -41,7 +41,7 @@ setSDMXServiceProviders <- function(){
       #UN-ILO
       SDMXServiceProvider(
         "ILO", "International Labour Organization of the United Nations",
-        SDMXRESTRequestBuilder("http://www.ilo.org/ilostat/sdmx/ws/rest", FALSE)                  
+        SDMXRESTRequestBuilder("http://www.ilo.org/ilostat/sdmx/ws/rest", TRUE)                  
       ),
       
       #UIS (UNESCO)

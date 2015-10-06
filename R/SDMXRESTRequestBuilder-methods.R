@@ -2,34 +2,57 @@
 #========================
 
 #constructor
-SDMXRESTRequestBuilder <- function(baseUrl, suffix){
+SDMXRESTRequestBuilder <- function(baseUrl, compliant){
   
-  serviceRequestHandler <- function(baseUrl, agencyId, suffix, operation, key,
-                                    filter = NULL, start = NULL, end = NULL){    
+  #function to handle request
+  serviceRequestHandler <- function(baseUrl, agencyId, resource, flowRef,
+                                    key = NULL, start = NULL, end = NULL,
+                                    compliant){    
     
-    if(is.null(operation))
-      stop("Missing SDMX service operation")  
+    if(is.null(resource))
+      stop("Missing SDMX service resource")  
     
-    #base request
-    req <- paste(baseUrl, operation, key, sep = "/")
-
-    #filter (if any)
-    if(!is.null(filter)) req <- paste(req, filter, sep="/")
+    restResource <- switch(resource,
+      "data" = ifelse(compliant, resource, "GetData")
+    )
     
-    #suffix
-    reqSuffix <- "?"
-    if(suffix) reqSuffix <- paste0(agencyId, "?")
-    req <- paste(req, reqSuffix, sep="/")
+    #wrap argument values
+    obj <- list(baseUrl = baseUrl, agencyId = agencyId, resource = restResource,
+                flowRef = flowRef, key = key, start = start, end = end)
     
-    #temporal extent (if any)
-    if(!is.null(start) && !is.null(end)){
-      req <- paste0(req, "startPeriod=", start, "&endPeriod=", end) 
-    }
+    #REST resource handler
+    resourceHandler <- switch(resource,
+        
+      #'data' resource
+        "data" = function(obj){
+          
+          if(is.null(obj$flowRef)){
+            stop("Missing flowRef value")
+          }
+          if(is.null(obj$key)) obj$key = "all"
+          
+          #base data request
+          req <- paste(obj$baseUrl, obj$resource, obj$flowRef, obj$key, sep = "/")
+          
+          #DataQuery
+          #-> temporal extent (if any)
+          if(!is.null(obj$start) && !is.null(obj$end)){
+            req <- paste0(req, "/?", "startPeriod=", start, "&endPeriod=", end) 
+          }
+          
+        }
+                              
+    )
     
+    #handle rest resource path
+    req <- resourceHandler(obj)
     return(req)
   }
   
-  new("SDMXRESTRequestBuilder", baseUrl = baseUrl, suffix = suffix, handler = serviceRequestHandler)
+  new("SDMXRESTRequestBuilder",
+      baseUrl = baseUrl,
+      handler = serviceRequestHandler,
+      compliant = compliant)
 }
 
 

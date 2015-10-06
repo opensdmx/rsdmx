@@ -31,7 +31,7 @@ SDMXServiceProvider(agencyId, name, builder)
 
   #let's create a SDMXRESTRequestBuilder
   #(assuming that "My Organization" implements SDMX REST web-services)
-  myBuilder <- SDMXRESTRequestBuilder(baseUrl = "http://www.myorg.", suffix = TRUE)
+  myBuilder <- SDMXRESTRequestBuilder(baseUrl = "http://www.myorg.org", compliant = TRUE)
                       
   #create a SDMXServiceProvider
   provider <- SDMXServiceProvider(agencyId = "MYORG", name = "My Organization", builder = myBuilder)

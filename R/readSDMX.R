@@ -4,8 +4,12 @@
 # function to read SDMX as character string or from helper arguments
 # (required in order to encapsulate a S3 old class object in a S4 representation)
 readSDMX <- function(file = NULL, isURL = TRUE,
-                     provider = NULL, agencyId = NULL,operation = NULL,
-                     key = NULL, filter = NULL, filter.native = TRUE, start = NULL, end = NULL) {
+                     provider = NULL, agencyId = NULL, resource = NULL,
+                     flowRef = NULL, key = NULL, key.mode = "R", start = NULL, end = NULL) {
+  
+  if(!(key.mode %in% c("R", "SDMX"))){
+    stop("Invalid value for key.mode argument. Accepted values are 'R', 'SDMX' ")
+  }
   
   #check from arguments if request has to be performed
   buildRequest <- FALSE
@@ -27,21 +31,21 @@ readSDMX <- function(file = NULL, isURL = TRUE,
   #proceed with the request build
   if(buildRequest){
     
-    if(filter.native && !missing(filter) && !is.null(missing)){
-      filter <- paste(sapply(filter, paste, collapse = "+"), collapse=".")
+    if(key.mode == "R" && !missing(key) && !is.null(key)){
+      key <- paste(sapply(key, paste, collapse = "+"), collapse=".")
     }
     
-    if(is.null(operation)) stop("SDMX service operation cannot be null")
-    if(is.null(key)) stop("SDMX service key cannot be null")
+    if(is.null(resource)) stop("SDMX service resource cannot be null")
+    if(is.null(flowRef)) stop("SDMX service flowRef cannot be null")
     file <- provider@builder@handler(
                              baseUrl = provider@builder@baseUrl,
                              agencyId = provider@agencyId,
-                             suffix = provider@builder@suffix,
-                             operation = operation,
+                             resource = resource,
+                             flowRef = flowRef,
                              key = key,
-                             filter = filter,
                              start = start,
-                             end = end)
+                             end = end,
+                             compliant = provider@builder@compliant)
     message(file)
   }
   

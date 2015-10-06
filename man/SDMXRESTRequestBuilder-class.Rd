@@ -11,17 +11,17 @@
 \section{Slots}{
   \describe{
     \item{\code{baseUrl}}{an object of class "character" giving the base Url of the SDMX service endpoint}
-    \item{\code{suffix}}{an object of class "logical" indicating if the provider \code{agencyId} has to be used as suffix in the data web-request, before start/end url parameters. For some reasons, we noticed that some providers, e.g. UN-ILO were not authorizing to specify the \code{agencyId} as suffix.} 
+    \item{\code{compliant}}{an object of class "logical" indicating if the web-service is compliant with the SDMX REST web-service specifications} 
   }
 }
 
 \usage{
-SDMXRESTRequestBuilder(baseUrl, suffix)
+SDMXRESTRequestBuilder(baseUrl, compliant)
 }
 
 \arguments{
 \item{baseUrl}{an object of class "character" giving the base Url of the SDMX service endpoint}
-\item{suffix}{an object of class "logical" indicating if the provider \code{agencyId} has to be used as suffix in the data web-request, before start/end url parameters}
+\item{compliant}{an object of class "logical" indicating if the web-service is compliant with the SDMX REST web-service specifications} 
 }
 
 \author{ Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}}

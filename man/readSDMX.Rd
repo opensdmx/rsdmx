@@ -8,8 +8,8 @@
 
 \usage{
 readSDMX(file, isURL,
-         provider, agencyId, operation, key,
-         filter, filter.native, start, end)
+         provider, agencyId, resource, flowRef,
+         key, key.mode, start, end)
 }
 
 \arguments{
@@ -18,11 +18,10 @@ readSDMX(file, isURL,
 specific provider given as argument)}
 \item{provider}{an object of class "SDMXServiceProvider". If specified, \code{file} and \code{isURL} arguments will be ignored.}
 \item{agencyId}{an object of class "character" representing a provider id. It has to be match a default provider as listed in \code{getSDMXServiceProviders()}}
-\item{operation}{An object of class "character" giving the SDMX service request operation to perform. e.g. "GetData". Recognized if 
-a valid provider or provide id has been specified as argument.}
-\item{key}{An object of class "character" giving the SDMX key family (data structure) id. Recognized if valid provider or provide id has been specified as argument.}
-\item{filter}{An object of class "character" or "list" giving the SDMX data filter to apply. Recognized if a valid provider or provide id has been specified as argument. If \code{filter.native} is \code{TRUE} (default value), filter has to be an object of class "list" representing the filters to apply to the dataset, otherwise the filter will be a string.}
-\item{filter.native}{An object of class "boolean" indicating if the filter has to be provided in the native way, ie a object of class "list" representing the filter(s) to apply. Default value is \code{TRUE}}
+\item{resource}{An object of class "character" giving the SDMX service request resource to query e.g. "data". Recognized if a valid provider or provide id has been specified as argument.}
+\item{flowRef}{An object of class "character" giving the SDMX flow ref (data structure) id. Recognized if valid provider or provide id has been specified as argument.}
+\item{key}{An object of class "character" or "list" giving the SDMX data key/filter to apply. Recognized if a valid provider or provide id has been specified as argument. If \code{key.mode} is equal to \code{"R"} (default value), filter has to be an object of class "list" representing the filters to apply to the dataset, otherwise the filter will be a string.}
+\item{key.mode}{An object of class "character" indicating if the \code{key} has to be provided as an R object, ie a object of class "list" representing the filter(s) to apply. Default value is \code{"R"}. Alternative value is \code{"SDMX"}}
 \item{start}{An object of class "integer" or "character" giving the SDMX start time to apply. Recognized if a valid provider or provide id has been specified as argument.}
 \item{end}{An object of class "integer" or "character" giving the SDMX end time to apply. Recognized if a valid provider or provide id has been specified as argument.}
 }
@@ -80,8 +79,8 @@ stats3 <- as.data.frame(sdmx3)
 head(stats3)
 
 #examples using helpers!
-sdmx4 <- readSDMX(agencyId = "OECD", operation = "GetData", key = "MIG",
-                  filter = list("TOT", NULL, NULL), start = 2011, end = 2011)
+sdmx4 <- readSDMX(agencyId = "OECD", resource = "data", flowRef = "MIG",
+                  key = list("TOT", NULL, NULL), start = 2011, end = 2011)
 stats4 <- as.data.frame(sdmx4)
 head(stats4)
 

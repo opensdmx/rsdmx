@@ -2,6 +2,6 @@
 #========================
 
 #constructor
-SDMXRequestBuilder <- function(baseUrl, suffix, handler){
-  new("SDMXRequestBuilder", baseUrl = baseUrl, suffix = suffix, handler = handler)
+SDMXRequestBuilder <- function(baseUrl, handler, compliant){
+  new("SDMXRequestBuilder", baseUrl = baseUrl, handler = handler, compliant = compliant)
 }
