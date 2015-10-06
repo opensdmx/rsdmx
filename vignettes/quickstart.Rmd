@@ -29,11 +29,11 @@ For more information about the SDMX standards, you can visit the [SDMX website](
 
 [rsdmx](http://cran.r-project.org/package=rsdmx) offers a low-level set of tools to read **data** and **metadata** in the SDMX-ML format. Its strategy is to make it very easy for the user. For this, a unique function named ``readSDMX`` has to be used, whatever it is a ``data`` or ``metadata`` document, or if it is ``local`` or ``remote`` datasource.
 
-* what ``rsdmx`` does support:
+What ``rsdmx`` does support:
 
-- a SDMX format abstraction library, with focus on the the main SDMX standard XML format (SDMX-ML), and the support of the three format standard versions (``1.0``, ``2.0``, ``2.1``)
+* a SDMX format abstraction library, with focus on the the main SDMX standard XML format (SDMX-ML), and the support of the three format standard versions (``1.0``, ``2.0``, ``2.1``)
 
-- an interface to SDMX web-services for a list of well-known data providers, such as OECD, EUROSTAT, ECB, UN FAO, UN ILO, etc (a list that should grow in a near future!). See it [in action](https://github.com/opensdmx/rsdmx/blob/master/vignettes/quickstart.Rmd#using-the-helper-approach)!
+* an interface to SDMX web-services for a list of well-known data providers, such as OECD, EUROSTAT, ECB, UN FAO, UN ILO, etc (a list that should grow in a near future!). See it [in action](https://github.com/opensdmx/rsdmx/blob/master/vignettes/quickstart.Rmd#using-the-helper-approach)!
 
 Let's see then how to use ``rsdmx``!
 
@@ -86,7 +86,7 @@ Note it is also possible to add an SDMX service provider at runtime. For registe
 
 Let's see how it would look like for querying an ``OECD`` datasource:
 
-```{r}
+```{r, message = FALSE}
 sdmx <- readSDMX(agencyId = "OECD", operation = "GetData", key = "MIG",
                 filter = list("TOT", NULL, NULL), start = 2010, end = 2011)
 df <- as.data.frame(sdmx)
@@ -121,7 +121,7 @@ This section will introduce you on how to read SDMX **metadata** documents, incl
 
 Read concept schemes from [FAO data portal](http://data.fao.org/sdmx/index.html)
 
-```{r}
+```{r, warning=FALSE}
 csUrl <- "http://data.fao.org/sdmx/registry/conceptscheme/FAO/ALL/LATEST/?detail=full&references=none&version=2.1"
 csobj <- readSDMX(csUrl)
 csdf <- as.data.frame(csobj)
