@@ -129,8 +129,9 @@ First create a request builder for our provider:
 ```{r, echo = FALSE}
 
 myBuilder <- SDMXRequestBuilder(
-  baseUrl = "http://www.myorg.org/sdmx",
-  handler = function(baseUrl, agencyId, resource, flowRef, key, start, end, compliant){
+  regUrl = "http://www.myorg.org/sdmx/registry",
+  repoUrl = "http://www.myorg.org/sdmx/repository",
+  handler = function(baseUrl, agencyId, resource, resourceId, version, flowRef, key, start, end, compliant){
     paste(baseUrl, agencyId, resource, flowRef, key, start, end, sep="/")
   },
   compliant = FALSE

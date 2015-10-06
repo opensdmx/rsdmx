@@ -10,8 +10,10 @@ context("SDMXServiceProvider")
 test_that("SDMXServiceProvider - constructor",{
   
   requestBuilder <- SDMXRequestBuilder(
-    baseUrl = "http://www.myorg.org",
-    handler = function(baseUrl, agencyId, resource, flowRef, key, start, end, compliant){
+    regUrl = "http://www.myorg.org/registry",
+    repoUrl = "http://www.myorg.org/repository",
+    handler = function(baseUrl, agencyId, resource, resourceId, version,
+                       flowRef, key, start, end, compliant){
       return(paste(baseUrl, agencyId, resource, flowRef, key, start, end, sep="/"))
     },
     compliant = TRUE)
@@ -43,8 +45,10 @@ test_that("SDMXServiceProvider - methods",{
   
   #add a provider
   requestBuilder <- SDMXRequestBuilder(
-    baseUrl = "http://www.myorg.org",
-    handler = function(baseUrl, agencyId, resource, flowRef, key, start, end, compliant){
+    regUrl = "http://www.myorg.org/registry",
+    repoUrl = "http://www.myorg.org/repository",
+    handler = function(baseUrl, agencyId, resource, resourceId, version, 
+                       flowRef, key, start, end, compliant){
       return(paste(baseUrl, agencyId, resource, flowRef, key, start, end, sep="/"))
     },
     compliant = TRUE)

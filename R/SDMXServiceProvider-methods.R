@@ -24,37 +24,55 @@ setSDMXServiceProviders <- function(){
       #ECB
       SDMXServiceProvider(
         agencyId = "ECB", name = "European Central Bank",
-        builder = SDMXRESTRequestBuilder("https://sdw-wsrest.ecb.europa.eu/service", TRUE)
+        builder = SDMXRESTRequestBuilder(
+          regUrl = "https://sdw-wsrest.ecb.europa.eu/service",
+          repoUrl = "https://sdw-wsrest.ecb.europa.eu/service",
+          compliant = TRUE)
       ),
     
       #EUROSTAT
       SDMXServiceProvider( 
         agencyId = "ESTAT", name = "Eurostat (Statistical office of the European Union)",
-        builder = SDMXRESTRequestBuilder("http://ec.europa.eu/eurostat/SDMX/diss-web/rest", TRUE)
+        builder = SDMXRESTRequestBuilder(
+          regUrl = "http://ec.europa.eu/eurostat/SDMX/diss-web/rest",
+          repoUrl = "http://ec.europa.eu/eurostat/SDMX/diss-web/rest",
+          compliant = TRUE)
       ),
     
       #OECD
       SDMXServiceProvider(
         agencyId = "OECD", name = "Organisation for Economic Cooperation and Development ",
-        builder = SDMXRESTRequestBuilder("http://stats.oecd.org/restsdmx/sdmx.ashx", FALSE)
+        builder = SDMXRESTRequestBuilder(
+          regUrl = "http://stats.oecd.org/restsdmx/sdmx.ashx",
+          repoUrl = "http://stats.oecd.org/restsdmx/sdmx.ashx",
+          compliant = FALSE)
       ),
       
       #UN-FAO
       SDMXServiceProvider(
         agencyId = "FAO", name = "Food and Agriculture Organization of the United Nations",
-        builder = SDMXRESTRequestBuilder("http://data.fao.org/sdmx/repository", TRUE)
+        builder = SDMXRESTRequestBuilder(
+          regUrl = "http://data.fao.org/sdmx/registry",
+          repoUrl = "http://data.fao.org/sdmx/repository",
+          compliant = TRUE)
       ),
       
       #UN-ILO
       SDMXServiceProvider(
         agencyId = "ILO", name = "International Labour Organization of the United Nations",
-        builder = SDMXRESTRequestBuilder("http://www.ilo.org/ilostat/sdmx/ws/rest", TRUE)                  
+        builder = SDMXRESTRequestBuilder(
+          regUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
+          repoUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
+          compliant = TRUE)                  
       ),
       
       #UIS (UNESCO)
       SDMXServiceProvider(
         agencyId = "UIS", name = "UNESCO Institute of Statistics",
-        builder = SDMXRESTRequestBuilder("http://data.uis.unesco.org/RestSDMX/sdmx.ashx", TRUE)
+        builder = SDMXRESTRequestBuilder(
+          regUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx",
+          repoUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx", 
+          compliant = TRUE)
       )
       
   )

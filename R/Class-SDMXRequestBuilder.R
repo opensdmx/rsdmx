@@ -4,14 +4,16 @@
 #SDMX Request builder class
 setClass("SDMXRequestBuilder",
          representation(
-           baseUrl = "character",
+           regUrl = "character",
+           repoUrl = "character",
            handler = "function",
            compliant = "logical"
          ),
          prototype = list(
-           baseUrl = "http://www.myorg.org/sdmx",
-           handler = function(baseUrl, agencyId){
-             paste(baseUrl, agencyId,sep="/")
+           regUrl = "http://www.myorg.org/sdmx/registry",
+           repoUrl = "http://www.myorg.org/sdmx/repository",
+           handler = function(regUrl, repUrl, agencyId){
+             paste(regUrl, agencyId,sep="/")
            },
            compliant = TRUE
          ),

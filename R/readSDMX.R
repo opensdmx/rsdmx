@@ -4,7 +4,7 @@
 # function to read SDMX as character string or from helper arguments
 # (required in order to encapsulate a S3 old class object in a S4 representation)
 readSDMX <- function(file = NULL, isURL = TRUE,
-                     provider = NULL, agencyId = NULL, resource = NULL,
+                     provider = NULL, agencyId = NULL, resource = NULL, resourceId = NULL, version = NULL,
                      flowRef = NULL, key = NULL, key.mode = "R", start = NULL, end = NULL) {
   
   if(!(key.mode %in% c("R", "SDMX"))){
@@ -36,11 +36,13 @@ readSDMX <- function(file = NULL, isURL = TRUE,
     }
     
     if(is.null(resource)) stop("SDMX service resource cannot be null")
-    if(is.null(flowRef)) stop("SDMX service flowRef cannot be null")
     file <- provider@builder@handler(
-                             baseUrl = provider@builder@baseUrl,
+                             regUrl = provider@builder@regUrl,
+                             repoUrl = provider@builder@repoUrl,
                              agencyId = provider@agencyId,
                              resource = resource,
+                             resourceId = resourceId,
+                             version = version,
                              flowRef = flowRef,
                              key = key,
                              start = start,

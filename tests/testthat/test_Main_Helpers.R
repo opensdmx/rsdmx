@@ -8,10 +8,8 @@ require(rsdmx, quietly = TRUE)
 require(testthat)
 context("SDMXHelpers")
 
-#SDMX datasets
-#------------
-
 #ECB
+#---
 test_that("ECB - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
@@ -23,7 +21,17 @@ test_that("ECB - data",{
   }
 })
 
+test_that("ECB - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "ECB", resource = "datastructure", resourceId = "ECB_DD1")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
 #ESTAT (EUROSTAT)
+#---------------
 test_that("ESTAT - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
@@ -35,7 +43,17 @@ test_that("ESTAT - data",{
   }
 })
 
+test_that("ESTAT - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "ESTAT", resource = "datastructure", resourceId = "DSD_nama_gdp_c")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
 #OECD
+#----
 test_that("OECD - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
@@ -46,7 +64,17 @@ test_that("OECD - data",{
   }
 })
 
+test_that("OECD - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "OECD", resource = "datastructure", resourceId = "TABLE1")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
 #FAO (UN-FAO)
+#------------
 test_that("FAO - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
@@ -58,7 +86,17 @@ test_that("FAO - data",{
   }
 })
 
+test_that("FAO - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "FAO", resource = "datastructure", resourceId = "FAOSTAT")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
 #ILO (UN-ILO)
+#------------
 test_that("ILO - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
@@ -70,7 +108,17 @@ test_that("ILO - data",{
   }
 })
 
+test_that("ILO - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "ILO", resource = "datastructure", resourceId = "YI_ALB_EAP_TEAP_SEX_AGE_NB")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
 #UIS (UNESCO)
+#------------
 test_that("UIS - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
@@ -79,6 +127,15 @@ test_that("UIS - data",{
                    start = "2000", end = "2015")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXGenericData")
+  }
+})
+
+test_that("UIS - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "UIS", resource = "datastructure", resourceId = "all")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
   }
 })
 

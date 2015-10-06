@@ -17,7 +17,8 @@ addSDMXServiceProvider(provider)
 \examples{
 
   #create a provider
-  myBuilder <- SDMXRESTRequestBuilder(baseUrl = "http://www.myorg.",
+  myBuilder <- SDMXRESTRequestBuilder(regUrl = "http://www.myorg.org/registry",
+                                      repoUrl = "http://www.myorg.org/repository",
                                       compliant = TRUE)
   myProvider <- SDMXServiceProvider(
     agencyId = "MYORG", name = "My Organization",

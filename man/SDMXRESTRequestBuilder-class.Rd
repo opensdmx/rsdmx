@@ -10,25 +10,30 @@
 \section{Objects from the Class}{will be used by a \link{SDMXServiceProvider} that provide SDMX REST web-service. This class may be useful for plugging a new SDMX service provider}
 \section{Slots}{
   \describe{
-    \item{\code{baseUrl}}{an object of class "character" giving the base Url of the SDMX service endpoint}
+    \item{\code{regUrl}}{an object of class "character" giving the base Url of the SDMX service registry}
+    \item{\code{repoUrl}}{an object of class "character" giving the base Url of the SDMX service repository}
     \item{\code{compliant}}{an object of class "logical" indicating if the web-service is compliant with the SDMX REST web-service specifications} 
   }
 }
 
 \usage{
-SDMXRESTRequestBuilder(baseUrl, compliant)
+SDMXRESTRequestBuilder(regUrl, repoUrl, compliant)
 }
 
 \arguments{
-\item{baseUrl}{an object of class "character" giving the base Url of the SDMX service endpoint}
-\item{compliant}{an object of class "logical" indicating if the web-service is compliant with the SDMX REST web-service specifications} 
+  \item{regUrl}{an object of class "character" giving the base Url of the SDMX service registry}
+  \item{repoUrl}{an object of class "character" giving the base Url of the SDMX service repository}
+  \item{compliant}{an object of class "logical" indicating if the web-service is compliant with the SDMX REST web-service specifications} 
 }
 
 \author{ Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}}
 \examples{
 
   #how to create a SDMXRESTRequestBuilder
-  requestBuilder <- SDMXRESTRequestBuilder(baseUrl = "http://www.myorg", TRUE)
+  requestBuilder <- SDMXRESTRequestBuilder(
+                      regUrl = "http://www.myorg/registry",
+                      repoUrl = "http://www.myorg/repository",
+                      compliant = TRUE)
 }
 
 \keyword{classes}

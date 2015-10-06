@@ -2,6 +2,8 @@
 #========================
 
 #constructor
-SDMXRequestBuilder <- function(baseUrl, handler, compliant){
-  new("SDMXRequestBuilder", baseUrl = baseUrl, handler = handler, compliant = compliant)
+SDMXRequestBuilder <- function(regUrl, repoUrl, handler, compliant){
+  new("SDMXRequestBuilder",
+      regUrl = regUrl, repoUrl = repoUrl,
+      handler = handler, compliant = compliant)
 }
