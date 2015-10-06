@@ -36,7 +36,7 @@ test_that("SDMXServiceProvider - methods",{
   expect_is(providers, "list")
   expect_equal(length(providers), 5L)
   expect_equal(sapply(providers, function(x){slot(x,"agencyId")}),
-               c("ECB", "ESTAT", "OECD", "FAO", "ILO"))
+               c("ECB", "ESTAT", "OECD", "FAO", "ILO", "UIS"))
   
   #add a provider
   requestBuilder <- SDMXRequestBuilder(
@@ -55,7 +55,7 @@ test_that("SDMXServiceProvider - methods",{
   providers <- getSDMXServiceProviders()
   expect_equal(length(providers), 6L)
   expect_equal(sapply(providers, function(x){slot(x,"agencyId")}),
-               c("ECB", "ESTAT", "OECD", "FAO", "ILO", "MYORG"))
+               c("ECB", "ESTAT", "OECD", "FAO", "ILO", "UIS", "MYORG"))
   
   #find a provider
   oecd <- findSDMXServiceProvider("OECD")
