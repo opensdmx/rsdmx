@@ -60,3 +60,13 @@ test_that("Dataset - UN-ILO",{
   expect_is(sdmx, "SDMXGenericData")
 })
 
+#UIS (UNESCO)
+test_that("Dataset - UIS (UNESCO)",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "UIS", operation = "GetData",
+                   key = "EDULIT_DS", filter = list("OFST_1_CP", NULL), filter.native = TRUE,
+                   start = "2000", end = "2015")
+  expect_is(sdmx, "SDMXGenericData")
+})
+

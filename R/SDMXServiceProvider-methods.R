@@ -42,6 +42,12 @@ setSDMXServiceProviders <- function(){
       SDMXServiceProvider(
         "ILO", "International Labour Organization of the United Nations",
         SDMXRESTRequestBuilder("http://www.ilo.org/ilostat/sdmx/ws/rest", FALSE)                  
+      ),
+      
+      #UIS (UNESCO)
+      SDMXServiceProvider(
+        "UIS", "UNESCO Institute of Statistics",
+        SDMXRESTRequestBuilder("http://data.uis.unesco.org/RestSDMX/sdmx.ashx", TRUE)
       )
       
   )
