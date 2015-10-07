@@ -17,7 +17,7 @@ SDMXServiceProvider <- function(agencyId, name,
 #====================
 
 #function to set a well-known list of SDMX service providers
-setSDMXServiceProviders <- function(){
+setSDMXServiceProviders <- function(){ # nocov start
   
   listOfProviders <- list(
     
@@ -93,7 +93,8 @@ setSDMXServiceProviders <- function(){
       
   )
   .rsdmx.options$providers <- new("SDMXServiceProviders", providers = listOfProviders)
-}
+  
+} # nocov end
 
 
 #function to add a SDMX provider
