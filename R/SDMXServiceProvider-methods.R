@@ -89,9 +89,20 @@ setSDMXServiceProviders <- function(){ # nocov start
           regUrl = "http://stat.nbb.be/RestSDMX/sdmx.ashx",
           repoUrl = "http://stat.nbb.be/RestSDMX/sdmx.ashx", 
           compliant = FALSE)
+      ),
+      
+      #INSEE {France}
+      SDMXServiceProvider(
+        agencyId = "INSEE", name = "Institut national de la statistique et des études économiques",
+        scale = "national", country = "FRA",
+        builder = SDMXRESTRequestBuilder(
+          regUrl = "http://www.bdm.insee.fr/series/sdmx",
+          repoUrl = "http://www.bdm.insee.fr/series/sdmx", 
+          compliant = TRUE)
       )
       
   )
+  
   .rsdmx.options$providers <- new("SDMXServiceProviders", providers = listOfProviders)
   
 } # nocov end

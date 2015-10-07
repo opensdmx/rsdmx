@@ -166,3 +166,25 @@ test_that("NBB - datastructure",{
     expect_is(sdmx, "SDMXDataStructureDefinition")
   }
 })
+
+#INSEE (France)
+#-------------
+test_that("INSEE - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "INSEE", resource = "data",
+                   flowRef = "IPI-2010-A21", key = "all", key.mode = "SDMX",
+                   start = 2010, end = 2015)
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXStructureSpecificData")
+  }
+})
+
+test_that("INSEE - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "INSEE", resource = "datastructure", resourceId = "IPI-2010-A21")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})

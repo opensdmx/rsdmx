@@ -38,8 +38,19 @@ SDMXRESTRequestBuilder <- function(regUrl, repoUrl, compliant){
         
         #DataQuery
         #-> temporal extent (if any)
-        if(!is.null(obj$start) && !is.null(obj$end)){
-          req <- paste0(req, "/?", "startPeriod=", start, "&endPeriod=", end) 
+        addParams = FALSE
+        if(!is.null(obj$start)){
+          req <- paste0(req, "/?")
+          addParams = TRUE
+          req <- paste0(req, "startPeriod=", start)
+        }
+        if(!is.null(obj$end)){
+          if(!addParams){
+            req <- paste0(req, "/?")
+          }else{
+            req <- paste0(req, "&")
+          }
+          req <- paste0(req, "endPeriod=", end) 
         }
         return(req)
       },
