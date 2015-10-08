@@ -15,7 +15,6 @@ as.data.frame.SDMXServiceProviders <- function(x, ...){
                   })),
             stringsAsFactors = FALSE)
   colnames(out) <- c("agencyId", "name", "scale", "country")
-  Encoding(out$name) <- "UTF-8"
   return(out)
 }
 

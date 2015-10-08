@@ -145,6 +145,28 @@ test_that("UIS - datastructure",{
 
 #national data providers
 
+#ABS (Australia)
+#-------------
+test_that("ABS - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "ABS", resource = "data",
+                   flowRef = "ALC", key = "1.1+2.1+2+3+5+4.6+10+11+12+15+14.A", key.mode = "SDMX",
+                   start = "2000", end = "2015")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXMessageGroup")
+  }
+})
+
+test_that("ABS - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "ABS", resource = "datastructure", resourceId = "ALC")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
 #NBB (Belgium)
 #-------------
 test_that("NBB - data",{

@@ -81,6 +81,16 @@ setSDMXServiceProviders <- function(){ # nocov start
       #national data providers
       #-----------------------
       
+      #ABS {Australia}
+      SDMXServiceProvider(
+        agencyId = "ABS", name = "Australian Bureau of Statistics",
+        scale = "national", country = "AUS",
+        builder = SDMXRESTRequestBuilder(
+          regUrl = "http://govhack.abs.gov.au/restsdmx/sdmx.ashx",
+          repoUrl = "http://govhack.abs.gov.au/restsdmx/sdmx.ashx", 
+          compliant = FALSE, forceAgencyId = TRUE)
+      ),
+      
       #NBB {Belgium}
       SDMXServiceProvider(
         agencyId = "NBB", name = "National Bank of Belgium",
@@ -93,7 +103,7 @@ setSDMXServiceProviders <- function(){ # nocov start
       
       #INSEE {France}
       SDMXServiceProvider(
-        agencyId = "INSEE", name = "Institut national de la statistique et des études économiques",
+        agencyId = "INSEE", name = "Institut national de la statistique et des \u00e9tudes \u00e9conomiques",
         scale = "national", country = "FRA",
         builder = SDMXRESTRequestBuilder(
           regUrl = "http://www.bdm.insee.fr/series/sdmx",

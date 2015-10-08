@@ -2,7 +2,7 @@
 #========================
 
 #constructor
-SDMXRESTRequestBuilder <- function(regUrl, repoUrl, compliant){
+SDMXRESTRequestBuilder <- function(regUrl, repoUrl, compliant, forceAgencyId = FALSE){
   
   #function to handle request
   serviceRequestHandler <- function(regUrl, repoUrl, agencyId, resource, resourceId, version = NULL,
@@ -35,18 +35,19 @@ SDMXRESTRequestBuilder <- function(regUrl, repoUrl, compliant){
         
         #base data request
         req <- paste(obj$repoUrl, obj$resource, obj$flowRef, obj$key, sep = "/")
+        if(forceAgencyId) req <- paste(req, obj$agencyId, sep = "/")
         
         #DataQuery
         #-> temporal extent (if any)
         addParams = FALSE
         if(!is.null(obj$start)){
-          req <- paste0(req, "/?")
+          req <- paste0(req, ifelse(forceAgencyId, "", "/"), "?")
           addParams = TRUE
           req <- paste0(req, "startPeriod=", start)
         }
         if(!is.null(obj$end)){
           if(!addParams){
-            req <- paste0(req, "/?")
+            req <- paste0(req, ifelse(forceAgencyId, "", "/"), "?")
           }else{
             req <- paste0(req, "&")
           }
@@ -65,9 +66,11 @@ SDMXRESTRequestBuilder <- function(regUrl, repoUrl, compliant){
         #base datastructure request
         if(compliant){
           req <- paste(obj$regUrl, obj$resource, obj$agencyId, obj$resourceId, obj$version, sep = "/")
+          if(forceAgencyId) req <- paste(req, obj$agencyId, sep = "/")
           req <- paste0(req, "?references=children") #TODO to see later to have arg for this
         }else{
           req <- paste(obj$regUrl, obj$resource, obj$resourceId, sep = "/")
+          if(forceAgencyId) req <- paste(req, obj$agencyId, sep = "/")
         }
         return(req)
       }

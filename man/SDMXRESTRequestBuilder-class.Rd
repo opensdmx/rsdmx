@@ -12,18 +12,20 @@
   \describe{
     \item{\code{regUrl}}{an object of class "character" giving the base Url of the SDMX service registry}
     \item{\code{repoUrl}}{an object of class "character" giving the base Url of the SDMX service repository}
-    \item{\code{compliant}}{an object of class "logical" indicating if the web-service is compliant with the SDMX REST web-service specifications} 
+    \item{\code{compliant}}{an object of class "logical" indicating if the web-service is compliant with the SDMX REST web-service specifications}
+    \item{\code{forceAgencyId}}{an object of class "logical" indicating if the agencyId as to be added at the end of the request. Default value is \code{FALSE}. For some providers, the \code{all} value for the \code{agencyId} is not allowed, in this case, the \code{agencyId} of the data provider has to be forced in the web-request} 
   }
 }
 
 \usage{
-SDMXRESTRequestBuilder(regUrl, repoUrl, compliant)
+SDMXRESTRequestBuilder(regUrl, repoUrl, compliant, forceAgencyId)
 }
 
 \arguments{
   \item{regUrl}{an object of class "character" giving the base Url of the SDMX service registry}
   \item{repoUrl}{an object of class "character" giving the base Url of the SDMX service repository}
-  \item{compliant}{an object of class "logical" indicating if the web-service is compliant with the SDMX REST web-service specifications} 
+  \item{compliant}{an object of class "logical" indicating if the web-service is compliant with the SDMX REST web-service specifications}
+  \item{forceAgencyId}{an object of class "logical" indicating if the agencyId as to be added at the end of the request. Default value is \code{FALSE}. For some providers, the \code{all} value for the \code{agencyId} is not allowed, in this case, the \code{agencyId} of the data provider has to be forced in the web-request} 
 }
 
 \author{ Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}}
