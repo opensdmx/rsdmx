@@ -86,8 +86,8 @@ setSDMXServiceProviders <- function(){ # nocov start
         agencyId = "ABS", name = "Australian Bureau of Statistics",
         scale = "national", country = "AUS",
         builder = SDMXRESTRequestBuilder(
-          regUrl = "http://govhack.abs.gov.au/restsdmx/sdmx.ashx",
-          repoUrl = "http://govhack.abs.gov.au/restsdmx/sdmx.ashx", 
+          regUrl = "http://stat.abs.gov.au/restsdmx/sdmx.ashx",
+          repoUrl = "http://stat.abs.gov.au/restsdmx/sdmx.ashx", 
           compliant = FALSE, forceAgencyId = TRUE)
       ),
       
