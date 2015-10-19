@@ -13,11 +13,3 @@ type.SDMXType <- function(xmlObj){
 	res <- paste(type, "Type", sep="");
 	return(res)
 }
-
-#generics
-if (!isGeneric("getType"))
-	setGeneric("getType", function(obj) standardGeneric("getType"));
-
-#methods
-setMethod(f = "getType", signature = "SDMXType", function(obj) return(obj@type))
-

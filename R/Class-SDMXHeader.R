@@ -1,9 +1,41 @@
-# rsdmx - RSDMXHeader class
-#
-# Author: Emmanuel Blondel
-#==========================
+#' @name SDMXHeader
+#' @docType class
+#' @aliases SDMXHeader-class
+#'
+#' @title Class "SDMXHeader"
+#' @description A basic class to handle the header of a SDMX-ML document
+#' 
+#' @slot ID Object of class "character" giving the ID of the SDMX-ML document
+#' @slot Test Object of class "logical" indicating if the SDMX-ML document is 
+#'       disseminated for test purpose
+#' @slot Truncated Object of class "logical" indicating if the SDMX-ML document 
+#'       is truncated
+#' @slot Name Object of class "character" giving the name of SDMX-ML document 
+#' @slot Sender Object of class "list" giving the id of the sender and eventually
+#'       its in name, possibly in multi-languages
+#' @slot Receiver Object of class "list" giving the id of the receiver and 
+#'       eventually its in name, possibly in multi-languages
+#' @slot Prepared Object of class "POSIXlt" giving the preparation date of the 
+#'       SDMX-ML document
+#' @slot Extracted Object of class "POSIXlt" giving the extraction date of the 
+#'       SDMX-ML document
+#' @slot ReportingBegin Object of class "POSIXlt" giving the reporting begin date 
+#'       for the data retrieved in the SDMX-ML document
+#' @slot ReportingEnd Object of class "POSIXlt" giving the reporting end date for 
+#'       the data retrieved in the SDMX-ML document
+#' @slot Source Object of class "character" giving the source of the SDMX-ML document
+#' 
+#' @section Warning:
+#' This class is not useful in itself, but all SDMX non-abstract classes will 
+#' encapsulate it as slot, when parsing an SDMX-ML document
+#' 
+#' @note
+#' Some SDMXHeader properties are not yet supported and thus not available as 
+#' "slots". These are "KeyFamilyRef", "KeyFamilyAgency", "DataSetAgency", 
+#' "DataSetID", "DataSetAction".
+#' 
+#' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
 
-#SDMXHeader class
 setClass("SDMXHeader",
 		representation(
 			ID 	= "character", Test = "logical", Truncated = "logical", Name = "character",
@@ -78,32 +110,3 @@ setClass("SDMXHeader",
 			return(TRUE);
 		}
 )
-
-#	<xs:sequence>
-#	<xs:element name="ID" type="common:IDType"/>
-#	<xs:element name="Test" type="xs:boolean" default="false"/>
-#	<xs:element name="Truncated" type="xs:boolean" minOccurs="0"/>
-#	<xs:element name="Name" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
-#	<xs:element name="Prepared" type="HeaderTimeType"/>
-#	<xs:element name="Sender" type="PartyType" maxOccurs="unbounded">
-#	<xs:unique name="SDMX_SenderNameLanguageUniqueness">
-#	<xs:selector xpath="message:Name"/>
-#	<xs:field xpath="@xml:lang"/>
-#	</xs:unique>
-#	</xs:element>
-#	<xs:element name="Receiver" type="PartyType" minOccurs="0" maxOccurs="unbounded">
-#	<xs:unique name="SDMX_ReceiverNameLanguageUniqueness">
-#	<xs:selector xpath="message:Name"/>
-#	<xs:field xpath="@xml:lang"/>
-#	</xs:unique>
-#	</xs:element>
-#	<xs:element name="KeyFamilyRef" type="xs:NMTOKEN" minOccurs="0"/>
-#	<xs:element name="KeyFamilyAgency" type="xs:NMTOKEN" minOccurs="0"/>
-#	<xs:element name="DataSetAgency" type="xs:NMTOKEN" minOccurs="0"/>
-#	<xs:element name="DataSetID" type="xs:NMTOKEN" minOccurs="0"/>
-#	<xs:element name="DataSetAction" type="common:ActionType" minOccurs="0"/>			
-#	<xs:element name="Extracted" type="xs:dateTime" minOccurs="0"/>
-#	<xs:element name="ReportingBegin" type="HeaderTimeType" minOccurs="0"/>
-#	<xs:element name="ReportingEnd" type="HeaderTimeType" minOccurs="0"/>
-#	<xs:element name="Source" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
-#	</xs:sequence>

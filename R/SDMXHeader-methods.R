@@ -1,11 +1,18 @@
-# rsdmx - SDMXHeader-methods
-#
-# Author: Emmanuel Blondel
-#==========================
+#' @name SDMXHeader
+#' @rdname SDMXHeader
+#' @aliases SDMXHeader,SDMXHeader-method
+#' 
+#' @usage
+#' SDMXHeader(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "SDMXHeader"
+#' 
+#' @seealso \link{readSDMX}
 
 SDMXHeader <- function(xmlObj){
 
-	sdmxVersion <- getVersion(SDMXSchema(xmlObj))
+	sdmxVersion <- slot(SDMXSchema(xmlObj), "version")
   VERSION.10 <- sdmxVersion == "1.0"
   VERSION.20 <- sdmxVersion == "2.0"
   VERSION.21 <- sdmxVersion == "2.1"

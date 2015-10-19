@@ -1,6 +1,14 @@
-# constructor
-# E.Blondel - 2013/06/09
-#=======================
+#' @name SDMX
+#' @rdname SDMX
+#' @aliases SDMX,SDMX-method
+#' 
+#' @usage
+#' SDMX(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "SDMX"
+#' 
+#' @seealso \link{readSDMX}
 
 SDMX <- function(xmlObj){
 	schema <- SDMXSchema(xmlObj);
@@ -13,49 +21,7 @@ SDMX <- function(xmlObj){
       footer = footer); 
 }
 
-
-#generics
-if (!isGeneric("as.XML"))
-	setGeneric("as.XML", function(obj) standardGeneric("as.XML"));
-	
-if (!isGeneric("getSDMXSchema"))
-	setGeneric("getSDMXSchema", function(obj) standardGeneric("getSDMXSchema"));
-	
-if (!isGeneric("getSDMXHeader"))
-	setGeneric("getSDMXHeader", function(obj) standardGeneric("getSDMXHeader"));
-	
-if (!isGeneric("getSDMXType"))
-	setGeneric("getSDMXType", function(obj) standardGeneric("getSDMXType"));
-
-if (!isGeneric("getNamespaces"))
-  setGeneric("getNamespaces", function(obj) standardGeneric("getNamespaces"));
-
-if (!isGeneric("getSDMXFooter"))
-  setGeneric("getSDMXFooter", function(obj) standardGeneric("getSDMXFooter"));
-
-#methods
-setMethod(f = "as.XML", signature = "SDMX", function(obj){
-									return(obj@xmlObj);
-							}
-)
-setMethod(f = "getSDMXSchema", signature = "SDMX", function(obj){
-									return(obj@schema);
-							}
-)
-setMethod(f = "getSDMXHeader", signature = "SDMX", function(obj){
-									return(obj@header);
-							}
-)
-setMethod(f = "getSDMXType", signature = "SDMX", function(obj){
-									return(SDMXType(obj@xmlObj));
-							}
-)
-setMethod(f = "getSDMXFooter", signature = "SDMX", function(obj){
-                return(SDMXFooter(obj@xmlObj));
-              }
-)
-
-
+#functions
 namespaces.SDMX <- function(xmlObj){
   nsFromXML <- xmlNamespaceDefinitions(xmlObj, recursive = TRUE, simplify = FALSE)
   nsDefs.df <- do.call("rbind",
@@ -75,29 +41,107 @@ namespaces.SDMX <- function(xmlObj){
   return(nsDefs.df)
 }
 
+#' @name getNamespaces
+#' @docType methods
+#' @aliases getNamespaces,SDMX-method
+#' @title getNamespaces
+#' @description Access the namespaces of the SDMX-ML object
+#' @usage getNamespaces(obj)
+#' 
+#' @param obj An object deriving from class "SDMX"
+#' @return an object of class \code{data.frame} giving the id and uri for each 
+#'         of the namespaces handled in the SDMX-ML document.
+#'
+#' @seealso \link{SDMX-class}
+#'
+#' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
+
+if (!isGeneric("getNamespaces"))
+  setGeneric("getNamespaces", function(obj) standardGeneric("getNamespaces"));
+
+#' @describeIn getNamespaces
 setMethod(f = "getNamespaces", signature = "SDMX", function(obj){
             return(namespaces.SDMX(obj@xmlObj));
-          }
-)
+          })
 
 #others non-S4 methods
 #====================
 
-#findNamespace
+#' @name findNamespace
+#' @aliases findNamespace
+#' @title findNamespace
+#' @description function used to find a specific namespace within the available 
+#'              namespaces of an SDMX-ML object
+#'
+#' @usage
+#' findNamespace(namespaces, messageType)
+#' 
+#' @param namespaces object of class \code{data.frame} giving the id and uri of 
+#'                   namespaces available in a SDMX-ML object, typically obtained
+#'                    with \link{getNamespaces}
+#' @param messageType object of class \code{character} representing a message type
+#' @return an object of class "character" giving the namespace uri if found in the
+#'         available namespaces
+#'         
+#' @section Warning:
+#' \code{findNamespace} is a function used internally as utility function in 
+#' SDMX-ML object parsers.
+#' 
+#' @seealso \link{SDMX-class} \link{getNamespaces} 
+#' 
+#' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
+
 findNamespace <- function(namespaces, messageType){
   regexp <- paste(messageType, "$", sep = "")
   ns <- c(ns = namespaces$uri[grep(regexp, namespaces$uri)])
   return(ns)
 }
 
-#isSoapRequestEnvelope
+
+#' @name isSoapRequestEnvelope
+#' @aliases isSoapRequestEnvelope
+#' @title isSoapRequestEnvelope
+#' @description function used to detect if the XML document corresponds to a SOAP
+#'              request response
+#' @usage
+#' isSoapRequestEnvelope(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "logical"
+#' 
+#' @section Warning:
+#' \code{isSoapRequestEnvelope} is a function used internally by \link{readSDMX}
+#' 
+#' @seealso \link{SDMX-class} \link{readSDMX}
+#' 
+#' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
+#' 
+
 isSoapRequestEnvelope <- function(xmlObj){
   namespaces <- namespaces.SDMX(xmlObj)
   ns <- c(ns = namespaces$uri[grep("soap", namespaces$uri)])
   return(length(ns) > 0)
 }
 
-#getSoapRequestResult
+
+#' @name getSoapRequestResult
+#' @aliases getSoapRequestResult
+#' @title getSoapRequestResult
+#' @description function used to extract the SDMX-ML message from a SOAP request 
+#'              response
+#' @usage
+#' getSoapRequestResult(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "XMLInternalDocument derived from XML package
+#' 
+#' @section Warning:
+#' \code{getSoapRequestResult} is a function used internally by \link{readSDMX}
+#' 
+#' @seealso \link{SDMX-class} \link{readSDMX}
+#' 
+#' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
+   
 getSoapRequestResult <- function(xmlObj){
   body <- xmlChildren(xmlRoot(xmlObj))
   response <- xmlChildren(body[[1]]); rm(body);

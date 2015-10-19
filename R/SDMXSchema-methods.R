@@ -1,7 +1,15 @@
-# E.Blondel - 2013/06/09
-#=======================
+#' @name SDMXSchema
+#' @rdname SDMSchema
+#' @aliases SDMXSchema,SDMXSchema-method
+#' 
+#' @usage
+#' SDMXSchema(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "SDMXSchema"
+#' 
+#' @seealso \link{readSDMX}
 
-# constructor
 SDMXSchema <- function(xmlObj) {
         new("SDMXSchema", version = version.SDMXSchema(xmlObj));
 }
@@ -18,11 +26,3 @@ version.SDMXSchema <- function(xmlObj){
 	schemaVersion <-  gsub("_",".",substr(parsed[substr(parsed,0,1)=="v"],2,nchar(parsed,"w")));
 	return(schemaVersion);
 }
-
-# define new generics
-if (!isGeneric("getVersion"))
-	setGeneric("getVersion", function(obj) standardGeneric("getVersion"))
-
-
-# methods
-setMethod("getVersion", "SDMXSchema", function(obj) obj@version);

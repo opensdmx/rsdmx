@@ -1,7 +1,14 @@
-# rsdmx - SDMXFooterMessage-methods
-#
-# Author: Emmanuel Blondel
-#==========================
+#' @name SDMXFooterMessage
+#' @rdname SDMXFooterMessage
+#' @aliases SDMXFooterMessage,SDMXFooterMessage-method
+#' 
+#' @usage
+#' SDMXFooterMessage(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "SDMXFooterMessage"
+#' 
+#' @seealso   \link{SDMXFooter} \link{readSDMX}
 
 SDMXFooterMessage <- function(xmlObj){
   

@@ -83,15 +83,8 @@ export(
 )
 
 exportMethods(
-	getSDMXType,
-	getType,
   getStructureType,
-	getSDMXSchema,
-	getVersion,
-	getSDMXHeader,
-  getSDMXFooter,
-  getNamespaces,
-	as.XML
+  getNamespaces
 )
 
 S3method(as.data.frame, SDMXGenericData)

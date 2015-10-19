@@ -12,8 +12,8 @@ as.data.frame.SDMXGenericData <- function(x, ...){
   xmlObj <- x@xmlObj;
   dataset <- NULL
   
-  schema <- getSDMXSchema(x)
-  sdmxVersion <- getVersion(schema)
+  schema <- slot(x,"schema")
+  sdmxVersion <- slot(schema,"version")
   VERSION.21 <- sdmxVersion == "2.1"
   
   #namespace

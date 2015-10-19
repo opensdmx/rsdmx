@@ -1,7 +1,14 @@
-# rsdmx - SDMXFooter-methods
-#
-# Author: Emmanuel Blondel
-#==========================
+#' @name SDMXFooter
+#' @rdname SDMXFooter
+#' @aliases SDMXFooter,SDMXFooter-method
+#' 
+#' @usage
+#' SDMXFooter(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "SDMXFooter"
+#' 
+#' @seealso \link{readSDMX}
 
 SDMXFooter <- function(xmlObj){
   
