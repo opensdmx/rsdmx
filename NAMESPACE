@@ -31,6 +31,8 @@ exportClasses(
   SDMXDataStructure,
   SDMXDataStructures,
   SDMXDataStructureDefinition,
+  SDMXDataFlow,
+  SDMXDataFlows,
   SDMXRequestBuilder,
   SDMXRESTRequestBuilder,
   SDMXServiceProvider,
@@ -64,6 +66,8 @@ export(
   SDMXDataStructure,
   SDMXDataStructures,
   SDMXDataStructureDefinition,
+  SDMXDataFlow,
+  SDMXDataFlows,
   SDMXRequestBuilder,
   SDMXRESTRequestBuilder,
   SDMXServiceProvider,
@@ -98,4 +102,5 @@ S3method(as.data.frame, SDMXMessageGroup)
 S3method(as.data.frame, SDMXConcepts)
 S3method(as.data.frame, SDMXCodelists)
 S3method(as.data.frame, SDMXDataStructures)
+S3method(as.data.frame, SDMXDataFlows)
 S3method(as.data.frame, SDMXServiceProviders)

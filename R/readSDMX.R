@@ -89,10 +89,11 @@ readSDMX <- function(file = NULL, isURL = TRUE,
   }
   
   #internal function for SDMX Structure-based document
-  getSDMXStructureObject <- function(xmlObj){
-    strTypeObj <- SDMXStructureType(xmlObj)
+  getSDMXStructureObject <- function(xmlObj, resource){
+    strTypeObj <- SDMXStructureType(xmlObj, resource)
     strType <- getStructureType(strTypeObj)
     strObj <- switch(strType,
+                     "DataflowsType" = SDMXDataFlows(xmlObj),
                      "ConceptsType" = SDMXConcepts(xmlObj),
                      "CodelistsType" = SDMXCodelists(xmlObj),
                      "DataStructuresType" = SDMXDataStructures(xmlObj),
@@ -113,7 +114,7 @@ readSDMX <- function(file = NULL, isURL = TRUE,
     
     type <- SDMXType(xmlObj)@type
     obj <- switch(type,
-                  "StructureType"             = getSDMXStructureObject(xmlObj),
+                  "StructureType"             = getSDMXStructureObject(xmlObj, resource),
                   "GenericDataType"           = SDMXGenericData(xmlObj),
                   "CompactDataType"           = SDMXCompactData(xmlObj),
                   "UtilityDataType"           = SDMXUtilityData(xmlObj),
@@ -124,7 +125,7 @@ readSDMX <- function(file = NULL, isURL = TRUE,
     
     if(is.null(obj)){
       if(type == "StructureType"){
-        strTypeObj <- SDMXStructureType(xmlObj)
+        strTypeObj <- SDMXStructureType(xmlObj, resource)
         type <- getStructureType(strTypeObj)
       }
       stop(paste("Unsupported SDMX Type '",type,"'",sep=""))

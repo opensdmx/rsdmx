@@ -4,14 +4,8 @@
 #SDMX REST Request builder class (still experimental)
 setClass("SDMXRESTRequestBuilder",
          contains = "SDMXRequestBuilder",
-         representation(
-          skipAgencyId = "logical",
-          forceAgencyId = "logical"  
-         ),
-         prototype = list(
-          skipAgencyId = FALSE,
-          forceAgencyId = FALSE
-         ),
+         representation(),
+         prototype = list(),
          validity = function(object){
            #eventual validation rules
            return(TRUE);

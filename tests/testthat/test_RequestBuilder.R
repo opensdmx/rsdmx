@@ -43,8 +43,6 @@ test_that("SDMXRESTRequestBuilder",{
   expect_equal(request@repoUrl, "http://www.myorg.org/repository")
   expect_is(request@handler, "function")
   expect_equal(request@compliant, TRUE)
-  expect_equal(request@skipAgencyId, FALSE)
-  expect_equal(request@forceAgencyId, FALSE)
   
   webRequest <- request@handler(regUrl = "http://www.myorg.org/registry", repoUrl = "http://www.myorg.org/repository",
                                 agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,

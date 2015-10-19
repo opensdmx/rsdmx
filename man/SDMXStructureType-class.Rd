@@ -21,11 +21,12 @@
 }
 
 \usage{
-SDMXStructureType(xmlObj)
+SDMXStructureType(xmlObj, resource)
 }
 
 \arguments{
 \item{xmlObj}{an object of class "XMLInternalDocument"}
+\item{resource}{an object of class "character" giving the SDMX REST Resource}
 }
 
 \author{ Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}}

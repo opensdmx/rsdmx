@@ -57,7 +57,8 @@ setSDMXServiceProviders <- function(){ # nocov start
         builder = SDMXRESTRequestBuilder(
           regUrl = "http://data.fao.org/sdmx/registry",
           repoUrl = "http://data.fao.org/sdmx/repository",
-          compliant = TRUE)
+          compliant = TRUE,
+          unsupportedResources = list("dataflow"))
       ),
       
       #UN-ILO
@@ -66,7 +67,8 @@ setSDMXServiceProviders <- function(){ # nocov start
         builder = SDMXRESTRequestBuilder(
           regUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
           repoUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
-          compliant = TRUE, skipAgencyId = TRUE)                  
+          compliant = TRUE, skipAgencyId = TRUE,
+          unsupportedResources = list("dataflow"))                  
       ),
       
       #UIS (UNESCO)
@@ -75,7 +77,8 @@ setSDMXServiceProviders <- function(){ # nocov start
         builder = SDMXRESTRequestBuilder(
           regUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx",
           repoUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx", 
-          compliant = TRUE)
+          compliant = TRUE,
+          unsupportedResources = list("dataflow"))
       ),
       
       #national data providers
@@ -88,7 +91,8 @@ setSDMXServiceProviders <- function(){ # nocov start
         builder = SDMXRESTRequestBuilder(
           regUrl = "http://stat.abs.gov.au/restsdmx/sdmx.ashx",
           repoUrl = "http://stat.abs.gov.au/restsdmx/sdmx.ashx", 
-          compliant = FALSE, forceAgencyId = TRUE)
+          compliant = FALSE, forceAgencyId = TRUE,
+          unsupportedResources = list("dataflow"))
       ),
       
       #NBB {Belgium}
@@ -98,7 +102,8 @@ setSDMXServiceProviders <- function(){ # nocov start
         builder = SDMXRESTRequestBuilder(
           regUrl = "http://stat.nbb.be/RestSDMX/sdmx.ashx",
           repoUrl = "http://stat.nbb.be/RestSDMX/sdmx.ashx", 
-          compliant = FALSE)
+          compliant = FALSE,
+          unsupportedResources = list("dataflow"))
       ),
       
       #INSEE {France}

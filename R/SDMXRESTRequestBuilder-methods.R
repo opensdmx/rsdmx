@@ -3,6 +3,7 @@
 
 #constructor
 SDMXRESTRequestBuilder <- function(regUrl, repoUrl, compliant,
+                                   unsupportedResources = list(),
                                    skipAgencyId = FALSE, forceAgencyId = FALSE){
   
   #function to handle request
@@ -11,11 +12,15 @@ SDMXRESTRequestBuilder <- function(regUrl, repoUrl, compliant,
                                     compliant){    
     
     if(is.null(resource))
-      stop("Missing SDMX service resource")  
+      stop("Missing SDMX service resource")
+    
+    if(resource %in% unsupportedResources)
+      stop("Unsupported SDMX service resource for this provider")
     
     restResource <- switch(resource,
-      "data" = ifelse(compliant, resource, "GetData"),
-      "datastructure" = ifelse(compliant, resource, "GetDataStructure")
+      "dataflow" = ifelse(compliant, resource, "GetKeyFamily"),
+      "datastructure" = ifelse(compliant, resource, "GetDataStructure"),
+      "data" = ifelse(compliant, resource, "GetData")
     )
     
     #wrap argument values
@@ -25,7 +30,41 @@ SDMXRESTRequestBuilder <- function(regUrl, repoUrl, compliant,
     
     #REST resource handler
     resourceHandler <- switch(resource,
+      
+      #'dataflow' resource (path="dataflow/{agencyID}/{resourceID}/{version}")
+      #-----------------------------------------------------------------------
+      "dataflow" = function(xmlObj){
+        if(is.null(obj$resourceId)) obj$resourceId = "all"
+        if(is.null(obj$version)) obj$version = "latest"
         
+        #base dataflow request
+        if(compliant){
+          req <- paste(obj$regUrl, obj$resource, obj$agencyId, obj$resourceId, obj$version, sep = "/")        
+        }else{
+          req <- paste(obj$regUrl, obj$resource, obj$resourceId, sep = "/")
+        }
+        return(req)
+      },
+                              
+      #'datastructure' resource (path="datastructure/{agencyID}/{resourceID}/{version})
+      #--------------------------------------------------------------------------------
+      "datastructure" = function(obj){
+        
+        if(is.null(obj$resourceId)) obj$resourceId = "all"
+        if(is.null(obj$version)) obj$version = "latest"
+        
+        #base datastructure request
+        if(compliant){
+          req <- paste(obj$regUrl, obj$resource, obj$agencyId, obj$resourceId, obj$version, sep = "/")
+          if(forceAgencyId) req <- paste(req, obj$agencyId, sep = "/")
+          req <- paste0(req, "?references=children") #TODO to see later to have arg for this
+        }else{
+          req <- paste(obj$regUrl, obj$resource, obj$resourceId, sep = "/")
+          if(forceAgencyId) req <- paste(req, obj$agencyId, sep = "/")
+        }
+        return(req)
+      },
+                              
       #'data' resource (path="data/{flowRef}/{key}/{providerRef})
       #----------------------------------------------------------
       "data" = function(obj){
@@ -59,25 +98,6 @@ SDMXRESTRequestBuilder <- function(regUrl, repoUrl, compliant,
           req <- paste0(req, "endPeriod=", end) 
         }
         return(req)
-      },
-      
-      #'datastructure' resource (path="datastructure/{agencyID}/{resourceID}/{version})
-      #--------------------------------------------------------------------------------
-      "datastructure" = function(obj){
-        
-        if(is.null(obj$resourceId)) obj$resourceId = "all"
-        if(is.null(obj$version)) obj$version = "latest"
-        
-        #base datastructure request
-        if(compliant){
-          req <- paste(obj$regUrl, obj$resource, obj$agencyId, obj$resourceId, obj$version, sep = "/")
-          if(forceAgencyId) req <- paste(req, obj$agencyId, sep = "/")
-          req <- paste0(req, "?references=children") #TODO to see later to have arg for this
-        }else{
-          req <- paste(obj$regUrl, obj$resource, obj$resourceId, sep = "/")
-          if(forceAgencyId) req <- paste(req, obj$agencyId, sep = "/")
-        }
-        return(req)
       }
                               
     )
@@ -91,9 +111,7 @@ SDMXRESTRequestBuilder <- function(regUrl, repoUrl, compliant,
       regUrl = regUrl,
       repoUrl = repoUrl,
       handler = serviceRequestHandler,
-      compliant = compliant,
-      skipAgencyId = skipAgencyId,
-      forceAgencyId = forceAgencyId)
+      compliant = compliant)
 }
 
 

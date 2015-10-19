@@ -14,6 +14,16 @@ context("SDMXHelpers")
 #ECB
 #---
 
+#-> dataflow
+test_that("ECB - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "ECB", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
 #-> datastructure
 test_that("ECB - datastructure",{
   testthat::skip_on_travis()
@@ -39,6 +49,16 @@ test_that("ECB - data",{
 #ESTAT (EUROSTAT)
 #---------------
 
+#-> dataflow
+test_that("ESTAT - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "ESTAT", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
 #-> datastructure
 test_that("ESTAT - datastructure",{
   testthat::skip_on_travis()
@@ -63,6 +83,16 @@ test_that("ESTAT - data",{
 
 #OECD
 #----
+
+#-> dataflow
+test_that("OECD - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "OECD", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
 
 #-> datastructure
 test_that("OECD - datastructure",{
@@ -214,6 +244,16 @@ test_that("NBB - data",{
 
 #INSEE (France)
 #-------------
+
+#-> dataflow
+test_that("INSEE - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "INSEE", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
 
 #-> datastructure
 test_that("INSEE - datastructure",{
