@@ -66,7 +66,7 @@ setSDMXServiceProviders <- function(){ # nocov start
         builder = SDMXRESTRequestBuilder(
           regUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
           repoUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
-          compliant = TRUE)                  
+          compliant = TRUE, skipAgencyId = TRUE)                  
       ),
       
       #UIS (UNESCO)

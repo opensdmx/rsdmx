@@ -5,9 +5,11 @@
 setClass("SDMXRESTRequestBuilder",
          contains = "SDMXRequestBuilder",
          representation(
+          skipAgencyId = "logical",
           forceAgencyId = "logical"  
          ),
          prototype = list(
+          skipAgencyId = FALSE,
           forceAgencyId = FALSE
          ),
          validity = function(object){

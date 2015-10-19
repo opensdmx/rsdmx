@@ -13,6 +13,18 @@ context("SDMXHelpers")
 
 #ECB
 #---
+
+#-> datastructure
+test_that("ECB - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "ECB", resource = "datastructure", resourceId = "ECB_DD1")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
 test_that("ECB - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
@@ -24,17 +36,20 @@ test_that("ECB - data",{
   }
 })
 
-test_that("ECB - datastructure",{
+#ESTAT (EUROSTAT)
+#---------------
+
+#-> datastructure
+test_that("ESTAT - datastructure",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
-  sdmx <- readSDMX(agencyId = "ECB", resource = "datastructure", resourceId = "ECB_DD1")
+  sdmx <- readSDMX(agencyId = "ESTAT", resource = "datastructure", resourceId = "DSD_nama_gdp_c")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXDataStructureDefinition")
   }
 })
 
-#ESTAT (EUROSTAT)
-#---------------
+#-> data
 test_that("ESTAT - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
@@ -46,17 +61,20 @@ test_that("ESTAT - data",{
   }
 })
 
-test_that("ESTAT - datastructure",{
+#OECD
+#----
+
+#-> datastructure
+test_that("OECD - datastructure",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
-  sdmx <- readSDMX(agencyId = "ESTAT", resource = "datastructure", resourceId = "DSD_nama_gdp_c")
+  sdmx <- readSDMX(agencyId = "OECD", resource = "datastructure", resourceId = "TABLE1")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXDataStructureDefinition")
   }
 })
 
-#OECD
-#----
+#-> data
 test_that("OECD - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
@@ -67,17 +85,20 @@ test_that("OECD - data",{
   }
 })
 
-test_that("OECD - datastructure",{
+#FAO (UN-FAO)
+#------------
+
+#-> datastructure
+test_that("FAO - datastructure",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
-  sdmx <- readSDMX(agencyId = "OECD", resource = "datastructure", resourceId = "TABLE1")
+  sdmx <- readSDMX(agencyId = "FAO", resource = "datastructure", resourceId = "FAOSTAT")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXDataStructureDefinition")
   }
 })
 
-#FAO (UN-FAO)
-#------------
+#-> data
 test_that("FAO - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
@@ -89,17 +110,20 @@ test_that("FAO - data",{
   }
 })
 
-test_that("FAO - datastructure",{
+#ILO (UN-ILO)
+#------------
+
+#-> datastructure
+test_that("ILO - datastructure",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
-  sdmx <- readSDMX(agencyId = "FAO", resource = "datastructure", resourceId = "FAOSTAT")
+  sdmx <- readSDMX(agencyId = "ILO", resource = "datastructure", resourceId = "YI_ALB_EAP_TEAP_SEX_AGE_NB")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXDataStructureDefinition")
   }
 })
 
-#ILO (UN-ILO)
-#------------
+#-> data
 test_that("ILO - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
@@ -111,17 +135,20 @@ test_that("ILO - data",{
   }
 })
 
-test_that("ILO - datastructure",{
+#UIS (UNESCO)
+#------------
+
+#-> datastructure
+test_that("UIS - datastructure",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
-  sdmx <- readSDMX(agencyId = "ILO", resource = "datastructure", resourceId = "YI_ALB_EAP_TEAP_SEX_AGE_NB")
+  sdmx <- readSDMX(agencyId = "UIS", resource = "datastructure", resourceId = "all")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXDataStructureDefinition")
   }
 })
 
-#UIS (UNESCO)
-#------------
+#-> data
 test_that("UIS - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
@@ -133,20 +160,22 @@ test_that("UIS - data",{
   }
 })
 
-test_that("UIS - datastructure",{
+#national data providers
+
+#ABS (Australia)
+#-------------
+
+#-> datastructure
+test_that("ABS - datastructure",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
-  sdmx <- readSDMX(agencyId = "UIS", resource = "datastructure", resourceId = "all")
+  sdmx <- readSDMX(agencyId = "ABS", resource = "datastructure", resourceId = "ALC")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXDataStructureDefinition")
   }
 })
 
-
-#national data providers
-
-#ABS (Australia)
-#-------------
+#-> data
 test_that("ABS - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
@@ -158,17 +187,20 @@ test_that("ABS - data",{
   }
 })
 
-test_that("ABS - datastructure",{
+#NBB (Belgium)
+#-------------
+
+#-> datastructure
+test_that("NBB - datastructure",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
-  sdmx <- readSDMX(agencyId = "ABS", resource = "datastructure", resourceId = "ALC")
+  sdmx <- readSDMX(agencyId = "NBB", resource = "datastructure", resourceId = "QNA")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXDataStructureDefinition")
   }
 })
 
-#NBB (Belgium)
-#-------------
+#-> data
 test_that("NBB - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
@@ -180,17 +212,20 @@ test_that("NBB - data",{
   }
 })
 
-test_that("NBB - datastructure",{
+#INSEE (France)
+#-------------
+
+#-> datastructure
+test_that("INSEE - datastructure",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
-  sdmx <- readSDMX(agencyId = "NBB", resource = "datastructure", resourceId = "QNA")
+  sdmx <- readSDMX(agencyId = "INSEE", resource = "datastructure", resourceId = "IPI-2010-A21")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXDataStructureDefinition")
   }
 })
 
-#INSEE (France)
-#-------------
+#-> data
 test_that("INSEE - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
@@ -199,14 +234,5 @@ test_that("INSEE - data",{
                    start = 2010, end = 2015)
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXStructureSpecificData")
-  }
-})
-
-test_that("INSEE - datastructure",{
-  testthat::skip_on_travis()
-  testthat::skip_on_cran()
-  sdmx <- readSDMX(agencyId = "INSEE", resource = "datastructure", resourceId = "IPI-2010-A21")
-  if(!is.null(sdmx)){
-    expect_is(sdmx, "SDMXDataStructureDefinition")
   }
 })
