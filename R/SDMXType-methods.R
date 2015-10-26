@@ -1,6 +1,24 @@
-# E.Blondel - 2013/06/10
-#=======================
-
+#' @name SDMXType
+#' @rdname SDMXType
+#' @aliases SDMXType,SDMXType-method
+#' 
+#' @usage
+#' SDMXType(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "SDMXType"
+#' 
+#' @note
+#' At now, the following types have been implemented and successfully tested:
+#'  - \code{StructureType},
+#'  - \code{GenericDataType},
+#'  - \code{CompactDataType},
+#'  - \code{StructureSpecificDataType},
+#'  - \code{UtilityDataType},
+#'  - \code{MessageGroupType}
+#' 
+#' @seealso \link{readSDMX}
+#'
 SDMXType <- function(xmlObj){
 	new("SDMXType", type = type.SDMXType(xmlObj));
 }

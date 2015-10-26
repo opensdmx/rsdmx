@@ -1,7 +1,18 @@
-# E.Blondel - 2013/06/09
-#=======================
-
-#SDMX abstract class
+#' @name SDMXType
+#' @docType class
+#' @aliases SDMXType-class
+#' @title Class "SDMXType"
+#' 
+#' @description A basic class to handle the type of a SDMX-ML document
+#' 
+#' @slot type Object of class "character" giving the type of the SDMX-ML document
+#' 
+#' @section Warning:
+#' this class is not useful in itself, but all SDMX non-abstract classes will 
+#' encapsulate it as slot, when parsing an SDMX-ML document.
+#'          
+#' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
+#' 
 setClass("SDMXType",
 		representation(
 				type = "character"
