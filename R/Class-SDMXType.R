@@ -8,7 +8,7 @@ setClass("SDMXType",
 		),
 		prototype = list(type = "SDMXGenericData"),
 		validity = function(object){
-			type <- getType(object);
+			type <- object@type;
 			valid <- switch(type,
                       "StructureType"             = TRUE,
                       "GenericDataType"           = TRUE,
