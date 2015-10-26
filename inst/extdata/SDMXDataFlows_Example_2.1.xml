@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mes:Structure xmlns:mes="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message" xmlns:str="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure" xmlns:com="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <mes:Header>
+    <mes:ID>ID</mes:ID>
+    <mes:Test>false</mes:Test>
+    <mes:Prepared>2015-10-26T20:35:14.146Z</mes:Prepared>
+    <mes:Sender id="Unknown"/>
+    <mes:Receiver id="Unknown"/>
+  </mes:Header>
+  <mes:Structures>
+    <str:Dataflows>
+      <str:Dataflow id="DS-001" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=MYORG:DS-001(1.0)" agencyID="MYORG" version="1.0">
+        <com:Name xml:lang="en">Dataset 1</com:Name>
+        <com:Name xml:lang="fr">Jeu de données 1</com:Name>
+		<com:Name xml:lang="es">Juego de datos 1</com:Name>
+        <str:Structure>
+          <Ref id="DSD_DS-001" version="1.0" agencyID="MYORG" package="datastructure" class="DataStructure"/>
+        </str:Structure>
+      </str:Dataflow>
+	  <str:Dataflow id="DS-002" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=MYORG:DS-002(1.0)" agencyID="MYORG" version="1.0">
+        <com:Name xml:lang="en">Dataset 2</com:Name>
+        <com:Name xml:lang="fr">Jeu de données 2</com:Name>
+		<com:Name xml:lang="es">Juego de datos 2</com:Name>
+        <str:Structure>
+          <Ref id="DSD_DS-002" version="1.0" agencyID="MYORG" package="datastructure" class="DataStructure"/>
+        </str:Structure>
+      </str:Dataflow>
+      <str:Dataflow id="DS-003" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=MYORG:DS-003(1.0)" agencyID="MYORG" version="1.0">
+        <com:Name xml:lang="en">Dataset 3</com:Name>
+        <com:Name xml:lang="fr">Jeu de données 3</com:Name>
+		<com:Name xml:lang="es">Juego de datos 3</com:Name>
+        <str:Structure>
+          <Ref id="DSD_DS-003" version="1.0" agencyID="MYORG" package="datastructure" class="DataStructure"/>
+        </str:Structure>
+      </str:Dataflow>
+	  <str:Dataflow id="DS-004" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=MYORG:DS-004(1.0)" agencyID="MYORG" version="1.0">
+        <com:Name xml:lang="en">Dataset 4</com:Name>
+        <com:Name xml:lang="fr">Jeu de données 4</com:Name>
+		<com:Name xml:lang="es">Juego de datos 4</com:Name>
+        <str:Structure>
+          <Ref id="DSD_DS-004" version="1.0" agencyID="MYORG" package="datastructure" class="DataStructure"/>
+        </str:Structure>
+      </str:Dataflow>
+	  <str:Dataflow id="DS-005" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=MYORG:DS-005(1.0)" agencyID="MYORG" version="1.0">
+        <com:Name xml:lang="en">Dataset 5</com:Name>
+        <com:Name xml:lang="fr">Jeu de données 5</com:Name>
+		<com:Name xml:lang="es">Juego de datos 5</com:Name>
+        <str:Structure>
+          <Ref id="DSD_DS-005" version="1.0" agencyID="MYORG" package="datastructure" class="DataStructure"/>
+        </str:Structure>
+      </str:Dataflow>
+    </str:Dataflows>
+  </mes:Structures>
+</mes:Structure>
