@@ -27,16 +27,6 @@ test_that("getSDMXSchema - 2.0",{
 	expect_is(schema, "SDMXSchema")
 })
 
-test_that("getSDMXHeader - 2.0",{
-	header <- getSDMXHeader(sdmxObj)
-	expect_is(header, "SDMXHeader")
-})
-
-test_that("getSDMXType - 2.0",{
-	type <- getSDMXType(sdmxObj)
-	expect_is(type, "SDMXType")
-})
-
 #tests for 2.1
 file2 <- system.file("extdata", "SDMXGenericDataExample_2.1.xml", package = "rsdmx")
 sdmxObj2 <- readSDMX(file2, isURL = FALSE)
@@ -53,16 +43,6 @@ test_that("as.XML - 2.1",{
 test_that("getSDMXSchema - 2.1",{
   schema <- getSDMXSchema(sdmxObj2)
   expect_is(schema, "SDMXSchema")
-})
-
-test_that("getSDMXHeader - 2.1",{
-  header <- getSDMXHeader(sdmxObj2)
-  expect_is(header, "SDMXHeader")
-})
-
-test_that("getSDMXType - 2.1",{
-  type <- getSDMXType(sdmxObj2)
-  expect_is(type, "SDMXType")
 })
 
 #SDMXConcepts

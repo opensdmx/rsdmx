@@ -1,7 +1,38 @@
-# E.Blondel - 2014/08/21
-#=======================
-
-#SDMX Attribute class
+#' @name SDMXAttribute
+#' @docType class
+#' @aliases SDMXAttribute-class
+#' 
+#' @title Class "SDMXAttribute"
+#' @description A basic class to handle a SDMX Attribute
+#' 
+#' @slot conceptRef Object of class "character" giving the attribute conceptRef (required)
+#' @slot conceptVersion Object of class "character" giving the attribute concept version
+#' @slot conceptAgency Object of class "character" giving the attribute concept agency
+#' @slot conceptSchemeRef Object of class "character" giving the attribute conceptScheme ref
+#' @slot conceptSchemeAgency Object of class "character" giving the attribute conceptScheme agency
+#' @slot codelist Object of class "character" giving the codelist ref name
+#' @slot codelistVersion Object of class "character" giving the codelist ref version
+#' @slot codelistAgency Object of class "character" giving the codelist ref agency
+#' @slot attachmentLevel Object of class "character" giving the attachment level (e.g. DataSet)
+#' @slot assignmentStatus Object of class "character" giving the assignment status (e.g. Mandatory)
+#' @slot isTimeFormat Object of class "logical"
+#' @slot crossSectionalAttachDataset Object of class "logical"
+#' @slot crossSectionalAttachGroup Object of class "logical"
+#' @slot crossSectionalAttachSection Object of class "logical"
+#' @slot crossSectionalAttachObservation Object of class "logical"
+#' @slot isEntityAttribute Object of class "logical" indicating if the Attribute is an entity Attribute. Default value is FALSE
+#' @slot isNonObservationTimeAttribute Object of class "logical" indicating if the Attribute is a non-observation Attribute. Default value is FALSE
+#' @slot isCountAttribute Object of class "logical" indicating if the Attribute is a count Attribute. Default value is FALSE
+#' @slot isFrequencyAttribute Object of class "logical" indicating if the Attribute is a frequency Attribute. Default value is FALSE
+#' @slot isIdentityAttribute Object of class "logical" indicating if the Attribute is an identity Attribute. Default value is FALSE
+#' 
+#' @section Warning:
+#' This class is not useful in itself, but all SDMX non-abstract classes will 
+#' encapsulate it as slot, when parsing an SDMX-ML document (DataStructures, or 
+#' DataStructureDefinitions)
+#' 
+#' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
+#' 
 setClass("SDMXAttribute",
          representation(
            #attributes

@@ -35,14 +35,12 @@ test_that("SDMXSchema - 2.1",{
 
 test_that("getVersion - 2.0",{
 	obj1 = SDMXSchema(xmlObj1)
-	schema1 = getVersion(obj1)
-	expect_equal(schema1, "2.0")
+	expect_equal(obj1@version, "2.0")
 })
 
 test_that("getVersion - 2.1",{
   obj2 = SDMXSchema(xmlObj2)
-  schema2 = getVersion(obj2)
-  expect_equal(schema2, "2.1")
+  expect_equal(obj2@version, "2.1")
 })
 
 

@@ -35,12 +35,10 @@ test_that("SDMXType - 2.1",{
 
 test_that("getType - 2.0",{
 	obj1 <- SDMXType(xmlObj1)
-	type1 <- getType(obj1)
-	expect_equal(type1, "GenericDataType")
+	expect_equal(obj1@type, "GenericDataType")
 })
 
 test_that("getType - 2.1",{
   obj2 <- SDMXType(xmlObj2)
-  type2 <- getType(obj2)
-  expect_equal(type2, "GenericDataType")
+  expect_equal(obj2@type, "GenericDataType")
 })
