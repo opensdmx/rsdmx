@@ -1,5 +1,5 @@
 #' @name SDMXSchema
-#' @rdname SDMSchema
+#' @rdname SDMXSchema
 #' @aliases SDMXSchema,SDMXSchema-method
 #' 
 #' @usage
@@ -9,6 +9,7 @@
 #' @return an object of class "SDMXSchema"
 #' 
 #' @seealso \link{readSDMX}
+#' 
 
 SDMXSchema <- function(xmlObj) {
         new("SDMXSchema", version = version.SDMXSchema(xmlObj));
