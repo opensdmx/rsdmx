@@ -22,11 +22,6 @@ test_that("as.XML - 2.0",{
 	expect_is(xml, c("XMLInternalDocument", "XMLAbstractDocument", "oldClass"))
 })
 
-test_that("getSDMXSchema - 2.0",{
-	schema <- getSDMXSchema(sdmxObj)
-	expect_is(schema, "SDMXSchema")
-})
-
 #tests for 2.1
 file2 <- system.file("extdata", "SDMXGenericDataExample_2.1.xml", package = "rsdmx")
 sdmxObj2 <- readSDMX(file2, isURL = FALSE)
@@ -38,11 +33,6 @@ test_that("readSDMX - 2.1",{
 test_that("as.XML - 2.1",{
   xml <- as.XML(sdmxObj2)
   expect_is(xml, c("XMLInternalDocument", "XMLAbstractDocument", "oldClass"))
-})
-
-test_that("getSDMXSchema - 2.1",{
-  schema <- getSDMXSchema(sdmxObj2)
-  expect_is(schema, "SDMXSchema")
 })
 
 #SDMXConcepts
