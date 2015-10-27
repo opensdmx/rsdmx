@@ -1,6 +1,15 @@
-# E.Blondel - 2014/08/21
-#=======================
-
+#' @name SDMXPrimaryMeasure
+#' @rdname SDMXPrimaryMeasure
+#' @aliases SDMXPrimaryMeasure,SDMXPrimaryMeasure-method
+#' 
+#' @usage
+#' SDMXPrimaryMeasure(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "SDMXPrimaryMeasure"
+#' 
+#' @seealso \link{readSDMX}
+#'
 SDMXPrimaryMeasure <- function(xmlObj){
   
   sdmxVersion <- version.SDMXSchema(xmlDoc(xmlObj))

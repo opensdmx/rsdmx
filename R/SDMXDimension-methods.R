@@ -1,6 +1,15 @@
-# E.Blondel - 2014/08/20
-#=======================
-
+#' @name SDMXDimension
+#' @rdname SDMXDimension
+#' @aliases SDMXDimension,SDMXDimension-method
+#' 
+#' @usage
+#' SDMXDimension(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "SDMXDimension"
+#' 
+#' @seealso \link{readSDMX}
+#'
 SDMXDimension <- function(xmlObj){
   
   sdmxVersion <- version.SDMXSchema(xmlDoc(xmlObj))

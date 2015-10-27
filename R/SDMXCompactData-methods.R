@@ -1,6 +1,15 @@
-# E.Blondel - 2013/06/10
-#=======================
-
+#' @name SDMXCompactData
+#' @rdname SDMXCompactData
+#' @aliases SDMXCompactData,SDMXCompactData-method
+#' 
+#' @usage
+#' SDMXCompactData(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "SDMXCompactData"
+#' 
+#' @seealso \link{readSDMX}
+#'
 SDMXCompactData <- function(xmlObj){
   new("SDMXCompactData",
       SDMX(xmlObj)

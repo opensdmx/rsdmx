@@ -1,6 +1,15 @@
-# E.Blondel - 2014/08/20
-#=======================
-
+#' @name SDMXTimeDimension
+#' @rdname SDMXTimeDimension
+#' @aliases SDMXTimeDimension,SDMXTimeDimension-method
+#' 
+#' @usage
+#' SDMXTimeDimension(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "SDMXTimeDimension"
+#' 
+#' @seealso \link{readSDMX}
+#'
 SDMXTimeDimension <- function(xmlObj){
   
   sdmxVersion <- version.SDMXSchema(xmlDoc(xmlObj))

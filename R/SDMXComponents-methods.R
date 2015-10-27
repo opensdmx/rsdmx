@@ -1,6 +1,15 @@
-# E.Blondel - 2014/08/20
-#=======================
-
+#' @name SDMXComponents
+#' @rdname SDMXComponents
+#' @aliases SDMXComponents,SDMXComponents-method
+#' 
+#' @usage
+#' SDMXComponents(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "SDMXComponents"
+#' 
+#' @seealso \link{readSDMX}
+#'
 SDMXComponents <- function(xmlObj){
   new("SDMXComponents",
       Dimensions = dimensions.SDMXComponents(xmlObj),

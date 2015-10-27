@@ -1,6 +1,15 @@
-# E.Blondel - 2014/08/19
-#=======================
-
+#' @name SDMXConceptScheme
+#' @rdname SDMXConceptScheme
+#' @aliases SDMXConceptScheme,SDMXConceptScheme-method
+#' 
+#' @usage
+#' SDMXConceptScheme(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "SDMXConceptScheme"
+#' 
+#' @seealso \link{readSDMX}
+#'
 SDMXConceptScheme <- function(xmlObj){
   
   sdmxVersion <- version.SDMXSchema(xmlDoc(xmlObj))

@@ -1,7 +1,33 @@
-# E.Blondel - 2015/09/22
-#========================
-
-#constructor
+#' @name SDMXServiceProvider
+#' @rdname SDMXServiceProvider
+#' @aliases SDMXServiceProvider,SDMXServiceProvider-method
+#' 
+#' @usage
+#' SDMXServiceProvider(agencyId, name, scale, country, builder)
+#' 
+#' @param agencyId an object of class "character" giving the a provider identifier
+#' @param name an object of class "character" giving the name of the provider
+#' @param scale an object of class "character" giving the scale of the datasource, 
+#'        either "international" or "national". Default value is "international".
+#' @param country an object of class "character" giving the ISO 3-alpha code of 
+#'        the country (if scale is "national"). Default value is \code{NA}
+#' @param builder an object of class "SDMXRequestBuilder" that will performs the 
+#'        web request building for this specific provider
+#' @return an object of class "SDMXServiceProvider"
+#' 
+#' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
+#' 
+#' @examples
+#'   #let's create a SDMXRESTRequestBuilder
+#'   #(assuming that "My Organization" implements SDMX REST web-services)
+#'   myBuilder <- SDMXRESTRequestBuilder(regUrl = "http://www.myorg.org/registry",
+#'                                       repoUrl = "http://www.myorg.org/repository",
+#'                                       compliant = TRUE)
+#'   
+#'   #create a SDMXServiceProvider
+#'   provider <- SDMXServiceProvider(agencyId = "MYORG", name = "My Organization",
+#'                                   builder = myBuilder)
+#'                                   
 SDMXServiceProvider <- function(agencyId, name,
                                 scale = "international", country = as.character(NA),
                                 builder) {
@@ -16,7 +42,25 @@ SDMXServiceProvider <- function(agencyId, name,
 #other non-S4 methods
 #====================
 
-#function to set a well-known list of SDMX service providers
+#' @name setSDMXServiceProviders
+#' @aliases setSDMXServiceProviders
+#' @title setSDMXServiceProviders
+#'
+#' @description function used internally by \pkg{rsdmx}, when loading the package, 
+#'              to set the list of \link{SDMXServiceProvider} known by \pkg{rsdmx} 
+#'              (hence known by \link{readSDMX} to query data/metadata in an easier 
+#'              way). For internal use only (this function does not provide any 
+#'              value for the end user, but it is here documented for transparency, 
+#'              and to explain how the package works.)
+#'              
+#' @usage
+#' setSDMXServiceProviders()
+#' 
+#' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
+#' 
+#' @seealso \link{getSDMXServiceProviders} \link{addSDMXServiceProvider}
+#'          \link{findSDMXServiceProvider} \link{readSDMX}
+#'
 setSDMXServiceProviders <- function(){ # nocov start
   
   listOfProviders <- list(
@@ -123,7 +167,39 @@ setSDMXServiceProviders <- function(){ # nocov start
 } # nocov end
 
 
-#function to add a SDMX provider
+#' @name addSDMXServiceProvider
+#' @aliases addSDMXServiceProvider
+#' @title addSDMXServiceProvider
+#' @description function that allows configuring a new \link{SDMXServiceProvider} 
+#'              as part of the list of providers known by \pkg{rsdmx}, hence by 
+#'              \link{readSDMX}
+#'              
+#' @usage
+#' addSDMXServiceProvider(provider)
+#' 
+#' @param provider an object of class "SDMXServiceProvider"
+#' 
+#' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
+#' 
+#' @examples
+#'   #create a provider
+#'   myBuilder <- SDMXRESTRequestBuilder(regUrl = "http://www.myorg.org/registry",
+#'                                       repoUrl = "http://www.myorg.org/repository",
+#'                                       compliant = TRUE)
+#'   myProvider <- SDMXServiceProvider(
+#'     agencyId = "MYORG", name = "My Organization",
+#'     builder = myBuilder
+#'   )
+#'   
+#'   #add it
+#'   addSDMXServiceProvider(myProvider)
+#'   
+#'   #check out the list of existing provider (only list the agency Ids)
+#'   sapply(slot(getSDMXServiceProviders(), "providers"), function(x){slot(x, "agencyId")})
+#'   
+#' @seealso \link{getSDMXServiceProviders} \link{findSDMXServiceProvider}
+#'          \link{readSDMX}
+#'          
 addSDMXServiceProvider <- function(provider){
   .rsdmx.options$providers <- new("SDMXServiceProviders",
                                   providers = c(slot(.rsdmx.options$providers, "providers"), provider)
@@ -131,15 +207,54 @@ addSDMXServiceProvider <- function(provider){
 }
 
 
-#function to retrieve the list of SDMX service providers
-#(default ones, and/or providers configured by the user)
+#' @name getSDMXServiceProviders
+#' @aliases getSDMXServiceProviders
+#' @title getSDMXServiceProviders
+#' @description function used to get the list of \link{SDMXServiceProvider} known
+#'              by \pkg{rsdmx} (hence known by \link{readSDMX} to query data or 
+#'              metadata in an easier way). This function can be easily used to 
+#'              interrogate the list of known providers, and eventually consider 
+#'              adding one at runtime with \link{addSDMXServiceProvider}
+#' @usage
+#' getSDMXServiceProviders()
+#' 
+#' @return an object of class "list" (of \link{SDMXServiceProvider})
+#' 
+#' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
+#' 
+#' @seealso \link{addSDMXServiceProvider} \link{findSDMXServiceProvider}
+#'          \link{readSDMX}
+#'          
 getSDMXServiceProviders <- function(){
   out <- .rsdmx.options$providers
   return(out)
 }
 
 
-#find a service provider
+#' @name findSDMXServiceProvider
+#' @aliases findSDMXServiceProvider
+#' @title findSDMXServiceProvider
+#' 
+#' @description function that allows searching by provider id in the list of 
+#'              known \link{SDMXServiceProvider}. This function can be used for 
+#'              interrogating the list of default providers known by \pkg{rsdmx}, 
+#'              and is used internally by \link{readSDMX}
+#' @usage
+#' findSDMXServiceProvider(agencyId)
+#' 
+#' @param agencyId an object of class "character" representing a provider 
+#'        identifier
+#' @return an object of class "SDMXServiceProvider" (or NULL if no matching)
+#' 
+#' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
+#' 
+#' @examples
+#'   #find OECD provider
+#'   oecd.provider <- findSDMXServiceProvider("OECD")
+#'   
+#' @seealso \link{getSDMXServiceProviders} \link{addSDMXServiceProvider}
+#'          \link{readSDMX}
+#'
 findSDMXServiceProvider <- function(agencyId){
   res <- unlist(lapply(slot(getSDMXServiceProviders(),"providers"),
                        function(x) {if(x@agencyId == agencyId){return(x)}}))

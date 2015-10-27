@@ -1,6 +1,15 @@
-# E.Blondel - 2015/10/19
-#=======================
-
+#' @name SDMXDataFlow
+#' @rdname SDMXDataFlow
+#' @aliases SDMXDataFlow,SDMXDataFlow-method
+#' 
+#' @usage
+#' SDMXDataFlow(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "SDMXDataFlow"
+#' 
+#' @seealso \link{readSDMX}
+#'
 SDMXDataFlow <- function(xmlObj){
   
   sdmxVersion <- version.SDMXSchema(xmlDoc(xmlObj))

@@ -1,6 +1,18 @@
-# E.Blondel - 2014/08/03
-#=======================
-
+#' @name SDMXStructureType
+#' @rdname SDMXStructureType
+#' @aliases SDMXStructureType,SDMXStructureType-method
+#' 
+#' @usage
+#' SDMXStructureType(xmlObj, resource)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param resource object of class "character" giving the REST resource to be
+#'        queried (required to distinguish between dataflows and datastructures in
+#'        SDMX 2.0)
+#' @return an object of class "SDMXStructureType"
+#' 
+#' @seealso \link{readSDMX}
+#'
 SDMXStructureType <- function(xmlObj, resource){
 	new("SDMXStructureType",
       SDMXType(xmlObj),
@@ -46,7 +58,7 @@ type.SDMXStructureType <- function(xmlObj, resource){
         strType <- switch(resource,
                     "dataflow" = "DataflowsType",
                     "datastructure" = "DataStructuresType",
-                    NULL)
+                    NULL = "DataStructuresType")
         return(strType)
       }
     }

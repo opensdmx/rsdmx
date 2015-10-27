@@ -1,6 +1,15 @@
-# E.Blondel - 2014/08/20
-#=======================
-
+#' @name SDMXCodelists
+#' @rdname SDMXCodelists
+#' @aliases SDMXCodelists,SDMXCodelists-method
+#' 
+#' @usage
+#' SDMXCodelists(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "SDMXCodelists"
+#' 
+#' @seealso \link{readSDMX}
+#'
 SDMXCodelists <- function(xmlObj){
   new("SDMXCodelists",
       SDMX(xmlObj),

@@ -39,4 +39,4 @@ Collate:
   SDMXDataStructure-methods.R SDMXDataStructures-methods.R SDMXDataStructureDefinition-methods.R
   SDMXDataFlow-methods.R SDMXDataFlows-methods.R
   SDMXRequestBuilder-methods.R SDMXRESTRequestBuilder-methods.R SDMXServiceProvider-methods.R SDMXServiceProviders-methods.R
-  readSDMX.R profile.R
+  readSDMX.R profile.R rsdmx.R

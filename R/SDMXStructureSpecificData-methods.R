@@ -1,6 +1,15 @@
-# E.Blondel - 2015/01/13
-#=======================
-
+#' @name SDMXStructureSpecificData
+#' @rdname SDMXStructureSpecificData
+#' @aliases SDMXStructureSpecificData,SDMXStructureSpecificData-method
+#' 
+#' @usage
+#' SDMXStructureSpecificData(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "SDMXStructureSpecificData"
+#' 
+#' @seealso \link{readSDMX}
+#'
 SDMXStructureSpecificData <- function(xmlObj){
   new("SDMXStructureSpecificData",
       SDMX(xmlObj)

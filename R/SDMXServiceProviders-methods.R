@@ -1,7 +1,14 @@
-# E.Blondel - 2015/10/06
-#========================
-
-#constructor
+#' @name SDMXServiceProviders
+#' @rdname SDMXServiceProviders
+#' @aliases SDMXServiceProviders,SDMXServiceProviders-method
+#' 
+#' @usage
+#'SDMXServiceProviders(providers)
+#'
+#' @param providers an object of class "list" (of \link{SDMXServiceProvider}) 
+#'        configured by default and/or at runtime in \pkg{rsdmx}
+#' @return an object of class "SDMXServiceProviders"
+#'
 SDMXServiceProviders <- function(providers) {
   new("SDMXServiceProviders", providers = providers);
 }

@@ -1,6 +1,15 @@
-# E.Blondel - 2014/08/03
-#=======================
-
+#' @name SDMXMessageGroup
+#' @rdname SDMXMessageGroup
+#' @aliases SDMXMessageGroup,SDMXMessageGroup-method
+#' 
+#' @usage
+#' SDMXMessageGroup(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "SDMXMessageGroup"
+#' 
+#' @seealso \link{readSDMX}
+#'
 SDMXMessageGroup <- function(xmlObj){
   new("SDMXMessageGroup",
       SDMX(xmlObj)

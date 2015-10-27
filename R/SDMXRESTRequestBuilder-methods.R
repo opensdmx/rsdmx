@@ -1,7 +1,35 @@
-# E.Blondel - 2015/09/22
-#========================
-
-#constructor
+#' @name SDMXRESTRequestBuilder
+#' @rdname SDMXRESTRequestBuilder
+#' @aliases SDMXRESTRequestBuilder,SDMXRESTRequestBuilder-method
+#' 
+#' @usage
+#'  SDMXRESTRequestBuilder(regUrl, repoUrl, compliant, unsupportedResources,
+#'                         skipAgencyId, forceAgencyId)
+#'
+#' @param regUrl an object of class "character" giving the base Url of the SDMX 
+#'        service registry
+#' @param repoUrl an object of class "character" giving the base Url of the SDMX 
+#'        service repository
+#' @param compliant an object of class "logical" indicating if the web-service 
+#'        is compliant with the SDMX REST web-service specifications
+#' @param unsupportedResources an object of class "list" giving eventual unsupported 
+#'        REST resources. Default is an empty list object
+#' @param skipAgencyId an object of class "logical" indicating that agencyId 
+#'        should be skipped. Used to control lack of strong SDMX REST compliance 
+#'        from data providers. For now, it applies only for the "data" resource.
+#' @param forceAgencyId an object of class "logical" indicating if the agencyId 
+#'        as to be added at the end of the request. Default value is \code{FALSE}. 
+#'        For some providers, the \code{all} value for the \code{agencyId} is not 
+#'        allowed, in this case, the \code{agencyId} of the data provider has to 
+#'        be forced in the web-request 
+#'                
+#' @examples
+#'   #how to create a SDMXRESTRequestBuilder
+#'   requestBuilder <- SDMXRESTRequestBuilder(
+#'     regUrl = "http://www.myorg/registry",
+#'     repoUrl = "http://www.myorg/repository",
+#'     compliant = TRUE)
+#'
 SDMXRESTRequestBuilder <- function(regUrl, repoUrl, compliant,
                                    unsupportedResources = list(),
                                    skipAgencyId = FALSE, forceAgencyId = FALSE){

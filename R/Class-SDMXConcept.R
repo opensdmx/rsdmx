@@ -1,7 +1,30 @@
-# E.Blondel - 2014/08/19
-#=======================
-
-#SDMX Concept class
+#' @name SDMXConcept
+#' @docType class 
+#' @aliases SDMXConcept-class
+#' 
+#' @title Class "SDMXConcept"
+#' @description A basic class to handle a SDMX Concept
+#' 
+#' @slot id Object of class "character" giving the ID of the concept (required)
+#' @slot agencyID Object of class "character" giving the AgencyID
+#' @slot version Object of class "character" giving the concept version
+#' @slot uri Object of class "character" giving the concept uri
+#' @slot urn Object of class "character" giving the concept urn
+#' @slot isExternalReference Object of class "logical" indicating if the concept is an external reference
+#' @slot coreRepresentation Object of class "character" giving the core representation
+#' @slot coreRepresentationAgency Object of class "character" giving the core representation agency
+#' @slot parent Object of class "character" giving the concept parent
+#' @slot parentAgency Object of class "character" giving the parentAgency
+#' @slot Name Object of class "list" giving the concept name (by language) - required
+#' @slot Description Object of class "list" giving the concept description (by language)
+#'
+#' @section Warning:
+#' This class is not useful in itself, but all SDMX non-abstract classes will 
+#' encapsulate it as slot, when parsing an SDMX-ML document (Concepts, or 
+#' DataStructureDefinition)
+#'    
+#' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
+#'
 setClass("SDMXConcept",
          representation(
            #attributes

@@ -1,6 +1,15 @@
-# E.Blondel - 2013/06/10
-#=======================
-
+#' @name SDMXGenericData
+#' @rdname SDMXGenericData
+#' @aliases SDMXGenericData,SDMXGenericData-method
+#' 
+#' @usage
+#' SDMXGenericData(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "SDMXGenericData"
+#' 
+#' @seealso \link{readSDMX}
+#'
 SDMXGenericData <- function(xmlObj){
   new("SDMXGenericData",
       SDMX(xmlObj)

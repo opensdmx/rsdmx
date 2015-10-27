@@ -9,7 +9,7 @@
 #' @return an object of class "SDMXHeader"
 #' 
 #' @seealso \link{readSDMX}
-
+#'
 SDMXHeader <- function(xmlObj){
 
 	sdmxVersion <- slot(SDMXSchema(xmlObj), "version")
