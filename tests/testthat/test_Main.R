@@ -17,22 +17,12 @@ test_that("readSDMX - 2.0",{
 	expect_is(sdmxObj, "SDMXGenericData")
 })
 
-test_that("as.XML - 2.0",{
-	xml <- as.XML(sdmxObj)
-	expect_is(xml, c("XMLInternalDocument", "XMLAbstractDocument", "oldClass"))
-})
-
 #tests for 2.1
 file2 <- system.file("extdata", "SDMXGenericDataExample_2.1.xml", package = "rsdmx")
 sdmxObj2 <- readSDMX(file2, isURL = FALSE)
 
 test_that("readSDMX - 2.1",{
   expect_is(sdmxObj2, "SDMXGenericData")
-})
-
-test_that("as.XML - 2.1",{
-  xml <- as.XML(sdmxObj2)
-  expect_is(xml, c("XMLInternalDocument", "XMLAbstractDocument", "oldClass"))
 })
 
 #SDMXConcepts
