@@ -9,7 +9,10 @@
 
 ## Overview
 
-``rsdmx`` is a package to parse/read SDMX data and metadata in R. It provides a set of classes and methods to read data and metadata documents exchanged through the Statistical Data and Metadata Exchange (SDMX) framework. The package currently focuses on the SDMX XML standard format (SDMX-ML). [Learn more](https://github.com/opensdmx/rsdmx/wiki#package_overview).
+``rsdmx`` is a package to parse/read SDMX data and metadata in R. It provides:
+* a set of classes and methods to read data and metadata documents exchanged through the Statistical Data and Metadata Exchange (SDMX) framework. The package currently focuses on the SDMX XML standard format (SDMX-ML).
+* an interface to SDMX web-services for a list of well-known data providers, such as EUROSTAT, OECD, and others 
+[Learn more](https://github.com/opensdmx/rsdmx/wiki#package_overview).
 
 **Collating scattered SDMX data sources**
 
