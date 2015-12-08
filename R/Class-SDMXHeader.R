@@ -65,47 +65,38 @@ setClass("SDMXHeader",
 			
 			# ID validation
 			if(is.null(object@ID)){
-        message("Missing 'ID' in header")
-        return(FALSE)
+        			message("Missing 'ID' in header")
+        			return(FALSE)
 			}
-      if(attr(regexpr("[a-zA-Z0-9@-_@\\$]", object@ID),"match.length") == -1){
-        message("Invalid 'ID' in header")
-        return(FALSE)
-      }
+      			if(attr(regexpr("[a-zA-Z0-9@-_@\\$]", object@ID),"match.length") == -1){
+        			message("Invalid 'ID' in header")
+        			return(FALSE)
+      			}
         
 			#Test/Truncated
 			if(!is.logical(object@Test)){
-			  message("Invalid 'Test' value in header")
-        return(FALSE)
+				message("Invalid 'Test' value in header")
+			        return(FALSE)
 			}
 			if(!is.logical(object@Truncated)){
-			  message("Invalid 'Truncated' value in header")
-        return(FALSE)
+				message("Invalid 'Truncated' value in header")
+        			return(FALSE)
 			}
         
 			#Dates/Time validation
 			if(is.na(object@Prepared)){
-			  message("Invalid 'Prepared' value in header")
-        return(FALSE)
+				message("Invalid 'Prepared' value in header")
+        			return(FALSE)
 			}
 			
 			#Sender/Receiver validation
-			if(is.na(object@Sender$id) || nchar(object@Sender$id,"w") == 0){
-			  message("Missing 'Sender' id in header") 
-        return(FALSE)
-			}
-      if(nchar(object@Receiver$id,"w") == 0) return(FALSE)
-			
-			#TODO KeyFamilyRef validation
-			#TODO KeyFamilyAgency validation
-			#TODO DataSetAgency validation
-			
-			#DatasetID validation
-			#if(object@DatasetID != NULL && length(object@Receiver) == 0) return(FALSE);
-			
-			#TODO DataSetAction validation
-			#TODO ReportingBegin validation
-			#TODO ReportingEnd validation
+			#Note: deactivated for CONVENIENCE for users (Sender/Receiver mandatory according to SDMX speces)
+			#but WorldBank do not constrain users to specify them at download time
+			##if(is.na(object@Sender$id) || nchar(object@Sender$id,"w") == 0){
+			##	message("Missing 'Sender' id in header") 
+        		##	return(FALSE)
+			##}
+      			##if(nchar(object@Receiver$id,"w") == 0) return(FALSE)
 			
 			return(TRUE);
 		}
