@@ -13,53 +13,54 @@
 SDMXHeader <- function(xmlObj){
 
 	sdmxVersion <- slot(SDMXSchema(xmlObj), "version")
-  VERSION.10 <- sdmxVersion == "1.0"
-  VERSION.20 <- sdmxVersion == "2.0"
-  VERSION.21 <- sdmxVersion == "2.1"
+	VERSION.10 <- sdmxVersion == "1.0"
+	VERSION.20 <- sdmxVersion == "2.0"
+	VERSION.21 <- sdmxVersion == "2.1"
   
-  #header elements
+  	#header elements
 	node <- xmlRoot(xmlObj)[[1]];
 	children <- xmlChildren(node)
 	
 	#header attributes
 	#-----------------
 	id <- xmlValue(children$ID);
-  test <- FALSE
-  if(!is.null(children$Test))
-	  test <- as.logical(xmlValue(children$Test));
-	truncated <- FALSE
-  if(!is.null(children$Truncated))
-    truncated <- as.logical(xmlValue(children$Truncated));
-	name <- xmlValue(children$Name);	
+  	test <- FALSE
+  	if(!is.null(children$Test))
+  		test <- as.logical(xmlValue(children$Test));
+		truncated <- FALSE
+  	if(!is.null(children$Truncated))
+    		truncated <- as.logical(xmlValue(children$Truncated));
+		name <- xmlValue(children$Name);	
 	
 	#sender
 	sender <- list(id=NA,name=NA,contact=NULL)
-	sender$id <- xmlGetAttr(children$Sender,"id");
-	senderList <- xmlChildren(children$Sender)
-	if(length(senderList) != 0){
-    #name
-		sender$name <- new.env()
-    senderNames <- senderList[names(senderList) == "Name"]
-		sapply(senderNames,
-		       function(x) {
-		         if(xmlName(x) == "Name"){
-               lang <- xmlGetAttr(x,"xml:lang")
-               if(is.null(lang)) lang <- xmlGetAttr(x,"lang")
-               if(is.null(lang)) lang <- "en"
-		           sender$name[[lang]] <- xmlValue(x)
-		         }            
-		       })
-		sender$name <- as.list(sender$name)
+	if(!is.null(children$Sender)){
+		sender$id <- xmlGetAttr(children$Sender,"id");
+		senderList <- xmlChildren(children$Sender)
+		if(length(senderList) != 0){
+    			#name
+			sender$name <- new.env()
+    			senderNames <- senderList[names(senderList) == "Name"]
+			sapply(senderNames,
+				function(x) {
+					if(xmlName(x) == "Name"){
+        	 				lang <- xmlGetAttr(x,"xml:lang")
+               					if(is.null(lang)) lang <- xmlGetAttr(x,"lang")
+               					if(is.null(lang)) lang <- "en"
+               					sender$name[[lang]] <- xmlValue(x)
+					}            
+				})
+			sender$name <- as.list(sender$name)
     
-    #contact
-    sender$contact <- NULL #TODO currently not implemented
+    			#contact
+    			sender$contact <- NULL #TODO currently not implemented
 		
-    #timezone
-    if(VERSION.21){
-		  sender$timezone <- xmlValue(senderNames[["Timezone"]])
+    			#timezone
+    			if(VERSION.21){
+    				sender$timezone <- xmlValue(senderNames[["Timezone"]])
+    			}
 		}
 	}
-
 	
 	#receiver
 	receiver <- list(id=NA,name=NA,contact=NULL)
@@ -68,25 +69,25 @@ SDMXHeader <- function(xmlObj){
 		receiverList <- xmlChildren(children$Receiver)
 		if(length(receiverList) != 0){
 			#name
-      receiver$name <- new.env()
-      receiverNames <- receiverList[names(receiverList) == "Name"]
-      sapply(receiverNames, function(x) {
-        if(xmlName(x) == "Name"){
-          lang <- xmlGetAttr(x,"xml:lang")
-          if(is.null(lang)) lang <- xmlGetAttr(x,"lang")
-          if(is.null(lang)) lang <- "en"
-          receiver$name[[lang]] <- xmlValue(x)
-        }
-      })
-      receiver$name <- as.list(receiver$name)
+      			receiver$name <- new.env()
+      			receiverNames <- receiverList[names(receiverList) == "Name"]
+      			sapply(receiverNames, function(x) {
+        			if(xmlName(x) == "Name"){
+          				lang <- xmlGetAttr(x,"xml:lang")
+          				if(is.null(lang)) lang <- xmlGetAttr(x,"lang")
+          				if(is.null(lang)) lang <- "en"
+          				receiver$name[[lang]] <- xmlValue(x)
+        			}
+      			})
+      			receiver$name <- as.list(receiver$name)
       
-      #contact
-      sender$contact <- NULL #TODO currently not implemented
+      			#contact
+      			sender$contact <- NULL #TODO currently not implemented
       
-      #timezone
-      if(VERSION.21){
-        sender$timezone <- xmlValue(senderNames[["Timezone"]])
-      }
+			#timezone
+      			if(VERSION.21){
+        			sender$timezone <- xmlValue(senderNames[["Timezone"]])
+      			}
 			
 		}
 	}
