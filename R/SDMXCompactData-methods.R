@@ -41,7 +41,7 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, ...) {
   }
   if(nrow(authorityNs) > 1){
     warning("More than one target dataset namespace found!")
-    authorityNs <- authorityNs[1L]
+    authorityNs <- authorityNs[1L,]
   }
   
   if(hasAuthorityNS){
