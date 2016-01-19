@@ -29,16 +29,15 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, ...) {
   hasAuthorityNS <- FALSE
   nsDefs.df <- getNamespaces(x)
   ns <- findNamespace(nsDefs.df, nsExpr)
-  if(length(ns) == 0){
-    ns.df <- nsDefs.df[
-      regexpr("http://www.sdmx.org", nsDefs.df$uri,
+  
+  authorityNs <- nsDefs.df[
+    regexpr("http://www.sdmx.org", nsDefs.df$uri,
               "match.length", ignore.case = TRUE) == -1
-      & regexpr("http://www.w3.org", nsDefs.df$uri,
+    & regexpr("http://www.w3.org", nsDefs.df$uri,
                 "match.length", ignore.case = TRUE) == -1,]
-    authorityNs <- ns.df[ns.df$uri == ns,]
-    if(nrow(authorityNs) > 0){
-      hasAuthorityNS <- TRUE
-    }
+  
+  if(nrow(authorityNs) > 0){
+    hasAuthorityNS <- TRUE
     if(nrow(authorityNs) > 1){
       warning("More than one target dataset namespace found!")
       authorityNs <- authorityNs[1L,]
