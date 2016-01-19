@@ -14,6 +14,7 @@
 #'  - \code{GenericDataType},
 #'  - \code{CompactDataType},
 #'  - \code{StructureSpecificDataType},
+#'  - \code{CrossSectionalDataType},
 #'  - \code{UtilityDataType},
 #'  - \code{MessageGroupType}
 #' 

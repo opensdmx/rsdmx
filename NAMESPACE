@@ -16,6 +16,7 @@ exportClasses(
   SDMXCompactData,
   SDMXUtilityData,
   SDMXStructureSpecificData,
+  SDMXCrossSectionalData,
   SDMXMessageGroup,
   SDMXConcept,
   SDMXConceptScheme,
@@ -51,6 +52,7 @@ export(
   SDMXCompactData,
   SDMXUtilityData,
   SDMXStructureSpecificData,
+  SDMXCrossSectionalData,
   SDMXMessageGroup,
   SDMXConcept,
   SDMXConceptScheme,
@@ -91,6 +93,7 @@ S3method(as.data.frame, SDMXGenericData)
 S3method(as.data.frame, SDMXCompactData)
 S3method(as.data.frame, SDMXUtilityData)
 S3method(as.data.frame, SDMXStructureSpecificData)
+S3method(as.data.frame, SDMXCrossSectionalData)
 S3method(as.data.frame, SDMXMessageGroup)
 S3method(as.data.frame, SDMXConcepts)
 S3method(as.data.frame, SDMXCodelists)

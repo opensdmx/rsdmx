@@ -26,6 +26,7 @@ setClass("SDMXType",
                       "CompactDataType"           = TRUE,
                       "UtilityDataType"           = TRUE,
                       "StructureSpecificDataType" = TRUE,
+                      "CrossSectionalDataType"    = TRUE,
                       "MessageGroupType"          = TRUE,
 					            FALSE
 			);

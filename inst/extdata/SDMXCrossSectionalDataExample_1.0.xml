@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns4:CrossSectionalData xmlns:ns2="http://www.myorg.org/xml/schemas/repoCrossSection" 
+xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/common" 
+xmlns:ns4="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/message" 
+xmlns:ns3="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/generic" 
+xmlns:ns9="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/query" 
+xmlns:ns5="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/cross" 
+xmlns:ns6="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/compact" 
+xmlns:ns10="http://www.newyorkfed.org/xml/schemas/FX/utility" 
+xmlns:ns7="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/structure" 
+xmlns:ns8="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/utility">
+<ns4:Header>
+  <ns4:ID>ID</ns4:ID>
+  <ns4:Test>false</ns4:Test>
+  <ns4:Name xml:lang="en">Test dataset</ns4:Name>
+  <ns4:Prepared>2016-01-19</ns4:Prepared>
+  <ns4:Sender id="MYORG">
+    <ns4:Name xml:lang="en">My org</ns4:Name>
+  </ns4:Sender>    
+</ns4:Header>
+<DataSet xmlns="" xmlns:ns11="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/common">
+  <ns2:Group groupVar1="A" groupVar2="B" groupVar3="C">
+    <ns2:Section sectionVar="sec1">
+      <ns2:obs1 confidentiality="F" multiplier="1" currency="EUR" status="OK" value="1.1" decimals="1"/>
+      <ns2:obs2 confidentiality="F" multiplier="1" currency="EUR" status="OK" value="1.2" decimals="1"/>
+      <ns2:obs3 confidentiality="F" multiplier="1" currency="EUR" status="OK" value="1.3" decimals="1"/>
+    </ns2:Section>
+    <ns2:Section sectionVar="sec2">
+      <ns2:obs1 confidentiality="F" multiplier="1" currency="EUR" status="OK" value="2.1" decimals="1"/>
+      <ns2:obs2 confidentiality="F" multiplier="1" currency="EUR" status="OK" value="2.2" decimals="1"/>
+      <ns2:obs3 confidentiality="F" multiplier="1" currency="EUR" status="OK" value="2.3" decimals="1"/>
+    </ns2:Section>
+  </ns2:Group>
+</DataSet>
+</ns4:CrossSectionalData>

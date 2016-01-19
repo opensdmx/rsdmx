@@ -29,6 +29,7 @@ At now, the following types have been implemented and successfully tested:
  - \code{GenericDataType},
  - \code{CompactDataType},
  - \code{StructureSpecificDataType},
+ - \code{CrossSectionalDataType},
  - \code{UtilityDataType},
  - \code{MessageGroupType}
 }

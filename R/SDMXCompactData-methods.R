@@ -28,20 +28,21 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, ...) {
   #namespace
   hasAuthorityNS <- FALSE
   nsDefs.df <- getNamespaces(x)
-  ns <- findNamespace(nsDefs.df, nsExpr)
-
-  ns.df <- nsDefs.df[
-    regexpr("http://www.sdmx.org", nsDefs.df$uri,
-            "match.length", ignore.case = TRUE) == -1
-    & regexpr("http://www.w3.org", nsDefs.df$uri,
-              "match.length", ignore.case = TRUE) == -1,]
-  authorityNs <- ns.df
-  if(nrow(authorityNs) > 0){
-    hasAuthorityNS <- TRUE
-  }
-  if(nrow(authorityNs) > 1){
-    warning("More than one target dataset namespace found!")
-    authorityNs <- authorityNs[1L]
+  ns <- findNamespace(nsDefs.df, "crosssection")
+  if(length(ns) == 0){
+    ns.df <- nsDefs.df[
+      regexpr("http://www.sdmx.org", nsDefs.df$uri,
+              "match.length", ignore.case = TRUE) == -1
+      & regexpr("http://www.w3.org", nsDefs.df$uri,
+                "match.length", ignore.case = TRUE) == -1,]
+    authorityNs <- ns.df[ns.df$uri == ns,]
+    if(nrow(authorityNs) > 0){
+      hasAuthorityNS <- TRUE
+    }
+    if(nrow(authorityNs) > 1){
+      warning("More than one target dataset namespace found!")
+      authorityNs <- authorityNs[1L,]
+    }
   }
   
   if(hasAuthorityNS){

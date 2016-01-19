@@ -93,7 +93,7 @@ setMethod(f = "getNamespaces", signature = "SDMX", function(obj){
 
 findNamespace <- function(namespaces, messageType){
   regexp <- paste(messageType, "$", sep = "")
-  ns <- c(ns = namespaces$uri[grep(regexp, namespaces$uri)])
+  ns <- c(ns = namespaces$uri[grep(regexp, namespaces$uri, ignore.case = TRUE)])
   return(ns)
 }
 

@@ -1,6 +1,6 @@
 Package: rsdmx
 Version: 0.5-1
-Date: 2015-10-08
+Date: 2016-01-19
 Title: Tools for Reading SDMX Data and Metadata
 Authors@R: c(
   person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com"),
@@ -22,7 +22,7 @@ Collate:
   Class-SDMXSchema.R Class-SDMXType.R Class-SDMXStructureType.R
   Class-SDMXHeader.R Class-SDMXFooterMessage.R Class-SDMXFooter.R
   Class-SDMX.R Class-SDMXGenericData.R Class-SDMXCompactData.R Class-SDMXUtilityData.R
-  Class-SDMXStructureSpecificData.R Class-SDMXMessageGroup.R
+  Class-SDMXStructureSpecificData.R Class-SDMXCrossSectionalData.R Class-SDMXMessageGroup.R
   Class-SDMXConcept.R Class-SDMXConceptScheme.R Class-SDMXConcepts.R
   Class-SDMXCode.R Class-SDMXCodelist.R Class-SDMXCodelists.R Class-SDMXDimension.R
   Class-SDMXTimeDimension.R Class-SDMXPrimaryMeasure.R Class-SDMXAttribute.R Class-SDMXComponents.R
@@ -32,7 +32,7 @@ Collate:
   SDMXSchema-methods.R SDMXType-methods.R SDMXStructureType-methods.R SDMXHeader-methods.R
   SDMXFooterMessage-methods.R SDMXFooter-methods.R SDMX-methods.R
   SDMXGenericData-methods.R SDMXCompactData-methods.R SDMXUtilityData-methods.R
-  SDMXStructureSpecificData-methods.R SDMXMessageGroup-methods.R
+  SDMXStructureSpecificData-methods.R SDMXCrossSectionalData-methods.R SDMXMessageGroup-methods.R
   SDMXConcept-methods.R SDMXConceptScheme-methods.R SDMXConcepts-methods.R SDMXCode-methods.R
   SDMXCodelist-methods.R SDMXCodelists-methods.R SDMXDimension-methods.R SDMXTimeDimension-methods.R
   SDMXPrimaryMeasure-methods.R SDMXAttribute-methods.R SDMXComponents-methods.R
