@@ -28,7 +28,7 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, ...) {
   #namespace
   hasAuthorityNS <- FALSE
   nsDefs.df <- getNamespaces(x)
-  ns <- findNamespace(nsDefs.df, "crosssection")
+  ns <- findNamespace(nsDefs.df, nsExpr)
   if(length(ns) == 0){
     ns.df <- nsDefs.df[
       regexpr("http://www.sdmx.org", nsDefs.df$uri,
