@@ -158,6 +158,66 @@ setSDMXServiceProviders <- function(){ # nocov start
           regUrl = "http://www.bdm.insee.fr/series/sdmx",
           repoUrl = "http://www.bdm.insee.fr/series/sdmx", 
           compliant = TRUE)
+      ),
+      
+      #other data providers
+      #--------------------
+      
+      #KNOEMA (Open data plateform)
+      SDMXServiceProvider(
+        agencyId = "KNOEMA", name = "KNOEMA knowledge plateform",
+        builder = SDMXRequestBuilder(
+          regUrl = "http://knoema.fr/api/1.0/sdmx",
+          repoUrl = "http://knoema.fr/api/1.0/sdmx",
+          handler = function(regUrl, repoUrl, agencyId, resource, resourceId, version, 
+                             flowRef, key, start, end, compliant){
+            
+            if(is.null(resource)) stop("Missing SDMX service resource")
+            
+            #wrap argument values
+            obj <- list(regUrl = regUrl, repoUrl = repoUrl,
+                        agencyId = agencyId, resource = resource, resourceId = resourceId, version = version,
+                        flowRef = flowRef, key = key, start = start, end = end)
+            
+            #resource handler
+            resourceHandler <- switch(resource,
+                                      
+              #'dataflow' resource (path="/")
+              #-----------------------------------------------------------------------
+              "dataflow" = function(obj){
+                return(obj$regUrl)
+              },
+              #'datastructure' resource (path="/{resourceID})
+              #-----------------------------------------------------------------------
+              "datastructure" = function(obj){
+                req <- paste(obj$regUrl, obj$resourceId, sep = "/")
+                return(req)
+              },
+              #'data' resource (path="getdata?dataflow={flowRef}&key={key})
+              #----------------------------------------------------------
+              "data" = function(obj){
+                if(is.null(obj$flowRef)) stop("Missing flowRef value")
+                if(is.null(obj$key)) obj$key = "."
+                
+                #base data request
+                req <- sprintf("%s/getdata?dataflow=%s&key=%s", obj$repoUrl, obj$flowRef, obj$key)
+                
+                #DataQuery
+                #-> temporal extent (if any)
+                if(!is.null(obj$start) | !is.null(obj$end)) {
+                  warning("start/end parameters ignored for this SDMX API")
+                }
+                
+                return(req)
+              })
+            
+            #handle rest resource path
+            req <- resourceHandler(obj)
+            return(req)
+            
+          },
+          compliant = FALSE
+        )
       )
       
   )
