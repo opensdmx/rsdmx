@@ -28,7 +28,7 @@ It is already possible to query well-known datasources, using the embedded [help
 
 **Status**
 At now, the package allows to read:
-* Datasets (``GenericData``, ``CompactData``, ``StructureSpecificData``, ``UtilityData`` and ``MessageGroup`` SDMX-ML types)
+* Datasets (``GenericData``, ``CompactData``, ``StructureSpecificData``, ``CrossSectionalData``, ``UtilityData`` and ``MessageGroup`` SDMX-ML types)
 * Concepts (``Concept``, ``ConceptScheme`` and ``Concepts`` SDMX-ML types)
 * Codelists (``Code``, ``Codelist`` and ``Codelists`` SDMX-ML types)
 * DataStructures / KeyFamilies - with all subtypes
