@@ -55,10 +55,13 @@ type.SDMXStructureType <- function(xmlObj, resource){
       if(length(ccXML)>0) return("ConceptsType")
       if(length(clXML)>0) return("CodelistsType")
       if(length(dsXML)>0){
-        strType <- switch(resource,
-                    "dataflow" = "DataflowsType",
-                    "datastructure" = "DataStructuresType",
-                    NULL = "DataStructuresType")
+        if(is.null(resource)){
+          strType <- "DataStructuresType"
+        }else{
+          strType <- switch(resource,
+                            "dataflow" = "DataflowsType",
+                            "datastructure" = "DataStructuresType")
+        }
         return(strType)
       }
     }

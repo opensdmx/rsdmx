@@ -61,7 +61,7 @@ SDMXRESTRequestBuilder <- function(regUrl, repoUrl, compliant,
       
       #'dataflow' resource (path="dataflow/{agencyID}/{resourceID}/{version}")
       #-----------------------------------------------------------------------
-      "dataflow" = function(xmlObj){
+      "dataflow" = function(obj){
         if(is.null(obj$resourceId)) obj$resourceId = "all"
         if(is.null(obj$version)) obj$version = "latest"
         
