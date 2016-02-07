@@ -276,3 +276,38 @@ test_that("INSEE - data",{
     expect_is(sdmx, "SDMXStructureSpecificData")
   }
 })
+
+#other data providers
+
+#KNOEMA
+#------
+
+#-> dataflow
+test_that("KNOEMA - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "KNOEMA", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
+#-> datastructure
+test_that("KNOEMA - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "KNOEMA", resource = "datastructure", resourceId = "SADG2015")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
+test_that("KNOEMA - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "KNOEMA", resource = "data", flowRef = "SADG2015")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXStructureSpecificData")
+  }
+})
