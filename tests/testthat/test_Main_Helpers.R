@@ -182,7 +182,7 @@ test_that("UIS - dataflow",{
 test_that("UIS - datastructure",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
-  sdmx <- readSDMX(agencyId = "UIS", resource = "datastructure", resourceId = "all")
+  sdmx <- readSDMX(agencyId = "UIS", resource = "datastructure", resourceId = "EDULIT_DS")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXDataStructureDefinition")
   }
