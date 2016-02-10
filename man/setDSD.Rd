@@ -6,7 +6,7 @@
 \alias{setDSD,SDMXData-method}
 \title{setDSD}
 \usage{
-set(obj, dsd)
+setDSD(obj, dsd)
 
 \S4method{setDSD}{SDMXData}(obj, dsd)
 }
