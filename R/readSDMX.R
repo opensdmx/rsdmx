@@ -5,7 +5,7 @@
 #'
 #' @usage readSDMX(file, isURL,
 #'                 provider, agencyId, resource, resourceId, version,
-#'                 flowRef, key, key.mode, start, end)
+#'                 flowRef, key, key.mode, start, end, dsd, verbose)
 #'                 
 #' @param file path to SDMX-ML document that needs to be parsed
 #' @param isURL a value of class "logical" either the path is an url, and data 

@@ -56,7 +56,7 @@ dsdRef.SDMXData <- function(xmlObj){
 #' @aliases setDSD,SDMXData-method
 #' @title setDSD
 #' @description set the 'dsd' slot of a \code{SDMXData} object
-#' @usage set(obj, dsd)
+#' @usage setDSD(obj, dsd)
 #' 
 #' @param obj An object deriving from class "SDMXData"
 #' @param dsd An object of class "SDMXDataStructureDefinition"
