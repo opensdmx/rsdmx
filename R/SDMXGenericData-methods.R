@@ -71,9 +71,10 @@ as.data.frame.SDMXGenericData <- function(x, labels = FALSE, ...){
   }
   
   #output structure
-  serieNames <- c(keysNames, "Time", "ObsValue")
-  if(!is.null(obsAttrsNames)) serieNames <- c(serieNames, obsAttrsNames)
+  serieNames <- keysNames
   if(!is.null(serieAttrsNames)) serieNames <- c(serieNames, serieAttrsNames)
+  serieNames <- c(serieNames, "obsTime", "obsValue")
+  if(!is.null(obsAttrsNames)) serieNames <- c(serieNames, obsAttrsNames)
   
   #obs parser function
   parseObs <- function(obs){
@@ -228,7 +229,7 @@ as.data.frame.SDMXGenericData <- function(x, labels = FALSE, ...){
   dataset <- do.call("rbind.fill", lapply(seriesXML, function(x){
     serie <- parseSerie(x)
   }))
-  
+  colnames(dataset) <- serieNames
   dataset$obsValue <- as.numeric(dataset$obsValue)
   
   if(any(as.character(dataset$obsValue) == "NaN", na.rm = TRUE)){
