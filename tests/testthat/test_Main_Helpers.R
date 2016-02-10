@@ -287,6 +287,40 @@ test_that("INSEE - data",{
   }
 })
 
+#INEGI (MEXICO)
+#-------------
+
+#-> dataflow
+test_that("INEGI - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "INEGI", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
+#-> datastructure
+test_that("INEGI - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "INEGI", resource = "datastructure", resourceId = "NAWWE")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
+test_that("INEGI - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "INEGI", resource = "data",
+                   flowRef = "DF_PIB_PB2008", start = 2010, end = 2015)
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXStructureSpecificData")
+  }
+})
+
 #other data providers
 
 #KNOEMA

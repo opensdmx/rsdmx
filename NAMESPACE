@@ -79,6 +79,8 @@ export(
   findNamespace,
   isSoapRequestEnvelope,
   getSoapRequestResult,
+  isRegistryInterfaceEnvelope,
+  getRegistryInterfaceResult,
   addSDMXServiceProvider,
   findSDMXServiceProvider,
   setSDMXServiceProviders,

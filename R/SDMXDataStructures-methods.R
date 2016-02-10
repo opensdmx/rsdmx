@@ -27,7 +27,9 @@ datastructures.SDMXDataStructures <- function(xmlObj){
   VERSION.21 <- sdmxVersion == "2.1"
   
   namespaces <- namespaces.SDMX(xmlObj)
-  messageNs <- findNamespace(namespaces, "message")
+  messageNsString <- "message"
+  if(isRegistryInterfaceEnvelope(xmlObj, FALSE)) messageNsString <- "registry"
+  messageNs <- findNamespace(namespaces, messageNsString)
   strNs <- findNamespace(namespaces, "structure")
   
   dsXML <- NULL

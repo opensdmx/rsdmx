@@ -123,7 +123,6 @@ isSoapRequestEnvelope <- function(xmlObj){
   return(length(ns) > 0)
 }
 
-
 #' @name getSoapRequestResult
 #' @aliases getSoapRequestResult
 #' @title getSoapRequestResult
@@ -147,5 +146,55 @@ getSoapRequestResult <- function(xmlObj){
   response <- xmlChildren(body[[1]]); rm(body);
   result <- xmlChildren(response[[1]]); rm(response);
   sdmxDoc <- xmlDoc(xmlChildren(result[[1]])[[1]]); rm(result);
+  return(sdmxDoc)
+}
+
+
+#' @name isRegistryInterfaceEnvelope
+#' @aliases isRegistryInterfaceEnvelope
+#' @title isRegistryInterfaceEnvelope
+#' @description function used to detect if the XML document corresponds to a 
+#'              registry interface query
+#' @usage
+#' isRegistryInterfaceEnvelope(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param nativeRoot object of class "logical" indicating if it is the native document
+#' @return an object of class "logical"
+#' 
+#' @section Warning:
+#' \code{isRegistryInterfaceEnvelope} is a function used internally by \link{readSDMX}
+#' 
+#' @seealso \link{SDMX-class} \link{readSDMX}
+#' 
+#' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
+#' 
+
+isRegistryInterfaceEnvelope <- function(xmlObj, nativeRoot){
+  root <- xmlRoot(xmlObj)
+  if(nativeRoot) root <- root[[1]]
+  return(xmlName(root) == "RegistryInterface")
+}
+
+#' @name getRegistryInterfaceResult
+#' @aliases getRegistryInterfaceResult
+#' @title getRegistryInterfaceResult
+#' @description function used to extract the SDMX-ML message from a registry
+#'              interface query
+#' @usage
+#' getRegistryInterfaceResult(xmlObj)
+#' 
+#' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @return an object of class "XMLInternalDocument derived from XML package
+#' 
+#' @section Warning:
+#' \code{getRegistryInterfaceResult} is a function used internally by \link{readSDMX}
+#' 
+#' @seealso \link{SDMX-class} \link{readSDMX}
+#' 
+#' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
+
+getRegistryInterfaceResult <- function(xmlObj){
+  sdmxDoc <- xmlDoc(xmlChildren(xmlRoot(xmlObj))[[1]])
   return(sdmxDoc)
 }

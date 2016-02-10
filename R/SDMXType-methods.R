@@ -25,6 +25,13 @@ SDMXType <- function(xmlObj){
 }
 
 type.SDMXType <- function(xmlObj){
+  
+  child <- xmlRoot(xmlObj)
+  if(xmlName(child) == "RegistryInterface"){
+    child <- xmlChildren(child)[[2]]
+    if(xmlName(child) == "QueryStructureResponse") return("StructureType")
+  }
+  
   type <- xmlName(xmlRoot(xmlObj))
   if(attr(regexpr(":", type, ignore.case = T),"match.length") > 0){
     type <-strsplit(xmlName(xmlRoot(xmlObj), full=T), ":")[[1]][2]

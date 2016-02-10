@@ -68,10 +68,10 @@ setClass("SDMXHeader",
         			message("Missing 'ID' in header")
         			return(FALSE)
 			}
-      			if(attr(regexpr("[a-zA-Z0-9@-_@\\$]", object@ID),"match.length") == -1){
-        			message("Invalid 'ID' in header")
-        			return(FALSE)
-      			}
+			if(attr(regexpr("[a-zA-Z0-9@-_@\\$]", object@ID),"match.length") == -1){
+  			message("Invalid 'ID' in header")
+  			return(FALSE)
+			}
         
 			#Test/Truncated
 			if(!is.logical(object@Test)){

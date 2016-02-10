@@ -159,6 +159,77 @@ setSDMXServiceProviders <- function(){ # nocov start
           compliant = TRUE)
       ),
       
+      #INEGI (Mexico)
+      SDMXServiceProvider(
+        agencyId = "INEGI", name = "Instituto Nacional de Estad\u00edstica y Geograf\u00eda (M\u00e9jico)",
+        scale = "national", country = "MEX",
+        builder = SDMXRequestBuilder(
+          regUrl = "http://www.snieg.mx/opendata/NSIRestService",
+          repoUrl = "http://www.snieg.mx/opendata/NSIRestService",
+          handler = function(regUrl, repoUrl, agencyId, resource, resourceId, version, 
+                           flowRef, key, start, end, compliant){
+          
+          if(is.null(resource)) stop("Missing SDMX service resource")
+          
+          #wrap argument values
+          obj <- list(regUrl = regUrl, repoUrl = repoUrl,
+                      agencyId = agencyId, resource = resource, resourceId = resourceId, version = version,
+                      flowRef = flowRef, key = key, start = start, end = end)
+          
+          #resource handler
+          resourceHandler <- switch(resource,
+                                    
+            #'dataflow' resource (path="/Dataflow/{resourceId}/ALL/ALL")
+            #-----------------------------------------------------------------------
+            "dataflow" = function(obj){
+              resourceId <- obj$resourceId
+              if(is.null(resourceId)) resourceId <- "ALL"
+              req <- sprintf("%s/Dataflow/%s/ALL/ALL",obj$regUrl, resourceId)
+              return(req)
+            },
+            #'datastructure' resource (path="/DataStructure/ALL/{resourceId}/ALL?references=children")
+            #-----------------------------------------------------------------------
+            "datastructure" = function(obj){
+              req <- sprintf("%s/DataStructure/ALL/%s/ALL?references=children",obj$regUrl, obj$resourceId)
+              return(req)
+            },
+            #'data' resource (path="/Data/ALL,{flowRef},ALL/{key}/{agencyId}")
+            #----------------------------------------------------------
+            "data" = function(obj){
+              if(is.null(obj$flowRef)) stop("Missing flowRef value")
+              if(is.null(obj$key)) obj$key = "ALL"
+
+              req <- sprintf("%s/Data/ALL,%s,ALL/%s/%s", obj$repoUrl, obj$flowRef, obj$key, obj$agencyId)
+              
+              #DataQuery
+              #-> temporal extent (if any)
+              addParams = FALSE
+              if(!is.null(obj$start)){
+                req <- paste0(req, "?")
+                addParams = TRUE
+                req <- paste0(req, "startPeriod=", start)
+              }
+              if(!is.null(obj$end)){
+                if(!addParams){
+                  req <- paste0(req, "?")
+                }else{
+                  req <- paste0(req, "&")
+                }
+                req <- paste0(req, "endPeriod=", end) 
+              }
+              
+              return(req)
+            })
+          
+            #handle rest resource path
+            req <- resourceHandler(obj)
+            return(req)
+          
+          },
+          compliant = FALSE
+        )
+      ),
+      
       #other data providers
       #--------------------
       
@@ -218,9 +289,8 @@ setSDMXServiceProviders <- function(){ # nocov start
           compliant = FALSE
         )
       )
-      
-  )
-  
+    )
+
   .rsdmx.options$providers <- new("SDMXServiceProviders", providers = listOfProviders)
   
 } # nocov end

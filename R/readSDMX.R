@@ -249,6 +249,11 @@ readSDMX <- function(file = NULL, isURL = TRUE,
       xmlObj <- getSoapRequestResult(xmlObj)
     }
     
+    #convenience for SDMX documents queried through a RegistryInterface
+    if(isRegistryInterfaceEnvelope(xmlObj, TRUE)){
+      xmlObj <- getRegistryInterfaceResult(xmlObj)
+    }
+    
     type <- SDMXType(xmlObj)@type
     obj <- switch(type,
                   "StructureType"             = getSDMXStructureObject(xmlObj, resource),

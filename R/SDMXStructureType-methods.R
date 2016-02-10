@@ -25,11 +25,12 @@ type.SDMXStructureType <- function(xmlObj, resource){
   VERSION.21 <- sdmxVersion == "2.1"
   
   namespaces <- namespaces.SDMX(xmlObj)
-  messageNs <- findNamespace(namespaces, "message")
+  messageNsString <- "message"
+  if(isRegistryInterfaceEnvelope(xmlObj, FALSE)) messageNsString <- "registry"
+  messageNs <- findNamespace(namespaces, messageNsString)
   strNs <- findNamespace(namespaces, "structure")
   
   if(VERSION.21){
-    flowXML <- getNodeSet(xmlObj, "//ns:DataFlows", namespaces = strNs)
     dsXML <- getNodeSet(xmlObj, "//ns:DataStructures", namespaces = strNs)
     ccXML <- getNodeSet(xmlObj, "//ns:Concepts", namespaces = strNs)
     clXML <- getNodeSet(xmlObj, "//ns:Codelists", namespaces = strNs)
@@ -44,6 +45,7 @@ type.SDMXStructureType <- function(xmlObj, resource){
     }
   }else{
     #TODO flowXML
+    flowXML <- getNodeSet(xmlObj, "//ns:Dataflows", namespaces = messageNs)
     dsXML <- getNodeSet(xmlObj, "//ns:KeyFamilies", namespaces = messageNs)
     ccXML <- getNodeSet(xmlObj, "//ns:Concepts", namespaces = messageNs)
     clXML <- getNodeSet(xmlObj, "//ns:CodeLists", namespaces = messageNs)
@@ -54,6 +56,7 @@ type.SDMXStructureType <- function(xmlObj, resource){
       #others
       if(length(ccXML)>0) return("ConceptsType")
       if(length(clXML)>0) return("CodelistsType")
+      if(length(flowXML)>0) return("DataflowsType")
       if(length(dsXML)>0){
         if(is.null(resource)){
           strType <- "DataStructuresType"

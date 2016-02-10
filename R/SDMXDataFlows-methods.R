@@ -27,7 +27,9 @@ dataflows.SDMXDataFlows <- function(xmlObj){
   VERSION.21 <- sdmxVersion == "2.1"
   
   namespaces <- namespaces.SDMX(xmlObj)
-  messageNs <- findNamespace(namespaces, "message")
+  messageNsString <- "message"
+  if(isRegistryInterfaceEnvelope(xmlObj, FALSE)) messageNsString <- "registry"
+  messageNs <- findNamespace(namespaces, messageNsString)
   strNs <- findNamespace(namespaces, "structure")
   
   dfXML <- NULL
@@ -37,10 +39,17 @@ dataflows.SDMXDataFlows <- function(xmlObj){
                         namespaces = c(mes = as.character(messageNs),
                                        str = as.character(strNs)))
   }else{
+    
     dfXML <- getNodeSet(xmlObj,
-                        "//mes:KeyFamilies/str:KeyFamily",
+                        "//mes:Dataflows/str:Dataflow",
                         namespaces = c(mes = as.character(messageNs),
                                        str = as.character(strNs)))
+    if(length(dfXML) == 0){
+      dfXML <- getNodeSet(xmlObj,
+                          "//mes:KeyFamilies/str:KeyFamily",
+                          namespaces = c(mes = as.character(messageNs),
+                                         str = as.character(strNs)))
+    }
   }
   if(!is.null(dfXML)){
     dataflows <- lapply(dfXML, function(x){ SDMXDataFlow(x)})
