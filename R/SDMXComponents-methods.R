@@ -131,3 +131,64 @@ attributes.SDMXComponents <- function(xmlObj){
   }
   return(attributes)
 }
+
+#methods
+as.data.frame.SDMXComponents <- function(x, ...){
+ 
+  #dimensions
+  dimensions <- slot(x, "Dimensions")
+  dimensions.df <- as.data.frame(
+    do.call("rbind",
+      lapply(
+        dimensions, 
+        function(x){
+          sapply(slotNames(x), function(elem){slot(x,elem)})
+        }
+      )
+    ),stringsAsFactors = FALSE)
+  dimensions.df <- cbind(component = "Dimension", dimensions.df,
+                         stringsAsFactors = FALSE)
+  
+  #time dimension
+  timeDimension <- slot(x, "TimeDimension")
+  timeDimension.df <- NULL
+  if(!is.null(timeDimension)){
+    timeDimension.df <- as.data.frame(
+      t(sapply(slotNames(timeDimension), function(elem){slot(timeDimension,elem)})),
+      stringsAsFactors = FALSE
+    )
+    timeDimension.df <- cbind(component = "TimeDimension", timeDimension.df,
+                              stringsAsFactors = FALSE)
+  }
+  
+  #primary measure
+  primaryMeasure <- slot(x, "PrimaryMeasure")
+  primaryMeasure.df <- as.data.frame(
+    t(sapply(slotNames(primaryMeasure), function(elem){slot(primaryMeasure,elem)})),
+    stringsAsFactors = FALSE
+  )
+  primaryMeasure.df <- cbind(component = "PrimaryMeasure", primaryMeasure.df,
+                            stringsAsFactors = FALSE)
+  
+  #attributes
+  attributes <- slot(x, "Attributes")
+  attributes.df <- as.data.frame(
+    do.call("rbind",
+            lapply(
+              attributes, 
+              function(x){
+                sapply(slotNames(x), function(elem){slot(x,elem)})
+              }
+            )
+    ),stringsAsFactors = FALSE)
+  attributes.df <- cbind(component = "Attribute", attributes.df,
+                         stringsAsFactors = FALSE)
+  
+  #output
+  df<- do.call("rbind.fill", list(dimensions.df, timeDimension.df,
+                                  primaryMeasure.df, attributes.df))
+  return(df)
+}
+
+setAs("SDMXComponents", "data.frame",
+      function(from) as.data.frame.SDMXComponents(from));
