@@ -19,8 +19,8 @@ SDMXUtilityData <- function(xmlObj){
 #methods
 #=======
 
-as.data.frame.SDMXUtilityData <- function(x, ...){
-  return(as.data.frame.SDMXCompactData(x))
+as.data.frame.SDMXUtilityData <- function(x,labels = FALSE, ...){
+  return(as.data.frame.SDMXCompactData(x, labels))
 }
 
 setAs("SDMXUtilityData", "data.frame",

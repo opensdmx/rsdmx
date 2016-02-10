@@ -85,7 +85,7 @@ as.data.frame.SDMXCodelists <- function(x, ...,
                           as.data.frame(sapply(slotNames(code), function(x){
                             obj <- slot(code,x)
                             return(obj)
-                          }))
+                          }), stringsAsFactors = FALSE)
                         })
     )
   }

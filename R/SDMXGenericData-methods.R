@@ -17,7 +17,7 @@ SDMXGenericData <- function(xmlObj){
 }
 
 #methods
-as.data.frame.SDMXGenericData <- function(x, ...){
+as.data.frame.SDMXGenericData <- function(x, labels = FALSE, ...){
   xmlObj <- x@xmlObj;
   dataset <- NULL
   
@@ -235,6 +235,12 @@ as.data.frame.SDMXGenericData <- function(x, ...){
     dataset[as.character(dataset$obsValue) == "NaN",]$obsValue <- NA
   }
   if(!is.null(dataset)) row.names(dataset) <- 1:nrow(dataset)
+  
+  #enrich with labels
+  if(labels){
+    dsd <- slot(x, "dsd")
+    if(!is.null(dsd)) dataset <- addLabels.SDMXData(dataset, dsd)
+  }
   
   # output
   return(dataset)

@@ -60,13 +60,13 @@ class.SDMXMessageGroup <- function(xmlObj){
   
 }
 
-as.data.frame.SDMXMessageGroup <- function(x, ...){
+as.data.frame.SDMXMessageGroup <- function(x, labels = FALSE, ...){
   #TODO support for other included message types
   #(at now limited to SDMXGenericData for making it work with OECD)
   xmlObj <- slot(x, "xmlObj")
   sdmx.df <- switch(class.SDMXMessageGroup(xmlObj),
-                    "SDMXGenericData" = as.data.frame.SDMXGenericData(x),
-                    "SDMXCompactData" = as.data.frame.SDMXCompactData(x),
+                    "SDMXGenericData" = as.data.frame.SDMXGenericData(x, labels),
+                    "SDMXCompactData" = as.data.frame.SDMXCompactData(x, labels),
                     NULL
              )
   return(sdmx.df)

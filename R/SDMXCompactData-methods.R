@@ -17,7 +17,7 @@ SDMXCompactData <- function(xmlObj){
 }
 
 #methods
-as.data.frame.SDMXAllCompactData <- function(x, nsExpr, ...) {
+as.data.frame.SDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
   xmlObj <- x@xmlObj;
   dataset <- NULL
   
@@ -122,13 +122,20 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, ...) {
   }
   if(!is.null(dataset)) row.names(dataset) <- 1:nrow(dataset)
   
-  # output
+  #enrich with labels
+  if(labels){
+    message("we are going to enrich the data.frame")
+    dsd <- slot(x, "dsd")
+    if(!is.null(dsd)) dataset <- addLabels.SDMXData(dataset, dsd)
+  }
+
+  #output
   return(dataset)
 }
 
 
-as.data.frame.SDMXCompactData <- function(x, ...){
-  return(as.data.frame.SDMXAllCompactData(x, "compact"));
+as.data.frame.SDMXCompactData <- function(x, labels = FALSE, ...){
+  return(as.data.frame.SDMXAllCompactData(x, "compact", labels));
 }
 
 setAs("SDMXCompactData", "data.frame",

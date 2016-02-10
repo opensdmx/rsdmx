@@ -38,3 +38,12 @@ test_that("DSD is properly fetched by readSDMX when there is no dsdRef (using fl
   expect_false(is.null(slot(data,"dsd")))
   expect_is(slot(data,"dsd"), "SDMXDataStructureDefinition")
 })
+
+test_that("Dataset is correctly enriched with labels using the DSD",{
+  sdmx.data <- readSDMX(agencyId = "UIS", resource = "data",
+                        flowRef = "EDULIT_DS", key = list("OFST_1_CP", NULL),
+                        start = "2000", end = "2015", dsd = TRUE)
+  data <- as.data.frame(sdmx.data)
+  data.enriched <- as.data.frame(sdmx.data, labels = TRUE)
+  expect_true(ncol(data.enriched) > ncol(data))
+})

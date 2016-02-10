@@ -19,7 +19,7 @@ SDMXCrossSectionalData <- function(xmlObj){
 #methods
 #=======
 
-as.data.frame.SDMXCrossSectionalData <- function(x, ...){
+as.data.frame.SDMXCrossSectionalData <- function(x, labels = FALSE, ...){
   
   xmlObj <- x@xmlObj;
   dataset <- NULL
@@ -139,6 +139,13 @@ as.data.frame.SDMXCrossSectionalData <- function(x, ...){
     dataset[as.character(dataset$obsValue) == "NaN",]$obsValue <- NA
   }
   if(!is.null(dataset)) row.names(dataset) <- 1:nrow(dataset)
+  
+  #enrich with labels
+  if(labels){
+    message("we are going to enrich the data.frame")
+    dsd <- slot(x, "dsd")
+    if(!is.null(dsd)) dataset <- addLabels.SDMXData(dataset, dsd)
+  }
   
   # output
   return(dataset)
