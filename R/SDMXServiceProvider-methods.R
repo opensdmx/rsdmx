@@ -121,8 +121,7 @@ setSDMXServiceProviders <- function(){ # nocov start
         builder = SDMXRESTRequestBuilder(
           regUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx",
           repoUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx", 
-          compliant = TRUE,
-          unsupportedResources = list("dataflow"))
+          compliant = FALSE)
       ),
       
       #national data providers

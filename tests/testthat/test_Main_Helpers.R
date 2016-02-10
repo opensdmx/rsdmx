@@ -168,6 +168,16 @@ test_that("ILO - data",{
 #UIS (UNESCO)
 #------------
 
+#-> dataflow
+test_that("UIS - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(agencyId = "UIS", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
 #-> datastructure
 test_that("UIS - datastructure",{
   testthat::skip_on_travis()
