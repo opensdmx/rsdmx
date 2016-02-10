@@ -64,8 +64,9 @@ addLabels.SDMXData <- function(data, dsd){
     datac <- as.data.frame(data[,column], stringsAsFactors = FALSE)
     colnames(datac) <- column
     clName <- components[components$conceptRef == column, "codelist"]
+    print(clName)
     if(length(clName) != 0 && !is.na(clName) && !is.null(clName)){
-      cl <- as.data.frame(slot(sdmx.dsd, "codelists"), codelistId = clName)
+      cl <- as.data.frame(slot(dsd, "codelists"), codelistId = clName)
       datac = merge(x = datac, y = cl, by.x = column, by.y = "id",
                     all.x = TRUE, all.y = FALSE)
       datac <- datac[,((regexpr("label", colnames(datac)) != -1) + 
@@ -78,7 +79,7 @@ addLabels.SDMXData <- function(data, dsd){
     
   }
   
-  fulldata <- do.call("cbind" ,lapply(columns, enrichColumnWithLabels,
+  fulldata <- do.call("cbind" ,lapply(colnames(data), enrichColumnWithLabels,
                                       dsd, components))
   return(fulldata)
 }
