@@ -49,7 +49,14 @@ value is \code{"R"}. Alternative value is \code{"SDMX"}}
 Recognized if a valid provider or provide id has been specified as argument.}
 
 \item{end}{an object of class "integer" or "character" giving the SDMX end time to apply.
-       Recognized if a valid provider or provide id has been specified as argument.}
+Recognized if a valid provider or provide id has been specified as argument.}
+
+\item{dsd}{an Object of class "logical" if an attempt to inherit the DSD should be performed.
+Active only if \code{"readSDMX"} is used as helper method (ie if data is fetched using
+an embedded service provider. Default is FALSE}
+
+\item{verbose}{an Object of class "logical" that indicates if rsdmx messages should
+       appear to user. Default is TRUE.}
 }
 \value{
 an object of class "SDMX"

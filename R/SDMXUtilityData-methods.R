@@ -12,7 +12,7 @@
 #'
 SDMXUtilityData <- function(xmlObj){
   new("SDMXUtilityData",
-      SDMX(xmlObj)
+      SDMXData(xmlObj)
   )  	
 }
 

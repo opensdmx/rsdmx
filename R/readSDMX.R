@@ -37,6 +37,11 @@
 #'        Recognized if a valid provider or provide id has been specified as argument.
 #' @param end an object of class "integer" or "character" giving the SDMX end time to apply. 
 #'        Recognized if a valid provider or provide id has been specified as argument.
+#' @param dsd an Object of class "logical" if an attempt to inherit the DSD should be performed.
+#'        Active only if \code{"readSDMX"} is used as helper method (ie if data is fetched using 
+#'        an embedded service provider. Default is FALSE
+#' @param verbose an Object of class "logical" that indicates if rsdmx messages should
+#'        appear to user. Default is TRUE.
 #' 
 #' @return an object of class "SDMX"
 #' 
@@ -136,7 +141,8 @@
 
 readSDMX <- function(file = NULL, isURL = TRUE,
                      provider = NULL, agencyId = NULL, resource = NULL, resourceId = NULL, version = NULL,
-                     flowRef = NULL, key = NULL, key.mode = "R", start = NULL, end = NULL) {
+                     flowRef = NULL, key = NULL, key.mode = "R", start = NULL, end = NULL, dsd = FALSE,
+                     verbose = TRUE) {
   
   if(!(key.mode %in% c("R", "SDMX"))){
     stop("Invalid value for key.mode argument. Accepted values are 'R', 'SDMX' ")
@@ -179,7 +185,7 @@ readSDMX <- function(file = NULL, isURL = TRUE,
                              start = start,
                              end = end,
                              compliant = provider@builder@compliant)
-    message(file)
+    if(verbose) message(paste0("-> Fetching '", file, "'"));
   }
   
   #call readSDMX original
@@ -284,6 +290,43 @@ readSDMX <- function(file = NULL, isURL = TRUE,
       }
     }
   }
+  
+  #attempt to get DSD in case of helper method
+  if(buildRequest && resource == "data" && dsd){
+    
+    dsdRef <- slot(obj,"dsdRef")
+    if(!is.null(dsdRef)){
+      
+      #hack for EUROSTAT
+      #TODO investigate if using agencyId prefix and version suffix is SDMX compliant
+      if(agencyId == "ESTAT"){
+        agencyIdPrefix <- paste0(agencyId,"_")
+        if(regexpr(agencyIdPrefix,dsdRef) == 1){
+          dsdRef <- unlist(strsplit(dsdRef, agencyIdPrefix))[2]
+          if(substr(dsdRef, nchar(dsdRef)-1+1, nchar(dsdRef)) != flowRef){
+            versionPrefix <- unlist(strsplit(dsdRef, flowRef))[2]
+            dsdRef <- unlist(strsplit(dsdRef, versionPrefix))[1]
+          }
+        }
+      }
+      if(verbose) message(paste0("-> DSD ref identified in dataset = '", dsdRef, "'"))
+      if(verbose) message("-> Attempt to fetch & bind DSD to dataset")
+    }else{
+      if(verbose) message("-> No DSD ref associated to dataset")
+      if(verbose) message("-> Attempt to fetch & bind DSD to dataset using 'flowRef'")
+      dsdRef <- flowRef
+    }
+    
+    dsdObj <- readSDMX(agencyId = agencyId, resource = "datastructure",
+                       resourceId = dsdRef, verbose = verbose)
+    if(is.null(dsdObj)){
+      if(verbose) message("-> Impossible to fetch DSD")
+    }else{
+      if(verbose) message("-> DSD fetched and associated to dataset!")
+      slot(obj, "dsd") <- dsdObj
+    }
+  }
+  
   return(obj);
   
 }

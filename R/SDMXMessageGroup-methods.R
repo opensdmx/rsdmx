@@ -12,7 +12,7 @@
 #'
 SDMXMessageGroup <- function(xmlObj){
   new("SDMXMessageGroup",
-      SDMX(xmlObj)
+      SDMXData(xmlObj)
   )		
 }
 

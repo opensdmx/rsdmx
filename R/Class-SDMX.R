@@ -44,3 +44,5 @@ setClass("SDMX",
 	}
 )
 
+#class unions for base data types
+setClassUnion("character_OR_NULL", c("character", "NULL"))

@@ -12,7 +12,7 @@
 #' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
 #' 
 setClass("SDMXUtilityData",
-         contains = "SDMX",
+         contains = "SDMXData",
          representation(),
          prototype = list(),
          validity = function(object){

@@ -12,12 +12,6 @@ exportClasses(
   SDMXFooter,
   SDMXType,
   SDMXStructureType,
-  SDMXGenericData,
-  SDMXCompactData,
-  SDMXUtilityData,
-  SDMXStructureSpecificData,
-  SDMXCrossSectionalData,
-  SDMXMessageGroup,
   SDMXConcept,
   SDMXConceptScheme,
   SDMXConcepts,
@@ -32,6 +26,13 @@ exportClasses(
   SDMXDataStructure,
   SDMXDataStructures,
   SDMXDataStructureDefinition,
+  SDMXData,
+  SDMXGenericData,
+  SDMXCompactData,
+  SDMXUtilityData,
+  SDMXStructureSpecificData,
+  SDMXCrossSectionalData,
+  SDMXMessageGroup,
   SDMXDataFlow,
   SDMXDataFlows,
   SDMXRequestBuilder,
@@ -48,12 +49,6 @@ export(
   SDMXFooter,
   SDMXType,
   SDMXStructureType,
-  SDMXGenericData,
-  SDMXCompactData,
-  SDMXUtilityData,
-  SDMXStructureSpecificData,
-  SDMXCrossSectionalData,
-  SDMXMessageGroup,
   SDMXConcept,
   SDMXConceptScheme,
   SDMXConcepts,
@@ -68,6 +63,13 @@ export(
   SDMXDataStructure,
   SDMXDataStructures,
   SDMXDataStructureDefinition,
+  SDMXGenericData,
+  SDMXCompactData,
+  SDMXUtilityData,
+  SDMXStructureSpecificData,
+  SDMXCrossSectionalData,
+  SDMXMessageGroup,
+  SDMXData,
   SDMXDataFlow,
   SDMXDataFlows,
   SDMXRequestBuilder,
@@ -86,7 +88,8 @@ export(
 
 exportMethods(
   getStructureType,
-  getNamespaces
+  getNamespaces,
+  setDSD
 )
 
 S3method(as.data.frame, SDMXGenericData)

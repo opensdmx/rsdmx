@@ -12,7 +12,7 @@
 #'
 SDMXCrossSectionalData <- function(xmlObj){
   new("SDMXCrossSectionalData",
-      SDMX(xmlObj)
+      SDMXData(xmlObj)
   )    
 }
 

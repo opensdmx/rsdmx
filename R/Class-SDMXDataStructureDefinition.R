@@ -36,3 +36,6 @@ setClass("SDMXDataStructureDefinition",
            return(TRUE);
          }
 )
+
+setClassUnion("SDMXDataStructureDefinition_OR_NULL",
+              c("SDMXDataStructureDefinition","NULL"))
