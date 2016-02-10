@@ -64,7 +64,6 @@ addLabels.SDMXData <- function(data, dsd){
     datac <- as.data.frame(data[,column], stringsAsFactors = FALSE)
     colnames(datac) <- column
     clName <- components[components$conceptRef == column, "codelist"]
-    print(clName)
     if(length(clName) != 0 && !is.na(clName) && !is.null(clName)){
       cl <- as.data.frame(slot(dsd, "codelists"), codelistId = clName)
       datac = merge(x = datac, y = cl, by.x = column, by.y = "id",
