@@ -142,7 +142,6 @@ as.data.frame.SDMXCrossSectionalData <- function(x, labels = FALSE, ...){
   
   #enrich with labels
   if(labels){
-    message("we are going to enrich the data.frame")
     dsd <- slot(x, "dsd")
     if(!is.null(dsd)) dataset <- addLabels.SDMXData(dataset, dsd)
   }
