@@ -93,6 +93,39 @@ df <- as.data.frame(sdmx)
 head(df)
 ```
 
+It is also possible to query a dataset together with its "definition", handled
+in a separate SDMX-ML document named ``DataStructureDefinition`` (DSD). It is 
+particularly useful when you want to enrich your dataset with all labels. For this, 
+you need the DSD which contains all reference data.
+
+To do so, you only need to append ``dsd = TRUE`` (default value is ``FALSE``), 
+to the previous request, and specify ``labels = TRUE`` when calling ``as.data.frame``,
+as follows:
+
+```{r, message = FALSE}
+sdmx <- readSDMX(agencyId = "OECD", resource = "data", flowRef = "MIG",
+                key = list("TOT", NULL, NULL), start = 2010, end = 2011,
+                dsd = TRUE)
+df <- as.data.frame(sdmx, labels = TRUE)
+head(df)
+```
+
+Note that in case you are reading SDMX-ML documents with the native approach (with
+URLs), instead of the embedded providers, it is also possible to associate a DSD
+to a dataset by using the function ``setDSD``. Let's try how it works:
+
+```{r, message = FALSE}
+#data without DSD
+sdmx.data <- readSDMX(agencyId = "OECD", resource = "data", flowRef = "MIG",
+                key = list("TOT", NULL, NULL), start = 2010, end = 2011)
+
+#DSD
+sdmx.dsd <- readSDMX(agencyId = "OECD", resource = "datastructure", resourceId = "MIG")
+
+#associate data and dsd
+sdmx.data <- setDSD(sdmx.data, sdmx.dsd)
+```
+
 
 ### Read _local_ datasets
 

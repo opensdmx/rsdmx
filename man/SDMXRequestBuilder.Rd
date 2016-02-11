@@ -7,16 +7,23 @@
 \alias{SDMXRequestBuilder-class}
 \title{Class "SDMXRequestBuilder"}
 \usage{
-SDMXRequestBuilder(regUrl, repoUrl, handler, compliant)
+SDMXRequestBuilder(regUrl, repoUrl, formatter, handler, compliant, unsupportedResources)
 }
 \arguments{
 \item{regUrl}{an object of class "character" giving the base Url of the SDMX service registry}
 
 \item{repoUrl}{an object of class "character" giving the base Url of the SDMX service repository}
 
-\item{handler}{an object of class "function" that will be in charge of build a web request.}
+\item{formatter}{an object of class "list" giving a formatting function (for each resource) that
+takes an object of class "SDMXRequestParams" as single argument. Such parameter allows
+to customize eventual params (e.g. specific data provider rules)}
+
+\item{handler}{an object of class "list" that will be in charge of build a web request.}
 
 \item{compliant}{an object of class "logical" indicating if the request builder is somehow compliant with a service specification}
+
+\item{unsupportedResources}{an object of class "list" giving one or more resources not
+       supported by the Request builder for a given provider}
 }
 \description{
 A basic class to handle a SDMX service request builder
@@ -38,9 +45,16 @@ builder is provided and made part of the specific and still experimental
 
 \item{\code{repoUrl}}{an object of class "character" giving the base Url of the SDMX service repository}
 
-\item{\code{handler}}{an object of class "function" that will be in charge of build a web request.}
+\item{\code{formatter}}{an object of class "list" giving a formatting function (for each resource) that
+takes an object of class "SDMXRequestParams" as single argument. Such parameter allows
+to customize eventual params (e.g. specific data provider rules)}
+
+\item{\code{handler}}{an object of class "list" that will be in charge of build a web request.}
 
 \item{\code{compliant}}{an object of class "logical" indicating if the request builder is somehow compliant with a service specification}
+
+\item{\code{unsupportedResources}}{an object of class "character" giving one or more resources not
+      supported by the Request builder for a given provider}
 }}
 \section{Warning}{
 
@@ -49,18 +63,36 @@ encapsulate it as slot, when parsing an SDMX-ML document (Concepts, or
 DataStructureDefinition)
 }
 \examples{
-#an handler
- myHandler <- function(baseUrl, agencyId, resource, resourceId, version,
-                       flowRef, key, start, end, compliant){
-   req <- paste(baseUrl, agencyId, resource, flowRef, key, start, end, sep="/")
-   return(req)
- }
+#default formatter
+ myFormatter = list(
+   dataflow = function(obj){
+     #format some obj slots here
+     return(obj)
+   },
+   datastructure = function(obj){
+     #format some obj slots here
+     return(obj)
+   },
+   data = function(obj){
+     #format some obj slots here
+     return(obj)
+   }
+ )
+
+ #an handler
+ #where each element of the list is a function taking as argument an object
+ #of class "SDMXRequestParams"
+ myHandler <- list(
+   "dataflow" = function(obj){return(obj@regUrl)},
+   "datastructure" = function(obj){return(obj@regUrl)},
+   "data" = function(obj){return(obj@repoUrl)}
+ )
 
  #how to create a SDMXRequestBuilder
  requestBuilder <- SDMXRequestBuilder(
    regUrl = "http://www.myorg.org/registry",
    repoUrl = "http://www.myorg.org/repository",
-   handler = myHandler, compliant = FALSE)
+   formatter = myFormatter, handler = myHandler, compliant = FALSE)
 }
 \author{
 Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}

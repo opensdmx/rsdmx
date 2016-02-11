@@ -62,230 +62,169 @@ SDMXServiceProvider <- function(agencyId, name,
 #'          \link{findSDMXServiceProvider} \link{readSDMX}
 #'
 setSDMXServiceProviders <- function(){ # nocov start
+    
+  #international data providers
+  #----------------------------
+
+  #ECB
+  ECB <- SDMXServiceProvider(
+    agencyId = "ECB", name = "European Central Bank",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "https://sdw-wsrest.ecb.europa.eu/service",
+      repoUrl = "https://sdw-wsrest.ecb.europa.eu/service",
+      compliant = TRUE)
+  )
+
+  #EUROSTAT
+  ESTAT <- SDMXServiceProvider( 
+    agencyId = "ESTAT", name = "Eurostat (Statistical office of the European Union)",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "http://ec.europa.eu/eurostat/SDMX/diss-web/rest",
+      repoUrl = "http://ec.europa.eu/eurostat/SDMX/diss-web/rest",
+      compliant = TRUE)
+  )
+
+  #OECD
+  OECD <- SDMXServiceProvider(
+    agencyId = "OECD", name = "Organisation for Economic Cooperation and Development ",
+    builder = SDMXDotStatRequestBuilder(
+      regUrl = "http://stats.oecd.org/restsdmx/sdmx.ashx",
+      repoUrl = "http://stats.oecd.org/restsdmx/sdmx.ashx")
+  )
+  
+  #UN-FAO
+  FAO <- SDMXServiceProvider(
+    agencyId = "FAO", name = "Food and Agriculture Organization of the United Nations",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "http://data.fao.org/sdmx/registry",
+      repoUrl = "http://data.fao.org/sdmx/repository",
+      compliant = FALSE,
+      unsupportedResources = list("dataflow"))
+  )
+  
+  #UN-ILO
+  ILO <- SDMXServiceProvider(
+    agencyId = "ILO", name = "International Labour Organization of the United Nations",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
+      repoUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
+      compliant = FALSE, skipAgencyId = TRUE,
+      unsupportedResources = list("dataflow"))                  
+  )
+  
+  #UIS (UNESCO)
+  UIS <- SDMXServiceProvider(
+    agencyId = "UIS", name = "UNESCO Institute of Statistics",
+    builder = SDMXDotStatRequestBuilder(
+      regUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx",
+      repoUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx")
+  )
+  
+  #national data providers
+  #-----------------------
+  
+  #ABS {Australia}
+  ABS <- SDMXServiceProvider(
+    agencyId = "ABS", name = "Australian Bureau of Statistics",
+    scale = "national", country = "AUS",
+    builder = SDMXDotStatRequestBuilder(
+      regUrl = "http://stat.abs.gov.au/restsdmx/sdmx.ashx",
+      repoUrl = "http://stat.abs.gov.au/restsdmx/sdmx.ashx", 
+      forceAgencyId = TRUE, unsupportedResources = list("dataflow"))
+  )
+  
+  #NBB {Belgium}
+  NBB <- SDMXServiceProvider(
+    agencyId = "NBB", name = "National Bank of Belgium",
+    scale = "national", country = "BEL",
+    builder = SDMXDotStatRequestBuilder(
+      regUrl = "http://stat.nbb.be/RestSDMX/sdmx.ashx",
+      repoUrl = "http://stat.nbb.be/RestSDMX/sdmx.ashx", 
+      unsupportedResources = list("dataflow"))
+  )
+  
+  #INSEE {France}
+  INSEE <- SDMXServiceProvider(
+    agencyId = "INSEE", name = "Institut national de la statistique et des \u00e9tudes \u00e9conomiques",
+    scale = "national", country = "FRA",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "http://www.bdm.insee.fr/series/sdmx",
+      repoUrl = "http://www.bdm.insee.fr/series/sdmx", 
+      compliant = TRUE)
+  )
+  
+  #INEGI (Mexico)
+  INEGI <- SDMXServiceProvider(
+    agencyId = "INEGI", name = "Instituto Nacional de Estad\u00edstica y Geograf\u00eda (M\u00e9jico)",
+    scale = "national", country = "MEX",
+    builder = SDMXREST20RequestBuilder(
+      regUrl = "http://www.snieg.mx/opendata/NSIRestService",
+      repoUrl = "http://www.snieg.mx/opendata/NSIRestService",
+      compliant = FALSE
+    )
+  )
+  INEGI@builder@formatter$data <- function(obj){
+    obj@flowRef <- paste0("ALL,",obj@flowRef,",ALL")
+    return(obj)
+  }
+  
+  #other data providers
+  #--------------------
+  
+  #KNOEMA (Open data plateform)
+  KNOEMA <- SDMXServiceProvider(
+    agencyId = "KNOEMA", name = "KNOEMA knowledge plateform",
+    builder = SDMXRequestBuilder(
+      regUrl = "http://knoema.fr/api/1.0/sdmx",
+      repoUrl = "http://knoema.fr/api/1.0/sdmx",
+      formatter = list(
+        dataflow = function(obj){return(obj)},
+        datastructure = function(obj){return(obj)},
+        data = function(obj){return(obj)}
+      ),
+      handler = list(
+                                  
+        #'dataflow' resource (path="/")
+        #-----------------------------------------------------------------------
+        dataflow = function(obj){
+          return(obj$regUrl)
+        },
+        #'datastructure' resource (path="/{resourceID})
+        #-----------------------------------------------------------------------
+        datastructure = function(obj){
+          req <- paste(obj$regUrl, obj$resourceId, sep = "/")
+          return(req)
+        },
+        #'data' resource (path="getdata?dataflow={flowRef}&key={key})
+        #----------------------------------------------------------
+        data = function(obj){
+          if(is.null(obj$flowRef)) stop("Missing flowRef value")
+          if(is.null(obj$key)) obj$key = "."
+          
+          #base data request
+          req <- sprintf("%s/getdata?dataflow=%s&key=%s", obj$repoUrl, obj$flowRef, obj$key)
+          
+          #DataQuery
+          #-> temporal extent (if any)
+          if(!is.null(obj$start) | !is.null(obj$end)) {
+            warning("start/end parameters ignored for this SDMX API")
+          }
+          
+          return(req)
+        }
+      ),
+      compliant = FALSE
+    )
+  )
   
   listOfProviders <- list(
-    
-      #international data providers
-      #----------------------------
-    
-      #ECB
-      SDMXServiceProvider(
-        agencyId = "ECB", name = "European Central Bank",
-        builder = SDMXREST21RequestBuilder(
-          regUrl = "https://sdw-wsrest.ecb.europa.eu/service",
-          repoUrl = "https://sdw-wsrest.ecb.europa.eu/service",
-          compliant = TRUE)
-      ),
-    
-      #EUROSTAT
-      SDMXServiceProvider( 
-        agencyId = "ESTAT", name = "Eurostat (Statistical office of the European Union)",
-        builder = SDMXREST21RequestBuilder(
-          regUrl = "http://ec.europa.eu/eurostat/SDMX/diss-web/rest",
-          repoUrl = "http://ec.europa.eu/eurostat/SDMX/diss-web/rest",
-          compliant = TRUE)
-      ),
-    
-      #OECD
-      SDMXServiceProvider(
-        agencyId = "OECD", name = "Organisation for Economic Cooperation and Development ",
-        builder = SDMXDotStatRequestBuilder(
-          regUrl = "http://stats.oecd.org/restsdmx/sdmx.ashx",
-          repoUrl = "http://stats.oecd.org/restsdmx/sdmx.ashx")
-      ),
-      
-      #UN-FAO
-      SDMXServiceProvider(
-        agencyId = "FAO", name = "Food and Agriculture Organization of the United Nations",
-        builder = SDMXREST21RequestBuilder(
-          regUrl = "http://data.fao.org/sdmx/registry",
-          repoUrl = "http://data.fao.org/sdmx/repository",
-          compliant = FALSE,
-          unsupportedResources = list("dataflow"))
-      ),
-      
-      #UN-ILO
-      SDMXServiceProvider(
-        agencyId = "ILO", name = "International Labour Organization of the United Nations",
-        builder = SDMXREST21RequestBuilder(
-          regUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
-          repoUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
-          compliant = FALSE, skipAgencyId = TRUE,
-          unsupportedResources = list("dataflow"))                  
-      ),
-      
-      #UIS (UNESCO)
-      SDMXServiceProvider(
-        agencyId = "UIS", name = "UNESCO Institute of Statistics",
-        builder = SDMXDotStatRequestBuilder(
-          regUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx",
-          repoUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx")
-      ),
-      
-      #national data providers
-      #-----------------------
-      
-      #ABS {Australia}
-      SDMXServiceProvider(
-        agencyId = "ABS", name = "Australian Bureau of Statistics",
-        scale = "national", country = "AUS",
-        builder = SDMXDotStatRequestBuilder(
-          regUrl = "http://stat.abs.gov.au/restsdmx/sdmx.ashx",
-          repoUrl = "http://stat.abs.gov.au/restsdmx/sdmx.ashx", 
-          forceAgencyId = TRUE, unsupportedResources = list("dataflow"))
-      ),
-      
-      #NBB {Belgium}
-      SDMXServiceProvider(
-        agencyId = "NBB", name = "National Bank of Belgium",
-        scale = "national", country = "BEL",
-        builder = SDMXDotStatRequestBuilder(
-          regUrl = "http://stat.nbb.be/RestSDMX/sdmx.ashx",
-          repoUrl = "http://stat.nbb.be/RestSDMX/sdmx.ashx", 
-          unsupportedResources = list("dataflow"))
-      ),
-      
-      #INSEE {France}
-      SDMXServiceProvider(
-        agencyId = "INSEE", name = "Institut national de la statistique et des \u00e9tudes \u00e9conomiques",
-        scale = "national", country = "FRA",
-        builder = SDMXREST21RequestBuilder(
-          regUrl = "http://www.bdm.insee.fr/series/sdmx",
-          repoUrl = "http://www.bdm.insee.fr/series/sdmx", 
-          compliant = TRUE)
-      ),
-      
-      #INEGI (Mexico)
-      SDMXServiceProvider(
-        agencyId = "INEGI", name = "Instituto Nacional de Estad\u00edstica y Geograf\u00eda (M\u00e9jico)",
-        scale = "national", country = "MEX",
-        builder = SDMXRequestBuilder(
-          regUrl = "http://www.snieg.mx/opendata/NSIRestService",
-          repoUrl = "http://www.snieg.mx/opendata/NSIRestService",
-          handler = function(regUrl, repoUrl, agencyId, resource, resourceId, version, 
-                           flowRef, key, start, end, compliant){
-          
-          if(is.null(resource)) stop("Missing SDMX service resource")
-          
-          #wrap argument values
-          obj <- list(regUrl = regUrl, repoUrl = repoUrl,
-                      agencyId = agencyId, resource = resource, resourceId = resourceId, version = version,
-                      flowRef = flowRef, key = key, start = start, end = end)
-          
-          #resource handler
-          resourceHandler <- switch(resource,
-                                    
-            #'dataflow' resource (path="/Dataflow/{resourceId}/ALL/ALL")
-            #-----------------------------------------------------------------------
-            "dataflow" = function(obj){
-              resourceId <- obj$resourceId
-              if(is.null(resourceId)) resourceId <- "ALL"
-              req <- sprintf("%s/Dataflow/%s/ALL/ALL",obj$regUrl, resourceId)
-              return(req)
-            },
-            #'datastructure' resource (path="/DataStructure/ALL/{resourceId}/ALL?references=children")
-            #-----------------------------------------------------------------------
-            "datastructure" = function(obj){
-              req <- sprintf("%s/DataStructure/ALL/%s/ALL?references=children",obj$regUrl, obj$resourceId)
-              return(req)
-            },
-            #'data' resource (path="/Data/ALL,{flowRef},ALL/{key}/{agencyId}")
-            #----------------------------------------------------------
-            "data" = function(obj){
-              if(is.null(obj$flowRef)) stop("Missing flowRef value")
-              if(is.null(obj$key)) obj$key = "ALL"
-
-              req <- sprintf("%s/Data/ALL,%s,ALL/%s/%s", obj$repoUrl, obj$flowRef, obj$key, obj$agencyId)
-              
-              #DataQuery
-              #-> temporal extent (if any)
-              addParams = FALSE
-              if(!is.null(obj$start)){
-                req <- paste0(req, "?")
-                addParams = TRUE
-                req <- paste0(req, "startPeriod=", start)
-              }
-              if(!is.null(obj$end)){
-                if(!addParams){
-                  req <- paste0(req, "?")
-                }else{
-                  req <- paste0(req, "&")
-                }
-                req <- paste0(req, "endPeriod=", end) 
-              }
-              
-              return(req)
-            })
-          
-            #handle rest resource path
-            req <- resourceHandler(obj)
-            return(req)
-          
-          },
-          compliant = FALSE
-        )
-      ),
-      
-      #other data providers
-      #--------------------
-      
-      #KNOEMA (Open data plateform)
-      SDMXServiceProvider(
-        agencyId = "KNOEMA", name = "KNOEMA knowledge plateform",
-        builder = SDMXRequestBuilder(
-          regUrl = "http://knoema.fr/api/1.0/sdmx",
-          repoUrl = "http://knoema.fr/api/1.0/sdmx",
-          handler = function(regUrl, repoUrl, agencyId, resource, resourceId, version, 
-                             flowRef, key, start, end, compliant){
-            
-            if(is.null(resource)) stop("Missing SDMX service resource")
-            
-            #wrap argument values
-            obj <- list(regUrl = regUrl, repoUrl = repoUrl,
-                        agencyId = agencyId, resource = resource, resourceId = resourceId, version = version,
-                        flowRef = flowRef, key = key, start = start, end = end)
-            
-            #resource handler
-            resourceHandler <- switch(resource,
-                                      
-              #'dataflow' resource (path="/")
-              #-----------------------------------------------------------------------
-              "dataflow" = function(obj){
-                return(obj$regUrl)
-              },
-              #'datastructure' resource (path="/{resourceID})
-              #-----------------------------------------------------------------------
-              "datastructure" = function(obj){
-                req <- paste(obj$regUrl, obj$resourceId, sep = "/")
-                return(req)
-              },
-              #'data' resource (path="getdata?dataflow={flowRef}&key={key})
-              #----------------------------------------------------------
-              "data" = function(obj){
-                if(is.null(obj$flowRef)) stop("Missing flowRef value")
-                if(is.null(obj$key)) obj$key = "."
-                
-                #base data request
-                req <- sprintf("%s/getdata?dataflow=%s&key=%s", obj$repoUrl, obj$flowRef, obj$key)
-                
-                #DataQuery
-                #-> temporal extent (if any)
-                if(!is.null(obj$start) | !is.null(obj$end)) {
-                  warning("start/end parameters ignored for this SDMX API")
-                }
-                
-                return(req)
-              })
-            
-            #handle rest resource path
-            req <- resourceHandler(obj)
-            return(req)
-            
-          },
-          compliant = FALSE
-        )
-      )
-    )
+    #international
+    ECB,ESTAT,OECD,FAO,ILO,UIS,
+    #national
+    ABS,NBB,INSEE,INEGI,
+    #others
+    KNOEMA
+  )
 
   .rsdmx.options$providers <- new("SDMXServiceProviders", providers = listOfProviders)
   

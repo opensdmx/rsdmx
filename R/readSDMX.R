@@ -168,24 +168,46 @@ readSDMX <- function(file = NULL, isURL = TRUE,
   #proceed with the request build
   if(buildRequest){
     
+    if(is.null(resource)) stop("SDMX service resource cannot be null")
+    
+    #request handler
+    requestHandler <- provider@builder@handler
+    if((resource %in% provider@builder@unsupportedResources) ||
+       !(resource %in% names(requestHandler)))
+      stop("Unsupported SDMX service resource for this provider")
+    
+    #apply SDMX key mode
     if(key.mode == "R" && !missing(key) && !is.null(key)){
       key <- paste(sapply(key, paste, collapse = "+"), collapse=".")
     }
     
-    if(is.null(resource)) stop("SDMX service resource cannot be null")
-    file <- provider@builder@handler(
-                             regUrl = provider@builder@regUrl,
-                             repoUrl = provider@builder@repoUrl,
-                             agencyId = provider@agencyId,
-                             resource = resource,
-                             resourceId = resourceId,
-                             version = version,
-                             flowRef = flowRef,
-                             key = key,
-                             start = start,
-                             end = end,
-                             compliant = provider@builder@compliant)
-    if(verbose) message(paste0("-> Fetching '", file, "'"));
+    #request params
+    requestParams <- SDMXRequestParams(
+                       regUrl = provider@builder@regUrl,
+                       repoUrl = provider@builder@repoUrl,
+                       agencyId = provider@agencyId,
+                       resource = resource,
+                       resourceId = resourceId,
+                       version = version,
+                       flowRef = flowRef,
+                       key = key,
+                       start = start,
+                       end = end,
+                       compliant = provider@builder@compliant
+                     )
+    #formatting requestParams
+    requestFormatter <- provider@builder@formatter
+    requestParams <- switch(resource,
+                           "dataflow" = requestFormatter$dataflow(requestParams),
+                           "datastructure" = requestFormatter$datastructure(requestParams),
+                           "data" = requestFormatter$data(requestParams))
+    #preparing request
+    file <- switch(resource,
+                  "dataflow" = requestHandler$dataflow(requestParams),
+                  "datastructure" = requestHandler$datastructure(requestParams),
+                  "data" = requestHandler$data(requestParams)
+    )
+    if(verbose) message(paste0("-> Fetching '", file, "'"))
   }
   
   #call readSDMX original

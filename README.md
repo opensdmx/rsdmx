@@ -119,11 +119,27 @@ as.data.frame(providers)
 
 #### create/add a SDMX service provider
 
-It also also possible to create and add a new SDMX service providers in this list (so ``readSDMX`` can be aware of it). A provider can be created with the ``SDMXServiceProvider``, and is made of five parameters: an ``agencyId``, its ``name``, ``scale`` (international or national), a ``country`` ISO 3-alpha code (if national) and a request ``builder``.
+It also also possible to create and add a new SDMX service providers in this list (so ``readSDMX`` can be aware of it). A provider can be created with the ``SDMXServiceProvider``, and is made of various parameters:
+* ``agencyId`` (provider identifier)
+* ``name``
+* ``scale`` (international or national)
+* ``country`` ISO 3-alpha code (if national)
+* ``builder``
 
-The request builder can be created with ``SDMXRequestBuilder`` which takes 3 arguments: the ``baseUrl`` of the service endpoint, a ``handler`` function which will allow to build the web request, and a ``compliant`` logical parameter (either the request builder is compliant with some web-service specifications), .
+The request builder can be created with ``SDMXRequestBuilder`` which takes various arguments: * ``regUrl``: URL of the service registry endpoint
+* ``repoUrl``: URL of the service repository endpoint (Note that we use 2 different
+arguments for registry and repository endpoints, since some providers use different
+URLs, but in most cases those are identical)
+* ``formatter`` list of functions to format the request params (one function per
+type of resource, e.g. "dataflow", "datastructure", "data")
+* ``handler`` list of functions which will allow to build the web request
+*``compliant`` logical parameter (either the request builder is compliant with some web-service specifications)
 
-``rsdmx`` intends to provider specific request builder that embedds yet an handler function (not need to implement it), and is now attempting to provide a ``SDMXRESTRequestBuilder`` to build SDMX REST web-requests. All this is still under experiments.
+``rsdmx`` yet provides common builders, that can be customized if needed, by overriding
+either the ``formatter`` or the ``handler`` functions:
+* ``SDMXREST20RequestBuilder``: connector for SDMX REST 2.0 web-services
+* ``SDMXREST21RequestBuilder``: connector for SDMX REST 2.1 web-services
+* ``SDMXDotStatRequestBuilder``: connector for SDMX .Stat ("DotStat") web-services implementations
 
 Let's see it with an example:
 
@@ -134,16 +150,45 @@ First create a request builder for our provider:
 myBuilder <- SDMXRequestBuilder(
   regUrl = "http://www.myorg.org/sdmx/registry",
   repoUrl = "http://www.myorg.org/sdmx/repository",
-  handler = function(baseUrl, agencyId, resource, resourceId, version, flowRef, key, start, end, compliant){
-    paste(baseUrl, agencyId, resource, flowRef, key, start, end, sep="/")
-  },
+  formatter = list(
+    dataflow = function(obj){
+      #format each dataflow id with some prefix
+      obj@resourceId <- paste0("df_",obj@resourceId)
+      return(obj)
+    },
+    datastructure = function(obj){
+      #do nothing
+      return(obj)
+    },
+    data = function(obj){
+      #format each dataset id with some prefix
+      obj@flowRef <- paste0("data_",obj@flowRef)
+      return(obj)
+    }
+  ),
+  handler = list(
+    dataflow = function(obj){
+      req <- sprintf("%s/dataflow",obj@regUrl)
+      return(req)
+    },
+    datastructure = function(obj){
+      req <- sprintf("%s/datastructure",obj@regUrl)
+      return(req)
+    },
+    data = function(obj){
+      req <- sprintf("%s/data",obj@regUrl)
+      return(req)
+    },
+  )
   compliant = FALSE
 )
 ```
 
-As you can see, we built a handler that will be in charge of creating a web-request such as [http://www.myorg.org/sdmx/agencyId/resource/flowRef/key/start/end](http://www.myorg.org/sdmx/agencyId/resource/flowRef/key/start/end)
+As you can see, we built a custom ``SDMXRequestBuilder`` that will be able to 
+create SDMX web-requests for the different resources of a SDMX web-service.
 
-We can create a provider with the above request builder, and add it to the list of known SDMX service providers:
+We can create a provider with the above request builder, and add it to the list 
+of known SDMX service providers:
 
 ```{r, echo = FALSE}
 
@@ -165,7 +210,8 @@ as.data.frame(getSDMXServiceProviders())
 
 #### find a SDMX service provider
 
-A another helper allows you to interrogate ``rsdmx`` if a specific provider is known, given an id:
+A another helper allows you to interrogate ``rsdmx`` if a specific provider is 
+known, given an id:
 
 ```{r, echo = FALSE}
 oecd <- findSDMXServiceProvider("OECD")
@@ -173,14 +219,18 @@ oecd <- findSDMXServiceProvider("OECD")
 
 #### readSDMX as helper function
 
-Now you know how to add a SDMX provider, you can consider using ``readSDMX`` without having to specifying a entire URL, but just by specifying the ``agencyId`` of the provider, and the different query parameters to reach your SDMX document:
+Now you know how to add a SDMX provider, you can consider using ``readSDMX`` 
+without having to specifying a entire URL, but just by specifying the ``agencyId``
+of the provider, and the different query parameters to reach your SDMX document:
 
 ```{r, echo = FALSE}
 sdmx <- readSDMX(agencyId = "MYORG", resource = "data", flowRef="MYSERIE",
                  key = "all", key.mode = "SDMX", start = 2000, end = 2015)
 ```
 
-The following sections will show you how to query SDMX documents, by using ``readSDMX`` in different ways: either for _local_ or _remote_ files, using ``readSDMX`` as low-level or with the helpers.
+The following sections will show you how to query SDMX documents, by using ``readSDMX`` 
+in different ways: either for _local_ or _remote_ files, using ``readSDMX`` as low-level 
+or with the helpers (embedded service providers).
 
 ### Read dataset documents
 
@@ -204,14 +254,51 @@ You can try it out with other datasources, such as:
 
 The online rsdmx documentation also provides a list of data providers, either from international or national institutions.
 
-Now, the service providers above mentioned are known by ``rsdmx`` which let users using ``readSDMX`` with the helper parameters. Let's see how it would look like for querying an OECD datasource:
+Now, the service providers above mentioned are known by ``rsdmx`` which let users using ``readSDMX`` with the helper parameters. It may also be the case for a provider that
+you register in rsdmx.
 
-```{r, echo = FALSE}
+Let's see how it would look like for querying an ``OECD`` datasource:
+
+```{r, message = FALSE}
 sdmx <- readSDMX(agencyId = "OECD", resource = "data", flowRef = "MIG",
-                 key = list("TOT", NULL, NULL), start = 2010, end = 2011)
+                key = list("TOT", NULL, NULL), start = 2010, end = 2011)
 df <- as.data.frame(sdmx)
 head(df)
 ```
+
+It is also possible to query a dataset together with its "definition", handled
+in a separate SDMX-ML document named ``DataStructureDefinition`` (DSD). It is 
+particularly useful when you want to enrich your dataset with all labels. For this, 
+you need the DSD which contains all reference data.
+
+To do so, you only need to append ``dsd = TRUE`` (default value is ``FALSE``), 
+to the previous request, and specify ``labels = TRUE`` when calling ``as.data.frame``,
+as follows:
+
+```{r, message = FALSE}
+sdmx <- readSDMX(agencyId = "OECD", resource = "data", flowRef = "MIG",
+                key = list("TOT", NULL, NULL), start = 2010, end = 2011,
+                dsd = TRUE)
+df <- as.data.frame(sdmx, labels = TRUE)
+head(df)
+```
+
+Note that in case you are reading SDMX-ML documents with the native approach (with
+URLs), instead of the embedded providers, it is also possible to associate a DSD
+to a dataset by using the function ``setDSD``. Let's try how it works:
+
+```{r, message = FALSE}
+#data without DSD
+sdmx.data <- readSDMX(agencyId = "OECD", resource = "data", flowRef = "MIG",
+                key = list("TOT", NULL, NULL), start = 2010, end = 2011)
+
+#DSD
+sdmx.dsd <- readSDMX(agencyId = "OECD", resource = "datastructure", resourceId = "MIG")
+
+#associate data and dsd
+sdmx.data <- setDSD(sdmx.data, sdmx.dsd)
+```
+
 
 
 #### Read _local_ datasets
