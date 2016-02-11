@@ -196,7 +196,7 @@ test_that("UIS - data",{
                    flowRef = "EDULIT_DS", key = list("OFST_1_CP", NULL),
                    start = "2000", end = "2015")
   if(!is.null(sdmx)){
-    expect_is(sdmx, "SDMXGenericData")
+    expect_is(sdmx, "SDMXMessageGroup")
   }
 })
 
@@ -317,7 +317,7 @@ test_that("INEGI - data",{
   sdmx <- readSDMX(agencyId = "INEGI", resource = "data",
                    flowRef = "DF_PIB_PB2008", start = 2010, end = 2015)
   if(!is.null(sdmx)){
-    expect_is(sdmx, "SDMXStructureSpecificData")
+    expect_is(sdmx, "SDMXGenericData")
   }
 })
 

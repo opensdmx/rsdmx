@@ -19,7 +19,8 @@ SDMXCrossSectionalData <- function(xmlObj){
 #methods
 #=======
 
-as.data.frame.SDMXCrossSectionalData <- function(x, labels = FALSE, ...){
+as.data.frame.SDMXCrossSectionalData <- function(x, row.names, optional,
+                                                 labels = FALSE, ...){
   
   xmlObj <- x@xmlObj;
   dataset <- NULL

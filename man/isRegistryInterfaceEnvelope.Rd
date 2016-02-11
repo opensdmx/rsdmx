@@ -4,7 +4,7 @@
 \alias{isRegistryInterfaceEnvelope}
 \title{isRegistryInterfaceEnvelope}
 \usage{
-isRegistryInterfaceEnvelope(xmlObj)
+isRegistryInterfaceEnvelope(xmlObj, nativeRoot)
 }
 \arguments{
 \item{xmlObj}{object of class "XMLInternalDocument derived from XML package}

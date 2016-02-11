@@ -20,10 +20,11 @@
 #' (baseUrl, agencyId, resource, resourceId, version, flowRef, key, start, end, compliant)
 #' and output (a string representing the web request to build).
 #' 
-#' The rsdmx package will as much as possible try to handler generic handlers, 
-#' e.g. an handler for SDMX REST web-services. For the latter example, a specific 
-#' builder is provided and made part of the specific and still experimental 
-#' \link{SDMXRESTRequestBuilder}.
+#' The rsdmx package will as much as possible try to handler generic handlers. At now,
+#' the available embedded builders are:
+#' \link{SDMXREST20RequestBuilder} (connector for SDMX 2.0 web-services),
+#' \link{SDMXREST21RequestBuilder} (connector for SDMX 2.1 web-services),
+#' \link{SDMXDotStatRequestBuilder} (connector for SDMX .Stat web-services implementations)
 #' 
 #' @examples
 #'  #default formatter

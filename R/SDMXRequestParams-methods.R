@@ -20,7 +20,7 @@
 #'             
 #' @examples
 #'   #how to create a SDMXRequestParams object
-#'   requestBuilder <- (
+#'   params <- SDMXRequestParams(
 #'    regUrl = "", repoUrl ="", agencyId ="", resource = "data", resourceId = "",
 #'    version = "", flowRef = "", key = NULL, start = NULL, end = NULL, compliant = FALSE
 #'   )

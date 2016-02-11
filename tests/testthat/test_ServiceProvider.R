@@ -12,10 +12,16 @@ test_that("SDMXServiceProvider - constructor",{
   requestBuilder <- SDMXRequestBuilder(
     regUrl = "http://www.myorg.org/registry",
     repoUrl = "http://www.myorg.org/repository",
-    handler = function(baseUrl, agencyId, resource, resourceId, version,
-                       flowRef, key, start, end, compliant){
-      return(paste(baseUrl, agencyId, resource, flowRef, key, start, end, sep="/"))
-    },
+    formatter = list(
+      dataflow = function(obj){return(obj)},
+      datastructure = function(obj){return(obj)},
+      data = function(obj){return(obj)}
+    ),
+    handler = list(
+      dataflow = function(obj){return(obj@regUrl)},
+      datastructure = function(obj){return(obj@regUrl)},
+      data = function(obj){return(obj@repoUrl)}
+    ),
     compliant = TRUE)
   
   
@@ -46,10 +52,16 @@ test_that("SDMXServiceProvider - methods",{
   requestBuilder <- SDMXRequestBuilder(
     regUrl = "http://www.myorg.org/registry",
     repoUrl = "http://www.myorg.org/repository",
-    handler = function(baseUrl, agencyId, resource, resourceId, version, 
-                       flowRef, key, start, end, compliant){
-      return(paste(baseUrl, agencyId, resource, flowRef, key, start, end, sep="/"))
-    },
+    formatter = list(
+      dataflow = function(obj){return(obj)},
+      datastructure = function(obj){return(obj)},
+      data = function(obj){return(obj)}
+    ),
+    handler = list(
+      dataflow = function(obj){return(obj@regUrl)},
+      datastructure = function(obj){return(obj@regUrl)},
+      data = function(obj){return(obj@repoUrl)}
+    ),
     compliant = TRUE)
   
   provider <- SDMXServiceProvider(

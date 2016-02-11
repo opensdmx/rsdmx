@@ -156,7 +156,7 @@ getSoapRequestResult <- function(xmlObj){
 #' @description function used to detect if the XML document corresponds to a 
 #'              registry interface query
 #' @usage
-#' isRegistryInterfaceEnvelope(xmlObj)
+#' isRegistryInterfaceEnvelope(xmlObj, nativeRoot)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
 #' @param nativeRoot object of class "logical" indicating if it is the native document

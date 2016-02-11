@@ -187,26 +187,26 @@ setSDMXServiceProviders <- function(){ # nocov start
         #'dataflow' resource (path="/")
         #-----------------------------------------------------------------------
         dataflow = function(obj){
-          return(obj$regUrl)
+          return(obj@regUrl)
         },
         #'datastructure' resource (path="/{resourceID})
         #-----------------------------------------------------------------------
         datastructure = function(obj){
-          req <- paste(obj$regUrl, obj$resourceId, sep = "/")
+          req <- paste(obj@regUrl, obj@resourceId, sep = "/")
           return(req)
         },
         #'data' resource (path="getdata?dataflow={flowRef}&key={key})
         #----------------------------------------------------------
         data = function(obj){
-          if(is.null(obj$flowRef)) stop("Missing flowRef value")
-          if(is.null(obj$key)) obj$key = "."
+          if(is.null(obj@flowRef)) stop("Missing flowRef value")
+          if(is.null(obj@key)) obj@key = "."
           
           #base data request
-          req <- sprintf("%s/getdata?dataflow=%s&key=%s", obj$repoUrl, obj$flowRef, obj$key)
+          req <- sprintf("%s/getdata?dataflow=%s&key=%s", obj@repoUrl, obj@flowRef, obj@key)
           
           #DataQuery
           #-> temporal extent (if any)
-          if(!is.null(obj$start) | !is.null(obj$end)) {
+          if(!is.null(obj@start) | !is.null(obj@end)) {
             warning("start/end parameters ignored for this SDMX API")
           }
           

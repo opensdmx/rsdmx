@@ -17,7 +17,8 @@ SDMXGenericData <- function(xmlObj){
 }
 
 #methods
-as.data.frame.SDMXGenericData <- function(x, labels = FALSE, ...){
+as.data.frame.SDMXGenericData <- function(x, row.names, optional,
+                                          labels = FALSE, ...){
   xmlObj <- x@xmlObj;
   dataset <- NULL
   

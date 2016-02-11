@@ -100,7 +100,7 @@ addLabels.SDMXData <- function(data, dsd){
 #' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
 
 if (!isGeneric("setDSD"))
-  setGeneric("setDSD", function(obj,...) standardGeneric("setDSD"));
+  setGeneric("setDSD", function(obj, dsd) standardGeneric("setDSD"));
 
 #' @describeIn setDSD
 setMethod(f = "setDSD", signature = "SDMXData", function(obj, dsd){
