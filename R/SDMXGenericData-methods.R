@@ -17,7 +17,7 @@ SDMXGenericData <- function(xmlObj){
 }
 
 #methods
-as.data.frame.SDMXGenericData <- function(x, row.names, optional,
+as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
                                           labels = FALSE, ...){
   xmlObj <- x@xmlObj;
   dataset <- NULL
@@ -247,6 +247,3 @@ as.data.frame.SDMXGenericData <- function(x, row.names, optional,
   # output
   return(dataset)
 }
-
-setAs("SDMXGenericData", "data.frame",
-      function(from) as.data.frame.SDMXGenericData(from));

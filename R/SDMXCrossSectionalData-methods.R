@@ -19,7 +19,7 @@ SDMXCrossSectionalData <- function(xmlObj){
 #methods
 #=======
 
-as.data.frame.SDMXCrossSectionalData <- function(x, row.names, optional,
+as.data.frame.SDMXCrossSectionalData <- function(x, row.names=NULL, optional=FALSE,
                                                  labels = FALSE, ...){
   
   xmlObj <- x@xmlObj;
@@ -150,6 +150,3 @@ as.data.frame.SDMXCrossSectionalData <- function(x, row.names, optional,
   # output
   return(dataset)
 }
-
-setAs("SDMXCrossSectionalData", "data.frame",
-      function(from) as.data.frame.SDMXCrossSectionalData(from));

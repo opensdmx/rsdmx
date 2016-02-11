@@ -133,9 +133,7 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
 }
 
 
-as.data.frame.SDMXCompactData <- function(x, row.names, optional, labels = FALSE, ...){
+as.data.frame.SDMXCompactData <- function(x, row.names=NULL, optional=FALSE,
+                                          labels = FALSE, ...){
   return(as.data.frame.SDMXAllCompactData(x, "compact", labels));
 }
-
-setAs("SDMXCompactData", "data.frame",
-      function(from) as.data.frame.SDMXCompactData(from));

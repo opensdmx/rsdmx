@@ -19,10 +19,7 @@ SDMXStructureSpecificData <- function(xmlObj){
 #methods
 #=======
 
-as.data.frame.SDMXStructureSpecificData <- function(x, row.names, optional,
+as.data.frame.SDMXStructureSpecificData <- function(x, row.names=NULL, optional=FALSE,
                                                     labels = FALSE, ...){
   return(as.data.frame.SDMXAllCompactData(x, "structurespecific", labels));
 }
-
-setAs("SDMXStructureSpecificData", "data.frame",
-      function(from) as.data.frame.SDMXStructureSpecificData(from));
