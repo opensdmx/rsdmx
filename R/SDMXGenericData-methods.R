@@ -174,9 +174,9 @@ as.data.frame.SDMXGenericData <- function(x, row.names, optional,
     keydf <- structure(keyValues, .Names = keyNames) 
     keydf <- as.data.frame(lapply(keydf, as.character), stringsAsFactors=FALSE)
     if(!is.null(obsdf)){
-      keydf <- keydf[rep(row.names(keydf), nrow(obsdf)),]
+      keydf <- keydf[rep(base::row.names(keydf), nrow(obsdf)),]
       if(class(keydf) == "data.frame"){
-        row.names(keydf) <- 1:nrow(obsdf)
+        base::row.names(keydf) <- 1:nrow(obsdf)
         colnames(keydf) <- keyNames
       }
     }
@@ -200,9 +200,9 @@ as.data.frame.SDMXGenericData <- function(x, row.names, optional,
         attrs.df <- as.data.frame(lapply(attrs.df, as.character),
                                   stringsAsFactors=FALSE)
         if(!is.null(obsdf)){
-          attrs.df <- attrs.df[rep(row.names(attrs.df), nrow(obsdf)),]
+          attrs.df <- attrs.df[rep(base::row.names(attrs.df), nrow(obsdf)),]
           if(is(attrs.df, "data.frame")){
-            row.names(attrs.df) <- 1:nrow(obsdf)
+            base::row.names(attrs.df) <- 1:nrow(obsdf)
             colnames(attrs.df) <- attrsNames
           }
         }
@@ -236,7 +236,7 @@ as.data.frame.SDMXGenericData <- function(x, row.names, optional,
   if(any(as.character(dataset$obsValue) == "NaN", na.rm = TRUE)){
     dataset[as.character(dataset$obsValue) == "NaN",]$obsValue <- NA
   }
-  if(!is.null(dataset)) row.names(dataset) <- 1:nrow(dataset)
+  if(!is.null(dataset)) base::row.names(dataset) <- 1:nrow(dataset)
   
   #enrich with labels
   if(labels){

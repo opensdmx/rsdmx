@@ -139,7 +139,7 @@ as.data.frame.SDMXCrossSectionalData <- function(x, row.names, optional,
   if(any(as.character(dataset$obsValue) == "NaN", na.rm = TRUE)){
     dataset[as.character(dataset$obsValue) == "NaN",]$obsValue <- NA
   }
-  if(!is.null(dataset)) row.names(dataset) <- 1:nrow(dataset)
+  if(!is.null(dataset)) base::row.names(dataset) <- 1:nrow(dataset)
   
   #enrich with labels
   if(labels){
