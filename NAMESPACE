@@ -36,7 +36,7 @@ exportClasses(
   SDMXDataFlow,
   SDMXDataFlows,
   SDMXRequestBuilder,
-  SDMXRESTRequestBuilder,
+  SDMXREST21RequestBuilder,
   SDMXDotStatRequestBuilder,
   SDMXServiceProvider,
   SDMXServiceProviders
@@ -74,7 +74,7 @@ export(
   SDMXDataFlow,
   SDMXDataFlows,
   SDMXRequestBuilder,
-  SDMXRESTRequestBuilder,
+  SDMXREST21RequestBuilder,
   SDMXDotStatRequestBuilder,
   SDMXServiceProvider,
   SDMXServiceProviders,

@@ -1,8 +1,8 @@
-#' @name SDMXRESTRequestBuilder
+#' @name SDMXREST21RequestBuilder
 #' @docType class
-#' @aliases SDMXRESTRequestBuilder-class
+#' @aliases SDMXREST21RequestBuilder-class
 #' 
-#' @title Class "SDMXRESTRequestBuilder"
+#' @title Class "SDMXREST21RequestBuilder"
 #' @description A experimental class to handle a SDMX 2.1 service request builder
 #' 
 #' @slot regUrl an object of class "character" giving the base Url of the SDMX service registry
@@ -15,7 +15,7 @@
 #' 
 #' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
 #' 
-setClass("SDMXRESTRequestBuilder",
+setClass("SDMXREST21RequestBuilder",
          contains = "SDMXRequestBuilder",
          representation(),
          prototype = list(),

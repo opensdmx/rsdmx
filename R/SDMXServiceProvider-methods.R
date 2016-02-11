@@ -71,7 +71,7 @@ setSDMXServiceProviders <- function(){ # nocov start
       #ECB
       SDMXServiceProvider(
         agencyId = "ECB", name = "European Central Bank",
-        builder = SDMXRESTRequestBuilder(
+        builder = SDMXREST21RequestBuilder(
           regUrl = "https://sdw-wsrest.ecb.europa.eu/service",
           repoUrl = "https://sdw-wsrest.ecb.europa.eu/service",
           compliant = TRUE)
@@ -80,7 +80,7 @@ setSDMXServiceProviders <- function(){ # nocov start
       #EUROSTAT
       SDMXServiceProvider( 
         agencyId = "ESTAT", name = "Eurostat (Statistical office of the European Union)",
-        builder = SDMXRESTRequestBuilder(
+        builder = SDMXREST21RequestBuilder(
           regUrl = "http://ec.europa.eu/eurostat/SDMX/diss-web/rest",
           repoUrl = "http://ec.europa.eu/eurostat/SDMX/diss-web/rest",
           compliant = TRUE)
@@ -97,20 +97,20 @@ setSDMXServiceProviders <- function(){ # nocov start
       #UN-FAO
       SDMXServiceProvider(
         agencyId = "FAO", name = "Food and Agriculture Organization of the United Nations",
-        builder = SDMXRESTRequestBuilder(
+        builder = SDMXREST21RequestBuilder(
           regUrl = "http://data.fao.org/sdmx/registry",
           repoUrl = "http://data.fao.org/sdmx/repository",
-          compliant = TRUE,
+          compliant = FALSE,
           unsupportedResources = list("dataflow"))
       ),
       
       #UN-ILO
       SDMXServiceProvider(
         agencyId = "ILO", name = "International Labour Organization of the United Nations",
-        builder = SDMXRESTRequestBuilder(
+        builder = SDMXREST21RequestBuilder(
           regUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
           repoUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
-          compliant = TRUE, skipAgencyId = TRUE,
+          compliant = FALSE, skipAgencyId = TRUE,
           unsupportedResources = list("dataflow"))                  
       ),
       
@@ -149,7 +149,7 @@ setSDMXServiceProviders <- function(){ # nocov start
       SDMXServiceProvider(
         agencyId = "INSEE", name = "Institut national de la statistique et des \u00e9tudes \u00e9conomiques",
         scale = "national", country = "FRA",
-        builder = SDMXRESTRequestBuilder(
+        builder = SDMXREST21RequestBuilder(
           regUrl = "http://www.bdm.insee.fr/series/sdmx",
           repoUrl = "http://www.bdm.insee.fr/series/sdmx", 
           compliant = TRUE)

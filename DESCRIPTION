@@ -28,7 +28,7 @@ Collate:
   Class-SDMXData.R Class-SDMXGenericData.R Class-SDMXCompactData.R Class-SDMXUtilityData.R
   Class-SDMXStructureSpecificData.R Class-SDMXCrossSectionalData.R Class-SDMXMessageGroup.R
   Class-SDMXDataFlow.R Class-SDMXDataFlows.R
-  Class-SDMXRequestBuilder.R Class-SDMXRESTRequestBuilder.R Class-SDMXDotStatRequestBuilder.R
+  Class-SDMXRequestBuilder.R Class-SDMXREST21RequestBuilder.R Class-SDMXDotStatRequestBuilder.R
   Class-SDMXServiceProvider.R Class-SDMXServiceProviders.R
   SDMXSchema-methods.R SDMXType-methods.R SDMXStructureType-methods.R SDMXHeader-methods.R
   SDMXFooterMessage-methods.R SDMXFooter-methods.R SDMX-methods.R
@@ -39,5 +39,5 @@ Collate:
   SDMXData-methods.R SDMXGenericData-methods.R SDMXCompactData-methods.R SDMXUtilityData-methods.R
   SDMXStructureSpecificData-methods.R SDMXCrossSectionalData-methods.R SDMXMessageGroup-methods.R
   SDMXDataFlow-methods.R SDMXDataFlows-methods.R
-  SDMXRequestBuilder-methods.R SDMXRESTRequestBuilder-methods.R SDMXDotStatRequestBuilder-methods.R
+  SDMXRequestBuilder-methods.R SDMXREST21RequestBuilder-methods.R SDMXDotStatRequestBuilder-methods.R
   SDMXServiceProvider-methods.R SDMXServiceProviders-methods.R readSDMX.R profile.R rsdmx.R
