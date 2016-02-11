@@ -37,6 +37,7 @@ exportClasses(
   SDMXDataFlows,
   SDMXRequestBuilder,
   SDMXRESTRequestBuilder,
+  SDMXDotStatRequestBuilder,
   SDMXServiceProvider,
   SDMXServiceProviders
 )
@@ -74,6 +75,7 @@ export(
   SDMXDataFlows,
   SDMXRequestBuilder,
   SDMXRESTRequestBuilder,
+  SDMXDotStatRequestBuilder,
   SDMXServiceProvider,
   SDMXServiceProviders,
   findNamespace,

@@ -89,10 +89,9 @@ setSDMXServiceProviders <- function(){ # nocov start
       #OECD
       SDMXServiceProvider(
         agencyId = "OECD", name = "Organisation for Economic Cooperation and Development ",
-        builder = SDMXRESTRequestBuilder(
+        builder = SDMXDotStatRequestBuilder(
           regUrl = "http://stats.oecd.org/restsdmx/sdmx.ashx",
-          repoUrl = "http://stats.oecd.org/restsdmx/sdmx.ashx",
-          compliant = FALSE)
+          repoUrl = "http://stats.oecd.org/restsdmx/sdmx.ashx")
       ),
       
       #UN-FAO
@@ -118,10 +117,9 @@ setSDMXServiceProviders <- function(){ # nocov start
       #UIS (UNESCO)
       SDMXServiceProvider(
         agencyId = "UIS", name = "UNESCO Institute of Statistics",
-        builder = SDMXRESTRequestBuilder(
+        builder = SDMXDotStatRequestBuilder(
           regUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx",
-          repoUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx", 
-          compliant = FALSE)
+          repoUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx")
       ),
       
       #national data providers
@@ -131,21 +129,19 @@ setSDMXServiceProviders <- function(){ # nocov start
       SDMXServiceProvider(
         agencyId = "ABS", name = "Australian Bureau of Statistics",
         scale = "national", country = "AUS",
-        builder = SDMXRESTRequestBuilder(
+        builder = SDMXDotStatRequestBuilder(
           regUrl = "http://stat.abs.gov.au/restsdmx/sdmx.ashx",
           repoUrl = "http://stat.abs.gov.au/restsdmx/sdmx.ashx", 
-          compliant = FALSE, forceAgencyId = TRUE,
-          unsupportedResources = list("dataflow"))
+          forceAgencyId = TRUE, unsupportedResources = list("dataflow"))
       ),
       
       #NBB {Belgium}
       SDMXServiceProvider(
         agencyId = "NBB", name = "National Bank of Belgium",
         scale = "national", country = "BEL",
-        builder = SDMXRESTRequestBuilder(
+        builder = SDMXDotStatRequestBuilder(
           regUrl = "http://stat.nbb.be/RestSDMX/sdmx.ashx",
           repoUrl = "http://stat.nbb.be/RestSDMX/sdmx.ashx", 
-          compliant = FALSE,
           unsupportedResources = list("dataflow"))
       ),
       
