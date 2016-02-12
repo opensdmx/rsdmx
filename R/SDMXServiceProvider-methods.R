@@ -178,6 +178,17 @@ setSDMXServiceProviders <- function(){ # nocov start
     return(obj)
   }
   
+  #ISTAT (Italy)
+  ISTAT <- SDMXServiceProvider(
+    agencyId = "ISTAT", name = "Istituto nazionale di statistica (Italia)",
+    scale = "national", country = "ITA",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "http://sdmx.istat.it/SDMXWS/rest",
+      repoUrl = "http://sdmx.istat.it/SDMXWS/rest",
+      compliant = TRUE, unsupportedResources = list("datastructure")
+    )
+  )
+  
   #other data providers
   #--------------------
   
@@ -231,7 +242,7 @@ setSDMXServiceProviders <- function(){ # nocov start
     #international
     ECB,ESTAT,OECD,UNSD,FAO,ILO,UIS,
     #national
-    ABS,NBB,INSEE,INEGI,
+    ABS,NBB,INSEE,INEGI,ISTAT,
     #others
     KNOEMA
   )

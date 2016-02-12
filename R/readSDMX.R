@@ -328,9 +328,9 @@ readSDMX <- function(file = NULL, isURL = TRUE,
     dsdRef <- slot(obj,"dsdRef")
     if(!is.null(dsdRef)){
       
-      #hack for EUROSTAT
+      #hack for ESTAT, ISTAT
       #TODO investigate if using agencyId prefix and version suffix is SDMX compliant
-      if(providerId == "ESTAT"){
+      if(providerId %in% c("ESTAT","ISTAT")){
         providerIdPrefix <- paste0(providerId,"_")
         if(regexpr(providerIdPrefix,dsdRef) == 1){
           dsdRef <- unlist(strsplit(dsdRef, providerIdPrefix))[2]

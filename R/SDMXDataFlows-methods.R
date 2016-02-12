@@ -72,7 +72,7 @@ as.data.frame.SDMXDataFlows <- function(x, ...){
                           dataflow.desc <- NULL
                           if(length(desc) > 0){
                             dataflow.desc <- as.data.frame(desc, stringsAsFactors = FALSE)
-                            colnames(datflow.desc) <- paste0("Description.", colnames(dataflow.desc))
+                            colnames(dataflow.desc) <- paste0("Description.", colnames(dataflow.desc))
                           }
                           
                           df <- data.frame(

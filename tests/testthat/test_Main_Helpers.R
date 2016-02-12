@@ -356,6 +356,41 @@ test_that("INEGI - data",{
   }
 })
 
+#ISTAT (ITALY)
+#-------------
+
+#-> dataflow
+test_that("ISTAT - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "ISTAT", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
+#-> datastructure
+#TODO investigate issue with xmlNamespaceDefinitions (XML)
+test_that("ISTAT - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "ISTAT", resource = "datastructure", resourceId = "DCCV_CONSACQUA")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
+test_that("ISTAT - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "ISTAT", resource = "data",
+                   flowRef = "12_60", start = 2015, end = 2015)
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXGenericData")
+  }
+})
+
 #other data providers
 
 #KNOEMA
