@@ -3,7 +3,7 @@
 #' @aliases SDMXRequestParams,SDMXRequestParams-method
 #' 
 #' @usage
-#'  SDMXRequestParams(regUrl, repoUrl, agencyId, resource, resourceId, version,
+#'  SDMXRequestParams(regUrl, repoUrl, providerId, agencyId, resource, resourceId, version,
 #'                    flowRef, key, start, end, compliant)
 #'
 #' @param regUrl an object of class "character" giving the base Url of the SDMX service registry

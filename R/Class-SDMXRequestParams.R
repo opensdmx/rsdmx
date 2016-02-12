@@ -7,7 +7,7 @@
 #' 
 #' @slot regUrl an object of class "character" giving the base Url of the SDMX service registry
 #' @slot repoUrl an object of class "character" giving the base Url of the SDMX service repository
-#' @slot agencyId an object of class "character" giving the provider agency Id
+#' @slot providerId an object of class "character" giving the provider agency Id
 #' @slot agencyId an object of class "character" giving an agency Id
 #' @slot resource an object of class "character" giving the type of resource to be queried
 #' @slot resourceId an object of class "character" giving the resource to be queried
