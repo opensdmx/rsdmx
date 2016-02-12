@@ -4,7 +4,7 @@
 #' 
 #' @usage
 #'  SDMXREST20RequestBuilder(regUrl, repoUrl, compliant, unsupportedResources,
-#'                         skipAgencyId, forceAgencyId)
+#'                         skipProviderId, forceProviderId)
 #'
 #' @param regUrl an object of class "character" giving the base Url of the SDMX 
 #'        service registry
@@ -14,14 +14,14 @@
 #'        is compliant with the SDMX REST web-service specifications
 #' @param unsupportedResources an object of class "list" giving eventual unsupported 
 #'        REST resources. Default is an empty list object
-#' @param skipAgencyId an object of class "logical" indicating that agencyId 
-#'        should be skipped. Used to control lack of strong SDMX REST compliance 
+#' @param skipProviderId an object of class "logical" indicating that the provider
+#'        agencyIdshould be skipped. Used to control lack of strong SDMX REST compliance 
 #'        from data providers. For now, it applies only for the "data" resource.
-#' @param forceAgencyId an object of class "logical" indicating if the agencyId 
-#'        as to be added at the end of the request. Default value is \code{FALSE}. 
-#'        For some providers, the \code{all} value for the \code{agencyId} is not 
-#'        allowed, in this case, the \code{agencyId} of the data provider has to 
-#'        be forced in the web-request 
+#' @param forceProviderId an object of class "logical" indicating if the provider
+#'        agencyId has to be added at the end of the request. Default value is 
+#'        \code{FALSE}. For some providers, the \code{all} value for the provider
+#'        agency id is not allowed, in this case, the \code{agencyId} of the data 
+#'        provider has to be forced in the web-request 
 #'                
 #' @examples
 #'   #how to create a SDMXREST20RequestBuilder
@@ -31,7 +31,7 @@
 #'
 SDMXREST20RequestBuilder <- function(regUrl, repoUrl, compliant,
                                      unsupportedResources = list(),
-                                     skipAgencyId = FALSE, forceAgencyId = FALSE){
+                                     skipProviderId = FALSE, forceProviderId = FALSE){
     
   #params formatter
   formatter = list(
@@ -64,6 +64,7 @@ SDMXREST20RequestBuilder <- function(regUrl, repoUrl, compliant,
     #'data' resource (path="/Data/{flowRef}/{key}/{agencyId}")
     #----------------------------------------------------------
     data = function(obj){
+      if(is.null(obj@agencyId)) obj@agencyId = "all"
       if(is.null(obj@flowRef)) stop("Missing flowRef value")
       if(is.null(obj@key)) obj@key = "ALL"
       

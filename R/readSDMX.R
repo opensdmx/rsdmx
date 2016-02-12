@@ -13,9 +13,11 @@
 #'        Ignored in case \code{readSDMX} is used with helpers (based on the 
 #'        embedded list of \code{SDMXServiceProvider})
 #' @param provider an object of class "SDMXServiceProvider". If specified, 
-#'        \code{file} and \code{isURL} arguments will be ignored.
-#' @param agencyId an object of class "character" representing a provider id. 
+#'        \code{file} and \code{isURL} arguments will be ignored.      
+#' @param providerId an object of class "character" representing a provider id. 
 #'        It has to be match a default provider as listed in\code{getSDMXServiceProviders()}
+#' @param agencyId an object of class "character representing an agency id, for
+#'        which data should be requested (from a particular service provider)      
 #' @param resource an object of class "character" giving the SDMX service request 
 #'        resource to query e.g. "data". Recognized if a valid provider or provide 
 #'        id has been specified as argument.
@@ -70,7 +72,7 @@
 #'    # (reliable remote datasource but with possible occasional unavailability)
 #'    
 #'    #examples using embedded providers
-#'    sdmx <- readSDMX(agencyId = "OECD", resource = "data", flowRef = "MIG",
+#'    sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "MIG",
 #'                      key = list("TOT", NULL, NULL), start = 2011, end = 2011)
 #'    stats <- as.data.frame(sdmx)
 #'    head(stats)
@@ -120,7 +122,7 @@
 #'    # (reliable remote datasource but with possible occasional unavailability)
 #'    
 #'    #using embedded providers
-#'    dsd <- readSDMX(agencyId = "OECD", resource = "datastructure",
+#'    dsd <- readSDMX(providerId = "OECD", resource = "datastructure",
 #'                    resourceId = "WATER_ABSTRACT")
 #'    
 #'    #get codelists from DSD
@@ -140,7 +142,8 @@
 #'    
 
 readSDMX <- function(file = NULL, isURL = TRUE,
-                     provider = NULL, agencyId = NULL, resource = NULL, resourceId = NULL, version = NULL,
+                     provider = NULL, providerId = NULL,
+                     agencyId = NULL, resource = NULL, resourceId = NULL, version = NULL,
                      flowRef = NULL, key = NULL, key.mode = "R", start = NULL, end = NULL, dsd = FALSE,
                      verbose = TRUE) {
   
@@ -157,10 +160,10 @@ readSDMX <- function(file = NULL, isURL = TRUE,
     buildRequest <- TRUE
   }
   
-  if(!is.null(agencyId)){
-    provider <- findSDMXServiceProvider(agencyId)
+  if(!is.null(providerId)){
+    provider <- findSDMXServiceProvider(providerId)
     if(is.null(provider)){
-      stop("No provider with identifier ", agencyId)
+      stop("No provider with identifier ", providerId)
     }
     buildRequest <- TRUE
   }
@@ -185,7 +188,8 @@ readSDMX <- function(file = NULL, isURL = TRUE,
     requestParams <- SDMXRequestParams(
                        regUrl = provider@builder@regUrl,
                        repoUrl = provider@builder@repoUrl,
-                       agencyId = provider@agencyId,
+                       providerId = providerId,
+                       agencyId = agencyId,
                        resource = resource,
                        resourceId = resourceId,
                        version = version,
@@ -326,10 +330,10 @@ readSDMX <- function(file = NULL, isURL = TRUE,
       
       #hack for EUROSTAT
       #TODO investigate if using agencyId prefix and version suffix is SDMX compliant
-      if(agencyId == "ESTAT"){
-        agencyIdPrefix <- paste0(agencyId,"_")
-        if(regexpr(agencyIdPrefix,dsdRef) == 1){
-          dsdRef <- unlist(strsplit(dsdRef, agencyIdPrefix))[2]
+      if(providerId == "ESTAT"){
+        providerIdPrefix <- paste0(providerId,"_")
+        if(regexpr(providerIdPrefix,dsdRef) == 1){
+          dsdRef <- unlist(strsplit(dsdRef, providerIdPrefix))[2]
           if(substr(dsdRef, nchar(dsdRef)-1+1, nchar(dsdRef)) != flowRef){
             versionPrefix <- unlist(strsplit(dsdRef, flowRef))[2]
             dsdRef <- unlist(strsplit(dsdRef, versionPrefix))[1]
@@ -344,7 +348,7 @@ readSDMX <- function(file = NULL, isURL = TRUE,
       dsdRef <- flowRef
     }
     
-    dsdObj <- readSDMX(agencyId = agencyId, resource = "datastructure",
+    dsdObj <- readSDMX(providerId = providerId, resource = "datastructure",
                        resourceId = dsdRef, verbose = verbose)
     if(is.null(dsdObj)){
       if(verbose) message("-> Impossible to fetch DSD")

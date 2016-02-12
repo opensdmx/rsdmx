@@ -8,7 +8,8 @@
 #'
 #' @param regUrl an object of class "character" giving the base Url of the SDMX service registry
 #' @param repoUrl an object of class "character" giving the base Url of the SDMX service repository
-#' @param agencyId an object of class "character" giving the agencyID
+#' @param providerId an object of class "character" giving the provider agency id
+#' @param agencyId an object of class "character" giving an agency id
 #' @param resource an object of class "character" giving the type of resource to be queried
 #' @param resourceId an object of class "character" giving the resource to be queried
 #' @param version an object of class "character" giving the resource version
@@ -21,14 +22,14 @@
 #' @examples
 #'   #how to create a SDMXRequestParams object
 #'   params <- SDMXRequestParams(
-#'    regUrl = "", repoUrl ="", agencyId ="", resource = "data", resourceId = "",
+#'    regUrl = "", repoUrl ="", providerId = "", agencyId ="", resource = "data", resourceId = "",
 #'    version = "", flowRef = "", key = NULL, start = NULL, end = NULL, compliant = FALSE
 #'   )
 #'
-SDMXRequestParams <- function(regUrl, repoUrl, agencyId, resource, resourceId, version = NULL,
+SDMXRequestParams <- function(regUrl, repoUrl, providerId, agencyId, resource, resourceId, version = NULL,
                               flowRef, key = NULL, start = NULL, end = NULL, compliant){
   new("SDMXRequestParams",
-      regUrl = regUrl, repoUrl = repoUrl,
+      regUrl = regUrl, repoUrl = repoUrl, providerId = providerId,
        agencyId = agencyId, resource = resource, resourceId = resourceId, version = version,
        flowRef = flowRef, key = key, start = start, end = end)
 }

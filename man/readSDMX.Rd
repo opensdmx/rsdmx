@@ -19,8 +19,11 @@ embedded list of \code{SDMXServiceProvider})}
 \item{provider}{an object of class "SDMXServiceProvider". If specified,
 \code{file} and \code{isURL} arguments will be ignored.}
 
-\item{agencyId}{an object of class "character" representing a provider id.
+\item{providerId}{an object of class "character" representing a provider id.
 It has to be match a default provider as listed in\code{getSDMXServiceProviders()}}
+
+\item{agencyId}{an object of class "character representing an agency id, for
+which data should be requested (from a particular service provider)}
 
 \item{resource}{an object of class "character" giving the SDMX service request
 resource to query e.g. "data". Recognized if a valid provider or provide
@@ -89,7 +92,7 @@ an object of class "SDMX"
    # (reliable remote datasource but with possible occasional unavailability)
 
    #examples using embedded providers
-   sdmx <- readSDMX(agencyId = "OECD", resource = "data", flowRef = "MIG",
+   sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "MIG",
                      key = list("TOT", NULL, NULL), start = 2011, end = 2011)
    stats <- as.data.frame(sdmx)
    head(stats)
@@ -139,7 +142,7 @@ an object of class "SDMX"
    # (reliable remote datasource but with possible occasional unavailability)
 
    #using embedded providers
-   dsd <- readSDMX(agencyId = "OECD", resource = "datastructure",
+   dsd <- readSDMX(providerId = "OECD", resource = "datastructure",
                    resourceId = "WATER_ABSTRACT")
 
    #get codelists from DSD

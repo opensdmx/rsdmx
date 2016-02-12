@@ -8,10 +8,10 @@ require(testthat)
 context("SDMXData")
 
 test_that("DSD is properly associated to an SDMXData object",{
-  data <- readSDMX(agencyId = "UIS", resource = "data",
+  data <- readSDMX(providerId = "UIS", resource = "data",
                         flowRef = "EDULIT_DS", key = list("OFST_1_CP", NULL),
                         start = "2000", end = "2015")
-  dsd <- readSDMX(agencyId = "UIS", resource = "datastructure",
+  dsd <- readSDMX(providerId = "UIS", resource = "datastructure",
                        resourceId = "EDULIT_DS")
   
   expect_equal(slot(data,"dsdRef"), "EDULIT_DS")
@@ -24,7 +24,7 @@ test_that("DSD is properly associated to an SDMXData object",{
 })
 
 test_that("DSD is properly fetched by readSDMX and associated to the dataset",{
-  data <- readSDMX(agencyId = "UIS", resource = "data",
+  data <- readSDMX(providerId = "UIS", resource = "data",
                         flowRef = "EDULIT_DS", key = list("OFST_1_CP", NULL),
                         start = "2000", end = "2015",
                         dsd = TRUE)

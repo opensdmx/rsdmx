@@ -4,7 +4,7 @@
 #' 
 #' @usage
 #'  SDMXREST21RequestBuilder(regUrl, repoUrl, compliant, unsupportedResources,
-#'                         skipAgencyId, forceAgencyId)
+#'                         skipProviderId, forceProviderId)
 #'
 #' @param regUrl an object of class "character" giving the base Url of the SDMX 
 #'        service registry
@@ -14,14 +14,14 @@
 #'        is compliant with the SDMX REST web-service specifications
 #' @param unsupportedResources an object of class "list" giving eventual unsupported 
 #'        REST resources. Default is an empty list object
-#' @param skipAgencyId an object of class "logical" indicating that agencyId 
-#'        should be skipped. Used to control lack of strong SDMX REST compliance 
+#' @param skipProviderId an object of class "logical" indicating that the provider
+#'        agencyIdshould be skipped. Used to control lack of strong SDMX REST compliance 
 #'        from data providers. For now, it applies only for the "data" resource.
-#' @param forceAgencyId an object of class "logical" indicating if the agencyId 
-#'        as to be added at the end of the request. Default value is \code{FALSE}. 
-#'        For some providers, the \code{all} value for the \code{agencyId} is not 
-#'        allowed, in this case, the \code{agencyId} of the data provider has to 
-#'        be forced in the web-request 
+#' @param forceProviderId an object of class "logical" indicating if the provider
+#'        agencyId has to be added at the end of the request. Default value is 
+#'        \code{FALSE}. For some providers, the \code{all} value for the provider
+#'        agency id is not allowed, in this case, the \code{agencyId} of the data 
+#'        provider has to be forced in the web-request 
 #'                
 #' @examples
 #'   #how to create a SDMXREST21RequestBuilder
@@ -32,7 +32,7 @@
 #'
 SDMXREST21RequestBuilder <- function(regUrl, repoUrl, compliant,
                                      unsupportedResources = list(),
-                                     skipAgencyId = FALSE, forceAgencyId = FALSE){
+                                     skipProviderId = FALSE, forceProviderId = FALSE){
   
   #params formatter
   formatter = list(
@@ -50,19 +50,21 @@ SDMXREST21RequestBuilder <- function(regUrl, repoUrl, compliant,
     #'dataflow' resource (path="dataflow/{agencyID}/{resourceID}/{version}")
     #-----------------------------------------------------------------------
     dataflow = function(obj){
+      if(is.null(obj@agencyId)) obj@agencyId = "all"
       if(is.null(obj@resourceId)) obj@resourceId = "all"
       if(is.null(obj@version)) obj@version = "latest"
-      req <- sprintf("%s/dataflow/%s/%s/%s",obj@regUrl, obj@agencyId, obj@resourceId, obj@version)        
+      req <- sprintf("%s/dataflow/%s/%s/%s/",obj@regUrl, obj@agencyId, obj@resourceId, obj@version)        
       return(req)
     },
                             
     #'datastructure' resource (path="datastructure/{agencyID}/{resourceID}/{version})
     #--------------------------------------------------------------------------------
     datastructure = function(obj){
+      if(is.null(obj@agencyId)) obj@agencyId = "all"
       if(is.null(obj@resourceId)) obj@resourceId = "all"
       if(is.null(obj@version)) obj@version = "latest"
-      req <- sprintf("%s/datastructure/%s/%s/%s",obj@regUrl, obj@agencyId, obj@resourceId, obj@version)
-      if(forceAgencyId) req <- paste(req, obj@agencyId, sep = "/")
+      req <- sprintf("%s/datastructure/%s/%s/%s/",obj@regUrl, obj@agencyId, obj@resourceId, obj@version)
+      if(forceProviderId) req <- paste(req, obj@providerId, sep = "/")
       req <- paste0(req, "?references=children") #TODO to see later to have arg for this
       return(req)
     },
@@ -73,10 +75,11 @@ SDMXREST21RequestBuilder <- function(regUrl, repoUrl, compliant,
       if(is.null(obj@flowRef)) stop("Missing flowRef value")
       if(is.null(obj@key)) obj@key = "all"
       req <- sprintf("%s/data/%s/%s",obj@repoUrl, obj@flowRef, obj@key)
-      if(skipAgencyId){
+      if(skipProviderId){
         req <- paste0(req, "/")
       }else{
-        req <- paste(req, ifelse(forceAgencyId, obj@agencyId, "all"), sep = "/")
+        req <- paste(req, ifelse(forceProviderId, obj@providerId, "all"), sep = "/")
+        req <- paste0(req, "/")
       }
       
       #DataQuery

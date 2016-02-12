@@ -7,7 +7,8 @@
 #' 
 #' @slot regUrl an object of class "character" giving the base Url of the SDMX service registry
 #' @slot repoUrl an object of class "character" giving the base Url of the SDMX service repository
-#' @slot agencyId an object of class "character" giving the agencyID
+#' @slot agencyId an object of class "character" giving the provider agency Id
+#' @slot agencyId an object of class "character" giving an agency Id
 #' @slot resource an object of class "character" giving the type of resource to be queried
 #' @slot resourceId an object of class "character" giving the resource to be queried
 #' @slot version an object of class "character" giving the resource version
@@ -27,7 +28,8 @@ setClass("SDMXRequestParams",
          representation(
            regUrl = "character",
            repoUrl = "character",
-           agencyId = "character",
+           providerId = "character",
+           agencyId = "character_OR_NULL",
            resource = "character",
            resourceId = "character_OR_NULL",
            version = "character_OR_NULL",

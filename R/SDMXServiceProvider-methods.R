@@ -92,6 +92,16 @@ setSDMXServiceProviders <- function(){ # nocov start
       repoUrl = "http://stats.oecd.org/restsdmx/sdmx.ashx")
   )
   
+  #UN
+  UNSD <- SDMXServiceProvider(
+    agencyId = "UNSD", "United Nations Statistics Division",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "http://data.un.org/WS/rest",
+      repoUrl = "http://data.un.org/WS/rest",
+      compliant = TRUE
+    )
+  )  
+  
   #UN-FAO
   FAO <- SDMXServiceProvider(
     agencyId = "FAO", name = "Food and Agriculture Organization of the United Nations",
@@ -108,7 +118,7 @@ setSDMXServiceProviders <- function(){ # nocov start
     builder = SDMXREST21RequestBuilder(
       regUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
       repoUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
-      compliant = FALSE, skipAgencyId = TRUE,
+      compliant = FALSE, skipProviderId = TRUE,
       unsupportedResources = list("dataflow"))                  
   )
   
@@ -130,7 +140,7 @@ setSDMXServiceProviders <- function(){ # nocov start
     builder = SDMXDotStatRequestBuilder(
       regUrl = "http://stat.abs.gov.au/restsdmx/sdmx.ashx",
       repoUrl = "http://stat.abs.gov.au/restsdmx/sdmx.ashx", 
-      forceAgencyId = TRUE, unsupportedResources = list("dataflow"))
+      forceProviderId = TRUE, unsupportedResources = list("dataflow"))
   )
   
   #NBB {Belgium}
@@ -219,7 +229,7 @@ setSDMXServiceProviders <- function(){ # nocov start
   
   listOfProviders <- list(
     #international
-    ECB,ESTAT,OECD,FAO,ILO,UIS,
+    ECB,ESTAT,OECD,UNSD,FAO,ILO,UIS,
     #national
     ABS,NBB,INSEE,INEGI,
     #others

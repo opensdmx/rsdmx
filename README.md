@@ -224,7 +224,7 @@ without having to specifying a entire URL, but just by specifying the ``agencyId
 of the provider, and the different query parameters to reach your SDMX document:
 
 ```{r, echo = FALSE}
-sdmx <- readSDMX(agencyId = "MYORG", resource = "data", flowRef="MYSERIE",
+sdmx <- readSDMX(providerId = "MYORG", resource = "data", flowRef="MYSERIE",
                  key = "all", key.mode = "SDMX", start = 2000, end = 2015)
 ```
 
@@ -260,7 +260,7 @@ you register in rsdmx.
 Let's see how it would look like for querying an ``OECD`` datasource:
 
 ```{r, message = FALSE}
-sdmx <- readSDMX(agencyId = "OECD", resource = "data", flowRef = "MIG",
+sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "MIG",
                 key = list("TOT", NULL, NULL), start = 2010, end = 2011)
 df <- as.data.frame(sdmx)
 head(df)
@@ -276,7 +276,7 @@ to the previous request, and specify ``labels = TRUE`` when calling ``as.data.fr
 as follows:
 
 ```{r, message = FALSE}
-sdmx <- readSDMX(agencyId = "OECD", resource = "data", flowRef = "MIG",
+sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "MIG",
                 key = list("TOT", NULL, NULL), start = 2010, end = 2011,
                 dsd = TRUE)
 df <- as.data.frame(sdmx, labels = TRUE)
@@ -289,11 +289,11 @@ to a dataset by using the function ``setDSD``. Let's try how it works:
 
 ```{r, message = FALSE}
 #data without DSD
-sdmx.data <- readSDMX(agencyId = "OECD", resource = "data", flowRef = "MIG",
+sdmx.data <- readSDMX(providerId = "OECD", resource = "data", flowRef = "MIG",
                 key = list("TOT", NULL, NULL), start = 2010, end = 2011)
 
 #DSD
-sdmx.dsd <- readSDMX(agencyId = "OECD", resource = "datastructure", resourceId = "MIG")
+sdmx.dsd <- readSDMX(providerId = "OECD", resource = "datastructure", resourceId = "MIG")
 
 #associate data and dsd
 sdmx.data <- setDSD(sdmx.data, sdmx.dsd)

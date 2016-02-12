@@ -15,7 +15,9 @@ SDMXRequestParams(regUrl, repoUrl, agencyId, resource, resourceId, version,
 
 \item{repoUrl}{an object of class "character" giving the base Url of the SDMX service repository}
 
-\item{agencyId}{an object of class "character" giving the agencyID}
+\item{providerId}{an object of class "character" giving the provider agency id}
+
+\item{agencyId}{an object of class "character" giving an agency id}
 
 \item{resource}{an object of class "character" giving the type of resource to be queried}
 
@@ -43,7 +45,9 @@ A class to handle a SDMX service request params
 
 \item{\code{repoUrl}}{an object of class "character" giving the base Url of the SDMX service repository}
 
-\item{\code{agencyId}}{an object of class "character" giving the agencyID}
+\item{\code{agencyId}}{an object of class "character" giving the provider agency Id}
+
+\item{\code{agencyId}}{an object of class "character" giving an agency Id}
 
 \item{\code{resource}}{an object of class "character" giving the type of resource to be queried}
 
@@ -69,7 +73,7 @@ encapsulate it as slot, when parsing an SDMX-ML document.
 \examples{
 #how to create a SDMXRequestParams object
   params <- SDMXRequestParams(
-   regUrl = "", repoUrl ="", agencyId ="", resource = "data", resourceId = "",
+   regUrl = "", repoUrl ="", providerId = "", agencyId ="", resource = "data", resourceId = "",
    version = "", flowRef = "", key = NULL, start = NULL, end = NULL, compliant = FALSE
   )
 }

@@ -4,7 +4,7 @@
 #' 
 #' @usage
 #'  SDMXDotStatRequestBuilder(regUrl, repoUrl, unsupportedResources,
-#'                            skipAgencyId, forceAgencyId)
+#'                            skipProviderId, forceProviderId)
 #'
 #' @param regUrl an object of class "character" giving the base Url of the SDMX 
 #'        service registry
@@ -12,14 +12,14 @@
 #'        service repository
 #' @param unsupportedResources an object of class "list" giving eventual unsupported 
 #'        REST resources. Default is an empty list object
-#' @param skipAgencyId an object of class "logical" indicating that agencyId 
-#'        should be skipped. Used to control lack of strong SDMX REST compliance 
+#' @param skipProviderId an object of class "logical" indicating that the provider
+#'        agencyIdshould be skipped. Used to control lack of strong SDMX REST compliance 
 #'        from data providers. For now, it applies only for the "data" resource.
-#' @param forceAgencyId an object of class "logical" indicating if the agencyId 
-#'        as to be added at the end of the request. Default value is \code{FALSE}. 
-#'        For some providers, the \code{all} value for the \code{agencyId} is not 
-#'        allowed, in this case, the \code{agencyId} of the data provider has to 
-#'        be forced in the web-request 
+#' @param forceProviderId an object of class "logical" indicating if the provider
+#'        agencyId has to be added at the end of the request. Default value is 
+#'        \code{FALSE}. For some providers, the \code{all} value for the provider
+#'        agency id is not allowed, in this case, the \code{agencyId} of the data 
+#'        provider has to be forced in the web-request 
 #'                
 #' @examples
 #'   #how to create a SDMXDotStatRequestBuilder
@@ -29,7 +29,7 @@
 #'
 SDMXDotStatRequestBuilder <- function(regUrl, repoUrl,
                                    unsupportedResources = list(),
-                                   skipAgencyId = FALSE, forceAgencyId = FALSE){    
+                                   skipProviderId = FALSE, forceProviderId = FALSE){    
 
   #params formatter
   formatter = list(
@@ -59,7 +59,7 @@ SDMXDotStatRequestBuilder <- function(regUrl, repoUrl,
       if(is.null(obj@resourceId)) obj@resourceId = "all"
       if(is.null(obj@version)) obj@version = "latest"
       req <- sprintf("%s/GetDataStructure/%s",obj@regUrl, obj@resourceId)
-      if(forceAgencyId) req <- paste(req, obj@agencyId, sep = "/")
+      if(forceProviderId) req <- paste(req, obj@providerId, sep = "/")
       return(req)
     },
     
@@ -69,10 +69,10 @@ SDMXDotStatRequestBuilder <- function(regUrl, repoUrl,
       if(is.null(obj@flowRef)) stop("Missing flowRef value")
       if(is.null(obj@key)) obj@key = "all"
       req <- sprintf("%s/GetData/%s/%s", obj@repoUrl, obj@flowRef, obj@key)
-      if(skipAgencyId){
+      if(skipProviderId){
         req <- paste0(req, "/")
       }else{
-        req <- paste(req, ifelse(forceAgencyId, obj@agencyId, "all"), sep = "/")
+        req <- paste(req, ifelse(forceProviderId, obj@providerId, "all"), sep = "/")
       }
       
       #DataQuery
