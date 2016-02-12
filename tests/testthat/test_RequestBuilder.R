@@ -38,7 +38,7 @@ test_that("a custom SDMXRequestBuilder",{
   
   params <- SDMXRequestParams(regUrl = "http://www.myorg.org/registry",
                                 repoUrl = "http://www.myorg.org/repository",
-                                agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
+                                providerId = "MYORG", agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
                                 key = "KEY", start = 2000, end = 2010, compliant = TRUE)
   webRequest <- request@handler$data(params)
   expect_equal(webRequest, "http://www.myorg.org/repository/MYORG/data/FLOW/KEY/2000/2010")
@@ -60,7 +60,7 @@ test_that("a simple SDMXREST20RequestBuilder",{
   
   params <- SDMXRequestParams(regUrl = "http://www.myorg.org/registry",
                               repoUrl = "http://www.myorg.org/repository",
-                              agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
+                              providerId = "MYORG", agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
                               key = "KEY", start = 2000, end = 2010, compliant = TRUE)
   webRequest <- request@handler$data(params)
   expect_equal(webRequest, "http://www.myorg.org/repository/Data/FLOW/KEY/MYORG?startPeriod=2000&endPeriod=2010")
@@ -82,10 +82,10 @@ test_that("a simple SDMXREST21RequestBuilder",{
   
   params <- SDMXRequestParams(regUrl = "http://www.myorg.org/registry",
                               repoUrl = "http://www.myorg.org/repository",
-                              agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
+                              providerId = "MYORG", agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
                               key = "KEY", start = 2000, end = 2010, compliant = TRUE)
   webRequest <- request@handler$data(params)
-  expect_equal(webRequest, "http://www.myorg.org/repository/data/FLOW/KEY/all?startPeriod=2000&endPeriod=2010")
+  expect_equal(webRequest, "http://www.myorg.org/repository/data/FLOW/KEY/all/?startPeriod=2000&endPeriod=2010")
   
 })
 
@@ -103,7 +103,7 @@ test_that("a simple SDMXDotStatRequestBuilder",{
   
   params <- SDMXRequestParams(regUrl = "http://www.myorg.org/registry",
                               repoUrl = "http://www.myorg.org/repository",
-                              agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
+                              providerId = "MYORG", agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
                               key = "KEY", start = 2000, end = 2010, compliant = TRUE)
   webRequest <- request@handler$data(params)
   expect_equal(webRequest, "http://www.myorg.org/repository/GetData/FLOW/KEY/all?startPeriod=2000&endPeriod=2010")
@@ -123,7 +123,7 @@ test_that("a simple SDMXDotStatRequestBuilder - customized with some formatting"
   
   params <- SDMXRequestParams(regUrl = "http://www.myorg.org/registry",
                               repoUrl = "http://www.myorg.org/repository",
-                              agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
+                              providerId = "MYORG", agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
                               key = "KEY", start = 2000, end = 2010, compliant = TRUE)
   params <- request@formatter$data(params)
   webRequest <- request@handler$data(params)
