@@ -231,7 +231,8 @@ readSDMX <- function(file = NULL, isURL = TRUE,
                       ssl.verifypeer = FALSE, .encoding = "UTF-8")
     
     status <- tryCatch({
-      if(attr(regexpr("<!DOCTYPE html>", content), "match.length") == -1){
+      if((attr(regexpr("<!DOCTYPE html>", content), "match.length") == -1) && 
+         (attr(regexpr("<html>", content), "match.length") == -1)){
         
         #check the presence of a BOM
         BOM <- "\ufeff"

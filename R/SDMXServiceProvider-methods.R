@@ -83,6 +83,29 @@ setSDMXServiceProviders <- function(){ # nocov start
       repoUrl = "http://ec.europa.eu/eurostat/SDMX/diss-web/rest",
       compliant = TRUE)
   )
+  
+  #IMF
+  IMF <- SDMXServiceProvider(
+    agencyId = "IMF", name = "International Monetary Fund",
+    builder = SDMXDotStatRequestBuilder(
+      regUrl = "http://sdmxws.imf.org/SDMXRest/sdmx.ashx",
+      repoUrl = "http://sdmxws.imf.org/SDMXRest/sdmx.ashx")
+  )
+  IMF@builder@formatter$dataflow <- function(obj){
+    obj@regUrl <- unlist(strsplit(obj@regUrl,"/sdmx.ashx"))[1]
+    return(obj)
+  }
+  IMF@builder@handler$data <- function(obj){
+    if(is.null(obj@flowRef)) stop("Missing flowRef value")
+    req <- sprintf("%s/GetData?dataflow=%s", obj@repoUrl, obj@flowRef)
+    if(!is.null(obj@key)) req <- paste0(req, "&key=", obj@key)
+    
+    #DataQuery
+    #-> temporal extent (if any)
+    if(!is.null(obj@start)) req <- paste0(req, "&startTime=", obj@start)
+    if(!is.null(obj@end)) req <- paste0(req, "&endTime=", obj@end) 
+    return(req)
+  }
 
   #OECD
   OECD <- SDMXServiceProvider(
@@ -240,7 +263,7 @@ setSDMXServiceProviders <- function(){ # nocov start
   
   listOfProviders <- list(
     #international
-    ECB,ESTAT,OECD,UNSD,FAO,ILO,UIS,
+    ECB,ESTAT,IMF,OECD,UNSD,FAO,ILO,UIS,
     #national
     ABS,NBB,INSEE,INEGI,ISTAT,
     #others

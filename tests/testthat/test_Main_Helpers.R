@@ -81,6 +81,41 @@ test_that("ESTAT - data",{
   }
 })
 
+#IMF
+#---
+
+#-> dataflow
+test_that("IMF - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "IMF", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
+#-> datastructure
+test_that("IMF - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "IMF", resource = "datastructure", resourceId = "PGI")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
+test_that("IMF - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "IMF", resource = "data",
+                   flowRef = "PGI", key = "US+JP+CN+GB+CA+FR.PCPI.PGI.PCOCY.A",
+                   key.mode = "SDMX", start = 1985, end = 2015) 
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXGenericData")
+  }
+})
+
 #OECD
 #----
 

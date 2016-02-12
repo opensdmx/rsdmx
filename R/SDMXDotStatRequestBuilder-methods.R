@@ -47,9 +47,8 @@ SDMXDotStatRequestBuilder <- function(regUrl, repoUrl,
     #'dataflow' resource (path="GetKeyFamily/{resourceID}")
     #------------------------------------------------------
     dataflow = function(obj){
-      if(is.null(obj@resourceId)) obj@resourceId = "all"
-      if(is.null(obj@version)) obj@version = "latest"
-      req <- sprintf("%s/GetKeyFamily/%s",obj@regUrl, obj@resourceId)
+      if(is.null(obj@resourceId)) obj@resourceId = "ALL"
+      req <- sprintf("%s/GetKeyFamily/%s/",obj@regUrl, obj@resourceId)
       return(req)
     },
     
