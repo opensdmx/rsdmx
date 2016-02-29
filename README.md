@@ -14,19 +14,19 @@
 * an interface to SDMX web-services for a list of well-known data providers, such as EUROSTAT, OECD, and others 
 [Learn more](https://github.com/opensdmx/rsdmx/wiki#package_overview).
 
-**Collating scattered SDMX data sources**
+### Collating scattered SDMX data sources
 
 In spite they are some R package initiatives relying on ``rsdmx`` that aim to provide a wrapper for a _single data source_ (e.g. OECD, EUROSTAT), it is strongly recommended to rely directly on ``rsdmx``. Indeed, one main objective of ``rsdmx`` is to **promote and facilitate collating scattered data** from a growing number of SDMX data providers, whatever the organization.
 
 It is already possible to query well-known datasources, using the embedded [helpers](https://github.com/opensdmx/rsdmx/blob/master/vignettes/quickstart.Rmd#using-the-helper-approach). Pull requests are welcome to support additional data providers by default in ``rsdmx``.
 
-**SDMX standards compliance**
+### SDMX standards compliance
 
 [![SDMX_Compliance_Badge_1.0](https://img.shields.io/badge/SDMX--ML-1.0-blue.svg)](https://github.com/opensdmx/rsdmx)
 [![SDMX_Compliance_Badge_2.0](https://img.shields.io/badge/SDMX--ML-2.0-blue.svg)](https://github.com/opensdmx/rsdmx)
 [![SDMX_Compliance_Badge_2.1](https://img.shields.io/badge/SDMX--ML-2.1-blue.svg)](https://github.com/opensdmx/rsdmx)
 
-**Status**
+### Status
 At now, the package allows to read:
 * Datasets (``GenericData``, ``CompactData``, ``StructureSpecificData``, ``CrossSectionalData``, ``UtilityData`` and ``MessageGroup`` SDMX-ML types)
 * Concepts (``Concept``, ``ConceptScheme`` and ``Concepts`` SDMX-ML types)
@@ -34,24 +34,27 @@ At now, the package allows to read:
 * DataStructures / KeyFamilies - with all subtypes
 * Data Structure Definitions (DSDs) - with all subtypes
 
+### Fundings
 
-**Fundings**
 ``rsdmx`` is looking for **[sponsors](https://github.com/opensdmx/rsdmx/wiki#package_development_funding)**. You have been using ``rsdmx`` and you wish to support its development? Please help us to make the package growing!
 
+### Citation
 
-**Citation**:
 We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](https://zenodo.org/badge/latestdoi/5183/opensdmx/rsdmx)
 
+### Distribution
 
-**R CRAN rsdmx check results:**
-
-[http://cran.r-project.org/web/checks/check_results_rsdmx.html](http://cran.r-project.org/web/checks/check_results_rsdmx.html)
+#### on CRAN
+``rsdmx`` is available on the Comprehensive R Archive Network (CRAN). See the R CRAN check results at: [http://cran.r-project.org/web/checks/check_results_rsdmx.html](http://cran.r-project.org/web/checks/check_results_rsdmx.html)
 
 Please note that following a new submission to CRAN, or eventually a modification of CRAN policies, the package might be temporarily archived, and removed from CRAN. In case you notice that the package is not back in few time, please contact me.
 
+#### on OpenCPU
+``rsdmx``` is available on the OpenCPU public cloud server. The package version corresponds to the ongoing revision (master branch in Github). See [https://public.opencpu.org/ocpu/github/opensdmx/rsdmx/](https://public.opencpu.org/ocpu/github/opensdmx/rsdmx/)
 
-**Mailing list:<br/>**
-[https://groups.google.com/forum/#!forum/rsdmx](https://groups.google.com/forum/#!forum/rsdmx)<br/>
+### Mailing list
+
+A user google group is available at: [https://groups.google.com/forum/#!forum/rsdmx](https://groups.google.com/forum/#!forum/rsdmx)<br/>
 You can subscribe directly in the google group, or by email: [rsdmx+subscribe@googlegroups.com](rsdmx+subscribe@googlegroups.com)
 To send a post, use: [rsdmx@googlegroups.com](rsdmx@googlegroups.com)
 To unsubscribe, send an email to: [rsdmx+unsubscribe@googlegroups.com](rsdmx+unsubscribe@googlegroups.com)
