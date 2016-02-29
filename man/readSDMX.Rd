@@ -5,7 +5,7 @@
 \title{readSDMX}
 \usage{
 readSDMX(file, isURL,
-                provider, agencyId, resource, resourceId, version,
+                provider, providerId, agencyId, resource, resourceId, version,
                 flowRef, key, key.mode, start, end, dsd, verbose)
 }
 \arguments{

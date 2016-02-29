@@ -7,7 +7,7 @@
 \alias{SDMXRequestParams-class}
 \title{Class "SDMXRequestParams"}
 \usage{
-SDMXRequestParams(regUrl, repoUrl, agencyId, resource, resourceId, version,
+SDMXRequestParams(regUrl, repoUrl, providerId, agencyId, resource, resourceId, version,
                    flowRef, key, start, end, compliant)
 }
 \arguments{
@@ -45,7 +45,7 @@ A class to handle a SDMX service request params
 
 \item{\code{repoUrl}}{an object of class "character" giving the base Url of the SDMX service repository}
 
-\item{\code{agencyId}}{an object of class "character" giving the provider agency Id}
+\item{\code{providerId}}{an object of class "character" giving the provider agency Id}
 
 \item{\code{agencyId}}{an object of class "character" giving an agency Id}
 

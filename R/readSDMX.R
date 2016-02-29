@@ -240,6 +240,9 @@ readSDMX <- function(file = NULL, isURL = TRUE,
           content <- gsub(BOM, "", content)
         }
         
+        #check presence of XML comments
+        content <- gsub("<!--.*?-->", "", content)
+        
         xmlObj <- xmlTreeParse(content, useInternalNodes = TRUE)
         status <- 1
       }else{
