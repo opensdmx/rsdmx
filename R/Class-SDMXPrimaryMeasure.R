@@ -52,7 +52,10 @@ setClass("SDMXPrimaryMeasure",
          validity = function(object){
            
            #eventual validation rules
-           if(is.na(object@conceptRef)) return(FALSE)
+           if(.rsdmx.options$validate){
+            if(is.na(object@conceptRef)) return(FALSE)
+           }
+           
            return(TRUE);
          }
 )

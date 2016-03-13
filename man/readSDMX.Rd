@@ -58,6 +58,10 @@ Recognized if a valid provider or provide id has been specified as argument.}
 Active only if \code{"readSDMX"} is used as helper method (ie if data is fetched using
 an embedded service provider. Default is FALSE}
 
+\item{validate}{an object of class "logical" indicating if a validation check has to
+be performed on the SDMX-ML document to check its SDMX compliance when reading it.
+Default is FALSE.}
+
 \item{verbose}{an Object of class "logical" that indicates if rsdmx messages should
        appear to user. Default is TRUE.}
 }

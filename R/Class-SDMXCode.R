@@ -43,9 +43,13 @@ setClass("SDMXCode",
            )
          ),
          validity = function(object){
+           
            #eventual validation rules
-           if(is.na(object@id)) return(FALSE)
-           if(length(object@label) == 0) return(FALSE)
+           if(.rsdmx.options$validate){
+            if(is.na(object@id)) return(FALSE)
+            if(length(object@label) == 0) return(FALSE)
+           }
+           
            return(TRUE);
          }
 )

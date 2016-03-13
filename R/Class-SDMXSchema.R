@@ -18,16 +18,22 @@ setClass("SDMXSchema",
 		),
 		prototype = list(version = "2.0"),
 		validity = function(object){
-			VERSION <- object@version;
-			valid <- switch(VERSION,
-                "1.0" = TRUE,
-                "2.0" = TRUE,
-                "2.1" = TRUE,
-								FALSE
-							);
-			if(valid == FALSE)
-				warning(paste("SDMXSchema version ", VERSION," not supported by RSDMX",
-                      sep=""));
-			return(valid);
+      
+      #validation rules
+		  if(.rsdmx.options$validate){
+  			VERSION <- object@version;
+  			valid <- switch(VERSION,
+                  "1.0" = TRUE,
+                  "2.0" = TRUE,
+                  "2.1" = TRUE,
+  								FALSE
+  							);
+  			if(valid == FALSE)
+  				warning(paste0("SDMXSchema version ", VERSION," not supported by RSDMX"));
+        
+        return(valid)
+		  }
+      
+			return(TRUE)
 		}
 )

@@ -36,12 +36,18 @@ setClass("SDMXFooterMessage",
          ),
          validity = function(object){
            
-           # deactivated standard compliance (convenience because of data providers' typos)
-           #if(!is.na(object@severity)){
-           #   severityTypes <- c("Error", "Warning", "Information")
-           #   if(!(object@severity %in% severityTypes)) return(FALSE);
-           #}
-           
+           #validation rules
+           if(.rsdmx.options$validate){
+             
+             #severity
+             if(!is.na(object@severity)){
+               #SDMX standard severity types
+               #Note: some data providers have typos for such messages
+               severityTypes <- c("Error", "Warning", "Information")
+               if(!(object@severity %in% severityTypes)) return(FALSE);
+             }
+             
+           }
            return(TRUE);
          }
 )

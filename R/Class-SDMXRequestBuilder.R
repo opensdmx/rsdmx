@@ -49,9 +49,11 @@ setClass("SDMXRequestBuilder",
          ),
          validity = function(object){
            
-           if(all(names(object@formatter) != names(object@handler))){
-             return(FALSE)
+           #validation rules
+           if(.rsdmx.options$validate){
+            if(all(names(object@formatter) != names(object@handler))) return(FALSE)
            }
+           
            return(TRUE);
          }
 )

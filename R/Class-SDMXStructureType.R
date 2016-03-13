@@ -16,18 +16,24 @@ setClass("SDMXStructureType",
          representation(subtype = "character"),
          prototype = list(),
          validity = function(object){
-           type <- getStructureType(object);
-           valid <- switch(type,
-                           "DataflowsType" = TRUE,
-                           "ConceptsType" = TRUE,
-                           "CodelistsType" = TRUE,
-                           "DataStructuresType" = TRUE,
-                           "DataStructureDefinitionsType" = TRUE,
-                           FALSE
-           );
-           if(valid == FALSE)
-             warning(paste("Unknown SDMXStructureType '", type, "'", sep=""));
            
-           return(valid);
+           #validation rules
+           if(.rsdmx.options$validate){
+             type <- getStructureType(object);
+             valid <- switch(type,
+                             "DataflowsType" = TRUE,
+                             "ConceptsType" = TRUE,
+                             "CodelistsType" = TRUE,
+                             "DataStructuresType" = TRUE,
+                             "DataStructureDefinitionsType" = TRUE,
+                             FALSE
+             );
+             if(valid == FALSE)
+               warning(paste0("Unknown SDMXStructureType '", type, "'"));
+             
+             return(valid);
+           }
+           
+           return(TRUE);
          }
 )

@@ -67,9 +67,13 @@ setClass("SDMXDataFlow",
            dsdRef = "someId"
          ),
          validity = function(object){
+           
            #eventual validation rules
-           if(is.na(object@id)) return(FALSE)
-           if(length(object@Name) == 0) return(FALSE)
+           if(.rsdmx.options$validate){
+            if(is.na(object@id)) return(FALSE)
+            if(length(object@Name) == 0) return(FALSE)
+           }
+           
            return(TRUE);
          }
 )

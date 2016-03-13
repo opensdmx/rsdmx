@@ -63,9 +63,11 @@ setClass("SDMXTimeDimension",
          ),
          validity = function(object){
            
-           #eventual validation rules
-           if(!is.null(object)){
-             if(is.na(object@conceptRef)) return(FALSE)
+           #validation rules
+           if(.rsdmx.options$validate){
+             if(!is.null(object)){
+               if(is.na(object@conceptRef)) return(FALSE)
+             }
            }
            
            return(TRUE);

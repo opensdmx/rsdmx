@@ -63,41 +63,46 @@ setClass("SDMXHeader",
 			),
 		validity = function(object){
 			
-			# ID validation
-			if(is.null(object@ID)){
-        			message("Missing 'ID' in header")
-        			return(FALSE)
-			}
-			if(attr(regexpr("[a-zA-Z0-9@-_@\\$]", object@ID),"match.length") == -1){
-  			message("Invalid 'ID' in header")
-  			return(FALSE)
-			}
-        
-			#Test/Truncated
-			if(!is.logical(object@Test)){
-				message("Invalid 'Test' value in header")
-			        return(FALSE)
-			}
-			if(!is.logical(object@Truncated)){
-				message("Invalid 'Truncated' value in header")
-        			return(FALSE)
-			}
-        
-			#Dates/Time validation
-			if(is.na(object@Prepared)){
-				message("Invalid 'Prepared' value in header")
-        			return(FALSE)
-			}
+      #validation rules
+		  if(.rsdmx.options$validate){
+      
+  			# ID validation
+  			if(is.null(object@ID)){
+          message("Missing 'ID' in header")
+          return(FALSE)
+  			}
+  			if(attr(regexpr("[a-zA-Z0-9@-_@\\$]", object@ID),"match.length") == -1){
+    			message("Invalid 'ID' in header")
+    			return(FALSE)
+  			}
+          
+  			#Test/Truncated
+  			if(!is.logical(object@Test)){
+  				message("Invalid 'Test' value in header")
+  			  return(FALSE)
+  			}
+  			if(!is.logical(object@Truncated)){
+  				message("Invalid 'Truncated' value in header")
+          return(FALSE)
+  			}
+          
+  			#Dates/Time validation
+  			if(is.na(object@Prepared)){
+  				message("Invalid 'Prepared' value in header")
+          return(FALSE)
+  			}
+  			
+  			#Sender/Receiver validation
+  			#Note: Sender/Receiver mandatory according to SDMX specs
+  			#but WorldBank do not constrain users to specify them at download time
+  			if(is.na(object@Sender$id) || nchar(object@Sender$id,"w") == 0){
+  			  message("Missing 'Sender' id in header") 
+          return(FALSE)
+  			}
+        if(nchar(object@Receiver$id,"w") == 0) return(FALSE)
 			
-			#Sender/Receiver validation
-			#Note: deactivated for CONVENIENCE for users (Sender/Receiver mandatory according to SDMX speces)
-			#but WorldBank do not constrain users to specify them at download time
-			##if(is.na(object@Sender$id) || nchar(object@Sender$id,"w") == 0){
-			##	message("Missing 'Sender' id in header") 
-        		##	return(FALSE)
-			##}
-      			##if(nchar(object@Receiver$id,"w") == 0) return(FALSE)
-			
+		  }  
+        
 			return(TRUE);
 		}
 )

@@ -42,6 +42,9 @@
 #' @param dsd an Object of class "logical" if an attempt to inherit the DSD should be performed.
 #'        Active only if \code{"readSDMX"} is used as helper method (ie if data is fetched using 
 #'        an embedded service provider. Default is FALSE
+#' @param validate an object of class "logical" indicating if a validation check has to
+#'        be performed on the SDMX-ML document to check its SDMX compliance when reading it.
+#'        Default is FALSE.
 #' @param verbose an Object of class "logical" that indicates if rsdmx messages should
 #'        appear to user. Default is TRUE.
 #' 
@@ -145,7 +148,10 @@ readSDMX <- function(file = NULL, isURL = TRUE,
                      provider = NULL, providerId = NULL,
                      agencyId = NULL, resource = NULL, resourceId = NULL, version = NULL,
                      flowRef = NULL, key = NULL, key.mode = "R", start = NULL, end = NULL, dsd = FALSE,
-                     verbose = TRUE) {
+                     validate = FALSE, verbose = TRUE) {
+  
+  #set option for SDMX compliance validation
+  .rsdmx.options$validate = validate
   
   if(!(key.mode %in% c("R", "SDMX"))){
     stop("Invalid value for key.mode argument. Accepted values are 'R', 'SDMX' ")

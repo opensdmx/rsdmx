@@ -93,10 +93,14 @@ setClass("SDMXAttribute",
            
          ),
          validity = function(object){
+           
            #eventual validation rules
-           if(is.na(object@conceptRef)) return(FALSE)
-           #if(is.na(object@attachmentLevel)) return(FALSE)
-           #if(is.na(object@assignmentStatus)) return(FALSE)
+           if(.rsdmx.options$validate){
+             if(is.na(object@conceptRef)) return(FALSE)
+             if(is.na(object@attachmentLevel)) return(FALSE)
+             if(is.na(object@assignmentStatus)) return(FALSE)
+           }
+           
            return(TRUE);
          }
 )

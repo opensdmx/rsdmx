@@ -19,20 +19,26 @@ setClass("SDMXType",
 		),
 		prototype = list(type = "SDMXGenericData"),
 		validity = function(object){
-			type <- object@type;
-			valid <- switch(type,
-                      "StructureType"             = TRUE,
-                      "GenericDataType"           = TRUE,
-                      "CompactDataType"           = TRUE,
-                      "UtilityDataType"           = TRUE,
-                      "StructureSpecificDataType" = TRUE,
-                      "CrossSectionalDataType"    = TRUE,
-                      "MessageGroupType"          = TRUE,
-					            FALSE
-			);
-			if(valid == FALSE)
-				warning(paste("Unknown SDMXType ", type, sep=""));
-			
-			return(valid);
+      
+      #validation rules
+		  if(.rsdmx.options$validate){
+  			type <- object@type;
+  			valid <- switch(type,
+                        "StructureType"             = TRUE,
+                        "GenericDataType"           = TRUE,
+                        "CompactDataType"           = TRUE,
+                        "UtilityDataType"           = TRUE,
+                        "StructureSpecificDataType" = TRUE,
+                        "CrossSectionalDataType"    = TRUE,
+                        "MessageGroupType"          = TRUE,
+  					            FALSE
+  			);
+  			if(valid == FALSE)
+  				warning(paste0("Unknown SDMXType ", type));
+        
+        return(valid)
+		  }
+      
+			return(TRUE);
 		}
 )
