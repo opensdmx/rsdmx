@@ -187,7 +187,7 @@ as.data.frame.SDMXComponents <- function(x, ...){
   #output
   df<- do.call("rbind.fill", list(dimensions.df, timeDimension.df,
                                   primaryMeasure.df, attributes.df))
-  return(df)
+  return(encodeSDMXOutput(df))
 }
 
 setAs("SDMXComponents", "data.frame",

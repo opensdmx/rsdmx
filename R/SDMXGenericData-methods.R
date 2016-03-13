@@ -247,5 +247,5 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
   }
   
   # output
-  return(dataset)
+  return(encodeSDMXOutput(dataset))
 }

@@ -70,5 +70,5 @@ as.data.frame.SDMXMessageGroup <- function(x, row.names=NULL, optional=FALSE,
                     "SDMXCompactData" = as.data.frame.SDMXCompactData(x, labels = labels),
                     NULL
              )
-  return(sdmx.df)
+  return(encodeSDMXOutput(sdmx.df))
 }

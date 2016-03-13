@@ -41,6 +41,14 @@ namespaces.SDMX <- function(xmlObj){
   return(nsDefs.df)
 }
 
+encodeSDMXOutput <- function(df){
+  for(col in colnames(df)){
+    if(class(df[,col]) == "character") Encoding(df[,col]) <- "UTF-8"
+  }
+  return(df)
+}
+
+
 #' @name getNamespaces
 #' @docType methods
 #' @aliases getNamespaces,SDMX-method

@@ -101,7 +101,7 @@ as.data.frame.SDMXDataFlows <- function(x, ...){
                           return(df)
                         })
   )
-  return(out)
+  return(encodeSDMXOutput(out))
   
 }
 

@@ -93,7 +93,7 @@ as.data.frame.SDMXDataStructures <- function(x, ...){
                           return(dsf)
                         })
                  )
-  return(out)
+  return(encodeSDMXOutput(out))
   
 }
 

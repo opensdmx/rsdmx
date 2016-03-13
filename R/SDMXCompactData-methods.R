@@ -129,7 +129,7 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
   }
 
   #output
-  return(dataset)
+  return(encodeSDMXOutput(dataset))
 }
 
 

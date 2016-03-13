@@ -148,5 +148,5 @@ as.data.frame.SDMXCrossSectionalData <- function(x, row.names=NULL, optional=FAL
   }
   
   # output
-  return(dataset)
+  return(encodeSDMXOutput(dataset))
 }

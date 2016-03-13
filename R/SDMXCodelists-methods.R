@@ -96,7 +96,7 @@ as.data.frame.SDMXCodelists <- function(x, ...,
     codes <- codes[,colSums(is.na(codes))<nrow(codes)]
   }
   
-  return(codes)
+  return(encodeSDMXOutput(codes))
 }
 
 setAs("SDMXCodelists", "data.frame",

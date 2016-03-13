@@ -116,7 +116,7 @@ as.data.frame.SDMXConcepts <- function(x, ...,
     concepts <- concepts[,colSums(is.na(concepts))<nrow(concepts)]
   }
   
-  return(concepts)
+  return(encodeSDMXOutput(concepts))
 }
 
 setAs("SDMXConcepts", "data.frame",

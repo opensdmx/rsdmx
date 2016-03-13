@@ -27,7 +27,7 @@ as.data.frame.SDMXServiceProviders <- function(x, ...){
             stringsAsFactors = FALSE)
   colnames(out) <- c("agencyId", "name", "scale", "country",
                      "builder", "compliant")
-  return(out)
+  return(encodeSDMXOutput(out))
 }
 
 setAs("SDMXGenericData", "data.frame",
