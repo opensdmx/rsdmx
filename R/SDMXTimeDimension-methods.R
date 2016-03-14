@@ -6,16 +6,16 @@
 #' SDMXTimeDimension(xmlObj)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
 #' @return an object of class "SDMXTimeDimension"
 #' 
 #' @seealso \link{readSDMX}
 #'
-SDMXTimeDimension <- function(xmlObj){
+SDMXTimeDimension <- function(xmlObj, namespaces){
   
-  sdmxVersion <- version.SDMXSchema(xmlDoc(xmlObj))
+  sdmxVersion <- version.SDMXSchema(xmlDoc(xmlObj), namespaces)
   VERSION.21 <- sdmxVersion == "2.1"
   
-  namespaces <- namespaces.SDMX(xmlDoc(xmlObj))
   messageNs <- findNamespace(namespaces, "message")
   strNs <- findNamespace(namespaces, "structure")
   

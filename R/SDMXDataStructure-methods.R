@@ -6,16 +6,16 @@
 #' SDMXDataStructure(xmlObj)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
 #' @return an object of class "SDMXDataStructure"
 #' 
 #' @seealso \link{readSDMX}
 #'
-SDMXDataStructure <- function(xmlObj){
+SDMXDataStructure <- function(xmlObj, namespaces){
   
-  sdmxVersion <- version.SDMXSchema(xmlDoc(xmlObj))
+  sdmxVersion <- version.SDMXSchema(xmlDoc(xmlObj), namespaces)
   VERSION.21 <- sdmxVersion == "2.1"
   
-  namespaces <- namespaces.SDMX(xmlDoc(xmlObj))
   messageNs <- findNamespace(namespaces, "message")
   strNs <- findNamespace(namespaces, "structure")
   
@@ -119,7 +119,7 @@ SDMXDataStructure <- function(xmlObj){
                           namespaces = c(str = as.character(strNs)))
   }
   components <- NULL
-  if(length(compXML) > 0) components <- SDMXComponents(xmlObj)
+  if(length(compXML) > 0) components <- SDMXComponents(xmlObj, namespaces)
   
   #instantiate the object
   obj<- new("SDMXDataStructure",    

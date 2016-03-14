@@ -6,14 +6,16 @@
 #' SDMXData(xmlObj)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
+#' 
 #' @return an object of class "SDMXData"
 #' 
 #' @seealso \link{readSDMX}
 #'
-SDMXData <- function(xmlObj){
+SDMXData <- function(xmlObj, namespaces){
   
-  sdmxObj <- SDMX(xmlObj)
-  dsdRef <- dsdRef.SDMXData(xmlObj)
+  sdmxObj <- SDMX(xmlObj, namespaces)
+  dsdRef <- dsdRef.SDMXData(xmlObj, namespaces)
   dsd <- NULL
   if(!is.null(dsdRef)){
     dsd <- NULL
@@ -28,9 +30,9 @@ SDMXData <- function(xmlObj){
 
 #get DSD REF
 #===========
-dsdRef.SDMXData <- function(xmlObj){
+dsdRef.SDMXData <- function(xmlObj, namespaces){
   
-  sdmxVersion <- version.SDMXSchema(xmlObj)
+  sdmxVersion <- version.SDMXSchema(xmlObj, namespaces)
   
   dsXML <- xmlChildren(xmlChildren(xmlObj)[[1]])$DataSet
   dsdRef <- switch(sdmxVersion,

@@ -6,13 +6,14 @@
 #' SDMXMessageGroup(xmlObj)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
 #' @return an object of class "SDMXMessageGroup"
 #' 
 #' @seealso \link{readSDMX}
 #'
-SDMXMessageGroup <- function(xmlObj){
+SDMXMessageGroup <- function(xmlObj, namespaces){
   new("SDMXMessageGroup",
-      SDMXData(xmlObj)
+      SDMXData(xmlObj, namespaces)
   )		
 }
 
@@ -25,9 +26,9 @@ class.SDMXMessageGroup <- function(xmlObj){
   #in case no ns found, try to find specific namespace
   ns.df <- nsDefs.df[
     regexpr("http://www.sdmx.org", nsDefs.df$uri,
-            "match.length", ignore.case = TRUE) == -1
-    & regexpr("http://www.w3.org", nsDefs.df$uri,
-              "match.length", ignore.case = TRUE) == -1,]
+            "match.length", ignore.case = TRUE) == -1,]
+  ns.df <- as.data.frame(ns.df, stringsAsFactors = FALSE)
+  colnames(ns.df) <- "uri"
   ns <- ns.df$uri
   if(length(ns) > 1) ns <- ns[1L]
   authorityNs <- nsDefs.df[nsDefs.df$uri == ns,]

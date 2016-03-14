@@ -6,15 +6,16 @@
 #' SDMXDataStructureDefinition(xmlObj)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
 #' @return an object of class "SDMXDataStructureDefinition"
 #' 
 #' @seealso \link{readSDMX}
 #'
-SDMXDataStructureDefinition <- function(xmlObj){
+SDMXDataStructureDefinition <- function(xmlObj, namespaces){
   new("SDMXDataStructureDefinition",
-      SDMX(xmlObj),
-      concepts = SDMXConcepts(xmlObj),
-      codelists = SDMXCodelists(xmlObj),
-      datastructures = SDMXDataStructures(xmlObj)
+      SDMX(xmlObj, namespaces),
+      concepts = SDMXConcepts(xmlObj, namespaces),
+      codelists = SDMXCodelists(xmlObj, namespaces),
+      datastructures = SDMXDataStructures(xmlObj, namespaces)
   )
 }

@@ -6,13 +6,14 @@
 #' SDMXCompactData(xmlObj)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
 #' @return an object of class "SDMXCompactData"
 #' 
 #' @seealso \link{readSDMX}
 #'
-SDMXCompactData <- function(xmlObj){
+SDMXCompactData <- function(xmlObj, namespaces){
   new("SDMXCompactData",
-      SDMXData(xmlObj)
+      SDMXData(xmlObj, namespaces)
   )		
 }
 
@@ -32,15 +33,17 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
   
   authorityNs <- nsDefs.df[
     regexpr("http://www.sdmx.org", nsDefs.df$uri,
-              "match.length", ignore.case = TRUE) == -1
-    & regexpr("http://www.w3.org", nsDefs.df$uri,
-                "match.length", ignore.case = TRUE) == -1,]
+            "match.length", ignore.case = TRUE) == -1,]
+  authorityNs <- as.data.frame(authorityNs, stringsAsFactors = FALSE)
+  colnames(authorityNs) <- "uri"
   
   if(nrow(authorityNs) > 0){
     hasAuthorityNS <- TRUE
     if(nrow(authorityNs) > 1){
       warning("More than one target dataset namespace found!")
       authorityNs <- authorityNs[1L,]
+      authorityNs <- as.data.frame(authorityNs, stringsAsFactors = FALSE)
+      colnames(authorityNs) <- "uri"
     }
   }
   
@@ -55,6 +58,8 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
     }else{
       if(nrow(nsDefs.df) > 0){
         serieNs <- nsDefs.df[1,]
+        serieNs <- as.data.frame(serieNs, stringsAsFactors = FALSE)
+        colnames(serieNs) <- "uri"
         seriesXML <- getNodeSet(xmlObj, "//nt:Series", c(nt = serieNs$uri)) 
       }else{    
         stop("Unsupported CompactData parser for empty target XML namespace")

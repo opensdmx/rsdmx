@@ -6,18 +6,18 @@
 #' SDMXFooter(xmlObj)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
 #' @return an object of class "SDMXFooter"
 #' 
 #' @seealso \link{readSDMX}
 
-SDMXFooter <- function(xmlObj){
+SDMXFooter <- function(xmlObj, namespaces){
   
   messageList = list()
   
   #check presence of footer
-  nsDefs.df <- namespaces.SDMX(xmlObj)
   
-  ns <- findNamespace(nsDefs.df, "footer")
+  ns <- findNamespace(namespaces, "footer")
   if(length(ns) > 0){
     messageListXML <- getNodeSet(xmlObj,
                                 "//footer:Message",

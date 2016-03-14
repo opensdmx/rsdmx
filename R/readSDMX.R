@@ -262,15 +262,15 @@ readSDMX <- function(file = NULL, isURL = TRUE,
   }
   
   #internal function for SDMX Structure-based document
-  getSDMXStructureObject <- function(xmlObj, resource){
-    strTypeObj <- SDMXStructureType(xmlObj, resource)
+  getSDMXStructureObject <- function(xmlObj, ns, resource){
+    strTypeObj <- SDMXStructureType(xmlObj, ns, resource)
     strType <- getStructureType(strTypeObj)
     strObj <- switch(strType,
-                     "DataflowsType" = SDMXDataFlows(xmlObj),
-                     "ConceptsType" = SDMXConcepts(xmlObj),
-                     "CodelistsType" = SDMXCodelists(xmlObj),
-                     "DataStructuresType" = SDMXDataStructures(xmlObj),
-                     "DataStructureDefinitionsType" = SDMXDataStructureDefinition(xmlObj),
+                     "DataflowsType" = SDMXDataFlows(xmlObj, ns),
+                     "ConceptsType" = SDMXConcepts(xmlObj, ns),
+                     "CodelistsType" = SDMXCodelists(xmlObj, ns),
+                     "DataStructuresType" = SDMXDataStructures(xmlObj, ns),
+                     "DataStructureDefinitionsType" = SDMXDataStructureDefinition(xmlObj, ns),
                      NULL
     )
     return(strObj)
@@ -280,8 +280,11 @@ readSDMX <- function(file = NULL, isURL = TRUE,
   obj <- NULL
   if(status){ 
     
+    #namespaces
+    ns <- namespaces.SDMX(xmlObj)
+    
     #convenience for SDMX documents embedded in SOAP XML responses
-    if(isSoapRequestEnvelope(xmlObj)){
+    if(isSoapRequestEnvelope(xmlObj, ns)){
       xmlObj <- getSoapRequestResult(xmlObj)
     }
     
@@ -292,19 +295,19 @@ readSDMX <- function(file = NULL, isURL = TRUE,
     
     type <- SDMXType(xmlObj)@type
     obj <- switch(type,
-                  "StructureType"             = getSDMXStructureObject(xmlObj, resource),
-                  "GenericDataType"           = SDMXGenericData(xmlObj),
-                  "CompactDataType"           = SDMXCompactData(xmlObj),
-                  "UtilityDataType"           = SDMXUtilityData(xmlObj),
-                  "StructureSpecificDataType" = SDMXStructureSpecificData(xmlObj),
-                  "CrossSectionalDataType"    = SDMXCrossSectionalData(xmlObj),
-                  "MessageGroupType"          = SDMXMessageGroup(xmlObj),
+                  "StructureType"             = getSDMXStructureObject(xmlObj, ns, resource),
+                  "GenericDataType"           = SDMXGenericData(xmlObj, ns),
+                  "CompactDataType"           = SDMXCompactData(xmlObj, ns),
+                  "UtilityDataType"           = SDMXUtilityData(xmlObj, ns),
+                  "StructureSpecificDataType" = SDMXStructureSpecificData(xmlObj, ns),
+                  "CrossSectionalDataType"    = SDMXCrossSectionalData(xmlObj, ns),
+                  "MessageGroupType"          = SDMXMessageGroup(xmlObj, ns),
                   NULL
     ) 
     
     if(is.null(obj)){
       if(type == "StructureType"){
-        strTypeObj <- SDMXStructureType(xmlObj, resource)
+        strTypeObj <- SDMXStructureType(xmlObj, ns, resource)
         type <- getStructureType(strTypeObj)
       }
       stop(paste("Unsupported SDMX Type '",type,"'",sep=""))

@@ -6,32 +6,32 @@
 #' SDMXConcepts(xmlObj)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
 #' @return an object of class "SDMXConcepts"
 #' 
 #' @seealso \link{readSDMX}
 #'
-SDMXConcepts <- function(xmlObj){
+SDMXConcepts <- function(xmlObj, namespaces){
   new("SDMXConcepts",
-      SDMX(xmlObj),
-      concepts = concepts.SDMXConcepts(xmlObj),
-      conceptSchemes = conceptSchemes.SDMXConcepts(xmlObj)
+      SDMX(xmlObj, namespaces),
+      concepts = concepts.SDMXConcepts(xmlObj, namespaces),
+      conceptSchemes = conceptSchemes.SDMXConcepts(xmlObj, namespaces)
   )
 }
 
 #get list of SDMXConcept (backward compatibility with SDMX 1.0)
 #=======================
-concepts.SDMXConcepts <- function(xmlObj){
+concepts.SDMXConcepts <- function(xmlObj, namespaces){
   
   concepts <- NULL
-  
-  sdmxVersion <- version.SDMXSchema(xmlObj)
-  VERSION.21 <- sdmxVersion == "2.1"
-  
-  namespaces <- namespaces.SDMX(xmlObj)
+
   messageNsString <- "message"
   if(isRegistryInterfaceEnvelope(xmlObj, FALSE)) messageNsString <- "registry"
   messageNs <- findNamespace(namespaces, messageNsString)
   strNs <- findNamespace(namespaces, "structure")
+  
+  sdmxVersion <- version.SDMXSchema(xmlObj, namespaces)
+  VERSION.21 <- sdmxVersion == "2.1"
   
   conceptsXML <- NULL
   if(VERSION.21){
@@ -46,22 +46,21 @@ concepts.SDMXConcepts <- function(xmlObj){
                                              str = as.character(strNs)))
   }
   if(!is.null(conceptsXML)){
-    concepts <- lapply(conceptsXML, function(x){ SDMXConcept(x)})
+    concepts <- lapply(conceptsXML, SDMXConcept, namespaces)
   }
   return(concepts)
 }
 
 #get list of SDMXConceptScheme (from SDMX 2.0)
 #=============================
-conceptSchemes.SDMXConcepts <- function(xmlObj){
+conceptSchemes.SDMXConcepts <- function(xmlObj, namespaces){
   
   conceptSchemes <- NULL 
-  namespaces <- namespaces.SDMX(xmlObj)
   strNs <- findNamespace(namespaces, "structure") 
   conceptSchemesXML <- getNodeSet(xmlObj,
                                   "//ns:ConceptScheme",
                                   namespaces = strNs)
-  conceptSchemes <- lapply(conceptSchemesXML, function(x){ SDMXConceptScheme(x)})
+  conceptSchemes <- lapply(conceptSchemesXML, SDMXConceptScheme, namespaces)
   
   return(conceptSchemes)
 }

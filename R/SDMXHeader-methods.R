@@ -6,13 +6,14 @@
 #' SDMXHeader(xmlObj)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
 #' @return an object of class "SDMXHeader"
 #' 
 #' @seealso \link{readSDMX}
 #'
-SDMXHeader <- function(xmlObj){
+SDMXHeader <- function(xmlObj, namespaces){
 
-	sdmxVersion <- slot(SDMXSchema(xmlObj), "version")
+	sdmxVersion <- version.SDMXSchema(xmlObj, namespaces)
 	VERSION.10 <- sdmxVersion == "1.0"
 	VERSION.20 <- sdmxVersion == "2.0"
 	VERSION.21 <- sdmxVersion == "2.1"

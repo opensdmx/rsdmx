@@ -7,9 +7,8 @@
 findNamespace(namespaces, messageType)
 }
 \arguments{
-\item{namespaces}{object of class \code{data.frame} giving the id and uri of
-namespaces available in a SDMX-ML object, typically obtained
- with \link{getNamespaces}}
+\item{namespaces}{object of class \code{data.frame} giving the namespaces URIs
+available in a SDMX-ML object, typically obtained with \link{getNamespaces}}
 
 \item{messageType}{object of class \code{character} representing a message type}
 }

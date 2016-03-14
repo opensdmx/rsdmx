@@ -6,13 +6,14 @@
 #' SDMXCrossSectionalData(xmlObj)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
 #' @return an object of class "SDMXCrossSectionalData"
 #' 
 #' @seealso \link{readSDMX}
 #'
-SDMXCrossSectionalData <- function(xmlObj){
+SDMXCrossSectionalData <- function(xmlObj, namespaces){
   new("SDMXCrossSectionalData",
-      SDMXData(xmlObj)
+      SDMXData(xmlObj, namespaces)
   )    
 }
 
@@ -35,9 +36,9 @@ as.data.frame.SDMXCrossSectionalData <- function(x, row.names=NULL, optional=FAL
   
   authorityNs <- nsDefs.df[
     regexpr("http://www.sdmx.org", nsDefs.df$uri,
-            "match.length", ignore.case = TRUE) == -1
-    & regexpr("http://www.w3.org", nsDefs.df$uri,
-              "match.length", ignore.case = TRUE) == -1,]
+            "match.length", ignore.case = TRUE) == -1,]
+  authorityNs <- as.data.frame(authorityNs, stringsAsFactors = FALSE)
+  colnames(authorityNs) <- "uri"
   
   if(nrow(authorityNs) > 0){
     hasAuthorityNS <- TRUE

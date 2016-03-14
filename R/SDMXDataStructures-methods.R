@@ -6,27 +6,27 @@
 #' SDMXDataStructures(xmlObj)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
 #' @return an object of class "SDMXDataStructures"
 #' 
 #' @seealso \link{readSDMX}
 #'
-SDMXDataStructures <- function(xmlObj){
+SDMXDataStructures <- function(xmlObj, namespaces){
   new("SDMXDataStructures",
-      SDMX(xmlObj),
-      datastructures = datastructures.SDMXDataStructures(xmlObj)
+      SDMX(xmlObj, namespaces),
+      datastructures = datastructures.SDMXDataStructures(xmlObj, namespaces)
   )
 }
 
 #get list of SDMXDataStructure
 #=============================
-datastructures.SDMXDataStructures <- function(xmlObj){
+datastructures.SDMXDataStructures <- function(xmlObj, namespaces){
   
   datastructures <- NULL
   
-  sdmxVersion <- version.SDMXSchema(xmlObj)
+  sdmxVersion <- version.SDMXSchema(xmlObj, namespaces)
   VERSION.21 <- sdmxVersion == "2.1"
   
-  namespaces <- namespaces.SDMX(xmlObj)
   messageNsString <- "message"
   if(isRegistryInterfaceEnvelope(xmlObj, FALSE)) messageNsString <- "registry"
   messageNs <- findNamespace(namespaces, messageNsString)
@@ -45,7 +45,7 @@ datastructures.SDMXDataStructures <- function(xmlObj){
                                        str = as.character(strNs)))
   }
   if(!is.null(dsXML)){
-    datastructures <- lapply(dsXML, function(x){ SDMXDataStructure(x)})
+    datastructures <- lapply(dsXML, SDMXDataStructure, namespaces)
   }
   return(datastructures)
 }

@@ -6,14 +6,15 @@
 #' SDMX(xmlObj)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
 #' @return an object of class "SDMX"
 #' 
 #' @seealso \link{readSDMX}
 
-SDMX <- function(xmlObj){
-	schema <- SDMXSchema(xmlObj);
-	header <- SDMXHeader(xmlObj);
-  footer <- SDMXFooter(xmlObj);
+SDMX <- function(xmlObj, namespaces){
+	schema <- SDMXSchema(xmlObj, namespaces);
+	header <- SDMXHeader(xmlObj, namespaces);
+  footer <- SDMXFooter(xmlObj, namespaces);
 	new("SDMX",
 			xmlObj = xmlObj,
 			schema = schema,
@@ -23,21 +24,33 @@ SDMX <- function(xmlObj){
 
 #functions
 namespaces.SDMX <- function(xmlObj){
-  nsFromXML <- xmlNamespaceDefinitions(xmlObj, recursive = TRUE, simplify = FALSE)
+  nsFromXML <- xmlNamespaceDefinitions(xmlObj, addNames = FALSE,
+                                       recursive = TRUE, simplify = FALSE)
   nsDefs.df <- do.call("rbind",
                        lapply(nsFromXML,
                               function(x){
-                                c(x$id, x$uri) 
+                                out <- NULL
+                                if(length(names(x)) > 0) out <- x$uri
+                                return(out)
                               }))
   row.names(nsDefs.df) <- 1:nrow(nsDefs.df)
-  nsDefs.df <-as.data.frame(nsDefs.df, stringAsFactors = FALSE)
+  nsDefs.df <- as.data.frame(nsDefs.df, stringsAsFactors = FALSE)
   if(nrow(nsDefs.df) > 0){
-    colnames(nsDefs.df) <- c("id","uri")
-    nsDefs.df$id <- as.character(nsDefs.df$id)
+    colnames(nsDefs.df) <- "uri"
     nsDefs.df$uri <- as.character(nsDefs.df$uri)
+    nsDefs.df <- unique(nsDefs.df)
+    
+    nsDefs.df <- nsDefs.df[!duplicated(nsDefs.df$uri),]
+    nsDefs.df <- as.data.frame(nsDefs.df, stringsAsFactors = FALSE)
+    colnames(nsDefs.df) <- "uri"
+    
+    nsDefs.df <- nsDefs.df[
+        regexpr("http://www.w3.org", nsDefs.df$uri,
+                "match.length", ignore.case = TRUE) == -1,]
+    nsDefs.df <- as.data.frame(nsDefs.df, stringsAsFactors = FALSE)
+    colnames(nsDefs.df) <- "uri"
   }
-  nsDefs.df <- unique(nsDefs.df)
-  nsDefs.df <- nsDefs.df[!duplicated(nsDefs.df$uri),]
+  
   return(nsDefs.df)
 }
 
@@ -84,9 +97,8 @@ setMethod(f = "getNamespaces", signature = "SDMX", function(obj){
 #' @usage
 #' findNamespace(namespaces, messageType)
 #' 
-#' @param namespaces object of class \code{data.frame} giving the id and uri of 
-#'                   namespaces available in a SDMX-ML object, typically obtained
-#'                    with \link{getNamespaces}
+#' @param namespaces object of class \code{data.frame} giving the namespaces URIs
+#'        available in a SDMX-ML object, typically obtained with \link{getNamespaces}
 #' @param messageType object of class \code{character} representing a message type
 #' @return an object of class "character" giving the namespace uri if found in the
 #'         available namespaces
@@ -115,6 +127,7 @@ findNamespace <- function(namespaces, messageType){
 #' isSoapRequestEnvelope(xmlObj)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
 #' @return an object of class "logical"
 #' 
 #' @section Warning:
@@ -125,8 +138,7 @@ findNamespace <- function(namespaces, messageType){
 #' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
 #' 
 
-isSoapRequestEnvelope <- function(xmlObj){
-  namespaces <- namespaces.SDMX(xmlObj)
+isSoapRequestEnvelope <- function(xmlObj, namespaces){
   ns <- c(ns = namespaces$uri[grep("soap", namespaces$uri)])
   return(length(ns) > 0)
 }

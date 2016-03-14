@@ -6,18 +6,19 @@
 #' SDMXAttribute(xmlObj)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
+#' 
 #' @return an object of class "SDMXAttribute"
 #' 
 #' @seealso \link{readSDMX}
 #'
-SDMXAttribute <- function(xmlObj){
+SDMXAttribute <- function(xmlObj, namespaces){
   
-  sdmxVersion <- version.SDMXSchema(xmlDoc(xmlObj))
-  VERSION.21 <- sdmxVersion == "2.1"
-  
-  namespaces <- namespaces.SDMX(xmlDoc(xmlObj))
   messageNs <- findNamespace(namespaces, "message")
   strNs <- findNamespace(namespaces, "structure")
+  
+  sdmxVersion <- version.SDMXSchema(xmlDoc(xmlObj), namespaces)
+  VERSION.21 <- sdmxVersion == "2.1"
   
   #attributes
   #=========

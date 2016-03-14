@@ -6,13 +6,14 @@
 #' SDMXGenericData(xmlObj)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
 #' @return an object of class "SDMXGenericData"
 #' 
 #' @seealso \link{readSDMX}
 #'
-SDMXGenericData <- function(xmlObj){
+SDMXGenericData <- function(xmlObj, namespaces){
   new("SDMXGenericData",
-      SDMXData(xmlObj)
+      SDMXData(xmlObj, namespaces)
   )		
 }
 

@@ -6,6 +6,7 @@
 #' SDMXStructureType(xmlObj, resource)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
 #' @param resource object of class "character" giving the REST resource to be
 #'        queried (required to distinguish between dataflows and datastructures in
 #'        SDMX 2.0)
@@ -13,18 +14,17 @@
 #' 
 #' @seealso \link{readSDMX}
 #'
-SDMXStructureType <- function(xmlObj, resource){
+SDMXStructureType <- function(xmlObj, namespaces, resource){
 	new("SDMXStructureType",
       SDMXType(xmlObj),
-      subtype = type.SDMXStructureType(xmlObj, resource));
+      subtype = type.SDMXStructureType(xmlObj, namespaces, resource));
 }
 
-type.SDMXStructureType <- function(xmlObj, resource){
+type.SDMXStructureType <- function(xmlObj, namespaces, resource){
   
-  sdmxVersion <- version.SDMXSchema(xmlObj)
+  sdmxVersion <- version.SDMXSchema(xmlObj, namespaces)
   VERSION.21 <- sdmxVersion == "2.1"
   
-  namespaces <- namespaces.SDMX(xmlObj)
   messageNsString <- "message"
   if(isRegistryInterfaceEnvelope(xmlObj, FALSE)) messageNsString <- "registry"
   messageNs <- findNamespace(namespaces, messageNsString)

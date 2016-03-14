@@ -6,18 +6,18 @@
 #' SDMXConceptScheme(xmlObj)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
 #' @return an object of class "SDMXConceptScheme"
 #' 
 #' @seealso \link{readSDMX}
 #'
-SDMXConceptScheme <- function(xmlObj){
+SDMXConceptScheme <- function(xmlObj, namespaces){
   
-  sdmxVersion <- version.SDMXSchema(xmlDoc(xmlObj))
-  VERSION.21 <- sdmxVersion == "2.1"
-  
-  namespaces <- namespaces.SDMX(xmlDoc(xmlObj))
   messageNs <- findNamespace(namespaces, "message")
-  strNs <- findNamespace(namespaces, "structure")
+  strNs <- findNamespace(namespaces, "structure")  
+  
+  sdmxVersion <- version.SDMXSchema(xmlDoc(xmlObj), namespaces)
+  VERSION.21 <- sdmxVersion == "2.1"
   
   #attributes
   #=========
@@ -103,7 +103,7 @@ SDMXConceptScheme <- function(xmlObj){
                             namespaces = strNs)
   concepts <- list()
   if(length(conceptsXML) > 0){
-    concepts <- lapply(conceptsXML, function(x){ SDMXConcept(x)})
+    concepts <- lapply(conceptsXML, SDMXConcept, namespaces)
   }
   
   #instantiate the object

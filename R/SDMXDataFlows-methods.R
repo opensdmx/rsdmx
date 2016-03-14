@@ -6,27 +6,27 @@
 #' SDMXDataFlows(xmlObj)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
+#' @param namespaces object of class "data.frame" given the list of namespace URIs
 #' @return an object of class "SDMXDataFlows"
 #' 
 #' @seealso \link{readSDMX}
 #'
-SDMXDataFlows <- function(xmlObj){
+SDMXDataFlows <- function(xmlObj, namespaces){
   new("SDMXDataFlows",
-      SDMX(xmlObj),
-      dataflows = dataflows.SDMXDataFlows(xmlObj)
+      SDMX(xmlObj, namespaces),
+      dataflows = dataflows.SDMXDataFlows(xmlObj, namespaces)
   )
 }
 
 #get list of SDMXDataFlow
 #=============================
-dataflows.SDMXDataFlows <- function(xmlObj){
+dataflows.SDMXDataFlows <- function(xmlObj, namespaces){
   
   dataflows <- NULL
   
-  sdmxVersion <- version.SDMXSchema(xmlObj)
+  sdmxVersion <- version.SDMXSchema(xmlObj, namespaces)
   VERSION.21 <- sdmxVersion == "2.1"
   
-  namespaces <- namespaces.SDMX(xmlObj)
   messageNsString <- "message"
   if(isRegistryInterfaceEnvelope(xmlObj, FALSE)) messageNsString <- "registry"
   messageNs <- findNamespace(namespaces, messageNsString)
