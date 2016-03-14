@@ -7,7 +7,7 @@ Authors@R: c(
   person("Matthieu", "Stigler", role = c("ctb")))
 Maintainer: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 Depends: R (>= 2.15)
-Imports: methods, XML (>= 3.98.1.4), RCurl, plyr, utils
+Imports: methods, XML (>= 3.98.1.3), RCurl, plyr, utils
 Suggests: testthat, knitr
 Description: Set of classes and methods to read data and metadata documents
   exchanged through the Statistical Data and Metadata Exchange (SDMX) framework,
