@@ -9,8 +9,9 @@ context("SDMXDataFlows")
 
 test_that("DataFlows - 2.1",{
   file <- system.file("extdata", "SDMXDataFlows_Example_2.1.xml", package = "rsdmx")
-  xmlObj <- xmlParse(file)  
-  flow <- SDMXDataFlows(xmlObj)
+  xmlObj <- xmlParse(file)
+  ns <- namespaces.SDMX(xmlObj)
+  flow <- SDMXDataFlows(xmlObj, ns)
   expect_is(flow, "SDMXDataFlows")
   expect_equal(length(flow@dataflows), 5L)
   

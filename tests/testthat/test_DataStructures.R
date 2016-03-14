@@ -10,8 +10,9 @@ context("SDMXDataStructures")
 test_that("DataStructures / KeyFamilies - 2.0",{
   file <- system.file("extdata", "SDMXDataStructures_Example_2.0.xml",
                       package = "rsdmx")
-  xmlObj <- xmlParse(file)  
-  ds <- SDMXDataStructures(xmlObj)
+  xmlObj <- xmlParse(file)
+  ns <- namespaces.SDMX(xmlObj)
+  ds <- SDMXDataStructures(xmlObj, ns)
   expect_is(ds, "SDMXDataStructures")
   expect_equal(length(ds@datastructures), 1L)
   
@@ -33,8 +34,9 @@ test_that("DataStructures / KeyFamilies - 2.0",{
 test_that("DataStructures / KeyFamilies - 2.1",{
   file <- system.file("extdata", "SDMXDataStructures_Example_2.1.xml",
                       package = "rsdmx")
-  xmlObj <- xmlParse(file)  
-  ds <- SDMXDataStructures(xmlObj)
+  xmlObj <- xmlParse(file)
+  ns <- namespaces.SDMX(xmlObj)
+  ds <- SDMXDataStructures(xmlObj, ns)
   expect_is(ds, "SDMXDataStructures")
   expect_equal(length(ds@datastructures), 1L)
   

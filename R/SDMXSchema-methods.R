@@ -18,7 +18,13 @@ SDMXSchema <- function(xmlObj, namespaces) {
 
 #default functions
 version.SDMXSchema <- function(xmlObj, namespaces){
-	parsed <- strsplit(namespaces$uri[1],"/")[[1]];
-	schemaVersion <-  gsub("_",".",substr(parsed[substr(parsed,0,1)=="v"],2,nchar(parsed,"w")));
+	schemaVersion <- NULL
+  for(i in 1:nrow(namespaces)){
+    parsed <- strsplit(namespaces$uri[i],"/")[[1]];
+    if(tolower(parsed[3]) == "www.sdmx.org"){
+	    schemaVersion <-  gsub("_",".",substr(parsed[substr(parsed,0,1)=="v"],2,nchar(parsed,"w")));
+      break;
+    }
+  }
 	return(schemaVersion);
 }

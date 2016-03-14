@@ -13,8 +13,8 @@ test_that("getNamespaces",{
   
   namespaces <- getNamespaces(sdmx)
   expect_is(namespaces, "data.frame")
-  expect_equal(c("id","uri"), colnames(namespaces))
-  expect_equal(12L, nrow(namespaces))
+  expect_equal("uri", colnames(namespaces))
+  expect_equal(11L, nrow(namespaces))
 })
 
 test_that("findNamespace",{

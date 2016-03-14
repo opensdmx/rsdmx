@@ -52,7 +52,7 @@ dataflows.SDMXDataFlows <- function(xmlObj, namespaces){
     }
   }
   if(!is.null(dfXML)){
-    dataflows <- lapply(dfXML, function(x){ SDMXDataFlow(x)})
+    dataflows <- lapply(dfXML, SDMXDataFlow, namespaces)
   }
   return(dataflows)
 }

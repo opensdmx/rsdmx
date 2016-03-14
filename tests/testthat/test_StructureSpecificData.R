@@ -10,8 +10,8 @@ context("SDMXStructureSpecificData")
 test_that("StructureSpecificData 2.1",{
   file <- system.file("extdata", "SDMXStructureSpecificDataExample_2.1.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
-  
-  ds <- SDMXStructureSpecificData(xmlObj)
+  ns <- namespaces.SDMX(xmlObj)
+  ds <- SDMXStructureSpecificData(xmlObj, ns)
   expect_is(ds, "SDMXStructureSpecificData")
   
   df <- as.data.frame(ds)

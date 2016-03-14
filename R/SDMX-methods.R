@@ -139,8 +139,7 @@ findNamespace <- function(namespaces, messageType){
 #' 
 
 isSoapRequestEnvelope <- function(xmlObj, namespaces){
-  ns <- c(ns = namespaces$uri[grep("soap", namespaces$uri)])
-  return(length(ns) > 0)
+  return(tolower(xmlName(xmlRoot(xmlObj))) == "envelope")
 }
 
 #' @name getSoapRequestResult

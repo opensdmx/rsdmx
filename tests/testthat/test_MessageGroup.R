@@ -11,8 +11,8 @@ test_that("MessageGroup - GenericData 2.0",{
   file <- system.file("extdata", "SDMXMessageGroupExample_GenericData_2.0.xml",
                       package = "rsdmx")
   xmlObj <- xmlParse(file)
-
-	ds <- SDMXMessageGroup(xmlObj)
+  ns <- namespaces.SDMX(xmlObj)
+	ds <- SDMXMessageGroup(xmlObj, ns)
 	expect_is(ds, "SDMXMessageGroup")
 	
 	df <- as.data.frame(ds)
@@ -23,8 +23,8 @@ test_that("MessageGroup - CompactData 2.0",{
   file <- system.file("extdata", "SDMXMessageGroupExample_CompactData_2.0.xml",
                       package = "rsdmx")
   xmlObj <- xmlParse(file)
-  
-  ds <- SDMXMessageGroup(xmlObj)
+  ns <- namespaces.SDMX(xmlObj)
+  ds <- SDMXMessageGroup(xmlObj, ns)
   expect_is(ds, "SDMXMessageGroup")
   
   df <- as.data.frame(ds)

@@ -10,8 +10,9 @@ context("SDMXDataStructureDefinition")
 test_that("DataStructureDefinition (DSD) - 2.0",{
   file <- system.file("extdata", "SDMXDataStructureDefinition_Example_2.0.xml",
                       package = "rsdmx")
-  xmlObj <- xmlParse(file)  
-  dsd <- SDMXDataStructureDefinition(xmlObj)
+  xmlObj <- xmlParse(file)
+  ns <- namespaces.SDMX(xmlObj)
+  dsd <- SDMXDataStructureDefinition(xmlObj, ns)
   expect_is(dsd, "SDMXDataStructureDefinition")
   expect_is(dsd@concepts, "SDMXConcepts")
   expect_is(dsd@codelists, "SDMXCodelists")
@@ -22,7 +23,8 @@ test_that("DataStructureDefinition (DSD) - 2.1",{
   file <- system.file("extdata", "SDMXDataStructureDefinition_Example_2.1.xml",
                       package = "rsdmx")
   xmlObj <- xmlParse(file)  
-  dsd <- SDMXDataStructureDefinition(xmlObj)
+  ns <- namespaces.SDMX(xmlObj)
+  dsd <- SDMXDataStructureDefinition(xmlObj, ns)
   expect_is(dsd, "SDMXDataStructureDefinition")
   expect_is(dsd@concepts, "SDMXConcepts")
   expect_is(dsd@codelists, "SDMXCodelists")

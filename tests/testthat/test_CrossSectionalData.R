@@ -10,8 +10,8 @@ context("SDMXCrossSectionalData")
 test_that("CrossSectionalData 1.0",{
   file <- system.file("extdata", "SDMXCrossSectionalDataExample_1.0.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
-  
-  ds <- SDMXCrossSectionalData(xmlObj)
+  ns <- namespaces.SDMX(xmlObj)
+  ds <- SDMXCrossSectionalData(xmlObj, ns)
   expect_is(ds, "SDMXCrossSectionalData")
   
   df <- as.data.frame(ds)

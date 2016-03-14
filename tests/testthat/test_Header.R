@@ -11,8 +11,8 @@ test_that("SDMXHeader - 2.0",{
   
   file <- system.file("extdata", "SDMXMessageExample_2.0.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
-  
-	obj = SDMXHeader(xmlObj)
+  ns <- namespaces.SDMX(xmlObj)
+	obj = SDMXHeader(xmlObj, ns)
 	expect_is(obj, "SDMXHeader")
 	expect_equal(obj@ID, "data.organization.org")
 	expect_false(obj@Test)
@@ -33,8 +33,8 @@ test_that("SDMXHeader - 2.1",{
   
   file <- system.file("extdata", "SDMXMessageExample_2.1.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
-  
-  obj = SDMXHeader(xmlObj)
+  ns <- namespaces.SDMX(xmlObj)
+  obj = SDMXHeader(xmlObj, ns)
   expect_is(obj, "SDMXHeader")
   expect_equal(obj@ID, "176ea8e40bfc189c8113edf292a3abb4")
   expect_false(obj@Test)

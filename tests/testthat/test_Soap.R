@@ -10,11 +10,11 @@ context("SDMXSoapResponse")
 test_that("SOAP - CompactData",{
   file <- system.file("extdata", "SDMX_SOAP_Example.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
-
-  expect_true(isSoapRequestEnvelope(xmlObj))
+  ns <- namespaces.SDMX(xmlObj)
+  expect_true(isSoapRequestEnvelope(xmlObj, ns))
   xmlObj <- getSoapRequestResult(xmlObj)
-  expect_false(isSoapRequestEnvelope(xmlObj))
+  expect_false(isSoapRequestEnvelope(xmlObj, ns))
   
-  ds <- SDMXCompactData(xmlObj)
+  ds <- SDMXCompactData(xmlObj, ns)
   expect_is(ds, "SDMXCompactData")
 })

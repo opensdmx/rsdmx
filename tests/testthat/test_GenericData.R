@@ -10,8 +10,8 @@ context("SDMXGenericData")
 test_that("GenericData 2.0",{
   file <- system.file("extdata", "SDMXGenericDataExample_2.0.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
-  
-	ds <- SDMXGenericData(xmlObj)
+  ns <- namespaces.SDMX(xmlObj)
+	ds <- SDMXGenericData(xmlObj, ns)
 	expect_is(ds, "SDMXGenericData")
 	
 	df <- as.data.frame(ds)
@@ -27,8 +27,8 @@ test_that("GenericData 2.0",{
 test_that("GenericData - 2.0 - Eurostat",{
   file <- system.file("extdata", "Example_Eurostat_2.0.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
-  
-  ds <- SDMXGenericData(xmlObj)
+  ns <- namespaces.SDMX(xmlObj)
+  ds <- SDMXGenericData(xmlObj, ns)
   expect_is(ds, "SDMXGenericData")
   
   df <- as.data.frame(ds)
@@ -47,8 +47,8 @@ test_that("GenericData - 2.0 - Eurostat",{
 test_that("GenericData - 2.1",{
   file <- system.file("extdata", "SDMXGenericDataExample_2.1.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
-  
-  ds <- SDMXGenericData(xmlObj)
+  ns <- namespaces.SDMX(xmlObj)
+  ds <- SDMXGenericData(xmlObj, ns)
   expect_is(ds, "SDMXGenericData")
   
   df <- as.data.frame(ds)

@@ -9,8 +9,9 @@ context("SDMXFooter")
 
 test_that("SDMXFooter - 2.0",{
   file <- system.file("extdata", "SDMXMessageExample_2.0.xml", package = "rsdmx")
-  xmlObj <- xmlParse(file)  
-  obj = SDMXFooter(xmlObj)
+  xmlObj <- xmlParse(file)
+  ns <- namespaces.SDMX(xmlObj)
+  obj = SDMXFooter(xmlObj, ns)
   
   expect_is(obj, "SDMXFooter")
   expect_equal(length(obj@messages),0)
@@ -18,8 +19,9 @@ test_that("SDMXFooter - 2.0",{
 
 test_that("SDMXFooter - 2.1",{
   file <- system.file("extdata", "SDMXMessageExample_2.1.xml", package = "rsdmx")
-  xmlObj <- xmlParse(file)  
-  obj = SDMXFooter(xmlObj)
+  xmlObj <- xmlParse(file)
+  ns <- namespaces.SDMX(xmlObj)
+  obj = SDMXFooter(xmlObj, ns)
   
   expect_is(obj, "SDMXFooter")
   

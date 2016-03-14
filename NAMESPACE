@@ -82,6 +82,7 @@ export(
   SDMXDotStatRequestBuilder,
   SDMXServiceProvider,
   SDMXServiceProviders,
+  namespaces.SDMX,
   findNamespace,
   isSoapRequestEnvelope,
   getSoapRequestResult,

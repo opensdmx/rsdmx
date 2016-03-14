@@ -9,8 +9,9 @@ context("SDMXConcepts")
 
 test_that("Concepts 2.0 - with Concepts (backward compatibility with 1.0)",{
   file <- system.file("extdata", "SDMXConcepts_Example_2.0.xml", package = "rsdmx")
-  xmlObj <- xmlParse(file)  
-  concepts <- SDMXConcepts(xmlObj)
+  xmlObj <- xmlParse(file)
+  ns <- namespaces.SDMX(xmlObj)
+  concepts <- SDMXConcepts(xmlObj, ns)
   expect_is(concepts, "SDMXConcepts")
   
   df <- as.data.frame(concepts)
@@ -23,7 +24,8 @@ test_that("Concepts - 2.0 - with ConceptSchemes",{
   file <- system.file("extdata", "SDMXConceptSchemes_Example_2.0.xml",
                       package = "rsdmx")
   xmlObj <- xmlParse(file)
-  concepts <- SDMXConcepts(xmlObj)
+  ns <- namespaces.SDMX(xmlObj)
+  concepts <- SDMXConcepts(xmlObj, ns)
   expect_is(concepts, "SDMXConcepts")
   
   df <- as.data.frame(concepts)
@@ -36,7 +38,8 @@ test_that("Concepts - 2.1 - with ConceptSchemes",{
   file <- system.file("extdata", "SDMXConceptSchemes_Example_2.1.xml",
                       package = "rsdmx")
   xmlObj <- xmlParse(file)
-  concepts <- SDMXConcepts(xmlObj)
+  ns <- namespaces.SDMX(xmlObj)
+  concepts <- SDMXConcepts(xmlObj, ns)
   expect_is(concepts, "SDMXConcepts")
   
   df <- as.data.frame(concepts)

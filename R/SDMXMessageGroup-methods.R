@@ -32,6 +32,8 @@ class.SDMXMessageGroup <- function(xmlObj){
   ns <- ns.df$uri
   if(length(ns) > 1) ns <- ns[1L]
   authorityNs <- nsDefs.df[nsDefs.df$uri == ns,]
+  authorityNs <- as.data.frame(authorityNs, stringsAsFactors = FALSE)
+  colnames(authorityNs) <- "uri"
   if(nrow(authorityNs) == 0){
     hasAuthorityNS <- FALSE
   }else{
