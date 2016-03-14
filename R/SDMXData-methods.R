@@ -3,7 +3,7 @@
 #' @aliases SDMXData,SDMXData-method
 #' 
 #' @usage
-#' SDMXData(xmlObj)
+#' SDMXData(xmlObj, namespaces)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
 #' @param namespaces object of class "data.frame" given the list of namespace URIs

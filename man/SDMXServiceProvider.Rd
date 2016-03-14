@@ -48,7 +48,7 @@ the country (if scale is "national")}
 \examples{
 #let's create a SDMXRESTRequestBuilder
   #(assuming that "My Organization" implements SDMX REST web-services)
-  myBuilder <- SDMXRESTRequestBuilder(regUrl = "http://www.myorg.org/registry",
+  myBuilder <- SDMXREST20RequestBuilder(regUrl = "http://www.myorg.org/registry",
                                       repoUrl = "http://www.myorg.org/repository",
                                       compliant = TRUE)
 

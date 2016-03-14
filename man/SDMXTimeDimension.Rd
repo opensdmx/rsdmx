@@ -7,7 +7,7 @@
 \alias{SDMXTimeDimension-class}
 \title{Class "SDMXTimeDimension"}
 \usage{
-SDMXTimeDimension(xmlObj)
+SDMXTimeDimension(xmlObj, namespaces)
 }
 \arguments{
 \item{xmlObj}{object of class "XMLInternalDocument derived from XML package}

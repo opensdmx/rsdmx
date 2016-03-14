@@ -7,7 +7,7 @@
 \alias{SDMXDimension-class}
 \title{Class "SDMXDimension"}
 \usage{
-SDMXDimension(xmlObj)
+SDMXDimension(xmlObj, namespaces)
 }
 \arguments{
 \item{xmlObj}{object of class "XMLInternalDocument derived from XML package}

@@ -7,7 +7,7 @@
 \alias{SDMXComponents-class}
 \title{Class "SDMXComponents"}
 \usage{
-SDMXComponents(xmlObj)
+SDMXComponents(xmlObj, namespaces)
 }
 \arguments{
 \item{xmlObj}{object of class "XMLInternalDocument derived from XML package}

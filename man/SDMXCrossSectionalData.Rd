@@ -7,7 +7,7 @@
 \alias{SDMXCrossSectionalData-class}
 \title{Class "SDMXCrossSectionalData"}
 \usage{
-SDMXCrossSectionalData(xmlObj)
+SDMXCrossSectionalData(xmlObj, namespaces)
 }
 \arguments{
 \item{xmlObj}{object of class "XMLInternalDocument derived from XML package}

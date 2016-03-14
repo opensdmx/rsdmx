@@ -3,7 +3,7 @@
 #' @aliases SDMXStructureType,SDMXStructureType-method
 #' 
 #' @usage
-#' SDMXStructureType(xmlObj, resource)
+#' SDMXStructureType(xmlObj, namespaces, resource)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
 #' @param namespaces object of class "data.frame" given the list of namespace URIs

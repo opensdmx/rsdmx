@@ -7,7 +7,7 @@
 \alias{SDMXHeader-class}
 \title{Class "SDMXHeader"}
 \usage{
-SDMXHeader(xmlObj)
+SDMXHeader(xmlObj, namespaces)
 }
 \arguments{
 \item{xmlObj}{object of class "XMLInternalDocument derived from XML package}

@@ -6,7 +6,7 @@
 \usage{
 readSDMX(file, isURL,
                 provider, providerId, agencyId, resource, resourceId, version,
-                flowRef, key, key.mode, start, end, dsd, verbose)
+                flowRef, key, key.mode, start, end, dsd, validate, verbose)
 }
 \arguments{
 \item{file}{path to SDMX-ML document that needs to be parsed}

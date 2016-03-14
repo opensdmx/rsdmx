@@ -7,7 +7,7 @@
 \alias{SDMXDataFlows-class}
 \title{Class "SDMXDataFlows"}
 \usage{
-SDMXDataFlows(xmlObj)
+SDMXDataFlows(xmlObj, namespaces)
 }
 \arguments{
 \item{xmlObj}{object of class "XMLInternalDocument derived from XML package}

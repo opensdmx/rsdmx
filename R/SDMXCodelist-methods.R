@@ -3,7 +3,7 @@
 #' @aliases SDMXCodelist,SDMXCodelist-method
 #' 
 #' @usage
-#' SDMXCodelist(xmlObj)
+#' SDMXCodelist(xmlObj, namespaces)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
 #' @param namespaces object of class "data.frame" given the list of namespace URIs

@@ -3,7 +3,7 @@
 #' @aliases SDMXCrossSectionalData,SDMXCrossSectionalData-method
 #' 
 #' @usage
-#' SDMXCrossSectionalData(xmlObj)
+#' SDMXCrossSectionalData(xmlObj, namespaces)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
 #' @param namespaces object of class "data.frame" given the list of namespace URIs
@@ -45,6 +45,9 @@ as.data.frame.SDMXCrossSectionalData <- function(x, row.names=NULL, optional=FAL
     if(nrow(authorityNs) > 1){
       warning("More than one target dataset namespace found!")
       authorityNs <- authorityNs[1L,]
+      authorityNs <- as.data.frame(authorityNs, stringsAsFactors = FALSE)
+      colnames(authorityNs) <- "uri"
+      
     }
   }
   

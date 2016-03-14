@@ -7,7 +7,7 @@
 \alias{SDMXStructureSpecificData-class}
 \title{Class "SDMXStructureSpecificData"}
 \usage{
-SDMXStructureSpecificData(xmlObj)
+SDMXStructureSpecificData(xmlObj, namespaces)
 }
 \arguments{
 \item{xmlObj}{object of class "XMLInternalDocument derived from XML package}
