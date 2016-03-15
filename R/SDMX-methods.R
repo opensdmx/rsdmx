@@ -3,7 +3,7 @@
 #' @aliases SDMX,SDMX-method
 #' 
 #' @usage
-#' SDMX(xmlObj)
+#' SDMX(xmlObj, namespaces)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
 #' @param namespaces object of class "data.frame" given the list of namespace URIs
@@ -124,7 +124,7 @@ findNamespace <- function(namespaces, messageType){
 #' @description function used to detect if the XML document corresponds to a SOAP
 #'              request response
 #' @usage
-#' isSoapRequestEnvelope(xmlObj)
+#' isSoapRequestEnvelope(xmlObj, namespaces)
 #' 
 #' @param xmlObj object of class "XMLInternalDocument derived from XML package
 #' @param namespaces object of class "data.frame" given the list of namespace URIs

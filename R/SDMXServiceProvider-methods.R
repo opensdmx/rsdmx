@@ -311,7 +311,7 @@ setSDMXServiceProviders <- function(){ # nocov start
 #' 
 #' @examples
 #'   #create a provider
-#'   myBuilder <- SDMXRESTRequestBuilder(regUrl = "http://www.myorg.org/registry",
+#'   myBuilder <- SDMXREST20RequestBuilder(regUrl = "http://www.myorg.org/registry",
 #'                                       repoUrl = "http://www.myorg.org/repository",
 #'                                       compliant = TRUE)
 #'   myProvider <- SDMXServiceProvider(
