@@ -203,11 +203,12 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
         attrs.df <- as.data.frame(lapply(attrs.df, as.character),
                                   stringsAsFactors=FALSE)
         if(!is.null(obsdf)){
-          attrs.df <- attrs.df[rep(base::row.names(attrs.df), nrow(obsdf)),]
-          if(is(attrs.df, "data.frame")){
-            base::row.names(attrs.df) <- 1:nrow(obsdf)
+          attrs.df <- attrs.df[rep(base::row.names(attrs.df), nrow(obsdf)),]  
+          if(!is(attrs.df, "data.frame")){
+            attrs.df <- as.data.frame(attrs.df, stringsAsFactors = FALSE)
             colnames(attrs.df) <- attrsNames
           }
+          base::row.names(attrs.df) <- 1:nrow(obsdf)
         }
       }
     }  
