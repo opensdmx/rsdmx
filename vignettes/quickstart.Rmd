@@ -169,7 +169,7 @@ clobj <- readSDMX(clUrl)
 cldf <- as.data.frame(clobj)
 ```
 
-###Data Structure Definition (DSD)
+### Data Structure Definition (DSD)
 
 This example illustrates how to read a complete DSD using a [OECD StatExtracts portal](http://stats.oecd.org) data source.
 

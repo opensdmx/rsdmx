@@ -233,6 +233,7 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
   dataset <- do.call("rbind.fill", lapply(seriesXML, function(x){
     serie <- parseSerie(x)
   }))
+  dataset <- dataset[,serieNames]
   dataset$obsValue <- as.numeric(dataset$obsValue)
   
   if(any(as.character(dataset$obsValue) == "NaN", na.rm = TRUE)){
