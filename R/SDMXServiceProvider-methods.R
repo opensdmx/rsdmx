@@ -83,6 +83,13 @@ setSDMXServiceProviders <- function(){ # nocov start
       repoUrl = "http://ec.europa.eu/eurostat/SDMX/diss-web/rest",
       compliant = TRUE)
   )
+  #temporary workaround after ESTAT changes (03/2016)
+  ESTAT@builder@handler$dataflow = function(obj){
+    if(is.null(obj@resourceId)) obj@resourceId = "all"
+    if(is.null(obj@version)) obj@version = "latest"
+    req <- sprintf("%s/dataflow/ESTAT/%s/%s/",obj@regUrl, obj@resourceId, obj@version)        
+    return(req)
+  }
   
   #IMF
   IMF <- SDMXServiceProvider(
