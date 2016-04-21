@@ -338,29 +338,24 @@ readSDMX <- function(file = NULL, isURL = TRUE,
   #attempt to get DSD in case of helper method
   if(buildRequest && resource == "data" && dsd){
     
-    dsdRef <- slot(obj,"dsdRef")
-    if(!is.null(dsdRef)){
-      
-      #hack for ESTAT, ISTAT
-      #TODO investigate if using agencyId prefix and version suffix is SDMX compliant
-      if(providerId %in% c("ESTAT","ISTAT")){
-        providerIdPrefix <- paste0(providerId,"_")
-        if(regexpr(providerIdPrefix,dsdRef) == 1){
-          dsdRef <- unlist(strsplit(dsdRef, providerIdPrefix))[2]
-          if(substr(dsdRef, nchar(dsdRef)-1+1, nchar(dsdRef)) != flowRef){
-            versionPrefix <- unlist(strsplit(dsdRef, flowRef))[2]
-            dsdRef <- unlist(strsplit(dsdRef, versionPrefix))[1]
-          }
-        }
-      }
-      if(verbose) message(paste0("-> DSD ref identified in dataset = '", dsdRef, "'"))
-      if(verbose) message("-> Attempt to fetch & bind DSD to dataset")
+    if(providerId %in% c("ESTAT", "ISTAT", "WBG_WITS")){
+      if(verbose) message("-> Attempt to fetch DSD ref from dataflow description")
+      flow <- readSDMX(providerId = providerId, resource = "dataflow",
+                      resourceId = flowRef, verbose = TRUE)
+      dsdRef <- slot(slot(flow, "dataflows")[[1]],"dsdRef")
+      rm(flow)
     }else{
-      if(verbose) message("-> No DSD ref associated to dataset")
-      if(verbose) message("-> Attempt to fetch & bind DSD to dataset using 'flowRef'")
-      dsdRef <- flowRef
+      dsdRef <- slot(obj,"dsdRef")
+      if(!is.null(dsdRef)){
+        if(verbose) message(paste0("-> DSD ref identified in dataset = '", dsdRef, "'"))
+        if(verbose) message("-> Attempt to fetch & bind DSD to dataset")
+      }else{
+        dsdRef <- flowRef
+        if(verbose) message("-> No DSD ref associated to dataset")
+        if(verbose) message("-> Attempt to fetch & bind DSD to dataset using 'flowRef'")
+      }
     }
-    
+      
     dsdObj <- readSDMX(providerId = providerId, resource = "datastructure",
                        resourceId = dsdRef, verbose = verbose)
     if(is.null(dsdObj)){

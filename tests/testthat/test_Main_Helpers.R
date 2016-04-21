@@ -270,6 +270,41 @@ test_that("UIS - data",{
   }
 })
 
+#WBG_WITS
+#--------
+
+#-> dataflow
+test_that("WBG_WITS - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "WBG_WITS", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
+#-> datastructure
+test_that("WBG_WITS - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "WBG_WITS", resource = "datastructure", resourceId = "TARIFF_TRAINS")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
+test_that("WBG_WITS - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "WBG_WITS", resource = "data",
+                   key = ".840.000.020110.reported", key.mode = "SDMX",
+                   flowRef = "DF_WITS_Tariff_TRAINS", start = "2000", end = "2015")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXGenericData")
+  }
+})
+
 #national data providers
 
 #ABS (Australia)

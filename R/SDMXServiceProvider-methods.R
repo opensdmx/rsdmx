@@ -83,11 +83,17 @@ setSDMXServiceProviders <- function(){ # nocov start
       repoUrl = "http://ec.europa.eu/eurostat/SDMX/diss-web/rest",
       compliant = TRUE)
   )
-  #temporary workaround after ESTAT changes (03/2016)
   ESTAT@builder@handler$dataflow = function(obj){
     if(is.null(obj@resourceId)) obj@resourceId = "all"
     if(is.null(obj@version)) obj@version = "latest"
     req <- sprintf("%s/dataflow/ESTAT/%s/%s/",obj@regUrl, obj@resourceId, obj@version)        
+    return(req)
+  }
+  ESTAT@builder@handler$datastructure = function(obj){
+    if(is.null(obj@resourceId)) obj@resourceId = "all"
+    if(is.null(obj@version)) obj@version = "latest"
+    req <- sprintf("%s/datastructure/ESTAT/%s/%s/",obj@regUrl, obj@resourceId, obj@version)
+    req <- paste0(req, "?references=children") #TODO to see later to have arg for this
     return(req)
   }
   
@@ -178,6 +184,16 @@ setSDMXServiceProviders <- function(){ # nocov start
     builder = SDMXDotStatRequestBuilder(
       regUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx",
       repoUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx")
+  )
+  
+  #WBG_WITS (World Integrated Trade Solution)
+  WBG_WITS <- SDMXServiceProvider(
+    agencyId = "WBG_WITS", name = "World Integrated Trade Solution",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "http://wits.worldbank.org/API/V1/SDMX/V21/rest",
+      repoUrl = "http://wits.worldbank.org/API/V1/SDMX/V21/rest",
+      compliant = TRUE, skipProviderId = TRUE
+    )
   )
   
   #national data providers
@@ -290,7 +306,7 @@ setSDMXServiceProviders <- function(){ # nocov start
   
   listOfProviders <- list(
     #international
-    ECB,ESTAT,IMF,OECD,UNSD,FAO,ILO,UIS,
+    ECB,ESTAT,IMF,OECD,UNSD,FAO,ILO,UIS,WBG_WITS,
     #national
     ABS,NBB,INSEE,INEGI,ISTAT,
     #others
