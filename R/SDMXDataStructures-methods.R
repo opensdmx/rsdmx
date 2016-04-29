@@ -58,8 +58,11 @@ as.data.frame.SDMXDataStructures <- function(x, ...){
                         function(ds){
                           
                           names <- slot(ds, "Name")
-                          dsf.names <- as.data.frame(names, stringsAsFactors = FALSE)
-                          colnames(dsf.names) <- paste0("Name.", colnames(dsf.names))
+                          dsf.names <- NULL
+                          if(length(dsf.names) > 0){
+                            dsf.names <- as.data.frame(names, stringsAsFactors = FALSE)
+                            colnames(dsf.names) <- paste0("Name.", colnames(dsf.names))
+                          }
                           
                           desc <- slot(ds, "Description")
                           dsf.desc <- NULL
@@ -71,11 +74,12 @@ as.data.frame.SDMXDataStructures <- function(x, ...){
                           dsf <- data.frame(
                               id = slot(ds, "id"),
                               agencyID = slot(ds, "agencyID"),
-                              dsf.names,
                               stringsAsFactors = FALSE)
-                          
+                          if(!is.null(dsf.names)){
+                            dsf <- cbind(dsf, dsf.names, stringsAsFactors = FALSE)
+                          }
                           if(!is.null(dsf.desc)){
-                            dsf <- cbind(dsf, dsf.desc, stringsASFactors = FALSE)
+                            dsf <- cbind(dsf, dsf.desc, stringsAsFactors = FALSE)
                           }
                            
                           dsf <- cbind(dsf,
