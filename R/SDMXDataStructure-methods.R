@@ -71,7 +71,7 @@ SDMXDataStructure <- function(xmlObj, namespaces){
                              "//str:KeyFamily/str:Name",
                              namespaces = c(str = as.character(strNs)))
   }
-  dsNames <- NULL
+  dsNames <- list()
   if(length(dsNamesXML) > 0){
     dsNames <- new.env()
     sapply(dsNamesXML,

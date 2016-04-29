@@ -71,7 +71,7 @@ SDMXConceptScheme <- function(xmlObj, namespaces){
                                   "//str:ConceptScheme/str:Name",
                                   namespaces = c(str = as.character(strNs)))
   }
-  conceptNames <- NULL
+  conceptNames <- list()
   if(length(conceptNamesXML) > 0){
     conceptNames <- new.env()
     sapply(conceptNamesXML,
