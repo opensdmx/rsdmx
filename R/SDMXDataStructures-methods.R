@@ -59,7 +59,7 @@ as.data.frame.SDMXDataStructures <- function(x, ...){
                           
                           names <- slot(ds, "Name")
                           dsf.names <- NULL
-                          if(length(dsf.names) > 0){
+                          if(length(names) > 0){
                             dsf.names <- as.data.frame(names, stringsAsFactors = FALSE)
                             colnames(dsf.names) <- paste0("Name.", colnames(dsf.names))
                           }
