@@ -40,7 +40,7 @@ At now, the package allows to read:
 
 ### Citation
 
-We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](https://zenodo.org/badge/latestdoi/5183/opensdmx/rsdmx)
+We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](http://dx.doi.org/10.5281/zenodo.31805)
 
 ### Distribution
 
