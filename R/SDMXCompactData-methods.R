@@ -31,17 +31,18 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
   nsDefs.df <- getNamespaces(x)
   ns <- findNamespace(nsDefs.df, nsExpr)
   
-  authorityNs <- nsDefs.df[
+  authorityNamespaces <- nsDefs.df[
     regexpr("http://www.sdmx.org", nsDefs.df$uri,
             "match.length", ignore.case = TRUE) == -1,]
-  authorityNs <- as.data.frame(authorityNs, stringsAsFactors = FALSE)
-  colnames(authorityNs) <- "uri"
+  authorityNamespaces <- as.data.frame(authorityNamespaces, stringsAsFactors = FALSE)
+  colnames(authorityNamespaces) <- "uri"
   
-  if(nrow(authorityNs) > 0){
+  if(nrow(authorityNamespaces) > 0){
+    nsIdx <- 1
     hasAuthorityNS <- TRUE
-    if(nrow(authorityNs) > 1){
+    if(nrow(authorityNamespaces) > 1){
       warning("More than one target dataset namespace found!")
-      authorityNs <- authorityNs[1L,]
+      authorityNs <- authorityNamespaces[nsIdx,]
       authorityNs <- as.data.frame(authorityNs, stringsAsFactors = FALSE)
       colnames(authorityNs) <- "uri"
     }
@@ -49,6 +50,13 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
   
   if(hasAuthorityNS){
     seriesXML <- getNodeSet(xmlObj, "//ns:Series", namespaces = c(ns = authorityNs$uri))
+    while(nsIdx <= nrow(authorityNamespaces) && length(seriesXML) == 0){
+      nsIdx <- nsIdx + 1
+      authorityNs <- authorityNamespaces[nsIdx,]
+      authorityNs <- as.data.frame(authorityNs, stringsAsFactors = FALSE)
+      colnames(authorityNs) <- "uri"
+      seriesXML <- getNodeSet(xmlObj, "//ns:Series", namespaces = c(ns = authorityNs$uri))
+    }
     if(length(seriesXML) == 0){
       seriesXML <- getNodeSet(xmlObj, "//ns:Series", namespaces = ns)
     }
