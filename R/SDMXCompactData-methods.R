@@ -41,14 +41,16 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
     nsIdx <- 1
     hasAuthorityNS <- TRUE
     if(nrow(authorityNamespaces) > 1){
-      warning("More than one target dataset namespace found!")
       authorityNs <- authorityNamespaces[nsIdx,]
       authorityNs <- as.data.frame(authorityNs, stringsAsFactors = FALSE)
       colnames(authorityNs) <- "uri"
+    }else{
+      authorityNs <- authorityNamespaces
     }
   }
   
   if(hasAuthorityNS){
+    #try to get series with authority namespaces
     seriesXML <- getNodeSet(xmlObj, "//ns:Series", namespaces = c(ns = authorityNs$uri))
     while(nsIdx <= nrow(authorityNamespaces) && length(seriesXML) == 0){
       nsIdx <- nsIdx + 1
@@ -57,6 +59,7 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
       colnames(authorityNs) <- "uri"
       seriesXML <- getNodeSet(xmlObj, "//ns:Series", namespaces = c(ns = authorityNs$uri))
     }
+    
     if(length(seriesXML) == 0){
       seriesXML <- getNodeSet(xmlObj, "//ns:Series", namespaces = ns)
     }
