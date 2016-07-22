@@ -65,7 +65,19 @@ addLabels.SDMXData <- function(data, dsd){
     
     datac <- as.data.frame(data[,column], stringsAsFactors = FALSE)
     colnames(datac) <- column
-    clName <- components[components$conceptRef == column, "codelist"]
+    
+    #try to grab codelist using concepts
+    clMatcher <- components$conceptRef == column
+    clName <- components[clMatcher, "codelist"]
+    
+    if(is.null(clName) || all(is.na(clName))){
+      #try to grab codelist using regexpr on codelist
+      clMatcher <- regexpr(column, components$codelist, ignore.case = TRUE)
+      attr(clMatcher,"match.length")[is.na(clMatcher)] <- -1
+      clName <- components[attr(clMatcher,"match.length")>1, "codelist"]
+    }
+    if(length(clName)>1) clName <- clName[1]
+    
     if(length(clName) != 0 && !is.na(clName) && !is.null(clName)){
       cl <- as.data.frame(slot(dsd, "codelists"), codelistId = clName)
       datac = merge(x = datac, y = cl, by.x = column, by.y = "id",
