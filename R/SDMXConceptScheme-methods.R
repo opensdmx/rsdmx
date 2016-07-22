@@ -77,6 +77,8 @@ SDMXConceptScheme <- function(xmlObj, namespaces){
     sapply(conceptNamesXML,
            function(x){
              lang <- xmlGetAttr(x,"xml:lang")
+             if(is.null(lang)) lang <- xmlGetAttr(x,"lang")
+             if(is.null(lang)) lang <- "default"
              conceptNames[[lang]] <- xmlValue(x)
            })
     conceptNames <- as.list(conceptNames)
@@ -92,6 +94,8 @@ SDMXConceptScheme <- function(xmlObj, namespaces){
     sapply(conceptDesXML,
            function(x){
              lang <- xmlGetAttr(x,"xml:lang")
+             if(is.null(lang)) lang <- xmlGetAttr(x,"lang")
+             if(is.null(lang)) lang <- "default"
              conceptDescriptions[[lang]] <- xmlValue(x)
            })
     conceptDescriptions <- as.list(conceptDescriptions)

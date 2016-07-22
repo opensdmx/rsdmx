@@ -77,6 +77,8 @@ SDMXCodelist <- function(xmlObj, namespaces){
     sapply(codelistNamesXML,
            function(x){
              lang <- xmlGetAttr(x,"xml:lang")
+             if(is.null(lang)) lang <- xmlGetAttr(x,"lang")
+             if(is.null(lang)) lang <- "default"
              codelistNames[[lang]] <- xmlValue(x)
            })
     codelistNames <- as.list(codelistNames)
@@ -102,6 +104,8 @@ SDMXCodelist <- function(xmlObj, namespaces){
     sapply(codelistDesXML,
            function(x){
              lang <- xmlGetAttr(x,"xml:lang")
+             if(is.null(lang)) lang <- xmlGetAttr(x,"lang")
+             if(is.null(lang)) lang <- "default"
              codelistDescriptions[[lang]] <- xmlValue(x)
            })
     codelistDescriptions <- as.list(codelistDescriptions)

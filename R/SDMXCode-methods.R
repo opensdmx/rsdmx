@@ -58,6 +58,7 @@ SDMXCode <- function(xmlObj, namespaces){
     sapply(codeLabelsXML,
            function(x){
              lang <- xmlGetAttr(x,"xml:lang")
+             if(is.null(lang)) lang <- xmlGetAttr(x,"lang")
              if(is.null(lang)) lang <- "default"
              codeLabels[[lang]] <- xmlValue(x)
            })

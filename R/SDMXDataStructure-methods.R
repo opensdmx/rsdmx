@@ -77,6 +77,8 @@ SDMXDataStructure <- function(xmlObj, namespaces){
     sapply(dsNamesXML,
            function(x){
              lang <- xmlGetAttr(x,"xml:lang")
+             if(is.null(lang)) lang <- xmlGetAttr(x,"lang")
+             if(is.null(lang)) lang <- "default"
              dsNames[[lang]] <- xmlValue(x)
            })
     dsNames <- as.list(dsNames)
@@ -102,6 +104,8 @@ SDMXDataStructure <- function(xmlObj, namespaces){
     sapply(dsDesXML,
            function(x){
              lang <- xmlGetAttr(x,"xml:lang")
+             if(is.null(lang)) lang <- xmlGetAttr(x,"lang")
+             if(is.null(lang)) lang <- "default"
              dsDescriptions[[lang]] <- xmlValue(x)
            })
     dsDescriptions <- as.list(dsDescriptions)

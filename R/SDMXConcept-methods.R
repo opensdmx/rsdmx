@@ -70,8 +70,10 @@ SDMXConcept <- function(xmlObj, namespaces){
     conceptNames <- new.env()
     sapply(conceptNamesXML,
            function(x){
-             lang <- xmlGetAttr(x,"xml:lang")
-             conceptNames[[lang]] <- xmlValue(x)
+              lang <- xmlGetAttr(x,"xml:lang")
+              if(is.null(lang)) lang <- xmlGetAttr(x,"lang")
+              if(is.null(lang)) lang <- "default"
+              conceptNames[[lang]] <- xmlValue(x)
            })
     conceptNames <- as.list(conceptNames)
   }
@@ -83,8 +85,10 @@ SDMXConcept <- function(xmlObj, namespaces){
     conceptDescriptions <- new.env()
     sapply(conceptDesXML,
            function(x){
-             lang <- xmlGetAttr(x,"xml:lang")
-             conceptDescriptions[[lang]] <- xmlValue(x)
+              lang <- xmlGetAttr(x,"xml:lang")
+              if(is.null(lang)) lang <- xmlGetAttr(x,"lang")
+              if(is.null(lang)) lang <- "default"
+              conceptDescriptions[[lang]] <- xmlValue(x)
            })
     conceptDescriptions <- as.list(conceptDescriptions)
   }  
