@@ -30,6 +30,7 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
   hasAuthorityNS <- FALSE
   nsDefs.df <- getNamespaces(x)
   ns <- findNamespace(nsDefs.df, nsExpr)
+  if(length(ns) > 1) ns <- ns[1]
   
   authorityNamespaces <- nsDefs.df[
     regexpr("http://www.sdmx.org", nsDefs.df$uri,
@@ -61,11 +62,13 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
     }
     
     if(length(seriesXML) == 0){
-      seriesXML <- getNodeSet(xmlObj, "//ns:Series", namespaces = ns)
+      seriesXML <- try(getNodeSet(xmlObj, "//ns:Series", namespaces = ns), silent = TRUE)
+      if(class(seriesXML) == "try-error") seriesXML <- list()
     }
   }else{
     if(length(ns) > 0){
-      seriesXML <- getNodeSet(xmlObj, "//ns:Series", namespaces = ns)
+      seriesXML <- try(getNodeSet(xmlObj, "//ns:Series", namespaces = ns), silent = TRUE)
+      if(class(seriesXML) == "try-error") seriesXML <- list()
     }else{
       if(nrow(nsDefs.df) > 0){
         serieNs <- nsDefs.df[1,]

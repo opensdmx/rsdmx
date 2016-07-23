@@ -300,6 +300,7 @@ readSDMX <- function(file = NULL, isURL = TRUE,
                   "CompactDataType"           = SDMXCompactData(xmlObj, ns),
                   "UtilityDataType"           = SDMXUtilityData(xmlObj, ns),
                   "StructureSpecificDataType" = SDMXStructureSpecificData(xmlObj, ns),
+                  "StructureSpecificTimeSeriesDataType" = SDMXStructureSpecificTimeSeriesData(xmlObj, ns),
                   "CrossSectionalDataType"    = SDMXCrossSectionalData(xmlObj, ns),
                   "MessageGroupType"          = SDMXMessageGroup(xmlObj, ns),
                   NULL
