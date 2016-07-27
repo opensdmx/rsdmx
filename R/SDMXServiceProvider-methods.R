@@ -251,7 +251,7 @@ setSDMXServiceProviders <- function(){ # nocov start
     builder = SDMXREST21RequestBuilder(
       regUrl = "http://sdmx.istat.it/SDMXWS/rest",
       repoUrl = "http://sdmx.istat.it/SDMXWS/rest",
-      compliant = TRUE, unsupportedResources = list("datastructure")
+      compliant = TRUE
     )
   )
   
