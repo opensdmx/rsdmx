@@ -17,6 +17,7 @@
 #' @slot Name Object of class "list" giving the dataflow (by available language) - required
 #' @slot Description Object of class "list" giving the dataflow description (by available language)
 #' @slot dsdRef Object of class "character" giving the reference datastructure Id
+#' @slot dsd Object of class "SDMXDataStructureDefinition"
 #'
 #' @section Warning:
 #' This class is not useful in itself, but all SDMX non-abstract classes will 

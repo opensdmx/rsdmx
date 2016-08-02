@@ -46,6 +46,8 @@ A basic class to handle a SDMX DataFlow
 \item{\code{Description}}{Object of class "list" giving the dataflow description (by available language)}
 
 \item{\code{dsdRef}}{Object of class "character" giving the reference datastructure Id}
+
+\item{\code{dsd}}{Object of class "SDMXDataStructureDefinition"}
 }}
 \section{Warning}{
 
