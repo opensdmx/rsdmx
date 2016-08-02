@@ -161,6 +161,7 @@ SDMXDataFlow <- function(xmlObj, namespaces){
             #elements,
             Name = flowNames,
             Description = flowDescriptions,
-            dsdRef = dsdRef
+            dsdRef = dsdRef,
+            dsd = NULL
   )
 }

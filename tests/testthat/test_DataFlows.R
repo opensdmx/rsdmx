@@ -28,4 +28,5 @@ test_that("DataFlows - 2.1",{
   expect_equal(flow.df[1, "version"], "1.0")
   expect_equal(flow.df[1, "urn"], "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=MYORG:DS-001(1.0)")
   expect_equal(flow.df[1, "dsdRef"], "DSD_DS-001")
+  expect_equal(flow.df[1, "dsd"], NULL)
 })

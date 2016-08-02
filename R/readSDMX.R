@@ -337,16 +337,21 @@ readSDMX <- function(file = NULL, isURL = TRUE,
   }
   
   #attempt to get DSD in case of helper method
-  if(buildRequest && resource == "data" && dsd){
+  if(buildRequest && resource %in% c("data","dataflow") && dsd){
     
-    if(providerId %in% c("ESTAT", "ISTAT", "WBG_WITS")){
+    if(resource == "data" && providerId %in% c("ESTAT", "ISTAT", "WBG_WITS")){
       if(verbose) message("-> Attempt to fetch DSD ref from dataflow description")
       flow <- readSDMX(providerId = providerId, resource = "dataflow",
                       resourceId = flowRef, verbose = TRUE)
       dsdRef <- slot(slot(flow, "dataflows")[[1]],"dsdRef")
       rm(flow)
     }else{
-      dsdRef <- slot(obj,"dsdRef")
+      dsdRef <- NULL
+      if(resource == "data"){
+        dsdRef <- slot(obj, "dsdRef")
+      }else if(resource=="dataflow"){
+        dsdRef <- lapply(slot(obj,"dataflows"), slot,"dsdRef")
+      }
       if(!is.null(dsdRef)){
         if(verbose) message(paste0("-> DSD ref identified in dataset = '", dsdRef, "'"))
         if(verbose) message("-> Attempt to fetch & bind DSD to dataset")
@@ -356,14 +361,29 @@ readSDMX <- function(file = NULL, isURL = TRUE,
         if(verbose) message("-> Attempt to fetch & bind DSD to dataset using 'flowRef'")
       }
     }
-      
-    dsdObj <- readSDMX(providerId = providerId, resource = "datastructure",
+    
+    #fetch DSD
+    dsdObj <- NULL
+    if(resource == "data"){
+      dsdObj <- readSDMX(providerId = providerId, resource = "datastructure",
                        resourceId = dsdRef, verbose = verbose)
-    if(is.null(dsdObj)){
-      if(verbose) message("-> Impossible to fetch DSD")
-    }else{
-      if(verbose) message("-> DSD fetched and associated to dataset!")
-      slot(obj, "dsd") <- dsdObj
+      if(is.null(dsdObj)){
+        if(verbose) message(sprintf("-> Impossible to fetch DSD for dataset %s", flowRef))
+      }else{
+        if(verbose) message("-> DSD fetched and associated to dataset!")
+        slot(obj, "dsd") <- dsdObj
+      }
+    }else if(resource == "dataflow"){
+      dsdObj <- lapply(1:length(dsdRef), function(x){
+        flowDsd <- readSDMX(providerId = providerId, resource = "datastructure",
+                 resourceId = dsdRef[[x]], verbose = verbose)
+        if(is.null(flowDsd)){
+          if(verbose) message(sprintf("-> Impossible to fetch DSD for dataflow %s",resourceId))
+        }else{
+          if(verbose) message("-> DSD fetched and associated to dataflow!")
+          slot(slot(obj,"dataflows")[[x]],"dsd") <<- flowDsd
+        }
+      })
     }
   }
   

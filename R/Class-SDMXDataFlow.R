@@ -41,7 +41,8 @@ setClass("SDMXDataFlow",
            #elements
            Name = "list", #at least one
            Description = "list", #optional
-           dsdRef = "character"
+           dsdRef = "character",
+           dsd = "SDMXDataStructureDefinition_OR_NULL"
          ),
          prototype = list(
            #attributes
@@ -64,7 +65,8 @@ setClass("SDMXDataFlow",
              en = "dataflow description",
              fr = "description du dataflow"
            ),
-           dsdRef = "someId"
+           dsdRef = "someId",
+           dsd = NULL
          ),
          validity = function(object){
            
