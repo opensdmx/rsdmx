@@ -233,16 +233,12 @@ setSDMXServiceProviders <- function(){ # nocov start
   INEGI <- SDMXServiceProvider(
     agencyId = "INEGI", name = "Instituto Nacional de Estad\u00edstica y Geograf\u00eda (M\u00e9jico)",
     scale = "national", country = "MEX",
-    builder = SDMXREST20RequestBuilder(
-      regUrl = "http://www.snieg.mx/opendata/NSIRestService",
-      repoUrl = "http://www.snieg.mx/opendata/NSIRestService",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "http://sdmx.snieg.mx/service/Rest",
+      repoUrl = "http://sdmx.snieg.mx/service/Rest",
       compliant = FALSE
     )
   )
-  INEGI@builder@formatter$data <- function(obj){
-    obj@flowRef <- paste0("ALL,",obj@flowRef,",ALL")
-    return(obj)
-  }
   
   #ISTAT (Italy)
   ISTAT <- SDMXServiceProvider(
