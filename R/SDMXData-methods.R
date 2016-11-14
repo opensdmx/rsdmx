@@ -61,7 +61,7 @@ addLabels.SDMXData <- function(data, dsd){
   components <- as.data.frame(components)
   
   #function to enrich a column with its labels
-  enrichColumnWithLabels <- function(column, dsd, components){
+  enrichColumnWithLabels <- function(column, data, dsd, components){
     
     datac <- as.data.frame(data[,column], stringsAsFactors = FALSE)
     colnames(datac) <- column
@@ -80,20 +80,22 @@ addLabels.SDMXData <- function(data, dsd){
     
     if(length(clName) != 0 && !is.na(clName) && !is.null(clName)){
       cl <- as.data.frame(slot(dsd, "codelists"), codelistId = clName)
+      datac$order <- seq(len=nrow(datac))
       datac = merge(x = datac, y = cl, by.x = column, by.y = "id",
-                    all.x = TRUE, all.y = FALSE)
+                    all.x = TRUE, all.y = FALSE, sort = FALSE)
+      datac <- datac[sort.list(datac$order),]
+      datac$order <- NULL
       datac <- datac[,((regexpr("label", colnames(datac)) != -1) + 
                          (colnames(datac) == column) == 1)]
       colnames(datac)[regexpr("label",colnames(datac)) != -1] <- paste0(column,
       "_",colnames(datac)[regexpr("label",colnames(datac)) != -1])
     }
     
-    return(datac)
-    
+    return(datac)  
   }
   
   fulldata <- do.call("cbind" ,lapply(colnames(data), enrichColumnWithLabels,
-                                      dsd, components))
+                                      data, dsd, components))
   return(fulldata)
 }
 

@@ -41,9 +41,14 @@ test_that("DSD is properly fetched by readSDMX when there is no dsdRef (using fl
 
 test_that("Dataset is correctly enriched with labels using the DSD",{
   sdmx.data <- readSDMX(providerId = "UIS", resource = "data",
-                        flowRef = "EDULIT_DS", key = list("OFST_1_CP", NULL),
-                        start = "2000", end = "2015", dsd = TRUE)
+                        flowRef = "CAI_DS", dsd = TRUE)
   data <- as.data.frame(sdmx.data)
   data.enriched <- as.data.frame(sdmx.data, labels = TRUE)
   expect_true(ncol(data.enriched) > ncol(data))
+  expect_true(all(data["CAI_IND"] == data.enriched["CAI_ID"]))
+  expect_true(all(data["LOCATION"] == data.enriched["LOCATION"]))
+  expect_true(all(data["TIME_FORMAT"] == data.enriched["TIME_FORMAT"]))
+  expect_true(all(data["obsTime"] == data.enriched["obsTime"]))
+  expect_true(all(data["obsValue"] == data.enriched["obsValue"]))
+
 })
