@@ -2,7 +2,7 @@
 =======
 [![Build Status](https://travis-ci.org/opensdmx/rsdmx.svg?branch=master)](https://travis-ci.org/opensdmx/rsdmx)
 [![codecov.io](http://codecov.io/github/opensdmx/rsdmx/coverage.svg?branch=master)](http://codecov.io/github/opensdmx/rsdmx?branch=master)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rsdmx)](http://cran.r-project.org/package=rsdmx)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rsdmx)](https://cran.r-project.org/package=rsdmx)
 [![Github_Status_Badge](https://img.shields.io/badge/Github-0.5--6-blue.svg)](https://github.com/opensdmx/rsdmx)
 
 ``rsdmx``: Tools for reading SDMX data and metadata documents in R
@@ -45,7 +45,7 @@ We thank in advance people that use ``rsdmx`` for citing it in their work / publ
 ### Distribution
 
 #### on CRAN
-``rsdmx`` is available on the Comprehensive R Archive Network (CRAN). See the R CRAN check results at: [http://cran.r-project.org/web/checks/check_results_rsdmx.html](http://cran.r-project.org/web/checks/check_results_rsdmx.html)
+``rsdmx`` is available on the Comprehensive R Archive Network (CRAN). See the R CRAN check results at: [https://cran.r-project.org/web/checks/check_results_rsdmx.html](https://cran.r-project.org/web/checks/check_results_rsdmx.html)
 
 Please note that following a new submission to CRAN, or eventually a modification of CRAN policies, the package might be temporarily archived, and removed from CRAN. In case you notice that the package is not back in few time, please contact me.
 
@@ -61,7 +61,7 @@ To unsubscribe, send an email to: [rsdmx+unsubscribe@googlegroups.com](rsdmx+uns
 
 ## Quickstart
 
-[rsdmx](http://cran.r-project.org/package=rsdmx) offers a low-level set of tools to read **data** and **metadata** in SDMX format. Its strategy is to make it very easy for the user. For this, a unique function named ``readSDMX`` has to be used, whatever it is a ``data`` or ``metadata`` document, or if it is ``local`` or ``remote`` datasource.
+[rsdmx](https://cran.r-project.org/package=rsdmx) offers a low-level set of tools to read **data** and **metadata** in SDMX format. Its strategy is to make it very easy for the user. For this, a unique function named ``readSDMX`` has to be used, whatever it is a ``data`` or ``metadata`` document, or if it is ``local`` or ``remote`` datasource.
 
 It is important to highlight that one of the major benefits of ``rsdmx`` is to focus first on the SDMX **format** specifications (acting as format abstraction library). This allows ``rsdmx`` reading SDMX data from _remote_ datasources, or from _local_ SDMX files. For accessing _remote_ datasources, it also means that ``rsdmx`` does not bound to SDMX **service** specifications, and can read a wider ranger of datasources.
 
