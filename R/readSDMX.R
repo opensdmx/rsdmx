@@ -233,8 +233,15 @@ readSDMX <- function(file = NULL, isURL = TRUE,
     status <- 1
   }else{
     rsdmxAgent <- paste("rsdmx/",as.character(packageVersion("rsdmx")),sep="")
-    content <- getURL(file, httpheader = list('User-Agent' = rsdmxAgent),
-                      ssl.verifypeer = FALSE, .encoding = "UTF-8")
+    h <- RCurl::basicHeaderGatherer()
+    content <- RCurl::getURL(file, httpheader = list('User-Agent' = rsdmxAgent),
+                      ssl.verifypeer = FALSE, .encoding = "UTF-8",
+                      headerfunction = h$update)
+
+    if(h$value()["status"] != "200") {
+      stop("HTTP request failed with status: ",
+           h$value()["status"], " ", h$value()["statusMessage"])
+    }
     
     status <- tryCatch({
       if((attr(regexpr("<!DOCTYPE html>", content), "match.length") == -1) && 
