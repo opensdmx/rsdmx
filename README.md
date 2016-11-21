@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/opensdmx/rsdmx.svg?branch=master)](https://travis-ci.org/opensdmx/rsdmx)
 [![codecov.io](http://codecov.io/github/opensdmx/rsdmx/coverage.svg?branch=master)](http://codecov.io/github/opensdmx/rsdmx?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rsdmx)](https://cran.r-project.org/package=rsdmx)
-[![Github_Status_Badge](https://img.shields.io/badge/Github-0.5--6-blue.svg)](https://github.com/opensdmx/rsdmx)
+[![Github_Status_Badge](https://img.shields.io/badge/Github-0.5--7-blue.svg)](https://github.com/opensdmx/rsdmx)
 
 ``rsdmx``: Tools for reading SDMX data and metadata documents in R
 
@@ -41,6 +41,15 @@ At now, the package allows to read:
 ### Citation
 
 We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](http://dx.doi.org/10.5281/zenodo.31805)
+
+## Author
+
+Copyright (C) 2014  Emmanuel Blondel
+
+## Contributors
+
+* Matthieu Stigler
+* Eric Persson
 
 ### Distribution
 
