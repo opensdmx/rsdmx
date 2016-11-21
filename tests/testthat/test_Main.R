@@ -76,3 +76,23 @@ test_that("readSDMX - SDMXDataStructureDefinition (DSD) - 2.0",{
   expect_is(dsd@codelists, "SDMXCodelists")
   expect_is(dsd@datastructures, "SDMXDataStructures")
 })
+
+test_that("readSDMX - Catch 400 bad request", {
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  expect_error(
+    sdmx <- readSDMX(providerId = "KNOEMA", resource = "data", flowRef = "bad_ref")
+  )
+})
+
+test_that("readSDMX - Catch good request that fails for other reason (bad proxy)", {
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  old_opts <- options()
+  options(RCurlOptions = list("proxy" = "bad_proxy"))
+  
+  expect_error(
+    sdmx <- readSDMX(providerId = "KNOEMA", resource = "data", flowRef = "SADG2015")
+  )
+  options(old_opts)
+})

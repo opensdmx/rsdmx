@@ -151,7 +151,8 @@ readSDMX <- function(file = NULL, isURL = TRUE,
                      validate = FALSE, verbose = TRUE) {
   
   #set option for SDMX compliance validation
-  .rsdmx.options$validate = validate
+  .rsdmx.options$validate <- validate
+  .rsdmx.options$followlocation <- TRUE
   
   if(!(key.mode %in% c("R", "SDMX"))){
     stop("Invalid value for key.mode argument. Accepted values are 'R', 'SDMX' ")
@@ -233,8 +234,15 @@ readSDMX <- function(file = NULL, isURL = TRUE,
     status <- 1
   }else{
     rsdmxAgent <- paste("rsdmx/",as.character(packageVersion("rsdmx")),sep="")
-    content <- getURL(file, httpheader = list('User-Agent' = rsdmxAgent),
-                      ssl.verifypeer = FALSE, .encoding = "UTF-8")
+    h <- RCurl::basicHeaderGatherer()
+    content <- RCurl::getURL(file, httpheader = list('User-Agent' = rsdmxAgent),
+                      ssl.verifypeer = FALSE, .encoding = "UTF-8",
+                      headerfunction = h$update)
+
+    if(as.numeric(h$value()["status"]) >= 400) {
+      stop("HTTP request failed with status: ",
+           h$value()["status"], " ", h$value()["statusMessage"])
+    }
     
     status <- tryCatch({
       if((attr(regexpr("<!DOCTYPE html>", content), "match.length") == -1) && 
