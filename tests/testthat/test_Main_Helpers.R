@@ -31,6 +31,10 @@ test_that("Main helpers arguments",{
   expect_error(readSDMX(provider = provider2, resource = "dataflow"), "Provider should be an instance of 'SDMXServiceProvider'")
   expect_error(readSDMX(providerId = providerId2, resource = "dataflow"), "No provider with identifier IMF!")
   
+  #wrong request
+  expect_error(readSDMX(providerId = "KNOEMA", resource = "data", flowRef = "SADG2015-WRONG"),
+               "HTTP request failed with status: 400 Dataset not found.")
+  
 })
 
 #international data providers
