@@ -88,7 +88,7 @@ test_that("ESTAT - data",{
 test_that("IMF - dataflow",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
-  sdmx <- readSDMX(providerId = "IMF", resource = "dataflow")
+  sdmx <- readSDMX(providerId = "IMF", resource = "dataflow", agencyId = "IMF")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXDataFlows")
   }
@@ -98,7 +98,7 @@ test_that("IMF - dataflow",{
 test_that("IMF - datastructure",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
-  sdmx <- readSDMX(providerId = "IMF", resource = "datastructure", resourceId = "PGI")
+  sdmx <- readSDMX(providerId = "IMF", resource = "datastructure", resourceId = "BOP")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXDataStructureDefinition")
   }
@@ -109,10 +109,9 @@ test_that("IMF - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
   sdmx <- readSDMX(providerId = "IMF", resource = "data",
-                   flowRef = "PGI", key = "US+JP+CN+GB+CA+FR.PCPI.PGI.PCOCY.A",
-                   key.mode = "SDMX", start = 1985, end = 2015) 
+                   flowRef = "BOP_GBPM6", start = 2010, end = 2015) 
   if(!is.null(sdmx)){
-    expect_is(sdmx, "SDMXGenericData")
+    expect_is(sdmx, "SDMXStructureSpecificData")
   }
 })
 

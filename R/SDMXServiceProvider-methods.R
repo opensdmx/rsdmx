@@ -100,46 +100,12 @@ setSDMXServiceProviders <- function(){ # nocov start
   #IMF
   IMF <- SDMXServiceProvider(
     agencyId = "IMF", name = "International Monetary Fund",
-    builder = SDMXREST20RequestBuilder(
-      regUrl = "http://dataservices.imf.org/REST/SDMX_XML.svc",
-      repoUrl = "http://dataservices.imf.org/REST/SDMX_XML.svc",
-      compliant = FALSE)
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "https://sdmxcentral.imf.org/ws/public/sdmxapi/rest",
+      repoUrl = "https://sdmxcentral.imf.org/ws/public/sdmxapi/rest",
+      compliant = TRUE)
   )
-  IMF@builder@handler$dataflow <- function(obj){
-    req <- sprintf("%s/Dataflow/",obj@regUrl)
-    return(req)
-  }
-  IMF@builder@handler$datastructure <- function(obj){
-    req <- sprintf("%s/DataStructure/%s", obj@regUrl, obj@resourceId)
-    return(req)
-  }
-  IMF@builder@handler$data <- function(obj){
-    if(is.null(obj@flowRef)) stop("Missing flowRef value")
-    if(is.null(obj@key)) obj@key = "."
     
-    req <- sprintf("%s/CompactData/%s/%s",
-                   obj@repoUrl, obj@flowRef, obj@key)
-    
-    #DataQuery
-    #-> temporal extent (if any)
-    addParams = FALSE
-    if(!is.null(obj@start)){
-      req <- paste0(req, "?")
-      addParams = TRUE
-      req <- paste0(req, "startPeriod=", obj@start)
-    }
-    if(!is.null(obj@end)){
-      if(!addParams){
-        req <- paste0(req, "?")
-      }else{
-        req <- paste0(req, "&")
-      }
-      req <- paste0(req, "endPeriod=", obj@end) 
-    }
-    
-    return(req)
-  }
-
   #OECD
   OECD <- SDMXServiceProvider(
     agencyId = "OECD", name = "Organisation for Economic Cooperation and Development ",
