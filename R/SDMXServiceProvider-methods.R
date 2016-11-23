@@ -369,6 +369,7 @@ getSDMXServiceProviders <- function(){
 #'          \link{readSDMX}
 #'
 findSDMXServiceProvider <- function(agencyId){
+  if(is.null(agencyId)) return(NULL)
   res <- unlist(lapply(slot(getSDMXServiceProviders(),"providers"),
                        function(x) {if(x@agencyId == agencyId){return(x)}}))
   if(!is.null(res) && length(res) > 0) res <- res[[1]]

@@ -160,14 +160,16 @@ readSDMX <- function(file = NULL, isURL = TRUE,
   
   #check from arguments if request has to be performed
   buildRequest <- FALSE
-  if(!is.null(provider)){
+  if(!missing(provider)){
     if(class(provider) != "SDMXServiceProvider"){
       stop("Provider should be an instance of 'SDMXServiceProvider'")
+    }else{
+      providerId = slot(provider, "agencyId")
     }
     buildRequest <- TRUE
   }
   
-  if(!is.null(providerId)){
+  if(!missing(providerId)){
     provider <- findSDMXServiceProvider(providerId)
     if(is.null(provider)){
       stop("No provider with identifier ", providerId)

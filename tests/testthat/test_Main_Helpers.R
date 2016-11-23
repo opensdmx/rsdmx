@@ -8,6 +8,30 @@ require(rsdmx, quietly = TRUE)
 require(testthat)
 context("SDMXHelpers")
 
+#testing main helpers arguments
+
+#-> dataflow
+test_that("Main helpers arguments",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  
+  #existing provider
+  providerId1 <- "IMF"
+  provider1 <- findSDMXServiceProvider(providerId1)
+  sdmx <- readSDMX(provider = provider1, resource = "dataflow")
+  expect_false(is.null(sdmx))
+  expect_is(sdmx, "SDMXDataFlows")
+  sdmx <- readSDMX(providerId = providerId1, resource = "dataflow")
+  expect_false(is.null(sdmx))
+  expect_is(sdmx, "SDMXDataFlows")
+  
+  #wrong provider
+  providerId2 <- "IMF!"
+  provider2 <- findSDMXServiceProvider(providerId2)
+  expect_error(readSDMX(provider = provider2, resource = "dataflow"), "Provider should be an instance of 'SDMXServiceProvider'")
+  expect_error(readSDMX(providerId = providerId2, resource = "dataflow"), "No provider with identifier IMF!")
+  
+})
 
 #international data providers
 
