@@ -42,11 +42,11 @@ At now, the package allows to read:
 
 We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](http://dx.doi.org/10.5281/zenodo.31805)
 
-## Author
+### Author
 
 Copyright (C) 2014  Emmanuel Blondel
 
-## Contributors
+### Contributors
 
 * Matthieu Stigler
 * Eric Persson
