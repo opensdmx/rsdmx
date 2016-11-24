@@ -265,6 +265,57 @@ setSDMXServiceProviders <- function(){ # nocov start
       compliant = FALSE
     )
   )
+  #WIDUKIND project - International Economics Database
+  WIDUKIND <- SDMXServiceProvider(
+    agencyId = "WIDUKIND", name = "Widukind project - International Economics Database",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "http://widukind-api.cepremap.org/api/v1/sdmx",
+      repoUrl = "http://widukind-api.cepremap.org/api/v1/sdmx",
+      compliant = FALSE, skipProviderId = TRUE
+    )
+  )
+  WIDUKIND@builder@handler$dataflow = function(obj){
+    req <- sprintf("%s/dataflow",obj@regUrl)
+    if(!is.null(obj@agencyId)) req = paste(req, obj@agencyId,sep="/")
+    if(!is.null(obj@resourceId)) req = paste(req, obj@resourceId,sep="/")
+    return(req)
+  }
+  WIDUKIND@builder@handler$datastructure = function(obj){ 
+    req <- sprintf("%s/datastructure",obj@regUrl)
+    if(!is.null(obj@agencyId)){
+      req <- paste(req,obj@agencyId,sep="/")
+    }else{
+      req <- paste(req, "all",sep="/") #not supported by service
+    }
+    if(!is.null(obj@resourceId)) req <- paste(req, obj@resourceId, sep="/")
+    req <- paste0(req, "?references=children") #TODO to see later to have arg for this
+    return(req)
+  }
+  WIDUKIND@builder@handler$data = function(obj){
+    if(is.null(obj@flowRef)) stop("Missing flowRef value")
+    if(is.null(obj@agencyId)) obj@agencyId = "all"
+    if(is.null(obj@key)) obj@key = "all"
+    req <- sprintf("%s/%s/data/%s/%s",obj@repoUrl, obj@agencyId, obj@flowRef, obj@key)
+    
+    #DataQuery
+    #-> temporal extent (if any)
+    addParams = FALSE
+    if(!is.null(obj@start)){
+      req <- paste0(req, "?")
+      addParams = TRUE
+      req <- paste0(req, "startPeriod=", obj@start)
+    }
+    if(!is.null(obj@end)){
+      if(!addParams){
+        req <- paste0(req, "?")
+      }else{
+        req <- paste0(req, "&")
+      }
+      req <- paste0(req, "endPeriod=", obj@end) 
+    }
+    return(req)
+    
+  }
   
   listOfProviders <- list(
     #international
@@ -272,7 +323,7 @@ setSDMXServiceProviders <- function(){ # nocov start
     #national
     ABS,NBB,INSEE,INEGI,ISTAT,
     #others
-    KNOEMA
+    KNOEMA,WIDUKIND
   )
 
   .rsdmx.options$providers <- new("SDMXServiceProviders", providers = listOfProviders)

@@ -522,3 +522,39 @@ test_that("KNOEMA - data",{
     expect_is(sdmx, "SDMXStructureSpecificData")
   }
 })
+
+#WIDUKIND
+#--------
+
+#-> dataflow
+test_that("WIDUKIND - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "WIDUKIND", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
+#-> datastructure
+test_that("WIDUKIND - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "WIDUKIND", resource = "datastructure",
+                   agencyId = "INSEE", resourceId = "POP-EVO")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
+test_that("WIDUKIND - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "WIDUKIND", resource = "data", agencyId = "INSEE",
+                   flowRef = "IPCH-2015-FR-COICOP", key = "a.07120.indice", key.mode="SDMX",
+                   start = 2010, end = 2015)
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXStructureSpecificData")
+  }
+})
