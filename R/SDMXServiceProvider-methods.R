@@ -217,6 +217,51 @@ setSDMXServiceProviders <- function(){ # nocov start
     )
   )
   
+  #NOMIS (UK Official Labour Market statistics)
+  NOMIS <- SDMXServiceProvider(
+    agencyId = "NOMIS", name = "NOMIS - UK Official Labour Market Statistics",
+    scale = "national", country = "UK",
+    builder = SDMXRequestBuilder(
+      regUrl = "https://www.nomisweb.co.uk/api/v01",
+      repoUrl = "https://www.nomisweb.co.uk/api/v01",
+      compliant = FALSE,
+      formatter = list(
+        dataflow = function(obj){return(obj)},
+        datastructure = function(obj){return(obj)},
+        data = function(obj){return(obj)}
+      ),
+      handler = list(
+        
+        #'dataflow' resource (path="dataset/{resourceId}/def.sdmx.xml")
+        #-----------------------------------------------------------------------
+        dataflow = function(obj){  
+          req <- sprintf("%s/dataset", obj@regUrl)
+          if(!is.null(obj@resourceId)) req <- paste(req, obj@resourceId, sep="/")
+          req <- paste(req, "def.sdmx.xml", sep="/")
+          return(req)
+        },
+        #'datastructure' resource (path="dataset/{resourceID}.structure.sdmx.xml")
+        #-----------------------------------------------------------------------
+        datastructure = function(obj){
+          req <- sprintf("%s/dataset", obj@regUrl)
+          if(is.null(obj@resourceId)) stop("Missing 'resourceId' value")
+          req <- paste(req, obj@resourceId, sep="/")
+          req <- paste0(req, ".structure.sdmx.xml")
+          return(req)
+        },
+        #'data' resource (path="dataset/{resourceID}.generic.sdmx.xml")
+        #----------------------------------------------------------
+        data = function(obj){
+          req <- sprintf("%s/dataset", obj@repoUrl)
+          if(is.null(obj@flowRef)) stop("Missing 'flowRef' value")
+          req <- paste(req, obj@flowRef, sep="/")
+          req <- paste0(req, ".compact.sdmx.xml")
+          return(req)
+        }
+      )
+    )
+  )
+  
   #other data providers
   #--------------------
   
@@ -265,6 +310,7 @@ setSDMXServiceProviders <- function(){ # nocov start
       compliant = FALSE
     )
   )
+  
   #WIDUKIND project - International Economics Database
   WIDUKIND <- SDMXServiceProvider(
     agencyId = "WIDUKIND", name = "Widukind project - International Economics Database",
@@ -321,7 +367,7 @@ setSDMXServiceProviders <- function(){ # nocov start
     #international
     ECB,ESTAT,IMF,OECD,UNSD,FAO,ILO,UIS,WBG_WITS,
     #national
-    ABS,NBB,INSEE,INEGI,ISTAT,
+    ABS,NBB,INSEE,INEGI,ISTAT,NOMIS,
     #others
     KNOEMA,WIDUKIND
   )

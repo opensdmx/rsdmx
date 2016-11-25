@@ -488,6 +488,39 @@ test_that("ISTAT - data",{
   }
 })
 
+#NOMIS (UK)
+#----------
+
+#-> dataflow
+test_that("NOMIS - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "NOMIS", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
+#-> datastructure
+test_that("NOMIS - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "NOMIS", resource = "datastructure", resourceId = "NM_1_1")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
+test_that("NOMIS - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "NOMIS", resource = "data", flowRef="NM_1_1")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXGenericData")
+  }
+})
+
 #other data providers
 
 #KNOEMA
