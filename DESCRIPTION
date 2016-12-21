@@ -1,6 +1,6 @@
 Package: rsdmx
 Version: 0.5-7
-Date: 2016-11-24
+Date: 2016-12-21
 Title: Tools for Reading SDMX Data and Metadata
 Authors@R: c(
   person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com"),
@@ -43,4 +43,5 @@ Collate:
   SDMXCrossSectionalData-methods.R SDMXMessageGroup-methods.R
   SDMXDataFlow-methods.R SDMXDataFlows-methods.R SDMXRequestParams-methods.R
   SDMXRequestBuilder-methods.R SDMXREST20RequestBuilder-methods.R SDMXREST21RequestBuilder-methods.R SDMXDotStatRequestBuilder-methods.R
-  SDMXServiceProvider-methods.R SDMXServiceProviders-methods.R readSDMX.R profile.R rsdmx.R
+  SDMXServiceProvider-methods.R SDMXServiceProviders-methods.R readSDMX.R saveSDMX.R
+  profile.R rsdmx.R

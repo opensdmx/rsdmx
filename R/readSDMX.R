@@ -12,6 +12,9 @@
 #'        has to be downloaded from a SDMXweb-repository. Default value is TRUE.
 #'        Ignored in case \code{readSDMX} is used with helpers (based on the 
 #'        embedded list of \code{SDMXServiceProvider})
+#' @param isRData a value of class "logical" either the path is local RData file
+#'        handling an object of class "SDMX", previously saved with \code{\link{saveSDMX}}.
+#'        Default value is FALSE.
 #' @param provider an object of class "SDMXServiceProvider". If specified, 
 #'        \code{file} and \code{isURL} arguments will be ignored.      
 #' @param providerId an object of class "character" representing a provider id. 
@@ -144,7 +147,7 @@
 #' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
 #'    
 
-readSDMX <- function(file = NULL, isURL = TRUE,
+readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
                      provider = NULL, providerId = NULL,
                      agencyId = NULL, resource = NULL, resourceId = NULL, version = NULL,
                      flowRef = NULL, key = NULL, key.mode = "R", start = NULL, end = NULL, dsd = FALSE,
@@ -226,14 +229,17 @@ readSDMX <- function(file = NULL, isURL = TRUE,
   #call readSDMX original
   if(is.null(file)) stop("Empty file argument")
   if(buildRequest) isURL = TRUE
+  if(isRData) isURL = FALSE
   
   #load data
   status <- 0
   if(isURL == FALSE){
-    if(!file.exists(file))
-      stop("File ", file, "not found\n")
-    xmlObj <- xmlTreeParse(file, useInternalNodes = TRUE)
-    status <- 1
+    isXML <- !isRData
+    if(isXML){
+      if(!file.exists(file)) stop("File ", file, "not found\n")
+      xmlObj <- xmlTreeParse(file, useInternalNodes = TRUE)
+      status <- 1
+    }
   }else{
     rsdmxAgent <- paste("rsdmx/",as.character(packageVersion("rsdmx")),sep="")
     h <- RCurl::basicHeaderGatherer()
@@ -343,6 +349,12 @@ readSDMX <- function(file = NULL, isURL = TRUE,
                  })	
         )
       }
+    }
+  }else{
+    #read SDMX object from RData file (.RData, .rda, .rds)
+    if(isRData){
+      if(!file.exists(file)) stop("File ", file, "not found\n")
+      obj <- readRDS(file, refhook = XML::xmlDeserializeHook)
     }
   }
   

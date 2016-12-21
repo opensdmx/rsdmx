@@ -16,6 +16,10 @@ has to be downloaded from a SDMXweb-repository. Default value is TRUE.
 Ignored in case \code{readSDMX} is used with helpers (based on the
 embedded list of \code{SDMXServiceProvider})}
 
+\item{isRData}{a value of class "logical" either the path is local RData file
+handling an object of class "SDMX", previously saved with \code{\link{saveSDMX}}.
+Default value is FALSE.}
+
 \item{provider}{an object of class "SDMXServiceProvider". If specified,
 \code{file} and \code{isURL} arguments will be ignored.}
 
