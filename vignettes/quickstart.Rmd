@@ -197,3 +197,22 @@ In a similar way, the ``concepts`` of the dataset can be extracted from the DSD 
 #get concepts from DSD
 concepts <- as.data.frame(slot(dsd, "concepts"))
 ```
+
+## Save & Reload SDMX R objects
+
+It is possible to save SDMX R objects as RData file (.RData, .rda, .rds), to then
+be able to reload them into the R session. It could be of added value for users that
+want to keep their SDMX objects in R data files, but also for fast loading of large SDMX
+objects (e.g. DSD objects) for use in statistical analyses and R-based web-applications.
+
+To save a SDMX R object to RData file:
+
+```{r, echo = FALSE}
+saveSDMX(sdmx, "tmp.RData")
+```
+
+To reload a SDMX R object from RData file:
+
+```{r, echo = FALSE}
+readSDMX("tmp.RData", isRData = TRUE)
+```
