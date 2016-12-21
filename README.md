@@ -408,5 +408,5 @@ saveSDMX(sdmx, "tmp.RData")
 To reload a SDMX R object from RData file:
 
 ```{r, echo = FALSE}
-readSDMX("tmp.RData", isRData = TRUE)
+sdmx <- readSDMX("tmp.RData", isRData = TRUE)
 ```
