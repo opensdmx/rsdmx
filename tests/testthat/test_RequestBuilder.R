@@ -12,6 +12,7 @@ test_that("a custom SDMXRequestBuilder",{
   request <- SDMXRequestBuilder(
     regUrl = "http://www.myorg.org/registry",
     repoUrl = "http://www.myorg.org/repository",
+    accessKey = NULL,
     formatter = list(
       dataflow = function(obj){return(obj)},
       datastructure = function(obj){return(obj)},
@@ -37,9 +38,10 @@ test_that("a custom SDMXRequestBuilder",{
   expect_equal(request@compliant, TRUE)
   
   params <- SDMXRequestParams(regUrl = "http://www.myorg.org/registry",
-                                repoUrl = "http://www.myorg.org/repository",
-                                providerId = "MYORG", agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
-                                key = "KEY", start = 2000, end = 2010, compliant = TRUE)
+                              repoUrl = "http://www.myorg.org/repository",
+                              accessKey = NULL,
+                              providerId = "MYORG", agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
+                              key = "KEY", start = 2000, end = 2010, compliant = TRUE)
   webRequest <- request@handler$data(params)
   expect_equal(webRequest, "http://www.myorg.org/repository/MYORG/data/FLOW/KEY/2000/2010")
   
@@ -60,6 +62,7 @@ test_that("a simple SDMXREST20RequestBuilder",{
   
   params <- SDMXRequestParams(regUrl = "http://www.myorg.org/registry",
                               repoUrl = "http://www.myorg.org/repository",
+                              accessKey = NULL,
                               providerId = "MYORG", agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
                               key = "KEY", start = 2000, end = 2010, compliant = TRUE)
   webRequest <- request@handler$data(params)
@@ -82,6 +85,7 @@ test_that("a simple SDMXREST21RequestBuilder",{
   
   params <- SDMXRequestParams(regUrl = "http://www.myorg.org/registry",
                               repoUrl = "http://www.myorg.org/repository",
+                              accesKey = NULL,
                               providerId = "MYORG", agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
                               key = "KEY", start = 2000, end = 2010, compliant = TRUE)
   webRequest <- request@handler$data(params)
@@ -103,6 +107,7 @@ test_that("a simple SDMXDotStatRequestBuilder",{
   
   params <- SDMXRequestParams(regUrl = "http://www.myorg.org/registry",
                               repoUrl = "http://www.myorg.org/repository",
+                              accessKey = NULL,
                               providerId = "MYORG", agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
                               key = "KEY", start = 2000, end = 2010, compliant = TRUE)
   webRequest <- request@handler$data(params)
@@ -123,6 +128,7 @@ test_that("a simple SDMXDotStatRequestBuilder - customized with some formatting"
   
   params <- SDMXRequestParams(regUrl = "http://www.myorg.org/registry",
                               repoUrl = "http://www.myorg.org/repository",
+                              accessKey = NULL,
                               providerId = "MYORG", agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
                               key = "KEY", start = 2000, end = 2010, compliant = TRUE)
   params <- request@formatter$data(params)
