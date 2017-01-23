@@ -85,7 +85,7 @@ test_that("a simple SDMXREST21RequestBuilder",{
   
   params <- SDMXRequestParams(regUrl = "http://www.myorg.org/registry",
                               repoUrl = "http://www.myorg.org/repository",
-                              accesKey = NULL,
+                              accessKey = NULL,
                               providerId = "MYORG", agencyId = "MYORG", resource = "data", flowRef = "FLOW", resourceId = NULL,
                               key = "KEY", start = 2000, end = 2010, compliant = TRUE)
   webRequest <- request@handler$data(params)
