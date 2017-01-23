@@ -7,7 +7,7 @@
 \alias{SDMXDotStatRequestBuilder-class}
 \title{Class "SDMXDotStatRequestBuilder"}
 \usage{
-SDMXDotStatRequestBuilder(regUrl, repoUrl, unsupportedResources,
+SDMXDotStatRequestBuilder(regUrl, repoUrl, accessKey, unsupportedResources,
                            skipProviderId, forceProviderId)
 }
 \arguments{
@@ -16,6 +16,9 @@ service registry}
 
 \item{repoUrl}{an object of class "character" giving the base Url of the SDMX
 service repository}
+
+\item{accessKey}{an object of class "character" indicating the name of request parameter for which
+an authentication or subscription user key/token has to be provided to perform requests}
 
 \item{unsupportedResources}{an object of class "list" giving eventual unsupported
 REST resources. Default is an empty list object}
@@ -40,6 +43,9 @@ A experimental class to handle a SDMX DotStat (*.Stat) service
 \item{\code{regUrl}}{an object of class "character" giving the base Url of the SDMX service registry}
 
 \item{\code{repoUrl}}{an object of class "character" giving the base Url of the SDMX service repository}
+
+\item{\code{accessKey}}{an object of class "character" indicating the name of request parameter for which
+an authentication or subscription user key/token has to be provided to perform requests}
 
 \item{\code{compliant}}{an object of class "logical" indicating if the request builder is somehow compliant with a service specification}
 }}

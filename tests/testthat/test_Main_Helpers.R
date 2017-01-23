@@ -297,6 +297,52 @@ test_that("UIS - data",{
   }
 })
 
+#UIS2 (UNESCO - new API https://apiportal.uis.unesco.org)
+#------------
+
+#-> dataflow
+test_that("UIS2 - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  
+  apiKey <- Sys.getenv("UIS_API_KEY")
+  if(apiKey != ""){
+    sdmx <- readSDMX(providerId = "UIS2", providerKey = apiKey, resource = "dataflow")
+    if(!is.null(sdmx)){
+      expect_is(sdmx, "SDMXDataFlows")
+    }
+  }
+})
+
+#-> datastructure
+test_that("UIS2 - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  
+  apiKey <- Sys.getenv("UIS_API_KEY")
+  if(apiKey != ""){
+    sdmx <- readSDMX(providerId = "UIS2", providerKey = apiKey, resource = "datastructure", resourceId = "CE")
+    if(!is.null(sdmx)){
+      expect_is(sdmx, "SDMXDataStructureDefinition")
+    }
+  }
+})
+
+#-> data
+test_that("UIS2 - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  
+  apiKey <- Sys.getenv("UIS_API_KEY")
+  if(apiKey != ""){
+    sdmx <- readSDMX(providerId = "UIS2", providerKey = apiKey, resource = "data",
+                     flowRef = "CE", start = "2000", end = "2015")
+    if(!is.null(sdmx)){
+      expect_is(sdmx, "SDMXStructureSpecificData")
+    }
+  }
+})
+
 #WBG_WITS
 #--------
 

@@ -40,7 +40,7 @@ At now, the package allows to read:
 
 ### Citation
 
-We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](http://dx.doi.org/10.5281/zenodo.31805)
+We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](http://doi.org/10.5281/zenodo.31805)
 
 ### Author
 
@@ -236,9 +236,16 @@ without having to specifying a entire URL, but just by specifying the ``agencyId
 of the provider, and the different query parameters to reach your SDMX document:
 
 ```{r, echo = FALSE}
-sdmx <- readSDMX(providerId = "MYORG", resource = "data", flowRef="MYSERIE",
+sdmx <- readSDMX(providerId = "MYORG", providerKey = NULL resource = "data", flowRef="MYSERIE",
                  key = "all", key.mode = "SDMX", start = 2000, end = 2015)
 ```
+
+For embedded service providers that require a user authentication/subscription key or token,
+it is possible to specify it in ``readSDMX`` with the ``providerKey`` argument. If provided,
+and that the embedded provider requires a specific key parameter, the latter will be appended
+to the SDMX web-request. For example, it's the case for the new [https://apiportal.uis.unesco.org/getting-started](UNESCO SDMX API).
+
+
 
 The following sections will show you how to query SDMX documents, by using ``readSDMX`` 
 in different ways: either for _local_ or _remote_ files, using ``readSDMX`` as low-level 

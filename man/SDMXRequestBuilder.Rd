@@ -7,12 +7,16 @@
 \alias{SDMXRequestBuilder-class}
 \title{Class "SDMXRequestBuilder"}
 \usage{
-SDMXRequestBuilder(regUrl, repoUrl, formatter, handler, compliant, unsupportedResources)
+SDMXRequestBuilder(regUrl, repoUrl, accessKey,
+                   formatter, handler, compliant, unsupportedResources)
 }
 \arguments{
 \item{regUrl}{an object of class "character" giving the base Url of the SDMX service registry}
 
 \item{repoUrl}{an object of class "character" giving the base Url of the SDMX service repository}
+
+\item{accessKey}{an object of class "character" indicating the name of request parameter for which
+an authentication or subscription user key/token has to be provided to perform requests}
 
 \item{formatter}{an object of class "list" giving a formatting function (for each resource) that
 takes an object of class "SDMXRequestParams" as single argument. Such parameter allows
@@ -29,9 +33,11 @@ to customize eventual params (e.g. specific data provider rules)}
 A basic class to handle a SDMX service request builder
 }
 \details{
-The \code{handler} function must have the following structure in term of arguments
-(baseUrl, agencyId, resource, resourceId, version, flowRef, key, start, end, compliant)
-and output (a string representing the web request to build).
+The \code{handler} function will list the resource methods. Each method will accept a
+single object of class \code{\link{SDMXRequestParams}} as argument. This object will
+give the different request params as slots (baseUrl, agencyId, resource, resourceId,
+version, flowRef, key, start, end, compliant) to build the output (a string representing
+the web request to build).
 
 The rsdmx package will as much as possible try to handler generic handlers. At now,
 the available embedded builders are:
@@ -45,6 +51,9 @@ the available embedded builders are:
 \item{\code{regUrl}}{an object of class "character" giving the base Url of the SDMX service registry}
 
 \item{\code{repoUrl}}{an object of class "character" giving the base Url of the SDMX service repository}
+
+\item{\code{accessKey}}{an object of class "character" indicating the name of request parameter for which
+an authentication or subscription user key/token has to be provided to perform requests}
 
 \item{\code{formatter}}{an object of class "list" giving a formatting function (for each resource) that
 takes an object of class "SDMXRequestParams" as single argument. Such parameter allows
@@ -93,6 +102,7 @@ DataStructureDefinition)
  requestBuilder <- SDMXRequestBuilder(
    regUrl = "http://www.myorg.org/registry",
    repoUrl = "http://www.myorg.org/repository",
+   accessKey = NULL,
    formatter = myFormatter, handler = myHandler, compliant = FALSE)
 }
 \author{

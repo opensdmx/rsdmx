@@ -7,13 +7,18 @@
 \alias{SDMXRequestParams-class}
 \title{Class "SDMXRequestParams"}
 \usage{
-SDMXRequestParams(regUrl, repoUrl, providerId, agencyId, resource, resourceId, version,
+SDMXRequestParams(regUrl, repoUrl, accessKey,
+                   providerId, agencyId, resource, resourceId, version,
                    flowRef, key, start, end, compliant)
 }
 \arguments{
 \item{regUrl}{an object of class "character" giving the base Url of the SDMX service registry}
 
 \item{repoUrl}{an object of class "character" giving the base Url of the SDMX service repository}
+
+\item{accessKey}{an oject of class "character" giving the eventual authentication or subscription
+user key (or token) to provide in order to perform the SDMX request. This key may be
+mandatory for some service providers.}
 
 \item{providerId}{an object of class "character" giving the provider agency id}
 
@@ -45,6 +50,9 @@ A class to handle a SDMX service request params
 
 \item{\code{repoUrl}}{an object of class "character" giving the base Url of the SDMX service repository}
 
+\item{\code{accessKey}}{an object of class "character" indicating the name of request parameter for which
+an authentication or subscription user key/token has to be provided to perform requests}
+
 \item{\code{providerId}}{an object of class "character" giving the provider agency Id}
 
 \item{\code{agencyId}}{an object of class "character" giving an agency Id}
@@ -73,7 +81,8 @@ encapsulate it as slot, when parsing an SDMX-ML document.
 \examples{
 #how to create a SDMXRequestParams object
   params <- SDMXRequestParams(
-   regUrl = "", repoUrl ="", providerId = "", agencyId ="", resource = "data", resourceId = "",
+   regUrl = "", repoUrl ="", accessKey = NULL,
+   providerId = "", agencyId ="", resource = "data", resourceId = "",
    version = "", flowRef = "", key = NULL, start = NULL, end = NULL, compliant = FALSE
   )
 }

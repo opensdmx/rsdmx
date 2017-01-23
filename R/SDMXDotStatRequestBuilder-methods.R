@@ -3,13 +3,15 @@
 #' @aliases SDMXDotStatRequestBuilder,SDMXDotStatRequestBuilder-method
 #' 
 #' @usage
-#'  SDMXDotStatRequestBuilder(regUrl, repoUrl, unsupportedResources,
+#'  SDMXDotStatRequestBuilder(regUrl, repoUrl, accessKey, unsupportedResources,
 #'                            skipProviderId, forceProviderId)
 #'
 #' @param regUrl an object of class "character" giving the base Url of the SDMX 
 #'        service registry
 #' @param repoUrl an object of class "character" giving the base Url of the SDMX 
 #'        service repository
+#' @param accessKey an object of class "character" indicating the name of request parameter for which
+#'        an authentication or subscription user key/token has to be provided to perform requests 
 #' @param unsupportedResources an object of class "list" giving eventual unsupported 
 #'        REST resources. Default is an empty list object
 #' @param skipProviderId an object of class "logical" indicating that the provider
@@ -27,7 +29,7 @@
 #'     regUrl = "http://www.myorg/registry",
 #'     repoUrl = "http://www.myorg/repository")
 #'
-SDMXDotStatRequestBuilder <- function(regUrl, repoUrl,
+SDMXDotStatRequestBuilder <- function(regUrl, repoUrl, accessKey = NULL,
                                    unsupportedResources = list(),
                                    skipProviderId = FALSE, forceProviderId = FALSE){    
 
@@ -49,6 +51,17 @@ SDMXDotStatRequestBuilder <- function(regUrl, repoUrl,
     dataflow = function(obj){
       if(is.null(obj@resourceId)) obj@resourceId = "ALL"
       req <- sprintf("%s/GetKeyFamily/%s/",obj@regUrl, obj@resourceId)
+      
+      #require key
+      if(!is.null(accessKey)){
+        if(!is.null(obj@accessKey)){
+          if(length(grep("\\?",req))==0) req <- paste0(req, "?")
+          req <- paste(req, sprintf("%s=%s", accessKey, obj@accessKey), sep = "&")
+        }else{
+          stop("Requests to this service endpoint requires an API key")
+        }
+      }
+      
       return(req)
     },
     
@@ -59,6 +72,17 @@ SDMXDotStatRequestBuilder <- function(regUrl, repoUrl,
       if(is.null(obj@version)) obj@version = "latest"
       req <- sprintf("%s/GetDataStructure/%s",obj@regUrl, obj@resourceId)
       if(forceProviderId) req <- paste(req, obj@providerId, sep = "/")
+      
+      #require key
+      if(!is.null(accessKey)){
+        if(!is.null(obj@accessKey)){
+          if(length(grep("\\?",req))==0) req <- paste0(req, "?")
+          req <- paste(req, sprintf("%s=%s", accessKey, obj@accessKey), sep = "&")
+        }else{
+          stop("Requests to this service endpoint requires an API key")
+        }
+      }
+      
       return(req)
     },
     
@@ -90,6 +114,17 @@ SDMXDotStatRequestBuilder <- function(regUrl, repoUrl,
         }
         req <- paste0(req, "endPeriod=", obj@end) 
       }
+      
+      #require key
+      if(!is.null(accessKey)){
+        if(!is.null(obj@accessKey)){
+          if(length(grep("\\?",req))==0) req <- paste0(req, "?")
+          req <- paste(req, sprintf("%s=%s", accessKey, obj@accessKey), sep = "&")
+        }else{
+          stop("Requests to this service endpoint requires an API key")
+        }
+      }
+      
       return(req)
     }
   )
@@ -98,6 +133,7 @@ SDMXDotStatRequestBuilder <- function(regUrl, repoUrl,
   new("SDMXDotStatRequestBuilder",
       regUrl = regUrl,
       repoUrl = repoUrl,
+      accessKey = accessKey,
       formatter = formatter,
       handler = handler,
       compliant = FALSE,

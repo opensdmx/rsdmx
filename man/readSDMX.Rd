@@ -4,8 +4,9 @@
 \alias{readSDMX}
 \title{readSDMX}
 \usage{
-readSDMX(file, isURL,
-                provider, providerId, agencyId, resource, resourceId, version,
+readSDMX(file, isURL, isRData,
+                provider, providerId, providerKey,
+                agencyId, resource, resourceId, version,
                 flowRef, key, key.mode, start, end, dsd, validate, verbose)
 }
 \arguments{
@@ -25,6 +26,10 @@ Default value is FALSE.}
 
 \item{providerId}{an object of class "character" representing a provider id.
 It has to be match a default provider as listed in\code{getSDMXServiceProviders()}}
+
+\item{providerKey}{an object of class "character" giving a key to authenticate
+for the given provider endpoint. Some providers may require an authentication or
+subscription key to perform SDMX requests.}
 
 \item{agencyId}{an object of class "character representing an agency id, for
 which data should be requested (from a particular service provider)}
@@ -108,26 +113,12 @@ an object of class "SDMX"
    #examples using 'file' argument
    #using url (Eurostat REST SDMX 2.1)
    url <- paste("http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/",
-                 "cdh_e_fos/..PC.FOS1.BE/?startperiod=2011&endPeriod=2011",
-                 sep = "")
+                "cdh_e_fos/all/?startperiod=2011&endPeriod=2011",
+                sep = "")
    sdmx <- readSDMX(url)
    stats <- as.data.frame(sdmx)
    head(stats)
 
-   ## End(**Not run**)
- }
-
- # SDMX Concepts / ConceptSchemes
- #-------------------------------
- \donttest{
-   # Not run by 'R CMD check'
-   # (reliable remote datasource but with possible occasional unavailability)
-   csUrl <- paste("http://data.fao.org/sdmx/registry/conceptscheme",
-                  "/FAO/ALL/LATEST/?detail=full&references=none&version=2.1",
-                  sep = "")
-   csobj <- readSDMX(csUrl)
-   csdf <- as.data.frame(csobj)
-   head(csdf)
    ## End(**Not run**)
  }
 

@@ -3,10 +3,13 @@
 #' @aliases SDMXRequestBuilder,SDMXRequestBuilder-method
 #' 
 #' @usage
-#' SDMXRequestBuilder(regUrl, repoUrl, formatter, handler, compliant, unsupportedResources)
+#' SDMXRequestBuilder(regUrl, repoUrl, accessKey,
+#'                    formatter, handler, compliant, unsupportedResources)
 #' 
 #' @param regUrl an object of class "character" giving the base Url of the SDMX service registry
 #' @param repoUrl an object of class "character" giving the base Url of the SDMX service repository
+#' @param accessKey an object of class "character" indicating the name of request parameter for which
+#'        an authentication or subscription user key/token has to be provided to perform requests 
 #' @param formatter an object of class "list" giving a formatting function (for each resource) that
 #'        takes an object of class "SDMXRequestParams" as single argument. Such parameter allows
 #'        to customize eventual params (e.g. specific data provider rules)
@@ -16,9 +19,11 @@
 #'        supported by the Request builder for a given provider
 #' 
 #' @details
-#' The \code{handler} function must have the following structure in term of arguments 
-#' (baseUrl, agencyId, resource, resourceId, version, flowRef, key, start, end, compliant)
-#' and output (a string representing the web request to build).
+#' The \code{handler} function will list the resource methods. Each method will accept a
+#' single object of class \code{\link{SDMXRequestParams}} as argument. This object will
+#' give the different request params as slots (baseUrl, agencyId, resource, resourceId,
+#' version, flowRef, key, start, end, compliant) to build the output (a string representing 
+#' the web request to build).
 #' 
 #' The rsdmx package will as much as possible try to handler generic handlers. At now,
 #' the available embedded builders are:
@@ -56,13 +61,15 @@
 #'  requestBuilder <- SDMXRequestBuilder(
 #'    regUrl = "http://www.myorg.org/registry",
 #'    repoUrl = "http://www.myorg.org/repository",
+#'    accessKey = NULL,
 #'    formatter = myFormatter, handler = myHandler, compliant = FALSE)
 #'
-SDMXRequestBuilder <- function(regUrl, repoUrl, formatter, handler, compliant,
+SDMXRequestBuilder <- function(regUrl, repoUrl, accessKey = NULL,
+                               formatter, handler, compliant,
                                unsupportedResources = list()){
   
   new("SDMXRequestBuilder",
-      regUrl = regUrl, repoUrl = repoUrl,
+      regUrl = regUrl, repoUrl = repoUrl, accessKey = accessKey,
       formatter = formatter, handler = handler, compliant = compliant,
       unsupportedResources = unsupportedResources)
 }

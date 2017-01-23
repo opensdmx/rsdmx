@@ -7,6 +7,8 @@
 #' 
 #' @slot regUrl an object of class "character" giving the base Url of the SDMX service registry
 #' @slot repoUrl an object of class "character" giving the base Url of the SDMX service repository
+#' @slot accessKey an object of class "character" indicating the name of request parameter for which
+#'       an authentication or subscription user key/token has to be provided to perform requests 
 #' @slot providerId an object of class "character" giving the provider agency Id
 #' @slot agencyId an object of class "character" giving an agency Id
 #' @slot resource an object of class "character" giving the type of resource to be queried
@@ -28,6 +30,7 @@ setClass("SDMXRequestParams",
          representation(
            regUrl = "character",
            repoUrl = "character",
+           accessKey = "character_OR_NULL",
            providerId = "character",
            agencyId = "character_OR_NULL",
            resource = "character",

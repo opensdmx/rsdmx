@@ -3,13 +3,15 @@
 #' @aliases SDMXREST20RequestBuilder,SDMXREST20RequestBuilder-method
 #' 
 #' @usage
-#'  SDMXREST20RequestBuilder(regUrl, repoUrl, compliant, unsupportedResources,
+#'  SDMXREST20RequestBuilder(regUrl, repoUrl, accessKey, compliant, unsupportedResources,
 #'                         skipProviderId, forceProviderId)
 #'
 #' @param regUrl an object of class "character" giving the base Url of the SDMX 
 #'        service registry
 #' @param repoUrl an object of class "character" giving the base Url of the SDMX 
 #'        service repository
+#' @param accessKey an object of class "character" indicating the name of request parameter for which
+#'        an authentication or subscription user key/token has to be provided to perform requests 
 #' @param compliant an object of class "logical" indicating if the web-service 
 #'        is compliant with the SDMX REST web-service specifications
 #' @param unsupportedResources an object of class "list" giving eventual unsupported 
@@ -29,7 +31,7 @@
 #'     regUrl = "http://www.myorg/registry",
 #'     repoUrl = "http://www.myorg/repository", compliant = FALSE)
 #'
-SDMXREST20RequestBuilder <- function(regUrl, repoUrl, compliant,
+SDMXREST20RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, compliant,
                                      unsupportedResources = list(),
                                      skipProviderId = FALSE, forceProviderId = FALSE){
     
@@ -52,6 +54,16 @@ SDMXREST20RequestBuilder <- function(regUrl, repoUrl, compliant,
       resourceId <- obj@resourceId
       if(is.null(resourceId)) resourceId <- "ALL"
       req <- sprintf("%s/Dataflow/%s/ALL/ALL",obj@regUrl, resourceId)
+      
+      #require key
+      if(!is.null(accessKey)){
+        if(!is.null(obj@accessKey)){
+          if(length(grep("\\?",req))==0) req <- paste0(req, "?")
+          req <- paste(req, sprintf("%s=%s", accessKey, obj@accessKey), sep = "&")
+        }else{
+          stop("Requests to this service endpoint requires an API key")
+        }
+      }
       return(req)
     },
     #'datastructure' resource (path="/DataStructure/ALL/{resourceId}/ALL?references=children")
@@ -59,6 +71,15 @@ SDMXREST20RequestBuilder <- function(regUrl, repoUrl, compliant,
     datastructure = function(obj){
       req <- sprintf("%s/DataStructure/ALL/%s/ALL?references=children",
                      obj@regUrl, obj@resourceId)
+      #require key
+      if(!is.null(accessKey)){
+        if(!is.null(obj@accessKey)){
+          if(length(grep("\\?",req))==0) req <- paste0(req, "?")
+          req <- paste(req, sprintf("%s=%s", accessKey, obj@accessKey), sep = "&")
+        }else{
+          stop("Requests to this service endpoint requires an API key")
+        }
+      }
       return(req)
     },
     #'data' resource (path="/Data/{flowRef}/{key}/{agencyId}")
@@ -88,6 +109,16 @@ SDMXREST20RequestBuilder <- function(regUrl, repoUrl, compliant,
         req <- paste0(req, "endPeriod=", obj@end) 
       }
       
+      #require key
+      if(!is.null(accessKey)){
+        if(!is.null(obj@accessKey)){
+          if(length(grep("\\?",req))==0) req <- paste0(req, "?")
+          req <- paste(req, sprintf("%s=%s", accessKey, obj@accessKey), sep = "&")
+        }else{
+          stop("Requests to this service endpoint requires an API key")
+        }
+      }
+      
       return(req)
     }
   )
@@ -95,6 +126,7 @@ SDMXREST20RequestBuilder <- function(regUrl, repoUrl, compliant,
   new("SDMXREST20RequestBuilder",
       regUrl = regUrl,
       repoUrl = repoUrl,
+      accessKey = accessKey,
       formatter = formatter,
       handler = handler,
       compliant = compliant,

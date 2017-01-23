@@ -29,7 +29,7 @@ setClass("SDMXServiceProvider",
            name = "My Organization",
            scale = "international",
            country = as.character(NA),
-           footer = new("SDMXRequestBuilder")
+           builder = new("SDMXRequestBuilder")
          ),
          validity = function(object){
            return(TRUE);

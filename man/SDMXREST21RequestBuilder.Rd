@@ -7,7 +7,7 @@
 \alias{SDMXREST21RequestBuilder-class}
 \title{Class "SDMXREST21RequestBuilder"}
 \usage{
-SDMXREST21RequestBuilder(regUrl, repoUrl, compliant, unsupportedResources,
+SDMXREST21RequestBuilder(regUrl, repoUrl, accessKey, compliant, unsupportedResources,
                         skipProviderId, forceProviderId)
 }
 \arguments{
@@ -16,6 +16,9 @@ service registry}
 
 \item{repoUrl}{an object of class "character" giving the base Url of the SDMX
 service repository}
+
+\item{accessKey}{an object of class "character" indicating the name of request parameter for which
+an authentication or subscription user key/token has to be provided to perform requests}
 
 \item{compliant}{an object of class "logical" indicating if the web-service
 is compliant with the SDMX REST web-service specifications}
@@ -42,6 +45,9 @@ A experimental class to handle a SDMX 2.1 service request builder
 \item{\code{regUrl}}{an object of class "character" giving the base Url of the SDMX service registry}
 
 \item{\code{repoUrl}}{an object of class "character" giving the base Url of the SDMX service repository}
+
+\item{\code{accessKey}}{an object of class "character" indicating the name of request parameter for which
+an authentication or subscription user key/token has to be provided to perform requests}
 
 \item{\code{compliant}}{an object of class "logical" indicating if the web-service is compliant with the SDMX REST web-service specifications}
 }}

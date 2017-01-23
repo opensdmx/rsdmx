@@ -7,7 +7,7 @@
 saveSDMX(sdmxObj, file)
 }
 \arguments{
-\item{sdmxObj}{an object of class \code{\link{SDMX-Class}} to save}
+\item{sdmxObj}{an object of class \code{\link{SDMX-class}} to save}
 
 \item{file}{a connection or the name of the file where the R object is saved to}
 }

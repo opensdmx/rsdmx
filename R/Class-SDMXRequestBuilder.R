@@ -7,6 +7,8 @@
 #' 
 #' @slot regUrl an object of class "character" giving the base Url of the SDMX service registry
 #' @slot repoUrl an object of class "character" giving the base Url of the SDMX service repository
+#' @slot accessKey an object of class "character" indicating the name of request parameter for which
+#'       an authentication or subscription user key/token has to be provided to perform requests 
 #' @slot formatter an object of class "list" giving a formatting function (for each resource) that
 #'        takes an object of class "SDMXRequestParams" as single argument. Such parameter allows
 #'        to customize eventual params (e.g. specific data provider rules)
@@ -26,6 +28,7 @@ setClass("SDMXRequestBuilder",
          representation(
            regUrl = "character",
            repoUrl = "character",
+           accessKey = "character_OR_NULL",
            formatter = "list",
            handler = "list",
            compliant = "logical",
@@ -34,6 +37,7 @@ setClass("SDMXRequestBuilder",
          prototype = list(
            regUrl = "http://www.myorg.org/sdmx/registry",
            repoUrl = "http://www.myorg.org/sdmx/repository",
+           accessKey = NULL,
            formatter = list(
              dataflow = function(obj){return(obj)},
              datastructure = function(obj){ return(obj)},

@@ -146,10 +146,20 @@ setSDMXServiceProviders <- function(){ # nocov start
   
   #UIS (UNESCO)
   UIS <- SDMXServiceProvider(
-    agencyId = "UIS", name = "UNESCO Institute of Statistics",
+    agencyId = "UIS", name = "UNESCO Institute of Statistics (old - http://data.uis.unesco.org)",
     builder = SDMXDotStatRequestBuilder(
       regUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx",
       repoUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx")
+  )
+  
+  #UIS2 (UNESCO)
+  UIS2 <- SDMXServiceProvider(
+    agencyId = "UIS2", name = "UNESCO Institute of Statistics (new - http://api.uis.unesco.org)",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "http://api.uis.unesco.org/sdmx",
+      repoUrl = "http://api.uis.unesco.org/sdmx",
+      accessKey = "subscription-key",
+      compliant = TRUE, skipProviderId = TRUE)
   )
   
   #WBG_WITS (World Integrated Trade Solution)
@@ -365,11 +375,11 @@ setSDMXServiceProviders <- function(){ # nocov start
   
   listOfProviders <- list(
     #international
-    ECB,ESTAT,IMF,OECD,UNSD,FAO,ILO,UIS,WBG_WITS,
+    ECB, ESTAT, IMF, OECD, UNSD, FAO, ILO, UIS, UIS2, WBG_WITS,
     #national
-    ABS,NBB,INSEE,INEGI,ISTAT,NOMIS,
+    ABS, NBB, INSEE, INEGI, ISTAT, NOMIS,
     #others
-    KNOEMA,WIDUKIND
+    KNOEMA, WIDUKIND
   )
 
   .rsdmx.options$providers <- new("SDMXServiceProviders", providers = listOfProviders)
