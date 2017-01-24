@@ -154,17 +154,6 @@ By default, ``readSDMX`` considers the data source is remote. To read a local fi
 
 This section will introduce you on how to read SDMX **metadata** documents, including ``concepts``, ``codelists`` and a complete ``data structure definition`` (DSD)
 
-
-### Concepts
-
-Read concept schemes from [FAO data portal](http://data.fao.org/sdmx/index.html)
-
-```{r, warning=FALSE}
-csUrl <- "http://data.fao.org/sdmx/registry/conceptscheme/FAO/ALL/LATEST/?detail=full&references=none&version=2.1"
-csobj <- readSDMX(csUrl)
-csdf <- as.data.frame(csobj)
-```
-
 ### Codelists
 
 Read codelists from [FAO data portal](http://data.fao.org/sdmx/index.html)
