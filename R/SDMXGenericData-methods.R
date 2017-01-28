@@ -104,7 +104,7 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
                                 namespaces = ns)
     if(length(obsValuesXML) > 0){
       obsValueXML <- obsValuesXML[[1]]
-      obsValue <- as.numeric(xmlGetAttr(obsValueXML, "value")) 
+      obsValue <- as.numeric(sub(",",".", xmlGetAttr(obsValueXML, "value"), fixed = TRUE))
     }
     obsValue <- as.data.frame(obsValue)
     
