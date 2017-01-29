@@ -29,47 +29,48 @@ type.SDMXStructureType <- function(xmlObj, namespaces, resource){
   if(isRegistryInterfaceEnvelope(xmlObj, FALSE)) messageNsString <- "registry"
   messageNs <- findNamespace(namespaces, messageNsString)
   strNs <- findNamespace(namespaces, "structure")
-  
+  strType <- NULL
   if(VERSION.21){
-    dsXML <- getNodeSet(xmlObj, "//ns:DataStructures", namespaces = strNs)
-    ccXML <- getNodeSet(xmlObj, "//ns:Concepts", namespaces = strNs)
-    clXML <- getNodeSet(xmlObj, "//ns:Codelists", namespaces = strNs)
-    
-    if(all(c(length(dsXML)>0,length(ccXML)>0,length(clXML)>0))){
-      return("DataStructureDefinitionsType")
-    }else{
-      #others
-      structuresXML <- getNodeSet(xmlObj, "//ns:Structures", namespaces = messageNs)
-      strType <- paste(xmlName(xmlChildren(structuresXML[[1]])[[1]]), "Type", sep="") 
-      return(strType)
+    if(length(strNs)>0){
+      dsXML <- getNodeSet(xmlObj, "//ns:DataStructures", namespaces = strNs)
+      ccXML <- getNodeSet(xmlObj, "//ns:Concepts", namespaces = strNs)
+      clXML <- getNodeSet(xmlObj, "//ns:Codelists", namespaces = strNs)
+      
+      if(all(c(length(dsXML)>0,length(ccXML)>0,length(clXML)>0))){
+        strType <- "DataStructureDefinitionsType"
+      }else{
+        #others
+        structuresXML <- getNodeSet(xmlObj, "//ns:Structures", namespaces = messageNs)
+        strType <- paste(xmlName(xmlChildren(structuresXML[[1]])[[1]]), "Type", sep="") 
+      }
     }
   }else{
-    #TODO flowXML
-    flowXML <- getNodeSet(xmlObj, "//ns:Dataflows", namespaces = messageNs)
-    dsXML <- getNodeSet(xmlObj, "//ns:KeyFamilies", namespaces = messageNs)
-    ccXML <- getNodeSet(xmlObj, "//ns:Concepts", namespaces = messageNs)
-    clXML <- getNodeSet(xmlObj, "//ns:CodeLists", namespaces = messageNs)
-    if(all(c(length(dsXML)>0, length(ccXML)>0, length(clXML)>0))){
-      #DSD
-      return("DataStructureDefinitionsType")
-    }else{
-      #others
-      if(length(ccXML)>0) return("ConceptsType")
-      if(length(clXML)>0) return("CodelistsType")
-      if(length(flowXML)>0) return("DataflowsType")
-      if(length(dsXML)>0){
-        if(is.null(resource)){
-          strType <- "DataStructuresType"
-        }else{
-          strType <- switch(resource,
-                            "dataflow" = "DataflowsType",
-                            "datastructure" = "DataStructuresType")
+    if(length(messageNs)>0){
+      flowXML <- getNodeSet(xmlObj, "//ns:Dataflows", namespaces = messageNs)
+      dsXML <- getNodeSet(xmlObj, "//ns:KeyFamilies", namespaces = messageNs)
+      ccXML <- getNodeSet(xmlObj, "//ns:Concepts", namespaces = messageNs)
+      clXML <- getNodeSet(xmlObj, "//ns:CodeLists", namespaces = messageNs)
+      if(all(c(length(dsXML)>0, length(ccXML)>0, length(clXML)>0))){
+        #DSD
+        strType <- "DataStructureDefinitionsType"
+      }else{
+        #others
+        if(length(ccXML)>0) return("ConceptsType")
+        if(length(clXML)>0) return("CodelistsType")
+        if(length(flowXML)>0) return("DataflowsType")
+        if(length(dsXML)>0){
+          if(is.null(resource)){
+            strType <- "DataStructuresType"
+          }else{
+            strType <- switch(resource,
+                              "dataflow" = "DataflowsType",
+                              "datastructure" = "DataStructuresType")
+          }        
         }
-        return(strType)
       }
     }
   }
-  return(NULL)
+  return(strType)
 }
 
 #generics
