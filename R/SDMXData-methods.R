@@ -56,27 +56,41 @@ dsdRef.SDMXData <- function(xmlObj, namespaces){
 #=======================
 addLabels.SDMXData <- function(data, dsd){
   
-  ds <- slot(slot(dsd,"datastructures"), "datastructures")[[1]]
-  components <- slot(ds, "Components")
-  components <- as.data.frame(components)
-  
+  #try to inherit datastructure components
+  components <- NULL
+  datastructures <- slot(slot(dsd,"datastructures"), "datastructures")
+  if(length(datastructures)>0){
+    ds <- datastructures[[1]]
+    components <- slot(ds, "Components")
+    components <- as.data.frame(components)
+  }
+    
   #function to enrich a column with its labels
   enrichColumnWithLabels <- function(column, data, dsd, components){
     
     datac <- as.data.frame(data[,column], stringsAsFactors = FALSE)
     colnames(datac) <- column
     
-    #try to grab codelist using concepts
-    clMatcher <- components$conceptRef == column
-    clName <- components[clMatcher, "codelist"]
-    
-    if(is.null(clName) || all(is.na(clName))){
-      #try to grab codelist using regexpr on codelist
-      clMatcher <- regexpr(column, components$codelist, ignore.case = TRUE)
-      attr(clMatcher,"match.length")[is.na(clMatcher)] <- -1
-      clName <- components[attr(clMatcher,"match.length")>1, "codelist"]
+    #grab codelist name
+    clName <- NULL
+    if(!is.null(components)){
+      #try to grab codelist using concepts
+      clMatcher <- components$conceptRef == column
+      clName <- components[clMatcher, "codelist"]
+      if(is.null(clName) || all(is.na(clName))){
+        #try to grab codelist using regexpr on codelist
+        clMatcher <- regexpr(column, components$codelist, ignore.case = TRUE)
+        attr(clMatcher,"match.length")[is.na(clMatcher)] <- -1
+        clName <- components[attr(clMatcher,"match.length")>1, "codelist"]
+        if(length(clName)>1) clName <- clName[1]
+      }
+    }else{
+      #no components, take the column name as codelistId
+      codelists <- sapply(slot(slot(dsd,"codelists"), "codelists"), slot, "id")
+      if(column %in% codelists){
+        clName <- column
+      }
     }
-    if(length(clName)>1) clName <- clName[1]
     
     if(length(clName) != 0 && !is.na(clName) && !is.null(clName)){
       cl <- as.data.frame(slot(dsd, "codelists"), codelistId = clName)
