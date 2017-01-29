@@ -354,9 +354,11 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
   embeddedDSD <- FALSE
   if(is(obj, "SDMXData")){
     strTypeObj <- SDMXStructureType(obj@xmlObj, ns, NULL)
-    if(strTypeObj@subtype %in% c("CodelistsType", "DataStructureDefinitionsType")){
-      dsd <- TRUE
-      embeddedDSD <- TRUE
+    if(!is.null(strTypeObj@subtype)){
+      if(strTypeObj@subtype %in% c("CodelistsType", "DataStructureDefinitionsType")){
+        dsd <- TRUE
+        embeddedDSD <- TRUE
+      }
     }
   }
   

@@ -11,9 +11,10 @@
 #'    
 #' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
 #'
+setClassUnion("character_OR_NULL", c("character", "NULL"))
 setClass("SDMXStructureType",
          contains = "SDMXType",
-         representation(subtype = "character"),
+         representation(subtype = "character_OR_NULL"),
          prototype = list(),
          validity = function(object){
            
