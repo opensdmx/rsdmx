@@ -229,8 +229,7 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
     isXML <- !isRData
     if(isXML){
       if(!file.exists(file)) stop("File ", file, "not found\n")
-      xmlObj <- xmlTreeParse(file, useInternalNodes = TRUE)
-      status <- 1
+      content <- readChar(file, file.info(file)$size)
     }
   }else{
     rsdmxAgent <- paste("rsdmx/",as.character(packageVersion("rsdmx")),sep="")
@@ -243,31 +242,37 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
       stop("HTTP request failed with status: ",
            h$value()["status"], " ", h$value()["statusMessage"])
     }
-    
-    status <- tryCatch({
-      if((attr(regexpr("<!DOCTYPE html>", content), "match.length") == -1) && 
-         (attr(regexpr("<html>", content), "match.length") == -1)){
-        
-        #check the presence of a BOM
-        BOM <- "\ufeff"
-        if(attr(regexpr(BOM, content), "match.length") != - 1){
-          content <- gsub(BOM, "", content)
-        }
-        
-        #check presence of XML comments
-        content <- gsub("<!--.*?-->", "", content)
-        
-        xmlObj <- xmlTreeParse(content, useInternalNodes = TRUE)
-        status <- 1
-      }else{
-        stop("The SDMX web-request failed. Please retry")
-      }
-    },error = function(err){
-      print(err)
-      status <<- 0
-      return(status)
-    })
   }
+    
+  status <- tryCatch({
+    if((attr(regexpr("<!DOCTYPE html>", content), "match.length") == -1) && 
+       (attr(regexpr("<html>", content), "match.length") == -1)){
+      
+      #check the presence of a BOM
+      BOM <- "\ufeff"
+      if(attr(regexpr(BOM, content), "match.length") != - 1){
+        content <- gsub(BOM, "", content)
+      }
+      
+      #check presence of XML comments
+      content <- gsub("<!--.*?-->", "", content)
+      
+      #check presence of invalid XML entities
+      content <- gsub("&ldquo;", "&quot;", content)
+      content <- gsub("&rdquo;", "&quot;", content)
+      content <- gsub("&lsquo;", "'", content)
+      content <- gsub("&rsquo;", "'", content)
+      
+      xmlObj <- xmlTreeParse(content, useInternalNodes = TRUE)
+      status <- 1
+    }else{
+      stop("Invalid SDMX-ML file")
+    }
+  },error = function(err){
+    print(err)
+    status <<- 0
+    return(status)
+  })
   
   #internal function for SDMX Structure-based document
   getSDMXStructureObject <- function(xmlObj, ns, resource){
