@@ -49,7 +49,7 @@ devtools::install_github("opensdmx/rsdmx")
 
 To load rsdmx in R, do the following:
 
-```{r,results="hide"}
+```{r,eval = FALSE,results="hide"}
 library(rsdmx)
 ```
 
@@ -63,7 +63,7 @@ This section will introduce you on how to read SDMX *dataset* documents, either 
 
 The following code snipet shows you how to read a dataset from a remote data source, taking as example the [OECD StatExtracts portal](http://stats.oecd.org): [http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011](http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011)
 
-```{r,results="hide"}
+```{r,eval = FALSE,results="hide"}
 myUrl <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011"
 dataset <- readSDMX(myUrl)
 stats <- as.data.frame(dataset)
@@ -77,7 +77,7 @@ The online rsdmx documentation also provides a list of data providers, either fr
 
 Now, the service providers above mentioned are known by ``rsdmx`` which let users using ``readSDMX`` with the helper parameters. The list of service providers can be retrieved doing:
 
-```{r,results="hide"}
+```{r,eval = FALSE,results="hide"}
 providers <- getSDMXServiceProviders();
 as.data.frame(providers)
 ```
@@ -86,7 +86,7 @@ Note it is also possible to add an SDMX service provider at runtime. For registe
 
 Let's see how it would look like for querying an ``OECD`` datasource:
 
-```{r, message = FALSE,results="hide"}
+```{r, eval = FALSE,message = FALSE,results="hide"}
 sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "MIG",
                 key = list("TOT", NULL, NULL), start = 2010, end = 2011)
 df <- as.data.frame(sdmx)
@@ -102,7 +102,7 @@ To do so, you only need to append ``dsd = TRUE`` (default value is ``FALSE``),
 to the previous request, and specify ``labels = TRUE`` when calling ``as.data.frame``,
 as follows:
 
-```{r, message = FALSE,results="hide"}
+```{r, eval = FALSE,message = FALSE,results="hide"}
 sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "MIG",
                 key = list("TOT", NULL, NULL), start = 2010, end = 2011,
                 dsd = TRUE)
@@ -119,7 +119,7 @@ Note that in case you are reading SDMX-ML documents with the native approach (wi
 URLs), instead of the embedded providers, it is also possible to associate a DSD
 to a dataset by using the function ``setDSD``. Let's try how it works:
 
-```{r, message = FALSE,results="hide"}
+```{r, eval = FALSE,message = FALSE,results="hide"}
 #data without DSD
 sdmx.data <- readSDMX(providerId = "OECD", resource = "data", flowRef = "MIG",
                 key = list("TOT", NULL, NULL), start = 2010, end = 2011)
@@ -157,7 +157,7 @@ This section will introduce you on how to read SDMX **metadata** documents, incl
 ### Codelists
 
 Read codelists from [FAO data portal](http://data.fao.org/sdmx/index.html)
-```{r,results="hide"}
+```{r,eval = FALSE,results="hide"}
 clUrl <- "http://data.fao.org/sdmx/registry/codelist/FAO/CL_FAO_MAJOR_AREA/0.1"
 clobj <- readSDMX(clUrl)
 cldf <- as.data.frame(clobj)
@@ -167,14 +167,14 @@ cldf <- as.data.frame(clobj)
 
 This example illustrates how to read a complete DSD using a [OECD StatExtracts portal](http://stats.oecd.org) data source.
 
-```{r,results="hide"}
+```{r,eval = FALSE,results="hide"}
 dsdUrl <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/TABLE1"
 dsd <- readSDMX(dsdUrl)
 ```
 
 ``rsdmx`` is implemented in object-oriented way with ``S4`` classes and methods. The properties of ``S4`` objects are named ``slots`` and can be accessed with the ``slot`` method. The following code snippet allows to extract the list of ``codelists`` contained in the DSD document, and read one codelist as ``data.frame``.
 
-```{r,results="hide"}
+```{r,eval = FALSE,results="hide"}
 #get codelists from DSD
 cls <- slot(dsd, "codelists")
 
@@ -187,7 +187,7 @@ codelist <- as.data.frame(slot(dsd, "codelists"), codelistId = "CL_TABLE1_FLOWS"
 
 In a similar way, the ``concepts`` of the dataset can be extracted from the DSD and read as ``data.frame``.
 
-```{r,results="hide"}
+```{r,eval = FALSE,results="hide"}
 #get concepts from DSD
 concepts <- as.data.frame(slot(dsd, "concepts"))
 ```
@@ -201,12 +201,12 @@ objects (e.g. DSD objects) for use in statistical analyses and R-based web-appli
 
 To save a SDMX R object to RData file:
 
-```{r, echo = FALSE,results="hide"}
+```{r, eval = FALSE, results="hide"}
 saveSDMX(sdmx, "tmp.RData")
 ```
 
 To reload a SDMX R object from RData file:
 
-```{r, echo = FALSE,results="hide"}
+```{r, eval = FALSE, results="hide"}
 sdmx <- readSDMX("tmp.RData", isRData = TRUE)
 ```
