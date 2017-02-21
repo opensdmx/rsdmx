@@ -269,7 +269,7 @@ stats <- as.data.frame(dataset)
 You can try it out with other datasources, such as:
 * [**EUROSTAT portal**](http://ec.europa.eu/eurostat/web/sdmx-web-services/rest-sdmx-2.1): [http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..PC.FOS1.BE/?startperiod=2005&endPeriod=2011](http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..PC.FOS1.BE/?startperiod=2005&endPeriod=2011)
 * [**European Central Bank (ECB)**](https://sdw-wsrest.ecb.europa.eu): [https://sdw-wsrest.ecb.europa.eu/service/data/DD/M.SE.BSI_STF.RO.4F_N](https://sdw-wsrest.ecb.europa.eu/service/data/DD/M.SE.BSI_STF.RO.4F_N)
-* [**UN International Labour Organization (ILO)**](http://www.ilo.org/ilostat/faces/home/statisticaldata/technical_page?_adf.ctrl-state=25zdozvi8_9&_afrLoop=1131342564621899): [http://www.ilo.org/ilostat/sdmx/ws/rest/data/ILO,DF_CPI_FRA_CPI_TCPI_COI_RT/ALL?startPeriod=2000-01-01&endPeriod=2014-12-31](http://www.ilo.org/ilostat/sdmx/ws/rest/data/ILO,DF_CPI_FRA_CPI_TCPI_COI_RT/ALL?startPeriod=2000-01-01&endPeriod=2014-12-31)
+* [**UN International Labour Organization (ILO)**](https://www.ilo.org/ilostat/faces/ilostat-home/home?_adf.ctrl-state=16oqyy7tcl_69&_afrLoop=56482430851360#!): [http://www.ilo.org/ilostat/sdmx/ws/rest/data/ILO,DF_CP_CUB_EAP_DWAP_NOC_RT/ALL?format=generic_2_0&detail=dataonly](http://www.ilo.org/ilostat/sdmx/ws/rest/data/ILO,DF_CP_CUB_EAP_DWAP_NOC_RT/ALL?format=generic_2_0&detail=dataonly)
 
 The online rsdmx documentation also provides a list of data providers, either from international or national institutions.
 
