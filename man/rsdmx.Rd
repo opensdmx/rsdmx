@@ -17,8 +17,8 @@ currently focuses on the SDMX XML standard format (SDMX-ML).
    Package: \tab rsdmx\cr
    Type: \tab Package\cr
    Version
-   : \tab 0.5-8\cr
-   Date: \tab 2017-02-20\cr
+   : \tab 0.5-9\cr
+   Date: \tab 2017-03-22\cr
    License: \tab GPL(>=2.0)\cr
    LazyLoad: \tab yes\cr
  }
