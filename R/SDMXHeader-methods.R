@@ -144,7 +144,7 @@ SDMXHeader <- function(xmlObj, namespaces){
 			  reportBegin <- ISOdate(as.integer(reportBegin),1,1)
 			reportFormat <- "%Y-%m-%d";
 		}else{
-			if(attr(regexpr("T", extracted),"match.length") != -1){
+			if(attr(regexpr("T", reportBegin),"match.length") != -1){
 				reportFormat <- "%Y-%m-%dT%H:%M:%S";
 			}else{
 				reportFormat <- "%Y-%m-%d %H:%M:%S";
