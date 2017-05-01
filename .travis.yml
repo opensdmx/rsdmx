@@ -1,22 +1,31 @@
-language: c
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+language: R
+sudo: required
+cache: packages
 
-env:
-  global:
-    - R_BUILD_ARGS="--no-manual --no-build-vignettes"
-    - R_CHECK_ARGS="--no-manual --no-examples --as-cran --no-build-vignettes"
+r:
+  - oldrel
+  - release
+  - devel
 
-before_install:
-  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-  - chmod 755 ./travis-tool.sh
-  - ./travis-tool.sh bootstrap
-install:
-  - ./travis-tool.sh install_deps
-script: ./travis-tool.sh run_tests
+r_packages:
+  - methods
+  - XML
+  - RCurl
+  - plyr
+  - utils
+  - testthat
+
+r_build_args: --no-manual --no-build-vignettes
+r_check_args: --no-manual --as-cran --no-build-vignettes
+
 after_success:
   - Rscript -e 'devtools::install_github("jimhester/covr")'
   - Rscript -e 'library(covr); codecov()'
+
 after_failure:
   - ./travis-tool.sh dump_logs
+
 notifications:
   email:
     on_success: change
