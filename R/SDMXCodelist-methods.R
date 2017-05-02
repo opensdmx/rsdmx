@@ -71,7 +71,7 @@ SDMXCodelist <- function(xmlObj, namespaces){
                                   "//str:CodeList/str:Name",
                                   namespaces = c(str = as.character(strNs)))
   }
-  codelistNames <- NULL
+  codelistNames <- list()
   if(length(codelistNamesXML) > 0){
     codelistNames <- new.env()
     sapply(codelistNamesXML,
