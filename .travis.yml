@@ -16,8 +16,8 @@ r_packages:
   - utils
   - testthat
 
-r_build_args: --no-manual --no-build-vignettes
-r_check_args: --no-manual --as-cran
+r_build_args: --no-manual
+r_check_args: --no-manual --no-build-vignettes --as-cran
 
 after_success:
   - Rscript -e 'devtools::install_github("jimhester/covr")'
