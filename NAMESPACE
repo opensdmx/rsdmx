@@ -26,6 +26,12 @@ exportClasses(
   SDMXDataStructure,
   SDMXDataStructures,
   SDMXDataStructureDefinition,
+  SDMXItemScheme,
+  SDMXOrganisationScheme,
+  SDMXOrganisation,
+  SDMXAgency,
+  SDMXAgencyScheme,
+  SDMXOrganisationSchemes,
   SDMXData,
   SDMXGenericData,
   SDMXCompactData,
@@ -67,6 +73,10 @@ export(
   SDMXDataStructure,
   SDMXDataStructures,
   SDMXDataStructureDefinition,
+  SDMXOrganisation,
+  SDMXAgency,
+  SDMXAgencyScheme,
+  SDMXOrganisationSchemes,
   SDMXGenericData,
   SDMXCompactData,
   SDMXUtilityData,
@@ -113,6 +123,7 @@ S3method(as.data.frame, SDMXMessageGroup)
 S3method(as.data.frame, SDMXConcepts)
 S3method(as.data.frame, SDMXCodelists)
 S3method(as.data.frame, SDMXDataStructures)
+S3method(as.data.frame, SDMXOrganisationSchemes)
 S3method(as.data.frame, SDMXComponents)
 S3method(as.data.frame, SDMXDataFlows)
 S3method(as.data.frame, SDMXServiceProviders)

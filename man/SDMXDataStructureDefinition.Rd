@@ -23,6 +23,9 @@ A basic class to handle a SDMX DataStructureDefinition (DSD)
 \section{Slots}{
 
 \describe{
+\item{\code{organisationSchemes}}{Object of class "SDMXOrganisationSchemes" giving the
+list of agencies (see \link{SDMXAgencyScheme} and \link{SDMXAgency})}
+
 \item{\code{concepts}}{Object of class "SDMXConcepts" giving the list of concepts or
 conceptSchemes (see \link{SDMXConcepts})}
 

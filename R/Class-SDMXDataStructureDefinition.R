@@ -4,7 +4,8 @@
 #' 
 #' @title Class "SDMXDataStructureDefinition"
 #' @description A basic class to handle a SDMX DataStructureDefinition (DSD)
-#' 
+#' @slot organisationSchemes Object of class "SDMXOrganisationSchemes" giving the
+#'       list of agencies (see \link{SDMXAgencyScheme} and \link{SDMXAgency})
 #' @slot concepts Object of class "SDMXConcepts" giving the list of concepts or 
 #'       conceptSchemes (see \link{SDMXConcepts})
 #' @slot codelists Object of class "SDMXCodelists" giving the list of codelists 
@@ -22,11 +23,13 @@
 setClass("SDMXDataStructureDefinition",
          contains = "SDMX",
          representation(
+           organisationSchemes = "SDMXOrganisationSchemes",
            concepts = "SDMXConcepts",
            codelists = "SDMXCodelists",
            datastructures = "SDMXDataStructures"
          ),
          prototype = list(
+           organisationSchemes = new("SDMXOrganisationSchemes"),
            concepts = new("SDMXConcepts"),
            codelists = new("SDMXCodelists"),
            datastructures = new("SDMXDataStructures")

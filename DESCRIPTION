@@ -1,6 +1,6 @@
 Package: rsdmx
 Version: 0.5-9
-Date: 2017-03-22
+Date: 2017-06-14
 Title: Tools for Reading SDMX Data and Metadata
 Authors@R: c(
   person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com"),
@@ -9,7 +9,7 @@ Authors@R: c(
 Maintainer: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 Depends: R (>= 2.15)
 Imports: methods, XML (>= 3.98.1.3), RCurl, plyr, utils
-Suggests: testthat, knitr
+Suggests: testthat, knitr, roxygen2
 Description: Set of classes and methods to read data and metadata documents
   exchanged through the Statistical Data and Metadata Exchange (SDMX) framework,
   currently focusing on the SDMX XML standard format (SDMX-ML).
@@ -25,7 +25,10 @@ Collate:
   Class-SDMX.R Class-SDMXConcept.R Class-SDMXConceptScheme.R Class-SDMXConcepts.R
   Class-SDMXCode.R Class-SDMXCodelist.R Class-SDMXCodelists.R Class-SDMXDimension.R
   Class-SDMXTimeDimension.R Class-SDMXPrimaryMeasure.R Class-SDMXAttribute.R Class-SDMXComponents.R
-  Class-SDMXDataStructure.R Class-SDMXDataStructures.R Class-SDMXDataStructureDefinition.R
+  Class-SDMXDataStructure.R Class-SDMXDataStructures.R 
+  Class-SDMXOrganisation.R Class-SDMXAgency.R    
+  Class-SDMXItemScheme.R Class-SDMXOrganisationScheme.R Class-SDMXAgencyScheme.R Class-SDMXOrganisationSchemes.R
+  Class-SDMXDataStructureDefinition.R
   Class-SDMXData.R Class-SDMXGenericData.R Class-SDMXCompactData.R Class-SDMXUtilityData.R
   Class-SDMXStructureSpecificData.R Class-SDMXStructureSpecificTimeSeriesData.R
   Class-SDMXCrossSectionalData.R Class-SDMXMessageGroup.R
@@ -37,7 +40,9 @@ Collate:
   SDMXConcept-methods.R SDMXConceptScheme-methods.R SDMXConcepts-methods.R SDMXCode-methods.R
   SDMXCodelist-methods.R SDMXCodelists-methods.R SDMXDimension-methods.R SDMXTimeDimension-methods.R
   SDMXPrimaryMeasure-methods.R SDMXAttribute-methods.R SDMXComponents-methods.R
-  SDMXDataStructure-methods.R SDMXDataStructures-methods.R SDMXDataStructureDefinition-methods.R
+  SDMXDataStructure-methods.R SDMXDataStructures-methods.R
+  SDMXOrganisation-methods.R SDMXAgency-methods.R SDMXAgencyScheme-methods.R SDMXOrganisationSchemes-methods.R
+  SDMXDataStructureDefinition-methods.R
   SDMXData-methods.R SDMXGenericData-methods.R SDMXCompactData-methods.R SDMXUtilityData-methods.R
   SDMXStructureSpecificData-methods.R SDMXStructureSpecificTimeSeriesData-methods.R
   SDMXCrossSectionalData-methods.R SDMXMessageGroup-methods.R

@@ -26,6 +26,7 @@ test_that("DataStructureDefinition (DSD) - 2.1",{
   ns <- namespaces.SDMX(xmlObj)
   dsd <- SDMXDataStructureDefinition(xmlObj, ns)
   expect_is(dsd, "SDMXDataStructureDefinition")
+  expect_is(dsd@organisationSchemes, "SDMXOrganisationSchemes")
   expect_is(dsd@concepts, "SDMXConcepts")
   expect_is(dsd@codelists, "SDMXCodelists")
   expect_is(dsd@datastructures, "SDMXDataStructures")

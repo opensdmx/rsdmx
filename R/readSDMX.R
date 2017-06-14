@@ -90,7 +90,7 @@
 #'    #examples using 'file' argument
 #'    #using url (Eurostat REST SDMX 2.1)
 #'    url <- paste("http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/",
-#'                 "cdh_e_fos/all/?startperiod=2011&endPeriod=2011",
+#'                 "cdh_e_fos/all/?startperiod=2000&endPeriod=2010",
 #'                 sep = "")
 #'    sdmx <- readSDMX(url)
 #'    stats <- as.data.frame(sdmx)
@@ -98,18 +98,6 @@
 #'    
 #'    ## End(**Not run**)
 #'  }  
-#'  
-#'  # SDMX Codelists
-#'  #---------------
-#'  \donttest{
-#'    # Not run by 'R CMD check'
-#'    # (reliable remote datasource but with possible occasional unavailability)
-#'    clUrl <- "http://data.fao.org/sdmx/registry/codelist/FAO/CL_FAO_MAJOR_AREA/0.1"
-#'    clobj <- readSDMX(clUrl)
-#'    cldf <- as.data.frame(clobj)
-#'    head(cldf)
-#'    ## End(**Not run**)
-#'  }
 #'  
 #'  # SDMX DataStructureDefinition (DSD)
 #'  #-----------------------------------

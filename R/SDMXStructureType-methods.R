@@ -36,7 +36,9 @@ type.SDMXStructureType <- function(xmlObj, namespaces, resource){
       ccXML <- getNodeSet(xmlObj, "//ns:Concepts", namespaces = strNs)
       clXML <- getNodeSet(xmlObj, "//ns:Codelists", namespaces = strNs)
       
-      if(all(c(length(dsXML)>0,length(ccXML)>0,length(clXML)>0))){
+      #14/06/2017 add any of concept/codelist rule, less restrictive
+      #to confirm according to SDMX specs
+      if(length(dsXML)>0 & any(length(ccXML)>0,length(clXML)>0)){
         strType <- "DataStructureDefinitionsType"
       }else{
         #others

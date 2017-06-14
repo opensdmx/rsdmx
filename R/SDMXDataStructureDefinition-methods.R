@@ -14,6 +14,7 @@
 SDMXDataStructureDefinition <- function(xmlObj, namespaces){
   new("SDMXDataStructureDefinition",
       SDMX(xmlObj, namespaces),
+      organisationSchemes = SDMXOrganisationSchemes(xmlObj, namespaces),
       concepts = SDMXConcepts(xmlObj, namespaces),
       codelists = SDMXCodelists(xmlObj, namespaces),
       datastructures = SDMXDataStructures(xmlObj, namespaces)

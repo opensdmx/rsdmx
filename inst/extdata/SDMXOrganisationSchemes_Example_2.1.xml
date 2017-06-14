@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mes:Structure xmlns:mes="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message" xmlns:str="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure" xmlns:com="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <mes:Header>
+    <mes:ID>IDREF727</mes:ID>
+    <mes:Test>false</mes:Test>
+    <mes:Prepared>2017-06-14T16:37:35.198Z</mes:Prepared>
+    <mes:Sender id="d4science"/>
+    <mes:Receiver id="unknown"/>
+  </mes:Header>
+  <mes:Structures>
+    <str:OrganisationSchemes>
+      <str:AgencyScheme id="AGENCIES" urn="urn:sdmx:org.sdmx.infomodel.base.AgencyScheme=SDMX:AGENCIES(1.0)" agencyID="SDMX" version="1.0">
+        <com:Name xml:lang="en">SDMX Agency Scheme</com:Name>
+        <str:Agency id="SDMX" urn="urn:sdmx:org.sdmx.infomodel.base.Agency=SDMX">
+          <com:Name xml:lang="en">SDMX</com:Name>
+        </str:Agency>
+        <str:Agency id="FAO" urn="urn:sdmx:org.sdmx.infomodel.base.Agency=FAO">
+          <com:Name xml:lang="en">Food and Agriculture Organization</com:Name>
+        </str:Agency>
+        <str:Agency id="CNR" urn="urn:sdmx:org.sdmx.infomodel.base.Agency=CNR">
+          <com:Name xml:lang="en">National Research Council</com:Name>
+        </str:Agency>
+      </str:AgencyScheme>
+    </str:OrganisationSchemes>
+  </mes:Structures>
+</mes:Structure>
