@@ -32,12 +32,13 @@ test_that("DSD is properly fetched by readSDMX and associated to the dataset",{
   expect_is(slot(data,"dsd"), "SDMXDataStructureDefinition")
 })
 
-test_that("DSD is properly fetched by readSDMX when there is no dsdRef (using flowRef)",{
-  data <- readSDMX(providerId = "KNOEMA", resource = "data",
-                   flowRef = "SADG2015", dsd = TRUE)
-  expect_false(is.null(slot(data,"dsd")))
-  expect_is(slot(data,"dsd"), "SDMXDataStructureDefinition")
-})
+#20170615 deactivate test (nb of requests limited in KNOEMA makes this test fail)
+#test_that("DSD is properly fetched by readSDMX when there is no dsdRef (using flowRef)",{ 
+  #data <- readSDMX(providerId = "KNOEMA", resource = "data",
+  #                 flowRef = "SADG2015", dsd = TRUE)
+  #expect_false(is.null(slot(data,"dsd")))
+  #expect_is(slot(data,"dsd"), "SDMXDataStructureDefinition")
+#})
 
 test_that("Dataset is correctly enriched with labels using the DSD",{
   sdmx.data <- readSDMX(providerId = "UIS", resource = "data",
