@@ -447,7 +447,7 @@ test_that("INSEE - dataflow",{
 test_that("INSEE - datastructure",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
-  sdmx <- readSDMX(providerId = "INSEE", resource = "datastructure", resourceId = "IPI-2010-A21")
+  sdmx <- readSDMX(providerId = "INSEE", resource = "datastructure", resourceId = "CONSO-MENAGES-2010")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXDataStructureDefinition")
   }
@@ -458,7 +458,7 @@ test_that("INSEE - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
   sdmx <- readSDMX(providerId = "INSEE", resource = "data",
-                   flowRef = "IPI-2010-A21", key = "all", key.mode = "SDMX",
+                   flowRef = "CONSO-MENAGES-2010", key = "all", key.mode = "SDMX",
                    start = 2010, end = 2015)
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXStructureSpecificData")
