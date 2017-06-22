@@ -200,8 +200,8 @@ setSDMXServiceProviders <- function(){ # nocov start
     agencyId = "INSEE", name = "Institut national de la statistique et des \u00e9tudes \u00e9conomiques",
     scale = "national", country = "FRA",
     builder = SDMXREST21RequestBuilder(
-      regUrl = "http://www.bdm.insee.fr/series/sdmx",
-      repoUrl = "http://www.bdm.insee.fr/series/sdmx", 
+      regUrl = "https://bdm.insee.fr/series/sdmx",
+      repoUrl = "https://bdm.insee.fr/series/sdmx", 
       compliant = TRUE)
   )
   
