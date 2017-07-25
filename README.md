@@ -59,7 +59,7 @@ Copyright (C) 2014  Emmanuel Blondel
 Please note that following a new submission to CRAN, or eventually a modification of CRAN policies, the package might be temporarily archived, and removed from CRAN. In case you notice that the package is not back in few time, please contact me.
 
 #### on OpenCPU
-``rsdmx``` is available on the OpenCPU public cloud server. The package version corresponds to the ongoing revision (master branch in Github). See [https://public.opencpu.org/ocpu/github/opensdmx/rsdmx/](https://public.opencpu.org/ocpu/github/opensdmx/rsdmx/)
+``rsdmx`` is available on the OpenCPU public cloud server. The package version corresponds to the ongoing revision (master branch in Github). See [https://public.opencpu.org/ocpu/github/opensdmx/rsdmx/](https://public.opencpu.org/ocpu/github/opensdmx/rsdmx/)
 
 ### Mailing list
 
@@ -138,7 +138,8 @@ It also also possible to create and add a new SDMX service providers in this lis
 * ``country`` ISO 3-alpha code (if national)
 * ``builder``
 
-The request builder can be created with ``SDMXRequestBuilder`` which takes various arguments: * ``regUrl``: URL of the service registry endpoint
+The request builder can be created with ``SDMXRequestBuilder`` which takes various arguments: 
+* ``regUrl``: URL of the service registry endpoint
 * ``repoUrl``: URL of the service repository endpoint (Note that we use 2 different
 arguments for registry and repository endpoints, since some providers use different
 URLs, but in most cases those are identical)
@@ -243,7 +244,7 @@ sdmx <- readSDMX(providerId = "MYORG", providerKey = NULL resource = "data", flo
 For embedded service providers that require a user authentication/subscription key or token,
 it is possible to specify it in ``readSDMX`` with the ``providerKey`` argument. If provided,
 and that the embedded provider requires a specific key parameter, the latter will be appended
-to the SDMX web-request. For example, it's the case for the new [https://apiportal.uis.unesco.org/getting-started](UNESCO SDMX API).
+to the SDMX web-request. For example, it's the case for the new [UNESCO SDMX API](https://apiportal.uis.unesco.org/getting-started).
 
 
 
