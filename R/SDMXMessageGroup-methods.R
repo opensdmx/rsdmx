@@ -47,7 +47,8 @@ class.SDMXMessageGroup <- function(xmlObj){
     seriesKeyXML <- getNodeSet(xmlObj, "//ns:SeriesKey", c(ns = authorityNs$uri)) 
   }else{
     if(nrow(nsDefs.df) > 0){
-      seriesKeyXML <- getNodeSet(xmlObj, "//ns:SeriesKey", c(ns = nsDefs.df[1,"uri"])) 
+      seriesKeyXML <- getNodeSet(xmlObj, "//ns:SeriesKey",
+                                 c(ns = nsDefs.df[regexpr("generic$", nsDefs.df$uri)>0,"uri"]))
     }else{    
       stop("Unsupported XML parser for empty target XML namespace")
     }
