@@ -78,6 +78,8 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
   serieNames <- c(serieNames, "obsTime", "obsValue")
   if(!is.null(obsAttrsNames)) serieNames <- c(serieNames, obsAttrsNames)
   
+  hasTime <- FALSE
+  
   #obs parser function
   parseObs <- function(obs){
     
@@ -86,16 +88,20 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
     #time
     timeElement <- "Time"
     if(VERSION.21) timeElement <- "ObsDimension"
+    obsTime <- NA
     obsTimeXML <- getNodeSet(obsXML,
                              paste("//ns:",timeElement,sep=""),
-                             namespaces=ns)[[1]]
-    obsTime <- NA
-    if(!VERSION.21){
-      obsTime <- xmlValue(obsTimeXML)
-    } else {
-      obsTime <- xmlGetAttr(obsTimeXML,"value")
+                             namespaces=ns)
+    if(length(obsTimeXML)>0){
+      hasTime <<- TRUE
+      obsTimeXML <- obsTimeXML[[1]]
+      if(!VERSION.21){
+        obsTime <- xmlValue(obsTimeXML)
+      } else {
+        obsTime <- xmlGetAttr(obsTimeXML,"value")
+      }
+      obsTime <- as.data.frame(obsTime)
     }
-    obsTime <- as.data.frame(obsTime)
     
     #value
     obsValue <- NA
@@ -140,7 +146,8 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
     }
     
     #output
-    obsR <- cbind(obsTime, obsValue)
+    obsR <- obsValue
+    if(!is.na(obsTime)) obsR <- cbind(obsTime, obsR)
     if(!is.null(obsAttrs.df)) obsR <- cbind(obsR, obsAttrs.df)
     return(obsR)
   }
@@ -235,6 +242,7 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
   dataset <- do.call("rbind.fill", lapply(seriesXML, function(x){
     serie <- parseSerie(x)
   }))
+  if(!hasTime) serieNames <- serieNames[-which(serieNames=="obsTime")]
   dataset <- dataset[,serieNames]
   dataset$obsValue <- as.numeric(dataset$obsValue)
   

@@ -1,6 +1,6 @@
 Package: rsdmx
 Version: 0.5-10
-Date: 2017-08-09
+Date: 2017-10-02
 Title: Tools for Reading SDMX Data and Metadata
 Authors@R: c(
   person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com"),
