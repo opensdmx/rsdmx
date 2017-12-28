@@ -272,6 +272,17 @@ setSDMXServiceProviders <- function(){ # nocov start
     )
   )
   
+  #STAT_EE - Statistics Estonia database {Estonia}
+  STAT_EE <- SDMXServiceProvider(
+    agencyId = "STAT_EE", name = "Statistics Estonia database",
+    scale = "national", country = "EST",
+    builder = SDMXDotStatRequestBuilder(
+      regUrl = "http://andmebaas.stat.ee/restsdmx/sdmx.ashx",
+      repoUrl = "http://andmebaas.stat.ee/restsdmx/sdmx.ashx",
+      unsupportedResources = list("dataflow")
+    )
+  )
+  
   #other data providers
   #--------------------
   
@@ -377,7 +388,7 @@ setSDMXServiceProviders <- function(){ # nocov start
     #international
     ECB, ESTAT, IMF, OECD, UNSD, FAO, ILO, UIS, UIS2, WBG_WITS,
     #national
-    ABS, NBB, INSEE, INEGI, ISTAT, NOMIS,
+    ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, STAT_EE,
     #others
     KNOEMA, WIDUKIND
   )
