@@ -9,6 +9,7 @@ r:
   - devel
 
 r_packages:
+  - devtools
   - methods
   - XML
   - RCurl
