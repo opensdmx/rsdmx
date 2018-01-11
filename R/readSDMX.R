@@ -224,7 +224,7 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
     h <- RCurl::basicHeaderGatherer()
     content <- RCurl::getURL(file, httpheader = list('User-Agent' = rsdmxAgent),
                       ssl.verifypeer = FALSE, .encoding = "UTF-8",
-                      headerfunction = h$update)
+                      encoding = "gzip", headerfunction = h$update)
 
     if(as.numeric(h$value()["status"]) >= 400) {
       stop("HTTP request failed with status: ",
