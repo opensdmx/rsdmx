@@ -6,7 +6,7 @@ cache: packages
 r:
   - oldrel
   - release
-  - devel
+  #- devel
 
 r_packages:
   - devtools
@@ -17,7 +17,7 @@ r_packages:
   - utils
   - testthat
 
-r_build_args: --no-manual --no-build-vignettes
+r_build_args: --no-manual
 r_check_args: --no-manual --no-build-vignettes --as-cran
 
 after_success:
