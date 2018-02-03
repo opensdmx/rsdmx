@@ -567,6 +567,40 @@ test_that("NOMIS - data",{
   }
 })
 
+#LSD (LITHUANIA)
+#-------------
+
+#-> dataflow
+test_that("LSD - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "LSD", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
+#-> datastructure
+test_that("LSD - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "LSD", resource = "datastructure", resourceId = "M8020420")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
+test_that("LSD - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "LSD", resource = "data",
+                   flowRef = "S3R629_M3010217", start = 2010, end = 2015)
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXGenericData")
+  }
+})
+
 #STAT_E (Estonia)
 #-------------
 

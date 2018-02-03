@@ -272,6 +272,17 @@ setSDMXServiceProviders <- function(){ # nocov start
     )
   )
   
+  #LSD - Lithuanian Department of Statistics (Statistics Lithuania)
+  LSD <- SDMXServiceProvider(
+    agencyId = "LSD", "Statistics Lithuania",
+    scale = "national", country = "LTU",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "https://osp-rs.stat.gov.lt/rest_xml",
+      repoUrl = "https://osp-rs.stat.gov.lt/rest_xml",
+      compliant = TRUE, skipProviderId = TRUE
+    )
+  )
+  
   #STAT_EE - Statistics Estonia database {Estonia}
   STAT_EE <- SDMXServiceProvider(
     agencyId = "STAT_EE", name = "Statistics Estonia database",
@@ -388,7 +399,7 @@ setSDMXServiceProviders <- function(){ # nocov start
     #international
     ECB, ESTAT, IMF, OECD, UNSD, FAO, ILO, UIS, UIS2, WBG_WITS,
     #national
-    ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, STAT_EE,
+    ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, LSD, STAT_EE,
     #others
     KNOEMA, WIDUKIND
   )
