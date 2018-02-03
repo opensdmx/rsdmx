@@ -264,7 +264,7 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
   
   #converting SDMX series/obs to a DataFrame R object
   if(hasSeries){
-    dataset <- do.call("rbind.fill", lapply(seriesXML, parseSeries))
+    dataset <- do.call("rbind.fill", lapply(seriesXML, parseSerie))
   }else{
     dataset <- do.call("rbind.fill", lapply(obsXML, parseObs))
   }
