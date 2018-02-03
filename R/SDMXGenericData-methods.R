@@ -246,7 +246,7 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
     }  
     
     #single Serie as DataFrame
-    serie <- keydf
+    serie <- seriekeydf
     if(!is.null(attrs.df)) serie <- cbind(serie, attrs.df)
     if(!is.null(obsdf)) serie <- cbind(serie, obsdf)
       
