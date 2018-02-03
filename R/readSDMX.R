@@ -220,16 +220,25 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
       content <- readChar(file, file.info(file)$size)
     }
   }else{
-    rsdmxAgent <- paste("rsdmx/",as.character(packageVersion("rsdmx")),sep="")
-    h <- RCurl::basicHeaderGatherer()
-    content <- RCurl::getURL(file, httpheader = list('User-Agent' = rsdmxAgent),
+    requestURL <- function(file){
+      rsdmxAgent <- paste("rsdmx/",as.character(packageVersion("rsdmx")),sep="")
+      h <- RCurl::basicHeaderGatherer()
+      content <- RCurl::getURL(file, httpheader = list('User-Agent' = rsdmxAgent),
                       ssl.verifypeer = FALSE, .encoding = "UTF-8",
                       encoding = "gzip", headerfunction = h$update)
-
-    if(as.numeric(h$value()["status"]) >= 400) {
-      stop("HTTP request failed with status: ",
-           h$value()["status"], " ", h$value()["statusMessage"])
+      return(list(response = content, header = h$value()));
     }
+    out <- requestURL(file)
+    if(out$header["status"] == 301){
+      file <- out$header["Location"]
+      out <- requestURL(file)
+    }
+    if(as.numeric(out$header["status"]) >= 400) {
+      stop("HTTP request failed with status: ",
+           out$header["status"], " ", out$header["statusMessage"])
+    }
+    
+    content <- out$response
   }
     
   status <- tryCatch({
