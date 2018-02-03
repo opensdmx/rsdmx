@@ -69,10 +69,12 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
   
   #observation keys
   obsKeysNames <- NULL
-  obsKeysXML <- getNodeSet(xmlDoc(getNodeSet(xmlObj,"//ns:ObsKey", namespaces = ns)[[1]]),
-                        "//ns:Value", namespaces = ns)
-  if(length(obsKeysXML)>0){
-    obsKeysNames <- unique(sapply(obsKeysXML, function(x) xmlGetAttr(x, conceptId)))
+  obsKeyXML <- getNodeSet(xmlObj,"//ns:ObsKey", namespaces = ns)
+  if(length(obsKeyXML)>0){
+    obsKeysXML <- getNodeSet(xmlDoc(obsKeyXML[[1]]), "//ns:Value", namespaces = ns)
+    if(length(obsKeysXML)>0){
+      obsKeysNames <- unique(sapply(obsKeysXML, function(x) xmlGetAttr(x, conceptId)))
+    }    
   }
   
   #observation attributes
@@ -127,15 +129,18 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
     
     #Key values
     #ObsKey (concept attributes/values)
+    obskeydf <- NULL
     obsKeyValuesXML <- getNodeSet(obsXML, "//ns:ObsKey/ns:Value", namespaces = ns)
-    obsKeyValues <- sapply(obsKeyValuesXML, function(x){
-      as.character(xmlGetAttr(x, "value"))
-    })
-    obsKeyNames <- sapply(obsKeyValuesXML, function(x){
-      as.character(xmlGetAttr(x, conceptId))
-    })
-    obskeydf <- structure(obsKeyValues, .Names = obsKeyNames) 
-    obskeydf <- as.data.frame(lapply(obskeydf, as.character), stringsAsFactors=FALSE)
+    if(length(obsKeyValuesXML)>0){
+      obsKeyValues <- sapply(obsKeyValuesXML, function(x){
+        as.character(xmlGetAttr(x, "value"))
+      })
+      obsKeyNames <- sapply(obsKeyValuesXML, function(x){
+        as.character(xmlGetAttr(x, conceptId))
+      })
+      obskeydf <- structure(obsKeyValues, .Names = obsKeyNames) 
+      obskeydf <- as.data.frame(lapply(obskeydf, as.character), stringsAsFactors=FALSE)
+    }
     
     #attributes
     obsAttrs.df <- NULL
