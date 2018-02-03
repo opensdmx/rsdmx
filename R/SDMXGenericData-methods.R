@@ -36,36 +36,48 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
   if(length(seriesXML) == 0){
     seriesXML <- getNodeSet(xmlObj, "//Series")
   }
-  seriesNb <- length(seriesXML)
-  if(seriesNb == 0) return(NULL);
+  hasSeries <- length(seriesXML) > 0
+  #obs
+  obsXML <- getNodeSet(xmlObj, "//ns:Obs", namespaces = ns)
+  if(length(obsXML) == 0){
+    obsXML <- getNodeSet(xmlObj, "//Obs")
+  }
+  hasObs <- length(obsXML) > 0
+  if(!hasSeries & !hasObs) return(NULL);
   
   conceptId <- "concept"
   if(VERSION.21) conceptId <- "id"
   
   #serie keys
-  keysXML <- getNodeSet(xmlDoc(getNodeSet(xmlObj,
-                                          "//ns:SeriesKey",
-                                          namespaces = ns)[[1]]),
-                        "//ns:Value",
-                        namespaces = ns)
-  keysNames <- unique(sapply(keysXML, function(x) xmlGetAttr(x, conceptId)))
-  
+  serieKeysNames <- NULL
+  if(hasSeries){
+    keysXML <- getNodeSet(xmlDoc(getNodeSet(xmlObj,"//ns:SeriesKey", namespaces = ns)[[1]]),
+                          "//ns:Value", namespaces = ns)
+    if(length(keysXML)>0){
+      serieKeysNames <- unique(sapply(keysXML, function(x) xmlGetAttr(x, conceptId)))
+    }
+  }
+    
   #serie attributes
   serieAttrsNames <- NULL
-  serieAttrsXML <- getNodeSet(xmlObj,
-                              "//ns:Series/ns:Attributes/ns:Value",
-                              namespaces = ns)
+  serieAttrsXML <- getNodeSet(xmlObj, "//ns:Series/ns:Attributes/ns:Value", namespaces = ns)
   if(length(serieAttrsXML) > 0){
     serieAttrsNames <- unique(sapply(serieAttrsXML, function(x){
       xmlGetAttr(x, conceptId)
     }))
   }
   
-  #serie observation attributes
+  #observation keys
+  obsKeysNames <- NULL
+  obsKeysXML <- getNodeSet(xmlDoc(getNodeSet(xmlObj,"//ns:ObsKey", namespaces = ns)[[1]]),
+                        "//ns:Value", namespaces = ns)
+  if(length(obsKeysXML)>0){
+    obsKeysNames <- unique(sapply(obsKeysXML, function(x) xmlGetAttr(x, conceptId)))
+  }
+  
+  #observation attributes
   obsAttrsNames <- NULL
-  obsAttrsXML <- getNodeSet(xmlObj,
-                            "//ns:Obs/ns:Attributes/ns:Value",
-                            namespaces = ns)
+  obsAttrsXML <- getNodeSet(xmlObj, "//ns:Obs/ns:Attributes/ns:Value", namespaces = ns)
   if(length(obsAttrsXML) > 0){
     obsAttrsNames <- unique(sapply(obsAttrsXML,function(x){
       xmlGetAttr(x, conceptId)
@@ -73,8 +85,9 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
   }
   
   #output structure
-  serieNames <- keysNames
+  serieNames <- serieKeysNames
   if(!is.null(serieAttrsNames)) serieNames <- c(serieNames, serieAttrsNames)
+  if(!is.null(obsKeysNames)) serieNames <- c(serieNames, obsKeysNames)
   serieNames <- c(serieNames, "obsTime", "obsValue")
   if(!is.null(obsAttrsNames)) serieNames <- c(serieNames, obsAttrsNames)
   
@@ -105,14 +118,24 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
     
     #value
     obsValue <- NA
-    obsValuesXML <-  getNodeSet(obsXML,
-                                "//ns:ObsValue",
-                                namespaces = ns)
+    obsValuesXML <-  getNodeSet(obsXML, "//ns:ObsValue", namespaces = ns)
     if(length(obsValuesXML) > 0){
       obsValueXML <- obsValuesXML[[1]]
       obsValue <- as.numeric(sub(",",".", xmlGetAttr(obsValueXML, "value"), fixed = TRUE))
     }
     obsValue <- as.data.frame(obsValue)
+    
+    #Key values
+    #ObsKey (concept attributes/values)
+    obsKeyValuesXML <- getNodeSet(obsXML, "//ns:ObsKey/ns:Value", namespaces = ns)
+    obsKeyValues <- sapply(obsKeyValuesXML, function(x){
+      as.character(xmlGetAttr(x, "value"))
+    })
+    obsKeyNames <- sapply(obsKeyValuesXML, function(x){
+      as.character(xmlGetAttr(x, conceptId))
+    })
+    obskeydf <- structure(obsKeyValues, .Names = obsKeyNames) 
+    obskeydf <- as.data.frame(lapply(obskeydf, as.character), stringsAsFactors=FALSE)
     
     #attributes
     obsAttrs.df <- NULL
@@ -148,6 +171,7 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
     #output
     obsR <- obsValue
     if(!is.na(obsTime)) obsR <- cbind(obsTime, obsR)
+    if(!is.null(obskeydf)) obsR <- cbind(obskeydf, obsR)
     if(!is.null(obsAttrs.df)) obsR <- cbind(obsR, obsAttrs.df)
     return(obsR)
   }
@@ -170,26 +194,26 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
     #Key values
     #SeriesKey (concept attributes/values) are duplicated according to the
     #number of Time observations
-    keyValuesXML <- getNodeSet(serieXML,
+    serieKeyValuesXML <- getNodeSet(serieXML,
                                "//ns:SeriesKey/ns:Value",
                                namespaces = ns)
-    keyValues <- sapply(keyValuesXML, function(x){
+    serieKeyValues <- sapply(serieKeyValuesXML, function(x){
       as.character(xmlGetAttr(x, "value"))
     })
     
-    keyNames <- sapply(keyValuesXML, function(x){
+    serieKeyNames <- sapply(serieKeyValuesXML, function(x){
       as.character(xmlGetAttr(x, conceptId))
     })
     
-    keydf <- structure(keyValues, .Names = keyNames) 
-    keydf <- as.data.frame(lapply(keydf, as.character), stringsAsFactors=FALSE)
+    seriekeydf <- structure(serieKeyValues, .Names = serieKeyNames) 
+    seriekeydf <- as.data.frame(lapply(seriekeydf, as.character), stringsAsFactors=FALSE)
     if(!is.null(obsdf)){
-      keydf <- keydf[rep(base::row.names(keydf), nrow(obsdf)),]
-      if(class(keydf) != "data.frame"){
-        keydf <- data.frame(keydf) 
+      seriekeydf <- seriekeydf[rep(base::row.names(seriekeydf), nrow(obsdf)),]
+      if(class(seriekeydf) != "data.frame"){
+        seriekeydf <- data.frame(seriekeydf) 
       }
-      base::row.names(keydf) <- 1:nrow(obsdf)
-      colnames(keydf) <- keyNames
+      base::row.names(seriekeydf) <- 1:nrow(obsdf)
+      colnames(seriekeydf) <- serieKeyNames
     }
     
     #serie attributes
@@ -238,10 +262,12 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
     return(serie)
   }
   
-  #converting SDMX series to a DataFrame R object
-  dataset <- do.call("rbind.fill", lapply(seriesXML, function(x){
-    serie <- parseSerie(x)
-  }))
+  #converting SDMX series/obs to a DataFrame R object
+  if(hasSeries){
+    dataset <- do.call("rbind.fill", lapply(seriesXML, parseSeries))
+  }else{
+    dataset <- do.call("rbind.fill", lapply(obsXML, parseObs))
+  }
   if(!hasTime) serieNames <- serieNames[-which(serieNames=="obsTime")]
   dataset <- dataset[,serieNames]
   dataset$obsValue <- as.numeric(dataset$obsValue)
