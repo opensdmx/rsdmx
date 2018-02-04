@@ -133,7 +133,8 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
     obsKeyValuesXML <- getNodeSet(obsXML, "//ns:ObsKey/ns:Value", namespaces = ns)
     if(length(obsKeyValuesXML)>0){
       obsKeyValues <- sapply(obsKeyValuesXML, function(x){
-        as.character(xmlGetAttr(x, "value"))
+        value <- xmlGetAttr(x, "value")
+        return(ifelse(is.null(value), as.character(NA), value))
       })
       obsKeyNames <- sapply(obsKeyValuesXML, function(x){
         as.character(xmlGetAttr(x, conceptId))
