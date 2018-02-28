@@ -43,14 +43,14 @@ SDMXCode <- function(xmlObj, namespaces){
   
   #elements
   #========
-  # Labels - name /description (multi-languages)
+  # Labels - name /description (multi-languages) DEPRECATED
   codeLabelsXML <- NULL
   if(VERSION.21){
     codeLabelsXML <- getNodeSet(xmlDoc(xmlObj),
-                             "//ns:Name", namespaces = refNs)
+                                "//ns:Name", namespaces = refNs)
   }else{
     codeLabelsXML <- getNodeSet(xmlDoc(xmlObj),
-                             "//ns:Description", namespaces = refNs)
+                                "//ns:Description", namespaces = refNs)
   }
   codeLabels <- list()
   if(length(codeLabelsXML) > 0){
@@ -63,7 +63,37 @@ SDMXCode <- function(xmlObj, namespaces){
              codeLabels[[lang]] <- xmlValue(x)
            })
     codeLabels <- as.list(codeLabels)
-  }  
+  }
+  
+  # Names (multi-languages)
+  codeNamesXML <- getNodeSet(xmlDoc(xmlObj), "//ns:Name", namespaces = refNs)
+  codeNames <- list()
+  if(length(codeNamesXML) > 0){
+    codeNames <- new.env()
+    sapply(codeNamesXML,
+           function(x){
+             lang <- xmlGetAttr(x,"xml:lang")
+             if(is.null(lang)) lang <- xmlGetAttr(x,"lang")
+             if(is.null(lang)) lang <- "default"
+             codeNames[[lang]] <- xmlValue(x)
+           })
+    codeNames <- as.list(codeNames)
+  }
+  
+  # Descriptions (multi-languages)
+  codeDescriptionsXML <- getNodeSet(xmlDoc(xmlObj), "//ns:Description", namespaces = refNs)
+  codeDescriptions <- list()
+  if(length(codeDescriptionsXML) > 0){
+    codeDescriptions <- new.env()
+    sapply(codeDescriptionsXML,
+           function(x){
+             lang <- xmlGetAttr(x,"xml:lang")
+             if(is.null(lang)) lang <- xmlGetAttr(x,"lang")
+             if(is.null(lang)) lang <- "default"
+             codeDescriptions[[lang]] <- xmlValue(x)
+           })
+    codeDescriptions <- as.list(codeDescriptions)
+  }
   
   #instantiate the object
   obj<- new("SDMXCode",
@@ -74,6 +104,8 @@ SDMXCode <- function(xmlObj, namespaces){
             parentCode = parentCode,
   
             #elements
-            label = codeLabels
+            label = codeLabels,
+            name = codeNames,
+            description = codeDescriptions
   )
 }

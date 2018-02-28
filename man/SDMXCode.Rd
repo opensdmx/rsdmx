@@ -31,7 +31,13 @@ In SDMX 2.0 documents, this slot will handle the 'value' attribute}
 \item{\code{parentCode}}{Object of class "character" giving the parent code}
 
 \item{\code{label}}{Object of class "list" giving the code label (by language). In SDMX 2.0,
-      it takes the code 'Description' element vs. 'Name' element in SDMX 2.1}
+      it takes the code 'Description' element vs. 'Name' element in SDMX 2.1. This property
+      is deprecated and kept now for backward compatibility}
+
+\item{\code{name}}{Object of class "list" giving the code name (by language).
+
+\item{\code{description}}{Object of class "list" giving the code description (by language).
+
 }}
 \section{Warning}{
 

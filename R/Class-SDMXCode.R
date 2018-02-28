@@ -9,8 +9,11 @@
 #'        In SDMX 2.0 documents, this slot will handle the 'value' attribute
 #' @slot urn Object of class "character" giving the code urn
 #' @slot parentCode Object of class "character" giving the parent code
-#' @slot label Object of class "list" giving the code label (by language). In SDMX 2.0, 
-#'       it takes the code 'Description' element vs. 'Name' element in SDMX 2.1
+#' @slot label Object of class "list" giving the code label (by language). In SDMX 2.0,
+#' it takes the code 'Description' element vs. 'Name' element in SDMX 2.1. This property
+#' deprecated and kept now for backward compatibility.
+#' @slot name Object of class "list" giving the code name (by language).
+#' @slot description Object of class "list" giving the code description (by language).
 #'
 #' @section Warning:
 #' This class is not useful in itself, but all SDMX non-abstract classes will 
@@ -27,8 +30,10 @@ setClass("SDMXCode",
            parentCode = "character", #optional
            
            #elements
-           label = "list" #optional - generic slot that will handle the code label
-                          #using the 'Name' (SDMX 2.1) or 'Description' (SDMX 2.0)
+           label = "list",
+           name = "list",
+           description = "list"
+                          
          ),
          prototype = list(
            #attributes
@@ -37,9 +42,13 @@ setClass("SDMXCode",
            parentCode = as.character(NA),
            
            #elements
-           label = list(
-             en = "code label",
-             fr = "label du code"
+           name = list(
+             en = "code name",
+             fr = "nom du code"
+           ),
+           description = list(
+             en = "code description",
+             fr = "description du code"
            )
          ),
          validity = function(object){
