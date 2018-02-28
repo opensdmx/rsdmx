@@ -104,7 +104,7 @@ addLabels.SDMXData <- function(data, dsd){
       colnames(datac)[regexpr("label",colnames(datac)) != -1] <- paste0(column,
       "_",colnames(datac)[regexpr("label",colnames(datac)) != -1])
     }
-    
+
     return(datac)  
   }
   

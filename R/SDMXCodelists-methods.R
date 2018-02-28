@@ -84,10 +84,18 @@ as.data.frame.SDMXCodelists <- function(x, ...,
   if(!is.null(codesList)){
     codes <- do.call("rbind.fill",
                         lapply(codesList, function(code){
-                          as.data.frame(sapply(slotNames(code), function(x){
+                          fields <- sapply(slotNames(code), function(x){
                             obj <- slot(code,x)
-                            return(obj)
-                          }), stringsAsFactors = FALSE)
+                            if(length(obj)>0) return(obj)
+                          })
+                          fields <- fields[!sapply(fields, is.null)]
+                          fnames <- names(fields)
+                          fields <- as.data.frame(fields, stringsAsFactors = FALSE)
+                          if(length(fnames)==length(colnames(fields))){
+                            colnames(fields)[4:length(fnames)] <- paste(fnames[4:length(fnames)],
+                             sapply(strsplit(colnames(fields)[4:length(fnames)], ".", fixed=T), function(x){x[[1]]}), sep=".")
+                          }
+                          return(fields)
                         })
     )
   }
