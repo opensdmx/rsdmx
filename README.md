@@ -3,7 +3,8 @@
 [![Build Status](https://travis-ci.org/opensdmx/rsdmx.svg?branch=master)](https://travis-ci.org/opensdmx/rsdmx)
 [![codecov.io](http://codecov.io/github/opensdmx/rsdmx/coverage.svg?branch=master)](http://codecov.io/github/opensdmx/rsdmx?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rsdmx)](https://cran.r-project.org/package=rsdmx)
-[![Github_Status_Badge](https://img.shields.io/badge/Github-0.5--11-blue.svg)](https://github.com/opensdmx/rsdmx)
+[![Github_Status_Badge](https://img.shields.io/badge/Github-0.5--12-blue.svg)](https://github.com/opensdmx/rsdmx)
+[![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](http://doi.org/10.5281/zenodo.592404)
 
 ``rsdmx``: Tools for reading SDMX data and metadata documents in R
 
@@ -13,6 +14,10 @@
 * a set of classes and methods to read data and metadata documents exchanged through the Statistical Data and Metadata Exchange (SDMX) framework. The package currently focuses on the SDMX XML standard format (SDMX-ML).
 * an interface to SDMX web-services for a list of well-known data providers, such as EUROSTAT, OECD, and others 
 [Learn more](https://github.com/opensdmx/rsdmx/wiki#package_overview).
+
+### Citation
+
+We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](http://doi.org/10.5281/zenodo.592404)
 
 ### Collating scattered SDMX data sources
 
@@ -37,10 +42,6 @@ At now, the package allows to read:
 ### Fundings
 
 ``rsdmx`` is looking for **[sponsors](https://github.com/opensdmx/rsdmx/wiki#package_development_funding)**. You have been using ``rsdmx`` and you wish to support its development? Please help us to make the package growing!
-
-### Citation
-
-We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](http://doi.org/10.5281/zenodo.592404)
 
 ### Author
 
