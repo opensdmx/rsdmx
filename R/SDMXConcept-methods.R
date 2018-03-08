@@ -50,6 +50,33 @@ SDMXConcept <- function(xmlObj, namespaces){
   }
   
   coreRepresentation = xmlGetAttr(xmlObj, "coreRepresentation")
+  
+  #manage SDMX 2.1 conceptIdentity and codelist LocalRepresentation
+  if(VERSION.21){
+    conceptRefXML <- NULL
+    conceptIdentityXML <- getNodeSet(xmlDoc(xmlObj),
+                                     "//str:ConceptIdentity",
+                                     namespaces = c(str = as.character(strNs)))
+    if(length(conceptIdentityXML) > 0)
+      conceptRefXML <- xmlChildren(conceptIdentityXML[[1]])[[1]]
+    
+    codelistRefXML <- NULL
+    enumXML <- getNodeSet(xmlDoc(xmlObj),
+                          "//str:Enumeration",
+                          namespaces = c(str = as.character(strNs)))
+    if(length(enumXML) > 0)
+      codelistRefXML <- xmlChildren(enumXML[[1]])[[1]]
+    
+    #concepts
+    if(!is.null(conceptRefXML)){
+      coreRepresentation <- xmlGetAttr(conceptRefXML, "id")
+    }
+    #codelists
+    if(!is.null(codelistRefXML)){
+      coreRepresentation <- xmlGetAttr(codelistRefXML, "id")
+    }
+    
+  }
   if(is.null(coreRepresentation)) coreRepresentation <- as.character(NA)
   
   coreRepresentationAgency = xmlGetAttr(xmlObj, "coreRepresentationAgency")
