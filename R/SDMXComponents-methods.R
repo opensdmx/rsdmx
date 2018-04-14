@@ -144,8 +144,10 @@ as.data.frame.SDMXComponents <- function(x, ...){
         }
       )
     ),stringsAsFactors = FALSE)
-  dimensions.df <- cbind(component = "Dimension", dimensions.df,
-                         stringsAsFactors = FALSE)
+  if(nrow(dimensions.df)>0){
+    dimensions.df <- cbind(component = "Dimension", dimensions.df,
+                          stringsAsFactors = FALSE)
+  }
   
   #time dimension
   timeDimension <- slot(x, "TimeDimension")
@@ -189,4 +191,4 @@ as.data.frame.SDMXComponents <- function(x, ...){
 }
 
 setAs("SDMXComponents", "data.frame",
-      function(from) as.data.frame.SDMXComponents(from));
+      function(from) as.data.frame.SDMXComponents(from))
