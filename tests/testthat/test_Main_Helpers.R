@@ -630,7 +630,7 @@ test_that("NCSI - data",{
   testthat::skip_on_cran()
   sdmx <- readSDMX(providerId = "NCSI", resource = "data", flowRef = "OMFSRS2016", start = 2010, end = 2015)
   if(!is.null(sdmx)){
-    expect_is(sdmx, "SDMXGenericData")
+    expect_is(sdmx, "SDMXStructureSpecificData")
   }
 })
 
