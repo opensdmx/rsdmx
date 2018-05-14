@@ -181,8 +181,10 @@ as.data.frame.SDMXComponents <- function(x, ...){
               }
             )
     ),stringsAsFactors = FALSE)
-  attributes.df <- cbind(component = "Attribute", attributes.df,
+  if(nrow(attributes.df)>0){
+    attributes.df <- cbind(component = "Attribute", attributes.df,
                          stringsAsFactors = FALSE)
+  }
   
   #output
   df<- do.call("rbind.fill", list(dimensions.df, timeDimension.df,
