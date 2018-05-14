@@ -601,6 +601,39 @@ test_that("LSD - data",{
   }
 })
 
+#NCSI (OMAN)
+#-------------
+
+#-> dataflow
+test_that("NCSI - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "NCSI", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
+#-> datastructure
+test_that("NCSI - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "NCSI", resource = "datastructure", resourceId = "OMFSRS2016")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
+test_that("NCSI - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "NCSI", resource = "data", flowRef = "OMFSRS2016", start = 2010, end = 2015)
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXGenericData")
+  }
+})
+
 #STAT_E (Estonia)
 #-------------
 

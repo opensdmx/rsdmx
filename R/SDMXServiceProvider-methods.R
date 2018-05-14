@@ -283,6 +283,58 @@ setSDMXServiceProviders <- function(){ # nocov start
     )
   )
   
+  #NCSI - Sultanate of Oman - National Center for Statistics & Information
+  #Based on KNOEMA SDMX server implementation
+  NCSI <- SDMXServiceProvider(
+    agencyId = "NCSI", "Sultanate of Oman - National Center for Statistics & Information",
+    scale = "national", country = "OMN",
+    builder = SDMXRequestBuilder(
+      regUrl = "https://data.gov.om/api/1.0/sdmx",
+      repoUrl = "https://data.gov.om/api/1.0/sdmx",
+      formatter = list(
+        dataflow = function(obj){return(obj)},
+        datastructure = function(obj){return(obj)},
+        data = function(obj){return(obj)}
+      ),
+      handler = list(
+        
+        #'dataflow' resource (path="/")
+        #-----------------------------------------------------------------------
+        dataflow = function(obj){
+          return(obj@regUrl)
+        },
+        #'datastructure' resource (path="/{resourceID})
+        #-----------------------------------------------------------------------
+        datastructure = function(obj){
+          req <- paste(obj@regUrl, obj@resourceId, sep = "/")
+          return(req)
+        },
+        #'data' resource (path="getdata?dataflow={flowRef}&key={key})
+        #----------------------------------------------------------
+        data = function(obj){
+          if(is.null(obj@flowRef)) stop("Missing flowRef value")
+          if(is.null(obj@key)) obj@key = "."
+          
+          #base data request
+          req <- sprintf("%s/data/%s/%s?", obj@repoUrl, obj@flowRef, obj@key)
+          
+          #DataQuery
+          #-> temporal extent (if any)
+          if(!is.null(obj@start)) {
+            req <- paste0(req, "startPeriod=",obj@start)
+          }
+          if(!is.null(obj@end)) {
+            if(!grepl("\\?$", req)) req <- paste0(req,"&")
+            req <- paste0(req, "endPeriod=",obj@end)
+          }
+          
+          return(req)
+        }
+      ),
+      compliant = FALSE
+    )
+  )
+  
   #STAT_EE - Statistics Estonia database {Estonia}
   STAT_EE <- SDMXServiceProvider(
     agencyId = "STAT_EE", name = "Statistics Estonia database",
@@ -399,7 +451,7 @@ setSDMXServiceProviders <- function(){ # nocov start
     #international
     ECB, ESTAT, IMF, OECD, UNSD, FAO, ILO, UIS, UIS2, WBG_WITS,
     #national
-    ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, LSD, STAT_EE,
+    ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, LSD, NCSI, STAT_EE,
     #others
     KNOEMA, WIDUKIND
   )
