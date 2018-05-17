@@ -21,18 +21,21 @@ setClass("SDMXStructureType",
            #validation rules
            if(.rsdmx.options$validate){
              type <- getStructureType(object);
-             valid <- switch(type,
-                             "DataflowsType" = TRUE,
-                             "ConceptsType" = TRUE,
-                             "CodelistsType" = TRUE,
-                             "DataStructuresType" = TRUE,
-                             "DataStructureDefinitionsType" = TRUE,
-                             FALSE
-             );
-             if(valid == FALSE)
-               warning(paste0("Unknown SDMXStructureType '", type, "'"));
-             
-             return(valid);
+             #consider NULL type as valid in case of SDMXData with no structure embedded
+             if(!is.null(type)){
+               valid <- switch(type,
+                               "DataflowsType" = TRUE,
+                               "ConceptsType" = TRUE,
+                               "CodelistsType" = TRUE,
+                               "DataStructuresType" = TRUE,
+                               "DataStructureDefinitionsType" = TRUE,
+                               FALSE
+               );
+               if(valid == FALSE)
+                 warning(paste0("Unknown SDMXStructureType '", type, "'"));
+               
+               return(valid);
+             }
            }
            
            return(TRUE);
