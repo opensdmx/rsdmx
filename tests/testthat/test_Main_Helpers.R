@@ -567,6 +567,31 @@ test_that("NOMIS - data",{
   }
 })
 
+#UKDS (UK)
+#----------
+
+#-> datastructure
+test_that("UKDS - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "UKDS", resource = "datastructure", resourceId = "QNA")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
+test_that("UKDS - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "UKDS", resource = "data", flowRef="QNA",
+                   key = "AUS+AUT.GDP+B1_GE.CUR+VOBARSA.Q", key.mode = "SDMX",
+                   start = 2000, end = 2000, dsd =TRUE)
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXMessageGroup")
+  }
+})
+
 #LSD (LITHUANIA)
 #-------------
 

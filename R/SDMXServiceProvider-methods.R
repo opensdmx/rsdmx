@@ -346,6 +346,16 @@ setSDMXServiceProviders <- function(){ # nocov start
     )
   )
   
+  UKDS <- SDMXServiceProvider(
+    agencyId = "UKDS", name = "United Kingdom Data Service",
+    scale = "national", country = "UK",
+    builder = SDMXDotStatRequestBuilder(
+      regUrl = "http://stats.ukdataservice.ac.uk/restsdmx/sdmx.ashx",
+      repoUrl = "http://stats.ukdataservice.ac.uk/restsdmx/sdmx.ashx",
+      unsupportedResources = list("dataflow")
+    )
+  )
+  
   #other data providers
   #--------------------
   
@@ -451,7 +461,7 @@ setSDMXServiceProviders <- function(){ # nocov start
     #international
     ECB, ESTAT, IMF, OECD, UNSD, FAO, ILO, UIS, UIS2, WBG_WITS,
     #national
-    ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, LSD, NCSI, STAT_EE,
+    ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, LSD, NCSI, STAT_EE, UKDS,
     #others
     KNOEMA, WIDUKIND
   )
