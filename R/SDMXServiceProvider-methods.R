@@ -134,14 +134,23 @@ setSDMXServiceProviders <- function(){ # nocov start
       unsupportedResources = list("dataflow"))
   )
   
-  #UN-ILO
-  ILO <- SDMXServiceProvider(
-    agencyId = "ILO", name = "International Labour Organization of the United Nations",
+  #UN-ILO (Legacy)
+  ILO_Legacy <- SDMXServiceProvider(
+    agencyId = "ILO_Legacy", name = "International Labour Organization of the United Nations",
     builder = SDMXREST21RequestBuilder(
       regUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
       repoUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
       compliant = FALSE, skipProviderId = TRUE,
       unsupportedResources = list("dataflow"))                  
+  )
+  
+  #UN-ILO
+  ILO <- SDMXServiceProvider(
+    agencyId = "ILO", name = "International Labour Organization of the United Nations",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "https://www.ilo.org/sdmx/rest",
+      repoUrl = "https://www.ilo.org/sdmx/rest",
+      compliant = TRUE, skipProviderId = TRUE)                  
   )
   
   #UIS (UNESCO)
@@ -459,7 +468,7 @@ setSDMXServiceProviders <- function(){ # nocov start
   
   listOfProviders <- list(
     #international
-    ECB, ESTAT, IMF, OECD, UNSD, FAO, ILO, UIS, UIS2, WBG_WITS,
+    ECB, ESTAT, IMF, OECD, UNSD, FAO, ILO_Legacy, ILO, UIS, UIS2, WBG_WITS,
     #national
     ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, LSD, NCSI, STAT_EE, UKDS,
     #others

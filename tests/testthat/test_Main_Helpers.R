@@ -237,14 +237,49 @@ test_that("FAO - data",{
   }
 })
 
-#ILO (UN-ILO)
+#ILO_Legacy (UN-ILO)
 #------------
 
 #-> datastructure
 test_that("ILO - datastructure",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
-  sdmx <- readSDMX(providerId = "ILO", resource = "datastructure", resourceId = "YI_ALB_EAP_TEAP_SEX_AGE_NB")
+  sdmx <- readSDMX(providerId = "ILO_Legacy", resource = "datastructure", resourceId = "YI_ALB_EAP_TEAP_SEX_AGE_NB")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
+test_that("ILO - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "ILO_Legacy", resource = "data",
+                   flowRef = "DF_CPI_FRA_CPI_TCPI_COI_RT", key = "ALL", key.mode = "SDMX",
+                   start = "2010-01-01", end = "2014-12-31")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXGenericData")
+  }
+})
+
+#ILO (UN-ILO)
+#------------
+
+#-> dataflow
+test_that("ILO - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "ILO", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
+#-> datastructure
+test_that("ILO - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "ILO", resource = "datastructure", resourceId = "ILOEST_ALL_EAP_2EAP_SEX_AGE_NB")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXDataStructureDefinition")
   }
@@ -255,7 +290,7 @@ test_that("ILO - data",{
   testthat::skip_on_travis()
   testthat::skip_on_cran()
   sdmx <- readSDMX(providerId = "ILO", resource = "data",
-                   flowRef = "DF_CPI_FRA_CPI_TCPI_COI_RT", key = "ALL", key.mode = "SDMX",
+                   flowRef = "ILOEST_ALL_EAP_2EAP_SEX_AGE_NB", key = "ALL", key.mode = "SDMX",
                    start = "2010-01-01", end = "2014-12-31")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXGenericData")
