@@ -229,7 +229,7 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
       return(list(response = content, header = h$value()));
     }
     out <- requestURL(file)
-    if(out$header["status"] == 301){
+    if(out$header["status"] %in% c(301,302)){
       file <- out$header["Location"]
       out <- requestURL(file)
     }
