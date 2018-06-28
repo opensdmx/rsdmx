@@ -8,6 +8,8 @@ require(testthat)
 context("SDMXData")
 
 test_that("DSD is properly associated to an SDMXData object",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
   data <- readSDMX(providerId = "UIS", resource = "data",
                         flowRef = "EDULIT_DS", key = list("OFST_1_CP", NULL),
                         start = "2000", end = "2015")
@@ -24,6 +26,8 @@ test_that("DSD is properly associated to an SDMXData object",{
 })
 
 test_that("DSD is properly fetched by readSDMX and associated to the dataset",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
   data <- readSDMX(providerId = "UIS", resource = "data",
                         flowRef = "EDULIT_DS", key = list("OFST_1_CP", NULL),
                         start = "2000", end = "2015",
@@ -41,6 +45,8 @@ test_that("DSD is properly fetched by readSDMX and associated to the dataset",{
 #})
 
 test_that("Dataset is correctly enriched with labels using the DSD",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
   sdmx.data <- readSDMX(providerId = "UIS", resource = "data",
                         flowRef = "CAI_DS", dsd = TRUE)
   data <- as.data.frame(sdmx.data)

@@ -67,7 +67,8 @@ test_that("readSDMX - SDMXCodelists - 2.0",{
 #SDMXDataStructureDefinition (DSD)
 #--------------------------------
 test_that("readSDMX - SDMXDataStructureDefinition (DSD) - 2.0",{
-
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
   file <- system.file("extdata", "SDMXDataStructureDefinition_Example_2.0.xml",
                       package = "rsdmx")
   dsd <- readSDMX(file, isURL = FALSE)
