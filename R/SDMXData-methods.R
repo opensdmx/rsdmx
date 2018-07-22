@@ -67,7 +67,6 @@ addLabels.SDMXData <- function(data, dsd){
     
   #function to enrich a column with its labels
   enrichColumnWithLabels <- function(column, data, dsd, components){
-    
     datac <- as.data.frame(data[,column], stringsAsFactors = FALSE)
     colnames(datac) <- column
     
@@ -84,6 +83,15 @@ addLabels.SDMXData <- function(data, dsd){
         clName <- components[attr(clMatcher,"match.length")>1, "codelist"]
         if(length(clName)>1) clName <- clName[1]
       }
+      
+      if(length(clName)>0 && !is.na(clName)){
+        #additional check in case codelist would not be specified in DSD
+        codelists <- sapply(slot(slot(dsd,"codelists"), "codelists"), slot, "id")
+        if(!(clName %in% codelists)){
+          clName <- NULL
+        }
+      }
+
     }else{
       #no components, take the column name as codelistId
       codelists <- sapply(slot(slot(dsd,"codelists"), "codelists"), slot, "id")
