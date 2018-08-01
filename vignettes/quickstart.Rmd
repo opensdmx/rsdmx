@@ -113,7 +113,7 @@ head(df)
 For embedded service providers that require a user authentication/subscription key or token,
 it is possible to specify it in ``readSDMX`` with the ``providerKey`` argument. If provided,
 and that the embedded provider requires a specific key parameter, the latter will be appended
-to the SDMX web-request. For example, it's the case for the new [https://apiportal.uis.unesco.org/getting-started](UNESCO SDMX API).
+to the SDMX web-request. For example, it's the case for the new [UNESCO SDMX API](https://apiportal.uis.unesco.org/getting-started).
 
 Note that in case you are reading SDMX-ML documents with the native approach (with
 URLs), instead of the embedded providers, it is also possible to associate a DSD
