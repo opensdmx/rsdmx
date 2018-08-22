@@ -181,6 +181,16 @@ setSDMXServiceProviders <- function(){ # nocov start
     )
   )
   
+  #WB (World Bank)
+  WB <- SDMXServiceProvider(
+    agencyId = "WB", name = "World Bank",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "http://api.worldbank.org/v2/sdmx/rest",
+      repoUrl = "http://api.worldbank.org/v2/sdmx/rest",
+      compliant = TRUE, skipProviderId = TRUE
+    )
+  )
+  
   #national data providers
   #-----------------------
   
@@ -468,7 +478,7 @@ setSDMXServiceProviders <- function(){ # nocov start
   
   listOfProviders <- list(
     #international
-    ECB, ESTAT, IMF, OECD, UNSD, FAO, ILO_Legacy, ILO, UIS, UIS2, WBG_WITS,
+    ECB, ESTAT, IMF, OECD, UNSD, FAO, ILO_Legacy, ILO, UIS, UIS2, WBG_WITS, WB,
     #national
     ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, LSD, NCSI, STAT_EE, UKDS,
     #others

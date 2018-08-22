@@ -413,6 +413,41 @@ test_that("WBG_WITS - data",{
   }
 })
 
+#WB (World Bank)
+#--------
+
+#-> dataflow
+test_that("WB - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "WB", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
+#-> datastructure
+test_that("WB - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "WB", resource = "datastructure", resourceId = "WDI")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
+test_that("WB - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "WB", resource = "data",
+                   key = "A.SP_POP_TOTL.AFG", key.mode = "SDMX",
+                   flowRef = "WDI", start = "2011", end = "2011")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXGenericData")
+  }
+})
+
 #national data providers
 
 #ABS (Australia)
