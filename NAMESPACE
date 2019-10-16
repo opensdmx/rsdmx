@@ -47,6 +47,7 @@ exportClasses(
   SDMXREST20RequestBuilder,
   SDMXREST21RequestBuilder,
   SDMXDotStatRequestBuilder,
+  SDMXPDHDotStatRequestBuilder,
   SDMXServiceProvider,
   SDMXServiceProviders
 )
@@ -91,6 +92,8 @@ export(
   SDMXREST20RequestBuilder,
   SDMXREST21RequestBuilder,
   SDMXDotStatRequestBuilder,
+  SDMXPDHDotStatRequestBuilder,
+  SDMXPDHDotStatRequestBuilder,
   SDMXServiceProvider,
   SDMXServiceProviders,
   namespaces.SDMX,
