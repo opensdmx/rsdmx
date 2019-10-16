@@ -81,7 +81,7 @@ setSDMXServiceProviders <- function(){ # nocov start
     builder = SDMXPDHDotStatRequestBuilder(
       regUrl = "https://stats.pacificdata.org/data-nsi/Rest",
       repoUrl = "https://stats.pacificdata.org/data-nsi/Rest",
-      compliant = TRUE)
+      compliant = FALSE)
   )
 
   #EUROSTAT
