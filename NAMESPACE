@@ -93,7 +93,6 @@ export(
   SDMXREST21RequestBuilder,
   SDMXDotStatRequestBuilder,
   SDMXPDHDotStatRequestBuilder,
-  SDMXPDHDotStatRequestBuilder,
   SDMXServiceProvider,
   SDMXServiceProviders,
   namespaces.SDMX,
