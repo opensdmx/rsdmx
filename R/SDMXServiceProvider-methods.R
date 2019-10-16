@@ -80,8 +80,7 @@ setSDMXServiceProviders <- function(){ # nocov start
     agencyId = "PDH", name = "Pacific Data Hub DotStat",
     builder = SDMXPDHDotStatRequestBuilder(
       regUrl = "https://stats.pacificdata.org/data-nsi/Rest",
-      repoUrl = "https://stats.pacificdata.org/data-nsi/Rest",
-      compliant = FALSE)
+      repoUrl = "https://stats.pacificdata.org/data-nsi/Rest")
   )
 
   #EUROSTAT
