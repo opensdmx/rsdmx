@@ -1,4 +1,4 @@
-**rsdmx**
+**rsdmx adapted for PDH.STAT**
 =======
 [![Build Status](https://travis-ci.org/opensdmx/rsdmx.svg?branch=master)](https://travis-ci.org/opensdmx/rsdmx)
 [![codecov.io](http://codecov.io/github/opensdmx/rsdmx/coverage.svg?branch=master)](http://codecov.io/github/opensdmx/rsdmx?branch=master)
@@ -11,9 +11,19 @@
 
 ## Overview
 
+**This package has been adapted to include Pacific Data Hub's .Stat (PDH.STAT) instance as a default service provider.**
+
+**It also has some extra classes to support the SDMX Dot Stat implementation used by PDH.STAT.**
+
+**This package allows you to setup a "live connection" to PDH.STAT SDMX API, make API calls in an intuitive way and return dataframes for statistical/data analysis.**
+
+**Jump to [Quickstart](https://github.com/opensdmx/rsdmx#quickstart) to connect to PDH.STAT**
+
+Read PDH.STAT's [docs](https://sdd-dotstat-api-gateway.portal.azure-api.net/docs/services/pdh-stat-api/operations/get-data-flow-key-provider?&groupBy=tag) or visit it [here](https://stats.pacificdata.org/data-explorer/#/). 
+
 ``rsdmx`` is a package to parse/read SDMX data and metadata in R. It provides:
 * a set of classes and methods to read data and metadata documents exchanged through the Statistical Data and Metadata Exchange (SDMX) framework. The package currently focuses on the SDMX XML standard format (SDMX-ML).
-* an interface to SDMX web-services for a list of well-known data providers, such as EUROSTAT, OECD, and others 
+* an interface to SDMX web-services for a list of well-known data providers, such as EUROSTAT, OECD, and others
 [Learn more](https://github.com/opensdmx/rsdmx/wiki#package_overview).
 
 ### Citation
@@ -70,33 +80,33 @@ You can subscribe directly in the google group, or by email: [rsdmx+subscribe@go
 To send a post, use: [rsdmx@googlegroups.com](rsdmx@googlegroups.com)
 To unsubscribe, send an email to: [rsdmx+unsubscribe@googlegroups.com](rsdmx+unsubscribe@googlegroups.com)
 
-## Quickstart
+## Install rsdmx with PDH.STAT connection (in R studio console):
 
 [rsdmx](https://cran.r-project.org/package=rsdmx) offers a low-level set of tools to read **data** and **metadata** in SDMX format. Its strategy is to make it very easy for the user. For this, a unique function named ``readSDMX`` has to be used, whatever it is a ``data`` or ``metadata`` document, or if it is ``local`` or ``remote`` datasource.
 
 It is important to highlight that one of the major benefits of ``rsdmx`` is to focus first on the SDMX **format** specifications (acting as format abstraction library). This allows ``rsdmx`` reading SDMX data from _remote_ datasources, or from _local_ SDMX files. For accessing _remote_ datasources, it also means that ``rsdmx`` does not bound to SDMX **service** specifications, and can read a wider ranger of datasources.
 
+Remove rsdmx if already installed: ``remove.packages("rsdmx")``
 
-### Install rsdmx
+Install devtools: ``install.packages("devtools")``
 
-``rsdmx`` can be installed from CRAN
-```{r, echo = FALSE}
-install.packages("rsdmx")
-```
+Install rsdmx from Github fork: ``devtools::install_github("roly97/rsdmx")``
 
-or from its development repository hosted in Github (using the ``devtools`` package):
+Load package: ``library(rsdmx)``
 
-```{r, echo = FALSE}
-devtools::install_github("opensdmx/rsdmx")
-```
+## Quickstart (in R studio console):
 
-### Load rsdmx
+Load package: ``library(rsdmx)``
 
-To load rsdmx in R, do the following:
+Look at all SDMX Service Providers: ``as.data.frame(getSDMXServiceProviders())``
 
-```{r, echo = FALSE}
-library(rsdmx)
-```
+Example, load PDH.STAT Population Summary data: ``sdmx <- readSDMX(providerId = "PDH", resource="data", flowRef="DF_POP_SUM")``
+
+Put results in dataframe: ``df <- as.data.frame(sdmx)``
+
+Have a look: ``head(df)``
+
+**More parameter/query options are being developed (such as dimensionAtObservation, detail, references etc.)**
 
 ### readSDMX & helper functions
 
@@ -109,13 +119,13 @@ The ``readSDMX`` function is then first designed at low-level so it can take as 
 
   #read a remote file
   sdmx <- readSDMX(file = "someUrl")
-  
+
   #read a local file
   sdmx <- readSDMX(file = "somelocalfile", isURL = FALSE)
 
 ```
 
-In addition, in order to facilitate querying datasources, ``readSDMX`` also providers helpers to query well-known remote datasources. This allows not to specify the entire URL, but rather specify a simple provider ID, and the different parameters to build a SDMX query (e.g. for a dataset query: operation, key, filter, startPeriod and endPeriod). 
+In addition, in order to facilitate querying datasources, ``readSDMX`` also providers helpers to query well-known remote datasources. This allows not to specify the entire URL, but rather specify a simple provider ID, and the different parameters to build a SDMX query (e.g. for a dataset query: operation, key, filter, startPeriod and endPeriod).
 
 This is made possible as a list of SDMX service providers is embedded within ``rsdmx``, and such list provides all the information required for ``readSDMX`` to build the SDMX request (url) before accessing the datasource.
 
@@ -140,7 +150,7 @@ It also also possible to create and add a new SDMX service providers in this lis
 * ``country`` ISO 3-alpha code (if national)
 * ``builder``
 
-The request builder can be created with ``SDMXRequestBuilder`` which takes various arguments: 
+The request builder can be created with ``SDMXRequestBuilder`` which takes various arguments:
 * ``regUrl``: URL of the service registry endpoint
 * ``repoUrl``: URL of the service repository endpoint (Note that we use 2 different
 arguments for registry and repository endpoints, since some providers use different
@@ -199,10 +209,10 @@ myBuilder <- SDMXRequestBuilder(
 )
 ```
 
-As you can see, we built a custom ``SDMXRequestBuilder`` that will be able to 
+As you can see, we built a custom ``SDMXRequestBuilder`` that will be able to
 create SDMX web-requests for the different resources of a SDMX web-service.
 
-We can create a provider with the above request builder, and add it to the list 
+We can create a provider with the above request builder, and add it to the list
 of known SDMX service providers:
 
 ```{r, echo = FALSE}
@@ -225,7 +235,7 @@ as.data.frame(getSDMXServiceProviders())
 
 #### find a SDMX service provider
 
-A another helper allows you to interrogate ``rsdmx`` if a specific provider is 
+A another helper allows you to interrogate ``rsdmx`` if a specific provider is
 known, given an id:
 
 ```{r, echo = FALSE}
@@ -234,7 +244,7 @@ oecd <- findSDMXServiceProvider("OECD")
 
 #### readSDMX as helper function
 
-Now you know how to add a SDMX provider, you can consider using ``readSDMX`` 
+Now you know how to add a SDMX provider, you can consider using ``readSDMX``
 without having to specifying a entire URL, but just by specifying the ``agencyId``
 of the provider, and the different query parameters to reach your SDMX document:
 
@@ -250,8 +260,8 @@ to the SDMX web-request. For example, it's the case for the new [UNESCO SDMX API
 
 
 
-The following sections will show you how to query SDMX documents, by using ``readSDMX`` 
-in different ways: either for _local_ or _remote_ files, using ``readSDMX`` as low-level 
+The following sections will show you how to query SDMX documents, by using ``readSDMX``
+in different ways: either for _local_ or _remote_ files, using ``readSDMX`` as low-level
 or with the helpers (embedded service providers).
 
 ### Read dataset documents
@@ -266,7 +276,7 @@ The following code snipet shows you how to read a dataset from a remote data sou
 ```{r, echo = FALSE}
 myUrl <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011"
 dataset <- readSDMX(myUrl)
-stats <- as.data.frame(dataset) 
+stats <- as.data.frame(dataset)
 ```
 
 You can try it out with other datasources, such as:
@@ -289,11 +299,11 @@ head(df)
 ```
 
 It is also possible to query a dataset together with its "definition", handled
-in a separate SDMX-ML document named ``DataStructureDefinition`` (DSD). It is 
-particularly useful when you want to enrich your dataset with all labels. For this, 
+in a separate SDMX-ML document named ``DataStructureDefinition`` (DSD). It is
+particularly useful when you want to enrich your dataset with all labels. For this,
 you need the DSD which contains all reference data.
 
-To do so, you only need to append ``dsd = TRUE`` (default value is ``FALSE``), 
+To do so, you only need to append ``dsd = TRUE`` (default value is ``FALSE``),
 to the previous request, and specify ``labels = TRUE`` when calling ``as.data.frame``,
 as follows:
 
