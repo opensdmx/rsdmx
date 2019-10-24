@@ -19,8 +19,6 @@ This version has some extra classes to support the SDMX Dot Stat implementation 
 
 It allows you to setup a "live connection" to PDH.STAT SDMX API, make API calls in an intuitive way and return dataframes for statistical/data analysis.
 
-Jump to [install instructions](https://github.com/roly97/rsdmx#install-rsdmx-with-pdhstat-connection-in-r-studio-console) to get started with PDH.STAT.
-
 Read PDH.STAT's [docs](https://sdd-dotstat-api-gateway.portal.azure-api.net/docs/services/pdh-stat-api/operations/get-data-flow-key-provider?&groupBy=tag) or visit it [here](https://stats.pacificdata.org/data-explorer/#/).
 
 ``rsdmx`` is a package to parse/read SDMX data and metadata in R. It provides:
