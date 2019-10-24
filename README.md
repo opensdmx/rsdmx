@@ -13,11 +13,13 @@
 
 **This package has been adapted to include Pacific Data Hub's .Stat (PDH.STAT) instance as a default service provider.**
 
-**It also has some extra classes to support the SDMX Dot Stat implementation used by PDH.STAT.**
+**Full credit goes to the original author Emmanuel Blondel, and contributors Matthieu Stigler and Eric Persson.**
 
-**This package allows you to setup a "live connection" to PDH.STAT SDMX API, make API calls in an intuitive way and return dataframes for statistical/data analysis.**
+This version has some extra classes to support the SDMX Dot Stat implementation used by PDH.STAT.
 
-**Jump to [install instructions](https://github.com/roly97/rsdmx#install-rsdmx-with-pdhstat-connection-in-r-studio-console) to get started with PDH.STAT.**
+It allows you to setup a "live connection" to PDH.STAT SDMX API, make API calls in an intuitive way and return dataframes for statistical/data analysis.
+
+Jump to [install instructions](https://github.com/roly97/rsdmx#install-rsdmx-with-pdhstat-connection-in-r-studio-console) to get started with PDH.STAT.
 
 Read PDH.STAT's [docs](https://sdd-dotstat-api-gateway.portal.azure-api.net/docs/services/pdh-stat-api/operations/get-data-flow-key-provider?&groupBy=tag) or visit it [here](https://stats.pacificdata.org/data-explorer/#/).
 
@@ -29,6 +31,62 @@ Read PDH.STAT's [docs](https://sdd-dotstat-api-gateway.portal.azure-api.net/docs
 ### Citation
 
 We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](http://doi.org/10.5281/zenodo.592404)
+
+### Installation
+
+These steps work for R Studio 3.6.1 on Windows.
+
+Remove rsdmx if already installed: ``remove.packages("rsdmx")``
+
+Install devtools: ``install.packages("devtools")``
+
+Install rsdmx from Github fork: ``devtools::install_github("roly97/rsdmx")``
+
+Load package: ``library(rsdmx)``
+
+[rsdmx](https://cran.r-project.org/package=rsdmx) offers a low-level set of tools to read **data** and **metadata** in SDMX format. Its strategy is to make it very easy for the user. For this, a unique function named ``readSDMX`` has to be used, whatever it is a ``data`` or ``metadata`` document, or if it is ``local`` or ``remote`` datasource.
+
+It is important to highlight that one of the major benefits of ``rsdmx`` is to focus first on the SDMX **format** specifications (acting as format abstraction library). This allows ``rsdmx`` reading SDMX data from _remote_ datasources, or from _local_ SDMX files. For accessing _remote_ datasources, it also means that ``rsdmx`` does not bound to SDMX **service** specifications, and can read a wider ranger of datasources.
+
+### Quickstart
+
+These steps work for R Studio 3.6.1 on Windows.
+
+Load package: ``library(rsdmx)``
+
+#### Get all service providers
+
+Aside from PDH, the original package offers connectivity with OECD, Eurostat and others.
+
+``as.data.frame(getSDMXServiceProviders())``
+
+#### Get all dataflows for PDH
+
+``sdmx <- readSDMX(providerId = "PDH", resource="dataflow")``
+
+Results in dataframe: ``df <- as.data.frame(sdmx)``
+
+#### Get all data for a dataflow
+
+Example, load PDH.STAT Population Summary data: ``sdmx <- readSDMX(providerId = "PDH", resource="data", flowRef="DF_POP_SUM")``
+
+Put results in dataframe: ``df <- as.data.frame(sdmx)``
+
+Have a look: ``head(df)``
+
+#### Get more specific data for a dataflow
+
+Example, we want Palau's Population Summary data from 1990 to 2005.
+
+Command: ``sdmx <- readSDMX(providerId = "PDH", resource = "data", flowRef = "DF_POP_SUM", key="PW.", start=1990, end=2005)``
+
+Building the `key` parameter can be tricky. See the API docs for help (https://sdd-dotstat-api-gateway.portal.azure-api.net/docs/services/pdh-stat-api/operations/get-data-flow-key-provider?&groupBy=tag).
+
+Put results in dataframe: ``df <- as.data.frame(sdmx)``
+
+Have a look: ``head(df)``
+
+**More parameter/query options are in the pipeline (such as dimensionAtObservation, detail, references etc.)**
 
 ### Collating scattered SDMX data sources
 
@@ -79,34 +137,6 @@ A user google group is available at: [https://groups.google.com/forum/#!forum/rs
 You can subscribe directly in the google group, or by email: [rsdmx+subscribe@googlegroups.com](rsdmx+subscribe@googlegroups.com)
 To send a post, use: [rsdmx@googlegroups.com](rsdmx@googlegroups.com)
 To unsubscribe, send an email to: [rsdmx+unsubscribe@googlegroups.com](rsdmx+unsubscribe@googlegroups.com)
-
-## Install rsdmx with PDH.STAT connection (in R studio console):
-
-[rsdmx](https://cran.r-project.org/package=rsdmx) offers a low-level set of tools to read **data** and **metadata** in SDMX format. Its strategy is to make it very easy for the user. For this, a unique function named ``readSDMX`` has to be used, whatever it is a ``data`` or ``metadata`` document, or if it is ``local`` or ``remote`` datasource.
-
-It is important to highlight that one of the major benefits of ``rsdmx`` is to focus first on the SDMX **format** specifications (acting as format abstraction library). This allows ``rsdmx`` reading SDMX data from _remote_ datasources, or from _local_ SDMX files. For accessing _remote_ datasources, it also means that ``rsdmx`` does not bound to SDMX **service** specifications, and can read a wider ranger of datasources.
-
-Remove rsdmx if already installed: ``remove.packages("rsdmx")``
-
-Install devtools: ``install.packages("devtools")``
-
-Install rsdmx from Github fork: ``devtools::install_github("roly97/rsdmx")``
-
-Load package: ``library(rsdmx)``
-
-## Quickstart (in R studio console):
-
-Load package: ``library(rsdmx)``
-
-Look at all SDMX Service Providers: ``as.data.frame(getSDMXServiceProviders())``
-
-Example, load PDH.STAT Population Summary data: ``sdmx <- readSDMX(providerId = "PDH", resource="data", flowRef="DF_POP_SUM")``
-
-Put results in dataframe: ``df <- as.data.frame(sdmx)``
-
-Have a look: ``head(df)``
-
-**More parameter/query options are being developed (such as dimensionAtObservation, detail, references etc.)**
 
 ### readSDMX & helper functions
 
