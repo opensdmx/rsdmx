@@ -66,9 +66,6 @@ encapsulate it as slot, when parsing an SDMX-ML document.
     repoUrl = "http://www.myorg/repository",
     compliant = TRUE)
 
-dataflow' resource (path="dataflow/{agencyID}/{resourceID}/{version}")
-datastructure' resource (path="datastructure/{agencyID}/{resourceID}/{version})
-data' resource (path="data/{flowRef}/{key}/{providerRef})
 }
 \author{
 Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}

@@ -49,7 +49,7 @@ SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, complian
   #resource handler
   handler <- list(
       
-    #'dataflow' resource (path="dataflow/{agencyID}/{resourceID}/{version}")
+    #dataflow resource (dataflow/agencyID/resourceID/version)
     #-----------------------------------------------------------------------
     dataflow = function(obj){
       if(is.null(obj@agencyId)) obj@agencyId = "all"
@@ -70,7 +70,7 @@ SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, complian
       return(req)
     },
                             
-    #'datastructure' resource (path="datastructure/{agencyID}/{resourceID}/{version})
+    #datastructure resource (datastructure/agencyID/resourceID/version)
     #--------------------------------------------------------------------------------
     datastructure = function(obj){
       if(is.null(obj@agencyId)) obj@agencyId = "all"
@@ -93,7 +93,7 @@ SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, complian
       return(req)
     },
                             
-    #'data' resource (path="data/{flowRef}/{key}/{providerRef})
+    #data resource (data/flowRef/key/providerRef)
     #----------------------------------------------------------
     data = function(obj){
       if(is.null(obj@flowRef)) stop("Missing flowRef value")
