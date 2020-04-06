@@ -77,7 +77,7 @@
 #'    ## End(**Not run**)
 #'  }
 #'  
-#'  \donttest{
+#'  \dontrun{
 #'    # Not run by 'R CMD check'
 #'    # (reliable remote datasource but with possible occasional unavailability)
 #'    
@@ -101,7 +101,7 @@
 #'  
 #'  # SDMX DataStructureDefinition (DSD)
 #'  #-----------------------------------
-#'  \donttest{
+#'  \dontrun{
 #'    # Not run by 'R CMD check'
 #'    # (reliable remote datasource but with possible occasional unavailability)
 #'    

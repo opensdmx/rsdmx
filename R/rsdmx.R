@@ -16,8 +16,8 @@
 #'    Package: \tab rsdmx\cr
 #'    Type: \tab Package\cr
 #'    Version
-#'    : \tab 0.5-13\cr
-#'    Date: \tab 2018-09-21\cr
+#'    : \tab 0.5-14\cr
+#'    Date: \tab 2020-04-06\cr
 #'    License: \tab GPL(>=2.0)\cr
 #'    LazyLoad: \tab yes\cr
 #'  }
