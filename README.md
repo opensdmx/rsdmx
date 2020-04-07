@@ -65,10 +65,7 @@ Please note that following a new submission to CRAN, or eventually a modificatio
 
 ### Mailing list
 
-A user google group is available at: [https://groups.google.com/forum/#!forum/rsdmx](https://groups.google.com/forum/#!forum/rsdmx)<br/>
-You can subscribe directly in the google group, or by email: [rsdmx+subscribe@googlegroups.com](rsdmx+subscribe@googlegroups.com)
-To send a post, use: [rsdmx@googlegroups.com](rsdmx@googlegroups.com)
-To unsubscribe, send an email to: [rsdmx+unsubscribe@googlegroups.com](rsdmx+unsubscribe@googlegroups.com)
+A user google group is available at: [https://groups.google.com/forum/#!forum/rsdmx](https://groups.google.com/forum/#!forum/rsdmx)
 
 ## Quickstart
 
