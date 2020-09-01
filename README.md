@@ -190,8 +190,8 @@ myBuilder <- SDMXRequestBuilder(
     data = function(obj){
       req <- sprintf("%s/data",obj@regUrl)
       return(req)
-    },
-  )
+    }
+  ),
   compliant = FALSE
 )
 ```
