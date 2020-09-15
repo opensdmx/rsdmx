@@ -40,7 +40,7 @@ Remove rsdmx if already installed: ``remove.packages("rsdmx")``
 
 Install devtools: ``install.packages("devtools")``
 
-Install rsdmx from Github fork: ``devtools::install_github("roly97/rsdmx")``
+Install rsdmx from Github fork: ``devtools::install_github("conorg000/rsdmx")``
 
 Load package: ``library(rsdmx)``
 
