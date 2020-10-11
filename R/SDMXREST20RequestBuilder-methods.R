@@ -32,7 +32,7 @@
 #'     repoUrl = "http://www.myorg/repository", compliant = FALSE)
 #'
 SDMXREST20RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, compliant,
-                                     unsupportedResources = list(),
+                                     unsupportedResources = list(), header = header(),
                                      skipProviderId = FALSE, forceProviderId = FALSE){
     
   #params formatter
@@ -130,7 +130,8 @@ SDMXREST20RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, complian
       formatter = formatter,
       handler = handler,
       compliant = compliant,
-      unsupportedResources = unsupportedResources)
+      unsupportedResources = unsupportedResources,
+      header = header)
 }
 
 

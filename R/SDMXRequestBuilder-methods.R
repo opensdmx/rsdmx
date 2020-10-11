@@ -17,6 +17,7 @@
 #' @param compliant an object of class "logical" indicating if the request builder is somehow compliant with a service specification
 #' @param unsupportedResources an object of class "list" giving one or more resources not
 #'        supported by the Request builder for a given provider
+#' @param header an object of class "list" that contains headers for the web request
 #' 
 #' @details
 #' The \code{handler} function will list the resource methods. Each method will accept a
@@ -66,10 +67,10 @@
 #'
 SDMXRequestBuilder <- function(regUrl, repoUrl, accessKey = NULL,
                                formatter, handler, compliant,
-                               unsupportedResources = list()){
+                               unsupportedResources = list(), header = list()){
   
   new("SDMXRequestBuilder",
       regUrl = regUrl, repoUrl = repoUrl, accessKey = accessKey,
       formatter = formatter, handler = handler, compliant = compliant,
-      unsupportedResources = unsupportedResources)
+      unsupportedResources = unsupportedResources, header = header)
 }
