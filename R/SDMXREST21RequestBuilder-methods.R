@@ -33,8 +33,9 @@
 #'     compliant = TRUE)
 #'
 SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, compliant,
-                                     unsupportedResources = list(),
-                                     skipProviderId = FALSE, forceProviderId = FALSE){
+                                     unsupportedResources = list(), 
+                                     skipProviderId = FALSE, forceProviderId = FALSE,
+                                     headers = list()){
   
   #params formatter
   formatter = list(
@@ -144,5 +145,6 @@ SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, complian
       formatter = formatter,
       handler = handler,
       compliant = compliant,
-      unsupportedResources = unsupportedResources)
+      unsupportedResources = unsupportedResources,
+      headers = headers)
 }

@@ -16,6 +16,8 @@
 #' @slot compliant an object of class "logical" indicating if the request builder is somehow compliant with a service specification 
 #' @slot unsupportedResources an object of class "character" giving one or more resources not
 #'       supported by the Request builder for a given provider
+#' @slot headers an object of class "list" that contains any additional headers for the request.
+
 #'
 #' @section Warning:
 #' This class is not useful in itself, but all SDMX non-abstract classes will 
@@ -32,7 +34,8 @@ setClass("SDMXRequestBuilder",
            formatter = "list",
            handler = "list",
            compliant = "logical",
-           unsupportedResources = "list"
+           unsupportedResources = "list",
+           headers = "list"
          ),
          prototype = list(
            regUrl = "http://www.myorg.org/sdmx/registry",
@@ -49,7 +52,8 @@ setClass("SDMXRequestBuilder",
               "data" = function(obj){return(obj@repoUrl)}
            ),
            compliant = TRUE,
-           unsupportedResources = list()
+           unsupportedResources = list(),
+           headers = list()
          ),
          validity = function(object){
            
