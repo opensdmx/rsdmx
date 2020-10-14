@@ -55,7 +55,7 @@
 #' @param verbose an Object of class "logical" that indicates if rsdmx messages should
 #'        appear to user. Default is TRUE.
 #' 
-#' @param header an object of class "list" that contains any additional headers for the request.
+#' @param headers an object of class "list" that contains any additional headers for the request.
 #' 
 #' @return an object of class "SDMX"
 #' 
@@ -131,7 +131,7 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
                      provider = NULL, providerId = NULL, providerKey = NULL,
                      agencyId = NULL, resource = NULL, resourceId = NULL, version = NULL,
                      flowRef = NULL, key = NULL, key.mode = "R", start = NULL, end = NULL, dsd = FALSE,
-                     validate = FALSE, verbose = TRUE, header = NULL) {
+                     validate = FALSE, verbose = TRUE, headers = NULL) {
   
   #set option for SDMX compliance validation
   .rsdmx.options$validate <- validate
@@ -225,7 +225,7 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
     requestURL <- function(file){
       rsdmxAgent <- paste("rsdmx/",as.character(packageVersion("rsdmx")),sep="")
       h <- RCurl::basicHeaderGatherer()
-      content <- RCurl::getURL(file, httpheader = c('User-Agent' = rsdmxAgent, header),
+      content <- RCurl::getURL(file, httpheader = c('User-Agent' = rsdmxAgent, headers),
                       ssl.verifypeer = FALSE, .encoding = "UTF-8",
                       encoding = "gzip", headerfunction = h$update)
       return(list(response = content, header = h$value()));
