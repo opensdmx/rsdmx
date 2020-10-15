@@ -73,6 +73,8 @@ Default is FALSE.}
 
 \item{verbose}{an Object of class "logical" that indicates if rsdmx messages should
 appear to user. Default is TRUE.}
+
+\item{headers}{an object of class "list" that contains any additional headers for the request.}
 }
 \value{
 an object of class "SDMX"

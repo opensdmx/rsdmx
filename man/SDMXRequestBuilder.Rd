@@ -29,6 +29,8 @@ to customize eventual params (e.g. specific data provider rules)}
 
 \item{unsupportedResources}{an object of class "list" giving one or more resources not
 supported by the Request builder for a given provider}
+
+\item{headers}{an object of class "list" that contains headers for the web request}
 }
 \description{
 A basic class to handle a SDMX service request builder
@@ -66,6 +68,8 @@ to customize eventual params (e.g. specific data provider rules)}
 
 \item{\code{unsupportedResources}}{an object of class "character" giving one or more resources not
 supported by the Request builder for a given provider}
+
+\item{\code{headers}}{an object of class "list" that contains any additional headers for the request.}
 }}
 
 \section{Warning}{
