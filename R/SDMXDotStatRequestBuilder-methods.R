@@ -30,8 +30,9 @@
 #'     repoUrl = "http://www.myorg/repository")
 #'
 SDMXDotStatRequestBuilder <- function(regUrl, repoUrl, accessKey = NULL,
-                                   unsupportedResources = list(),
-                                   skipProviderId = FALSE, forceProviderId = FALSE){    
+                                   unsupportedResources = list(), 
+                                   skipProviderId = FALSE, forceProviderId = FALSE,
+                                   headers = list()){    
 
   #params formatter
   formatter = list(
@@ -137,7 +138,8 @@ SDMXDotStatRequestBuilder <- function(regUrl, repoUrl, accessKey = NULL,
       formatter = formatter,
       handler = handler,
       compliant = FALSE,
-      unsupportedResources = unsupportedResources)
+      unsupportedResources = unsupportedResources,
+      headers = headers)
 }
 
 

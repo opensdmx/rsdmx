@@ -177,6 +177,41 @@ test_that("OECD - data",{
   }
 })
 
+#UNICEF
+#----
+
+#-> dataflow
+test_that("UNICEF - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "UNICEF", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
+#-> datastructure
+test_that("UNICEF - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "UNICEF", resource = "datastructure", resourceId = "COVID")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
+test_that("UNICEF - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "UNICEF", resource = "data",
+                   flowRef = "COVID", key = NULL)
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXStructureSpecificData")
+  }
+})
+
+
 #UNSD (UN-DATA)
 #----
 

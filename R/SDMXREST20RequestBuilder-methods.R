@@ -32,8 +32,9 @@
 #'     repoUrl = "http://www.myorg/repository", compliant = FALSE)
 #'
 SDMXREST20RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, compliant,
-                                     unsupportedResources = list(),
-                                     skipProviderId = FALSE, forceProviderId = FALSE){
+                                     unsupportedResources = list(), 
+                                     skipProviderId = FALSE, forceProviderId = FALSE,
+                                     headers = list()){
     
   #params formatter
   formatter = list(
@@ -48,7 +49,7 @@ SDMXREST20RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, complian
   #resource handler
   handler <- list(
                             
-    #'dataflow' resource (path="/Dataflow/{resourceId}/ALL/ALL")
+    #dataflow resource (/Dataflow/resourceId/ALL/ALL)
     #-----------------------------------------------------------------------
     dataflow = function(obj){
       resourceId <- obj@resourceId
@@ -66,7 +67,7 @@ SDMXREST20RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, complian
       }
       return(req)
     },
-    #'datastructure' resource (path="/DataStructure/ALL/{resourceId}/ALL?references=children")
+    #datastructure resource (/DataStructure/ALL/{resourceId}/ALL?references=children)
     #-----------------------------------------------------------------------
     datastructure = function(obj){
       req <- sprintf("%s/DataStructure/ALL/%s/ALL?references=children",
@@ -82,7 +83,7 @@ SDMXREST20RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, complian
       }
       return(req)
     },
-    #'data' resource (path="/Data/{flowRef}/{key}/{agencyId}")
+    #data resource (/Data/flowRef/key/agencyId)
     #----------------------------------------------------------
     data = function(obj){
       if(is.null(obj@agencyId)) obj@agencyId = "all"
@@ -130,7 +131,8 @@ SDMXREST20RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, complian
       formatter = formatter,
       handler = handler,
       compliant = compliant,
-      unsupportedResources = unsupportedResources)
+      unsupportedResources = unsupportedResources,
+      headers = headers)
 }
 
 

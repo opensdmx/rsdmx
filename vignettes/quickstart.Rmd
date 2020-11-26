@@ -23,7 +23,7 @@ For this, the SDMX standard provides various types of _documents_, also known as
 * **data** SDMX-ML _documents_. The two main _document_ types are the ``Generic`` and ``Compact`` ones. The latter aims to provide a more compact XML document. They are other data _document_ types derivating from the ones previously mentioned.
 * **metadata** SDMX-ML _documents_. The main metadata _document_ is known a ``Data Structure Definition`` (DSD). As its name indicates, it _describes_ the structure and organization of a dataset, and will generally include all the master/reference data used to characterize a dataset. The 2 main types of metadata are (1) the ``concepts``, which correspond to the _dimensions_ and/or _attributes_ of the dataset, and (2) the ``codelists`` which inventory the possible values to be used in the representation of _dimensions_ and _attributes_.
 
-For more information about the SDMX standards, you can visit the [SDMX website](http://sdmx.org/), or this [introduction by EUROSTAT](https://webgate.ec.europa.eu/fpfis/mwikis/sdmx/index.php/SDMX).
+For more information about the SDMX standards, you can visit the [SDMX website](http://sdmx.org/), or this [introduction by EUROSTAT](https://ec.europa.eu/eurostat/web/sdmx-infospace/trainings-tutorials/tutorials).
 
 ## How to deal with SDMX in R
 

@@ -1,10 +1,10 @@
 Package: rsdmx
-Version: 0.5-13
-Date: 2018-09-21
+Version: 0.6
+Date: 2020-10-15
 Title: Tools for Reading SDMX Data and Metadata
 Authors@R: c(
   person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com", comment = c(ORCID = "0000-0002-5870-5762")),
-  person("Matthieu", "Stigler", role = c("ctb")),
+  person("Matthieu", "Stigler", role = c("ctb"), comment =c(ORCID="0000-0002-6802-4290")),
   person("Eric", "Persson", role = c("ctb")))
 Maintainer: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 Depends: R (>= 2.15)
@@ -50,4 +50,4 @@ Collate:
   SDMXRequestBuilder-methods.R SDMXREST20RequestBuilder-methods.R SDMXREST21RequestBuilder-methods.R SDMXDotStatRequestBuilder-methods.R SDMXPDHDotStatRequestBuilder-methods.R
   SDMXServiceProvider-methods.R SDMXServiceProviders-methods.R readSDMX.R saveSDMX.R
   profile.R rsdmx.R
-RoxygenNote: 6.0.1
+RoxygenNote: 7.1.0

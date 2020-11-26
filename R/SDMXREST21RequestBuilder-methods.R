@@ -33,8 +33,9 @@
 #'     compliant = TRUE)
 #'
 SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, compliant,
-                                     unsupportedResources = list(),
-                                     skipProviderId = FALSE, forceProviderId = FALSE){
+                                     unsupportedResources = list(), 
+                                     skipProviderId = FALSE, forceProviderId = FALSE,
+                                     headers = list()){
   
   #params formatter
   formatter = list(
@@ -49,7 +50,7 @@ SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, complian
   #resource handler
   handler <- list(
       
-    #'dataflow' resource (path="dataflow/{agencyID}/{resourceID}/{version}")
+    #dataflow resource (dataflow/agencyID/resourceID/version)
     #-----------------------------------------------------------------------
     dataflow = function(obj){
       if(is.null(obj@agencyId)) obj@agencyId = "all"
@@ -70,7 +71,7 @@ SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, complian
       return(req)
     },
                             
-    #'datastructure' resource (path="datastructure/{agencyID}/{resourceID}/{version})
+    #datastructure resource (datastructure/agencyID/resourceID/version)
     #--------------------------------------------------------------------------------
     datastructure = function(obj){
       if(is.null(obj@agencyId)) obj@agencyId = "all"
@@ -93,7 +94,7 @@ SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, complian
       return(req)
     },
                             
-    #'data' resource (path="data/{flowRef}/{key}/{providerRef})
+    #data resource (data/flowRef/key/providerRef)
     #----------------------------------------------------------
     data = function(obj){
       if(is.null(obj@flowRef)) stop("Missing flowRef value")
@@ -144,5 +145,6 @@ SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, complian
       formatter = formatter,
       handler = handler,
       compliant = compliant,
-      unsupportedResources = unsupportedResources)
+      unsupportedResources = unsupportedResources,
+      headers = headers)
 }
