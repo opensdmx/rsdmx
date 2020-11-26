@@ -33,7 +33,7 @@ Collate:
   Class-SDMXStructureSpecificData.R Class-SDMXStructureSpecificTimeSeriesData.R
   Class-SDMXCrossSectionalData.R Class-SDMXMessageGroup.R
   Class-SDMXDataFlow.R Class-SDMXDataFlows.R Class-SDMXRequestParams.R
-  Class-SDMXRequestBuilder.R Class-SDMXREST20RequestBuilder.R Class-SDMXREST21RequestBuilder.R Class-SDMXDotStatRequestBuilder.R Class-SDMXPDHDotStatRequestBuilder.R
+  Class-SDMXRequestBuilder.R Class-SDMXREST20RequestBuilder.R Class-SDMXREST21RequestBuilder.R Class-SDMXDotStatRequestBuilder.R
   Class-SDMXServiceProvider.R Class-SDMXServiceProviders.R
   SDMXSchema-methods.R SDMXType-methods.R SDMXStructureType-methods.R SDMXHeader-methods.R
   SDMXFooterMessage-methods.R SDMXFooter-methods.R SDMX-methods.R
@@ -47,7 +47,7 @@ Collate:
   SDMXStructureSpecificData-methods.R SDMXStructureSpecificTimeSeriesData-methods.R
   SDMXCrossSectionalData-methods.R SDMXMessageGroup-methods.R
   SDMXDataFlow-methods.R SDMXDataFlows-methods.R SDMXRequestParams-methods.R
-  SDMXRequestBuilder-methods.R SDMXREST20RequestBuilder-methods.R SDMXREST21RequestBuilder-methods.R SDMXDotStatRequestBuilder-methods.R SDMXPDHDotStatRequestBuilder-methods.R
+  SDMXRequestBuilder-methods.R SDMXREST20RequestBuilder-methods.R SDMXREST21RequestBuilder-methods.R SDMXDotStatRequestBuilder-methods.R
   SDMXServiceProvider-methods.R SDMXServiceProviders-methods.R readSDMX.R saveSDMX.R
   profile.R rsdmx.R
 RoxygenNote: 7.1.0
