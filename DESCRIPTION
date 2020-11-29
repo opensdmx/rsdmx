@@ -50,4 +50,4 @@ Collate:
   SDMXRequestBuilder-methods.R SDMXREST20RequestBuilder-methods.R SDMXREST21RequestBuilder-methods.R SDMXDotStatRequestBuilder-methods.R
   SDMXServiceProvider-methods.R SDMXServiceProviders-methods.R readSDMX.R saveSDMX.R
   profile.R rsdmx.R
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1

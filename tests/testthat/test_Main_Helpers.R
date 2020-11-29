@@ -483,6 +483,41 @@ test_that("WB - data",{
   }
 })
 
+#PDH (Pacific Data Hub)
+#--------
+
+#-> dataflow
+test_that("PDH - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "PDH", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
+#-> datastructure
+test_that("PDH - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "PDH", resource = "datastructure", resourceId = "DSD_CPI")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
+test_that("PDH - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "PDH", resource = "data",
+                   key = "A.FJ.INF.", key.mode = "SDMX",
+                   flowRef = "DF_CPI", start = "2015", end = "2019")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXGenericData")
+  }
+})
+
 #national data providers
 
 #ABS (Australia)
