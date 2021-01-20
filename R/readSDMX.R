@@ -236,9 +236,19 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
       content <- NULL
       if(debug){
         content <- httr::with_verbose(httr::GET(
-          file, httr::add_headers('User-Agent' = rsdmxAgent, unlist(headers)), ...))
+          file, httr::add_headers(
+            'Accept' = "application/xml",
+            'Content-Type' = "application/xml",
+            'User-Agent' = rsdmxAgent, 
+            unlist(headers)
+          ), ...))
       }else{
-        content <- httr::GET(file, httr::add_headers('User-Agent' = rsdmxAgent, unlist(headers)), ...)
+        content <- httr::GET(file, httr::add_headers(
+          'Accept' = "application/xml",
+          'Content-Type' = "application/xml",
+          'User-Agent' = rsdmxAgent, 
+          unlist(headers)
+        ), ...)
       }
       return(content);
     }
