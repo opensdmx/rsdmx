@@ -8,7 +8,7 @@ Authors@R: c(
   person("Eric", "Persson", role = c("ctb")))
 Maintainer: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 Depends: R (>= 2.15)
-Imports: methods, XML (>= 3.98-1.3), RCurl, plyr, utils
+Imports: R6, methods, XML (>= 3.98-1.3), httr, plyr, utils
 Suggests: testthat, knitr, roxygen2
 Description: Set of classes and methods to read data and metadata documents
   exchanged through the Statistical Data and Metadata Exchange (SDMX) framework,
@@ -20,6 +20,7 @@ BugReports: https://github.com/opensdmx/rsdmx/issues
 LazyLoad: yes
 Encoding: UTF-8
 Collate:
+  rsdmx_logger.R
   Class-SDMXSchema.R Class-SDMXType.R Class-SDMXStructureType.R
   Class-SDMXHeader.R Class-SDMXFooterMessage.R Class-SDMXFooter.R
   Class-SDMX.R Class-SDMXConcept.R Class-SDMXConceptScheme.R Class-SDMXConcepts.R

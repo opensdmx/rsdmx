@@ -52,10 +52,13 @@
 #' @param validate an object of class "logical" indicating if a validation check has to
 #'        be performed on the SDMX-ML document to check its SDMX compliance when reading it.
 #'        Default is FALSE.
-#' @param verbose an Object of class "logical" that indicates if rsdmx messages should
-#'        appear to user. Default is TRUE.
-#' 
+#' @param verbose an Object of class "logical" that indicates if rsdmx logs should
+#'        appear to user. Default is set to \code{FALSE} (see argument \code{logger}).
+#' @param logger reports if a logger has to be used to print log messages. Default is \code{NULL} 
+#'        (no logs). Use "INFO" to print \pkg{rsdmx} logs, and "DEBUG" to print verbose messages 
+#'        from SDMX web requests.
 #' @param headers an object of class "list" that contains any additional headers for the request.
+#' @param ... (any other parameter to pass to httr::GET request)
 #' 
 #' @return an object of class "SDMX"
 #' 
@@ -131,7 +134,13 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
                      provider = NULL, providerId = NULL, providerKey = NULL,
                      agencyId = NULL, resource = NULL, resourceId = NULL, version = NULL,
                      flowRef = NULL, key = NULL, key.mode = "R", start = NULL, end = NULL, dsd = FALSE,
-                     validate = FALSE, verbose = TRUE, headers = NULL) {
+                     headers = list(), validate = FALSE,
+                     verbose = !is.null(logger), logger = "INFO", ...) {
+  
+  #logger
+  debug <- FALSE
+  if(!is.null(logger)) debug <- logger == "DEBUG"
+  log <- rsdmxLogger$new(enabled = verbose)
   
   #set option for SDMX compliance validation
   .rsdmx.options$validate <- validate
@@ -205,7 +214,7 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
                   "data" = requestHandler$data(requestParams)
     )
     
-    if(verbose) message(paste0("-> Fetching '", file, "'"))
+    log$INFO(sprintf("Fetching '%s'", file))
   }
   
   #call readSDMX original
@@ -222,25 +231,28 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
       content <- readChar(file, file.info(file)$size)
     }
   }else{
-    requestURL <- function(file){
+    requestURL <- function(file, debug = FALSE){
       rsdmxAgent <- paste("rsdmx/",as.character(packageVersion("rsdmx")),sep="")
-      h <- RCurl::basicHeaderGatherer()
-      content <- RCurl::getURL(file, httpheader = c('User-Agent' = rsdmxAgent, headers),
-                      ssl.verifypeer = FALSE, .encoding = "UTF-8",
-                      encoding = "gzip", headerfunction = h$update)
-      return(list(response = content, header = h$value()));
+      content <- NULL
+      if(debug){
+        content <- httr::with_verbose(httr::GET(
+          file, httr::add_headers('User-Agent' = rsdmxAgent, unlist(headers)), ...))
+      }else{
+        content <- httr::GET(file, httr::add_headers('User-Agent' = rsdmxAgent, unlist(headers)), ...)
+      }
+      return(content);
     }
-    out <- requestURL(file)
-    if(out$header["status"] %in% c(301,302)){
-      file <- out$header["Location"]
-      out <- requestURL(file)
+    out <- requestURL(file, debug)
+    out_headers <- httr::headers(out)
+    if(httr::status_code(out) %in% c(301,302)){
+      file <- out_headers[["Location"]]
+      out <- requestURL(file, debug)
     }
-    if(as.numeric(out$header["status"]) >= 400) {
+    if(httr::status_code(out) >= 400) {
       stop("HTTP request failed with status: ",
-           out$header["status"], " ", out$header["statusMessage"])
+           httr::status_code(out), " ", httr::message_for_status(out))
     }
-    
-    content <- out$response
+    content <- httr::content(out, "text", encoding = "UTF-8")
   }
     
   status <- tryCatch({
@@ -378,9 +390,10 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
     #using helpers strategy (with a resource parameter)
     if(buildRequest && resource %in% c("data","dataflow")){
       if(resource == "data" && providerId %in% c("ESTAT", "ISTAT", "WBG_WITS", "UIS2")){
-        if(verbose) message("-> Attempt to fetch DSD ref from dataflow description")
+        log$INFO("Attempt to fetch DSD ref from dataflow description")
         flow <- readSDMX(providerId = providerId, providerKey = providerKey, resource = "dataflow",
-                         resourceId = flowRef, verbose = TRUE)
+                         resourceId = flowRef, headers = headers, verbose = TRUE, logger = logger,  
+                         ...)
         dsdRef <- slot(slot(flow, "dataflows")[[1]],"dsdRef")
         rm(flow)
       }else{
@@ -391,32 +404,34 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
           dsdRef <- lapply(slot(obj,"dataflows"), slot,"dsdRef")
         }
         if(!is.null(dsdRef)){
-          if(verbose) message(paste0("-> DSD ref identified in dataset = '", dsdRef, "'"))
-          if(verbose) message("-> Attempt to fetch & bind DSD to dataset")
+          log$INFO(sprintf("DSD ref identified in dataset = '%s'", dsdRef))
+          log$INFO("Attempt to fetch & bind DSD to dataset")
         }else{
           dsdRef <- flowRef
-          if(verbose) message("-> No DSD ref associated to dataset")
-          if(verbose) message("-> Attempt to fetch & bind DSD to dataset using 'flowRef'")
+          log$WARN("No DSD ref associated to dataset")
+          log$INFO("Attempt to fetch & bind DSD to dataset using 'flowRef'")
         }
       }
       
       if(resource == "data"){
         dsdObj <- readSDMX(providerId = providerId, providerKey = providerKey,
-                           resource = "datastructure", resourceId = dsdRef, verbose = verbose)
+                           resource = "datastructure", resourceId = dsdRef, headers = headers,
+                           verbose = verbose, logger = logger, ...)
         if(is.null(dsdObj)){
-          if(verbose) message(sprintf("-> Impossible to fetch DSD for dataset %s", flowRef))
+          log$WARN(sprintf("Impossible to fetch DSD for dataset '%s'", flowRef))
         }else{
-          if(verbose) message("-> DSD fetched and associated to dataset!")
+          log$INFO("DSD fetched and associated to dataset!")
           slot(obj, "dsd") <- dsdObj
         }
       }else if(resource == "dataflow"){
         dsdObj <- lapply(1:length(dsdRef), function(x){
           flowDsd <- readSDMX(providerId = providerId, providerKey = providerKey,
-                              resource = "datastructure", resourceId = dsdRef[[x]], verbose = verbose)
+                              resource = "datastructure", resourceId = dsdRef[[x]], headers = headers,
+                              verbose = verbose, logger = logger, ...)
           if(is.null(flowDsd)){
-            if(verbose) message(sprintf("-> Impossible to fetch DSD for dataflow %s",resourceId))
+            log$INFO(sprintf("Impossible to fetch DSD for dataflow '%s'",resourceId))
           }else{
-            if(verbose) message("-> DSD fetched and associated to dataflow!")
+            log$INFO("DSD fetched and associated to dataflow!")
             slot(slot(obj,"dataflows")[[x]],"dsd") <<- flowDsd
           }
         })

@@ -67,14 +67,20 @@ Recognized if a valid provider or provide id has been specified as argument.}
 Active only if \code{"readSDMX"} is used as helper method (ie if data is fetched using 
 an embedded service provider. Default is FALSE}
 
+\item{headers}{an object of class "list" that contains any additional headers for the request.}
+
 \item{validate}{an object of class "logical" indicating if a validation check has to
 be performed on the SDMX-ML document to check its SDMX compliance when reading it.
 Default is FALSE.}
 
-\item{verbose}{an Object of class "logical" that indicates if rsdmx messages should
-appear to user. Default is TRUE.}
+\item{verbose}{an Object of class "logical" that indicates if rsdmx logs should
+appear to user. Default is set to \code{FALSE} (see argument \code{logger}).}
 
-\item{headers}{an object of class "list" that contains any additional headers for the request.}
+\item{logger}{reports if a logger has to be used to print log messages. Default is \code{NULL} 
+(no logs). Use "INFO" to print \pkg{rsdmx} logs, and "DEBUG" to print verbose messages 
+from SDMX web requests.}
+
+\item{...}{(any other parameter to pass to httr::GET request)}
 }
 \value{
 an object of class "SDMX"

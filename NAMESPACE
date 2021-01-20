@@ -1,6 +1,7 @@
 import("methods")
 import("XML")
-import("RCurl")
+import("httr")
+import("R6")
 importFrom("plyr", "rbind.fill")
 importFrom("utils", "packageVersion")
 
@@ -52,6 +53,7 @@ exportClasses(
 )
 
 export(
+  rsdmxLogger,
   SDMX,
   SDMXSchema,
   SDMXHeader,
