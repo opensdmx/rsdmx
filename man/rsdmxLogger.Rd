@@ -12,8 +12,6 @@ Object of \code{\link{R6Class}} for modelling a simple logger
 }
 \description{
 rsdmxLogger
-
-rsdmxLogger
 }
 \note{
 Logger class used internally by rsdmx
@@ -34,67 +32,3 @@ Logger class used internally by rsdmx
 }
 
 \keyword{logger}
-\section{Methods}{
-\subsection{Public methods}{
-\itemize{
-\item \href{#method-INFO}{\code{rsdmxLogger$INFO()}}
-\item \href{#method-WARN}{\code{rsdmxLogger$WARN()}}
-\item \href{#method-ERROR}{\code{rsdmxLogger$ERROR()}}
-\item \href{#method-new}{\code{rsdmxLogger$new()}}
-\item \href{#method-clone}{\code{rsdmxLogger$clone()}}
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-INFO"></a>}}
-\if{latex}{\out{\hypertarget{method-INFO}{}}}
-\subsection{Method \code{INFO()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{rsdmxLogger$INFO(text)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-WARN"></a>}}
-\if{latex}{\out{\hypertarget{method-WARN}{}}}
-\subsection{Method \code{WARN()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{rsdmxLogger$WARN(text)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-ERROR"></a>}}
-\if{latex}{\out{\hypertarget{method-ERROR}{}}}
-\subsection{Method \code{ERROR()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{rsdmxLogger$ERROR(text)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
-\subsection{Method \code{new()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{rsdmxLogger$new(enabled = TRUE)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{rsdmxLogger$clone(deep = FALSE)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
-}

@@ -7,6 +7,8 @@
 \title{getNamespaces}
 \usage{
 getNamespaces(obj)
+
+\S4method{getNamespaces}{SDMX}(obj)
 }
 \arguments{
 \item{obj}{An object deriving from class "SDMX"}
@@ -18,6 +20,11 @@ an object of class \code{data.frame} giving the id and uri for each
 \description{
 Access the namespaces of the SDMX-ML object
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{SDMX}: Access the namespaces of the SDMX-ML object
+}}
+
 \seealso{
 \link{SDMX-class}
 }

@@ -80,7 +80,7 @@ encodeSDMXOutput <- function(df){
 if (!isGeneric("getNamespaces"))
   setGeneric("getNamespaces", function(obj) standardGeneric("getNamespaces"));
 
-#' @describeIn getNamespaces
+#' @describeIn getNamespaces Access the namespaces of the SDMX-ML object
 setMethod(f = "getNamespaces", signature = "SDMX", function(obj){
             return(namespaces.SDMX(obj@xmlObj));
           })

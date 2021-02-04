@@ -140,7 +140,7 @@ addLabels.SDMXData <- function(data, dsd){
 if (!isGeneric("setDSD"))
   setGeneric("setDSD", function(obj, dsd) standardGeneric("setDSD"));
 
-#' @describeIn setDSD
+#' @describeIn setDSD set the 'dsd' slot of a \code{SDMXData} object
 setMethod(f = "setDSD", signature = "SDMXData", function(obj, dsd){
   slot(obj, "dsd") <- dsd
   return(obj)

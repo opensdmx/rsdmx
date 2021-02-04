@@ -1,6 +1,6 @@
 Package: rsdmx
 Version: 0.6
-Date: 2021-01-21
+Date: 2021-02-04
 Title: Tools for Reading SDMX Data and Metadata
 Authors@R: c(
   person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com", comment = c(ORCID = "0000-0002-5870-5762")),
@@ -52,3 +52,4 @@ Collate:
   SDMXServiceProvider-methods.R SDMXServiceProviders-methods.R readSDMX.R saveSDMX.R
   profile.R rsdmx.R
 RoxygenNote: 7.1.1
+Roxygen: list(r6 = FALSE)

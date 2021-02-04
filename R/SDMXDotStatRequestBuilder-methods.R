@@ -6,29 +6,23 @@
 #'  SDMXDotStatRequestBuilder(regUrl, repoUrl, accessKey, unsupportedResources,
 #'                            skipProviderId, forceProviderId)
 #'
-#' @param regUrl an object of class "character" giving the base Url of the SDMX 
-#'        service registry
-#' @param repoUrl an object of class "character" giving the base Url of the SDMX 
-#'        service repository
+#' @param regUrl an object of class "character" giving the base Url of the SDMX service registry
+#' @param repoUrl an object of class "character" giving the base Url of the SDMX service repository
 #' @param accessKey an object of class "character" indicating the name of request parameter for which
-#'        an authentication or subscription user key/token has to be provided to perform requests 
+#'        an authentication or subscription user key (token) has to be provided to perform requests 
 #' @param unsupportedResources an object of class "list" giving eventual unsupported 
 #'        REST resources. Default is an empty list object
 #' @param skipProviderId an object of class "logical" indicating that the provider
-#'        agencyIdshould be skipped. Used to control lack of strong SDMX REST compliance 
+#'        agencyId should be skipped. Used to control lack of strong SDMX REST compliance 
 #'        from data providers. For now, it applies only for the "data" resource.
 #' @param forceProviderId an object of class "logical" indicating if the provider
 #'        agencyId has to be added at the end of the request. Default value is 
 #'        \code{FALSE}. For some providers, the \code{all} value for the provider
-#'        agency id is not allowed, in this case, the \code{agencyId} of the data 
-#'        provider has to be forced in the web-request 
-#'                
-#' @examples
-#'   #how to create a SDMXDotStatRequestBuilder
-#'   requestBuilder <- SDMXDotStatRequestBuilder(
-#'     regUrl = "http://www.myorg/registry",
-#'     repoUrl = "http://www.myorg/repository")
+#'        agency id is not allowed, in this case, the \code{agencyId} of the data provider 
+#'        has to be forced in the web-request
 #'
+#'@note Internal class
+#'  
 SDMXDotStatRequestBuilder <- function(regUrl, repoUrl, accessKey = NULL,
                                    unsupportedResources = list(), 
                                    skipProviderId = FALSE, forceProviderId = FALSE,

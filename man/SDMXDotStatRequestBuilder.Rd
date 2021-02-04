@@ -12,27 +12,25 @@ SDMXDotStatRequestBuilder(regUrl, repoUrl, accessKey, unsupportedResources,
                            skipProviderId, forceProviderId)
 }
 \arguments{
-\item{regUrl}{an object of class "character" giving the base Url of the SDMX 
-service registry}
+\item{regUrl}{an object of class "character" giving the base Url of the SDMX service registry}
 
-\item{repoUrl}{an object of class "character" giving the base Url of the SDMX 
-service repository}
+\item{repoUrl}{an object of class "character" giving the base Url of the SDMX service repository}
 
 \item{accessKey}{an object of class "character" indicating the name of request parameter for which
-an authentication or subscription user key/token has to be provided to perform requests}
+an authentication or subscription user key (token) has to be provided to perform requests}
 
 \item{unsupportedResources}{an object of class "list" giving eventual unsupported 
 REST resources. Default is an empty list object}
 
 \item{skipProviderId}{an object of class "logical" indicating that the provider
-agencyIdshould be skipped. Used to control lack of strong SDMX REST compliance 
+agencyId should be skipped. Used to control lack of strong SDMX REST compliance 
 from data providers. For now, it applies only for the "data" resource.}
 
 \item{forceProviderId}{an object of class "logical" indicating if the provider
 agencyId has to be added at the end of the request. Default value is 
 \code{FALSE}. For some providers, the \code{all} value for the provider
-agency id is not allowed, in this case, the \code{agencyId} of the data 
-provider has to be forced in the web-request}
+agency id is not allowed, in this case, the \code{agencyId} of the data provider 
+has to be forced in the web-request}
 }
 \description{
 A experimental class to handle a SDMX DotStat (*.Stat) service 
@@ -51,6 +49,13 @@ an authentication or subscription user key/token has to be provided to perform r
 \item{\code{compliant}}{an object of class "logical" indicating if the request builder is somehow compliant with a service specification}
 }}
 
+\note{
+Internal class
+ 
+dataflow' resource (path="GetKeyFamily/{resourceID}")
+datastructure' resource (path="GetDataStructure/{resourceID}/{agencyID}")
+data' resource (path="GetData/{flowRef}/{key}/{agencyId}")
+}
 \section{Warning}{
 
 This class is not useful in itself, but all SDMX non-abstract classes will 

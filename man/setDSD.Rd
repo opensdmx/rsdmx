@@ -7,6 +7,8 @@
 \title{setDSD}
 \usage{
 setDSD(obj, dsd)
+
+\S4method{setDSD}{SDMXData}(obj, dsd)
 }
 \arguments{
 \item{obj}{An object deriving from class "SDMXData"}
@@ -19,6 +21,11 @@ the 'obj' object of class "SDMXData" enriched with the dsd
 \description{
 set the 'dsd' slot of a \code{SDMXData} object
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{SDMXData}: set the 'dsd' slot of a \code{SDMXData} object
+}}
+
 \seealso{
 \link{SDMXData-class}
 }
