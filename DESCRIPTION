@@ -15,7 +15,7 @@ Description: Set of classes and methods to read data and metadata documents
   currently focusing on the SDMX XML standard format (SDMX-ML).
 License: GPL (>= 2)
 VignetteBuilder: knitr
-URL: https://github.com/opensdmx/rsdmx, http://www.sdmx.org
+URL: https://github.com/opensdmx/rsdmx, https://sdmx.org
 BugReports: https://github.com/opensdmx/rsdmx/issues
 LazyLoad: yes
 Encoding: UTF-8

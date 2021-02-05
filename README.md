@@ -1,11 +1,11 @@
 **rsdmx**
 =======
 [![Build Status](https://travis-ci.org/opensdmx/rsdmx.svg?branch=master)](https://travis-ci.org/opensdmx/rsdmx)
-[![codecov.io](http://codecov.io/github/opensdmx/rsdmx/coverage.svg?branch=master)](http://codecov.io/github/opensdmx/rsdmx?branch=master)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rsdmx)](https://cran.r-project.org/package=rsdmx)
+[![codecov.io](https://codecov.io/github/opensdmx/rsdmx/coverage.svg?branch=master)](https://codecov.io/github/opensdmx/rsdmx?branch=master)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/rsdmx)](https://cran.r-project.org/package=rsdmx)
 [![cran checks](https://cranchecks.info/badges/worst/rsdmx)](https://cran.r-project.org/web/checks/check_results_rsdmx.html)
 [![Github_Status_Badge](https://img.shields.io/badge/Github-0.6-blue.svg)](https://github.com/opensdmx/rsdmx)
-[![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](http://doi.org/10.5281/zenodo.592404)
+[![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](https://doi.org/10.5281/zenodo.592404)
 
 ``rsdmx``: Tools for reading SDMX data and metadata documents in R
 
@@ -18,7 +18,7 @@
 
 ### Citation
 
-We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](http://doi.org/10.5281/zenodo.592404)
+We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](https://doi.org/10.5281/zenodo.592404)
 
 ### Collating scattered SDMX data sources
 
@@ -258,10 +258,10 @@ This section will introduce you on how to read SDMX *dataset* documents.
 #### Read _remote_ datasets
 
 
-The following code snipet shows you how to read a dataset from a remote data source, taking as example the [OECD StatExtracts portal](http://stats.oecd.org): [http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011](http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011)
+The following code snipet shows you how to read a dataset from a remote data source, taking as example the [OECD StatExtracts portal](https://stats.oecd.org): [https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011](https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011)
 
 ```{r, echo = FALSE}
-myUrl <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011"
+myUrl <- "https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011"
 dataset <- readSDMX(myUrl)
 stats <- as.data.frame(dataset) 
 ```
@@ -269,7 +269,7 @@ stats <- as.data.frame(dataset)
 You can try it out with other datasources, such as:
 * [**EUROSTAT portal**](http://ec.europa.eu/eurostat/web/sdmx-web-services/rest-sdmx-2.1): [http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/nama_10_gdp/.CLV10_MEUR.B1GQ.BE/?startperiod=2005&endPeriod=2011)
 * [**European Central Bank (ECB)**](https://sdw-wsrest.ecb.europa.eu): [https://sdw-wsrest.ecb.europa.eu/service/data/DD/M.SE.BSI_STF.RO.4F_N](https://sdw-wsrest.ecb.europa.eu/service/data/DD/M.SE.BSI_STF.RO.4F_N)
-* [**UN International Labour Organization (ILO)**](https://www.ilo.org/ilostat/faces/ilostat-home/home): [http://www.ilo.org/ilostat/sdmx/ws/rest/data/ILO,DF_CP_CUB_EAP_DWAP_NOC_RT/ALL?format=generic_2_0&detail=dataonly](http://www.ilo.org/ilostat/sdmx/ws/rest/data/ILO,DF_CP_CUB_EAP_DWAP_NOC_RT/ALL?format=generic_2_0&detail=dataonly)
+* [**UN International Labour Organization (ILO)**](https://ilostat.ilo.org/): [http://www.ilo.org/ilostat/sdmx/ws/rest/data/ILO,DF_CP_CUB_EAP_DWAP_NOC_RT/ALL?format=generic_2_0&detail=dataonly](http://www.ilo.org/ilostat/sdmx/ws/rest/data/ILO,DF_CP_CUB_EAP_DWAP_NOC_RT/ALL?format=generic_2_0&detail=dataonly)
 
 The online rsdmx documentation also provides a list of data providers, either from international or national institutions.
 

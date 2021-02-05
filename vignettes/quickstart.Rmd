@@ -23,7 +23,7 @@ For this, the SDMX standard provides various types of _documents_, also known as
 * **data** SDMX-ML _documents_. The two main _document_ types are the ``Generic`` and ``Compact`` ones. The latter aims to provide a more compact XML document. They are other data _document_ types derivating from the ones previously mentioned.
 * **metadata** SDMX-ML _documents_. The main metadata _document_ is known a ``Data Structure Definition`` (DSD). As its name indicates, it _describes_ the structure and organization of a dataset, and will generally include all the master/reference data used to characterize a dataset. The 2 main types of metadata are (1) the ``concepts``, which correspond to the _dimensions_ and/or _attributes_ of the dataset, and (2) the ``codelists`` which inventory the possible values to be used in the representation of _dimensions_ and _attributes_.
 
-For more information about the SDMX standards, you can visit the [SDMX website](http://sdmx.org/), or this [introduction by EUROSTAT](https://ec.europa.eu/eurostat/web/sdmx-infospace/trainings-tutorials/tutorials).
+For more information about the SDMX standards, you can visit the [SDMX website](https://sdmx.org/), or this [introduction by EUROSTAT](https://ec.europa.eu/eurostat/web/sdmx-infospace/trainings-tutorials/tutorials).
 
 ## How to deal with SDMX in R
 
@@ -61,15 +61,15 @@ This section will introduce you on how to read SDMX *dataset* documents, either 
 
 #### using the _raw_ approach (specifying the complete request URL)
 
-The following code snipet shows you how to read a dataset from a remote data source, taking as example the [OECD StatExtracts portal](http://stats.oecd.org): [http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011](http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011)
+The following code snipet shows you how to read a dataset from a remote data source, taking as example the [OECD StatExtracts portal](https://stats.oecd.org): [https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011](https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011)
 
 ```{r,eval = FALSE,results="hide"}
-myUrl <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011"
+myUrl <- "https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011"
 dataset <- readSDMX(myUrl)
 stats <- as.data.frame(dataset)
 ```
 
-You can try it out with other datasources, such as from the [**EUROSTAT portal**](http://ec.europa.eu/eurostat/web/sdmx-web-services/rest-sdmx-2.1): [http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/nama_10_gdp/.CLV10_MEUR.B1GQ.BE/?startperiod=2005&endPeriod=2011](http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/nama_10_gdp/.CLV10_MEUR.B1GQ.BE/?startperiod=2005&endPeriod=2011)
+You can try it out with other datasources, such as from the [**EUROSTAT portal**](https://ec.europa.eu/eurostat/web/sdmx-web-services/rest-sdmx-2.1): [https://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/nama_10_gdp/.CLV10_MEUR.B1GQ.BE/?startperiod=2005&endPeriod=2011](https://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/nama_10_gdp/.CLV10_MEUR.B1GQ.BE/?startperiod=2005&endPeriod=2011)
 
 The online rsdmx documentation also provides a list of data providers, either from international or national institutions, and [more request examples](https://github.com/opensdmx/rsdmx/wiki#read-remote-datasets).
 
@@ -134,12 +134,12 @@ sdmx.data <- setDSD(sdmx.data, sdmx.dsd)
 
 ### Read _local_ datasets
 
-This example shows you how to use ``rsdmx`` with _local_ SDMX files, previously downloaded from [EUROSTAT](http://ec.europa.eu/eurostat).
+This example shows you how to use ``rsdmx`` with _local_ SDMX files, previously downloaded from [EUROSTAT](https://ec.europa.eu/eurostat).
 
 ```{r, eval = FALSE}
 #bulk download from Eurostat
 tf <- tempfile(tmpdir = tdir <- tempdir()) #temp file and folder
-download.file("http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2Frd_e_gerdsc.sdmx.zip", tf)
+download.file("https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2Frd_e_gerdsc.sdmx.zip", tf)
 sdmx_files <- unzip(tf, exdir = tdir)
 
 #read local SDMX (set isURL = FALSE)
@@ -165,10 +165,10 @@ cldf <- as.data.frame(clobj)
 
 ### Data Structure Definition (DSD)
 
-This example illustrates how to read a complete DSD using a [OECD StatExtracts portal](http://stats.oecd.org) data source.
+This example illustrates how to read a complete DSD using a [OECD StatExtracts portal](https://stats.oecd.org) data source.
 
 ```{r,eval = FALSE,results="hide"}
-dsdUrl <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/TABLE1"
+dsdUrl <- "https://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/TABLE1"
 dsd <- readSDMX(dsdUrl)
 ```
 
