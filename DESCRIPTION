@@ -1,6 +1,6 @@
 Package: rsdmx
 Version: 0.6
-Date: 2021-02-04
+Date: 2021-02-05
 Title: Tools for Reading SDMX Data and Metadata
 Authors@R: c(
   person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com", comment = c(ORCID = "0000-0002-5870-5762")),
@@ -9,7 +9,7 @@ Authors@R: c(
 Maintainer: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 Depends: R (>= 2.15)
 Imports: R6, methods, XML (>= 3.98-1.3), httr, plyr, utils
-Suggests: testthat, knitr, roxygen2
+Suggests: testthat, knitr, roxygen2, markdown
 Description: Set of classes and methods to read data and metadata documents
   exchanged through the Statistical Data and Metadata Exchange (SDMX) framework,
   currently focusing on the SDMX XML standard format (SDMX-ML).

@@ -3,8 +3,9 @@
 #' @aliases SDMXRequestBuilder,SDMXRequestBuilder-method
 #' 
 #' @usage
-#' SDMXRequestBuilder(regUrl, repoUrl, accessKey,
-#'                    formatter, handler, compliant, unsupportedResources)
+#' SDMXRequestBuilder(regUrl, repoUrl, accessKey = NULL,
+#'   formatter, handler, compliant, unsupportedResources = list(), 
+#'   headers = list())
 #' 
 #' @param regUrl an object of class "character" giving the base Url of the SDMX service registry
 #' @param repoUrl an object of class "character" giving the base Url of the SDMX service repository
@@ -17,7 +18,7 @@
 #' @param compliant an object of class "logical" indicating if the request builder is somehow compliant with a service specification
 #' @param unsupportedResources an object of class "list" giving one or more resources not
 #'        supported by the Request builder for a given provider
-#' @param headers an object of class "list" that contains headers for the web request
+#' @param headers an object of class "list" that contains any additional headers for the request.
 #' 
 #' @details
 #' The \code{handler} function will list the resource methods. Each method will accept a

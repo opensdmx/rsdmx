@@ -8,8 +8,9 @@
 \alias{SDMXDotStatRequestBuilder,SDMXDotStatRequestBuilder-method}
 \title{Class "SDMXDotStatRequestBuilder"}
 \usage{
-SDMXDotStatRequestBuilder(regUrl, repoUrl, accessKey, unsupportedResources,
-                           skipProviderId, forceProviderId)
+SDMXDotStatRequestBuilder(regUrl, repoUrl, accessKey = NULL,
+   unsupportedResources = list(), skipProviderId = FALSE, forceProviderId = FALSE,
+   headers = list())
 }
 \arguments{
 \item{regUrl}{an object of class "character" giving the base Url of the SDMX service registry}
@@ -31,6 +32,8 @@ agencyId has to be added at the end of the request. Default value is
 \code{FALSE}. For some providers, the \code{all} value for the provider
 agency id is not allowed, in this case, the \code{agencyId} of the data provider 
 has to be forced in the web-request}
+
+\item{headers}{an object of class "list" that contains any additional headers for the request.}
 }
 \description{
 A experimental class to handle a SDMX DotStat (*.Stat) service 

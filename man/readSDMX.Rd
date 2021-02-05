@@ -4,10 +4,12 @@
 \alias{readSDMX}
 \title{readSDMX}
 \usage{
-readSDMX(file, isURL, isRData,
-                provider, providerId, providerKey, 
-                agencyId, resource, resourceId, version,
-                flowRef, key, key.mode, start, end, dsd, validate, verbose)
+readSDMX(file = NULL, isURL = TRUE, isRData = FALSE,
+  provider = NULL, providerId = NULL, providerKey = NULL,
+  agencyId = NULL, resource = NULL, resourceId = NULL, version = NULL,
+  flowRef = NULL, key = NULL, key.mode = "R", start = NULL, end = NULL, dsd = FALSE,
+  headers = list(), validate = FALSE,
+  verbose = !is.null(logger), logger = "INFO", ...)
 }
 \arguments{
 \item{file}{path to SDMX-ML document that needs to be parsed}

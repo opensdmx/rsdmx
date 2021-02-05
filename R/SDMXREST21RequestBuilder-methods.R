@@ -3,8 +3,9 @@
 #' @aliases SDMXREST21RequestBuilder,SDMXREST21RequestBuilder-method
 #' 
 #' @usage
-#'  SDMXREST21RequestBuilder(regUrl, repoUrl, accessKey, compliant, unsupportedResources,
-#'                         skipProviderId, forceProviderId)
+#'  SDMXREST21RequestBuilder(regUrl, repoUrl, accessKey = NULL, compliant,
+#'    unsupportedResources = list(), skipProviderId = FALSE, forceProviderId = FALSE,
+#'    headers = list())
 #'
 #' @param regUrl an object of class "character" giving the base Url of the SDMX 
 #'        service registry
@@ -23,7 +24,8 @@
 #'        agencyId has to be added at the end of the request. Default value is 
 #'        \code{FALSE}. For some providers, the \code{all} value for the provider
 #'        agency id is not allowed, in this case, the \code{agencyId} of the data 
-#'        provider has to be forced in the web-request 
+#'        provider has to be forced in the web-request.
+#' @param headers an object of class "list" that contains any additional headers for the request. 
 #'                
 #' @examples
 #'   #how to create a SDMXREST21RequestBuilder

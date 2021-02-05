@@ -3,8 +3,9 @@
 #' @aliases SDMXDotStatRequestBuilder,SDMXDotStatRequestBuilder-method
 #' 
 #' @usage
-#'  SDMXDotStatRequestBuilder(regUrl, repoUrl, accessKey, unsupportedResources,
-#'                            skipProviderId, forceProviderId)
+#'  SDMXDotStatRequestBuilder(regUrl, repoUrl, accessKey = NULL,
+#'    unsupportedResources = list(), skipProviderId = FALSE, forceProviderId = FALSE,
+#'    headers = list())
 #'
 #' @param regUrl an object of class "character" giving the base Url of the SDMX service registry
 #' @param repoUrl an object of class "character" giving the base Url of the SDMX service repository
@@ -20,6 +21,7 @@
 #'        \code{FALSE}. For some providers, the \code{all} value for the provider
 #'        agency id is not allowed, in this case, the \code{agencyId} of the data provider 
 #'        has to be forced in the web-request
+#' @param headers an object of class "list" that contains any additional headers for the request.
 #'
 #'@note Internal class
 #'  

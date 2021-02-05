@@ -8,8 +8,9 @@
 \alias{SDMXRequestBuilder,SDMXRequestBuilder-method}
 \title{Class "SDMXRequestBuilder"}
 \usage{
-SDMXRequestBuilder(regUrl, repoUrl, accessKey,
-                   formatter, handler, compliant, unsupportedResources)
+SDMXRequestBuilder(regUrl, repoUrl, accessKey = NULL,
+  formatter, handler, compliant, unsupportedResources = list(), 
+  headers = list())
 }
 \arguments{
 \item{regUrl}{an object of class "character" giving the base Url of the SDMX service registry}
@@ -30,7 +31,7 @@ to customize eventual params (e.g. specific data provider rules)}
 \item{unsupportedResources}{an object of class "list" giving one or more resources not
 supported by the Request builder for a given provider}
 
-\item{headers}{an object of class "list" that contains headers for the web request}
+\item{headers}{an object of class "list" that contains any additional headers for the request.}
 }
 \description{
 A basic class to handle a SDMX service request builder
