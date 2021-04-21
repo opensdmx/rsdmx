@@ -123,6 +123,16 @@ setSDMXServiceProviders <- function(){ # nocov start
       compliant = TRUE
     )
   )
+   
+  #COUNTDOWN 2030
+  UNICEF <- SDMXServiceProvider(
+    agencyId = "UNICEF", "United Nations International Children's Emergency Fund",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest",
+      repoUrl = "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest",
+      compliant = TRUE
+    )
+  )
   
   #UNSD
   UNSD <- SDMXServiceProvider(
@@ -161,24 +171,6 @@ setSDMXServiceProviders <- function(){ # nocov start
       regUrl = "https://www.ilo.org/sdmx/rest",
       repoUrl = "https://www.ilo.org/sdmx/rest",
       compliant = TRUE, skipProviderId = TRUE)                  
-  )
-  
-  #UIS (UNESCO)
-  UIS <- SDMXServiceProvider(
-    agencyId = "UIS", name = "UNESCO Institute of Statistics (old - http://data.uis.unesco.org)",
-    builder = SDMXDotStatRequestBuilder(
-      regUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx",
-      repoUrl = "http://data.uis.unesco.org/RestSDMX/sdmx.ashx")
-  )
-  
-  #UIS2 (UNESCO)
-  UIS2 <- SDMXServiceProvider(
-    agencyId = "UIS2", name = "UNESCO Institute of Statistics (new - http://api.uis.unesco.org)",
-    builder = SDMXREST21RequestBuilder(
-      regUrl = "http://api.uis.unesco.org/sdmx",
-      repoUrl = "http://api.uis.unesco.org/sdmx",
-      accessKey = "subscription-key",
-      compliant = TRUE, skipProviderId = TRUE)
   )
   
   #WBG_WITS (World Integrated Trade Solution)
@@ -497,7 +489,7 @@ setSDMXServiceProviders <- function(){ # nocov start
   
   listOfProviders <- list(
     #international
-    ECB, ESTAT, IMF, OECD, UNICEF, UNSD, FAO, ILO_Legacy, ILO, UIS, UIS2, WBG_WITS, WB, PDH,
+    ECB, ESTAT, IMF, OECD, UNICEF, CD2030, UNSD, FAO, ILO_Legacy, WBG_WITS, WB, PDH,
     #national
     ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, LSD, NCSI, STAT_EE, UKDS,
     #others
