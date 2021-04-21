@@ -212,6 +212,42 @@ test_that("UNICEF - data",{
 })
 
 
+
+#CD2030
+#----
+
+#-> dataflow
+test_that("CD2030 - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "CD2030", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
+#-> datastructure
+test_that("CD2030 - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "CD2030", resource = "datastructure", resourceId = "CDDEM")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
+test_that("CD2030 - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "CD2030", resource = "data",
+                   flowRef = "CDDEM", key = NULL)
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXStructureSpecificData")
+  }
+})
+
+
 #UNSD (UN-DATA)
 #----
 
