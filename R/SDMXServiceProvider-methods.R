@@ -125,8 +125,8 @@ setSDMXServiceProviders <- function(){ # nocov start
   )
    
   #COUNTDOWN 2030
-  UNICEF <- SDMXServiceProvider(
-    agencyId = "UNICEF", "United Nations International Children's Emergency Fund",
+  CD2030 <- SDMXServiceProvider(
+    agencyId = "CD2030", "United Nations International Children's Emergency Fund",
     builder = SDMXREST21RequestBuilder(
       regUrl = "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest",
       repoUrl = "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest",
