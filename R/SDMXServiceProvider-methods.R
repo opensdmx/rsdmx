@@ -489,7 +489,7 @@ setSDMXServiceProviders <- function(){ # nocov start
   
   listOfProviders <- list(
     #international
-    ECB, ESTAT, IMF, OECD, UNICEF, CD2030, UNSD, FAO, ILO_Legacy, WBG_WITS, WB, PDH,
+    ECB, ESTAT, IMF, OECD, UNICEF, CD2030, UNSD, FAO, ILO_Legacy, ILO, WBG_WITS, WB, PDH,
     #national
     ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, LSD, NCSI, STAT_EE, UKDS,
     #others
