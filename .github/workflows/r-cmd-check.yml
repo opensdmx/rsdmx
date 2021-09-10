@@ -1,0 +1,39 @@
+# Build
+
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: R ${{ matrix.config.r }} | ${{ matrix.config.os }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      matrix:
+        config:
+          - {os: ubuntu-20.04,   r: '4.0.5', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+    steps:
+      - uses: actions/checkout@v2
+      #R Set-up
+      - name: Set up R ${{ matrix.config.r }}
+        uses: r-lib/actions/setup-r@v1
+        with:
+          r-version: ${{ matrix.config.r }}
+      #Install dependencies
+      - name: Install dependencies
+        uses: r-lib/actions/setup-r-dependencies@v1
+        with:
+          extra-packages: covr
+      #Test code coverage
+      - name: Test code coverage
+        run: covr::codecov()
+        shell: Rscript {0}
+      #Check R Package
+      - name: Check R package
+        uses: r-lib/actions/check-r-package@check-r-package
+        with:
+          artifact-name: rsdmx_r-${{ matrix.config.r }}_${{ matrix.config.os }}-results
