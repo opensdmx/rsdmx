@@ -1,6 +1,6 @@
 **rsdmx**
 =======
-[![Build Status](https://github.com/eblondel/rsdmx/actions/workflows/r-cmd-check.yml/badge.svg?branch=master)](https://github.com/eblondel/rsdmx/actions/workflows/r-cmd-check.yml)
+[![Build Status](https://github.com/opensdmx/rsdmx/actions/workflows/r-cmd-check.yml/badge.svg?branch=master)](https://github.com/opensdmx/rsdmx/actions/workflows/r-cmd-check.yml)
 [![codecov.io](https://codecov.io/github/opensdmx/rsdmx/coverage.svg?branch=master)](https://codecov.io/github/opensdmx/rsdmx?branch=master)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/rsdmx)](https://cran.r-project.org/package=rsdmx)
 [![cran checks](https://cranchecks.info/badges/worst/rsdmx)](https://cran.r-project.org/web/checks/check_results_rsdmx.html)
