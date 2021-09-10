@@ -28,12 +28,12 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v1
         with:
           extra-packages: covr
-      #Test code coverage
-      - name: Test code coverage
-        run: covr::codecov()
-        shell: Rscript {0}
       #Check R Package
       - name: Check R package
         uses: r-lib/actions/check-r-package@check-r-package
         with:
           artifact-name: rsdmx_r-${{ matrix.config.r }}_${{ matrix.config.os }}-results
+      #Test code coverage
+      - name: Test code coverage
+        run: covr::codecov()
+        shell: Rscript {0}
