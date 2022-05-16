@@ -39,6 +39,42 @@ test_that("Main helpers arguments",{
 
 #international data providers
 
+#BIS
+#---
+
+#-> dataflow
+test_that("BIS - dataflow",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "BIS", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+    expect_is(as.data.frame(sdmx), "data.frame")
+  }
+})
+
+#-> datastructure
+test_that("BIS - datastructure",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "BIS", resource = "datastructure", resourceId = "BIS_XR")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
+test_that("BIS - data",{
+  testthat::skip_on_travis()
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "BIS", resource = "data",
+                   flowRef = "WS_XRU", key.mode = "SDMX",
+                   start = 2020, end = 2020)
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXStructureSpecificData")
+  }
+})
+
 #ECB
 #---
 

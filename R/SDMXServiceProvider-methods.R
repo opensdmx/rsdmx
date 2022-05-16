@@ -66,6 +66,16 @@ setSDMXServiceProviders <- function(){ # nocov start
   #international data providers
   #----------------------------
 
+  #BIS
+  BIS <- SDMXServiceProvider(
+   agencyId = "BIS", name = "Bank for International Settlements",
+   builder = SDMXREST21RequestBuilder(
+     regUrl = "https://stats.bis.org/api/v1",
+     repoUrl = "https://stats.bis.org/api/v1",
+     compliant = TRUE
+   )
+  )
+  
   #ECB
   ECB <- SDMXServiceProvider(
     agencyId = "ECB", name = "European Central Bank",
@@ -489,7 +499,7 @@ setSDMXServiceProviders <- function(){ # nocov start
   
   listOfProviders <- list(
     #international
-    ECB, ESTAT, IMF, OECD, UNICEF, CD2030, UNSD, FAO, ILO_Legacy, ILO, WBG_WITS, WB, PDH,
+    BIS, ECB, ESTAT, IMF, OECD, UNICEF, CD2030, UNSD, FAO, ILO_Legacy, ILO, WBG_WITS, WB, PDH,
     #national
     ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, LSD, NCSI, STAT_EE, UKDS,
     #others
