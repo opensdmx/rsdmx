@@ -120,8 +120,8 @@ setSDMXServiceProviders <- function(){ # nocov start
   OECD <- SDMXServiceProvider(
     agencyId = "OECD", name = "Organisation for Economic Cooperation and Development ",
     builder = SDMXDotStatRequestBuilder(
-      regUrl = "http://stats.oecd.org/restsdmx/sdmx.ashx",
-      repoUrl = "http://stats.oecd.org/restsdmx/sdmx.ashx")
+      regUrl = "https://stats.oecd.org/restsdmx/sdmx.ashx",
+      repoUrl = "https://stats.oecd.org/restsdmx/sdmx.ashx")
   )
   
   #UNICEF
