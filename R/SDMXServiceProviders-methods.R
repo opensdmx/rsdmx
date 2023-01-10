@@ -31,4 +31,4 @@ as.data.frame.SDMXServiceProviders <- function(x, ...){
 }
 
 setAs("SDMXGenericData", "data.frame",
-      function(from) {as.data.frame.SDMXServiceProviders(from)});
+      function(from) {as.data.frame.SDMXServiceProviders(from)})

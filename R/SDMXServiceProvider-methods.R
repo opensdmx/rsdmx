@@ -387,6 +387,69 @@ setSDMXServiceProviders <- function(){ # nocov start
   #  )
   #)
   
+  #Bundesbank
+  BBK <- SDMXServiceProvider(
+    agencyId = "BBK", name = "Bundesbank",
+    scale = "national", country = "DEU",
+    builder = SDMXRequestBuilder(
+      regUrl = "https://api.statistiken.bundesbank.de/rest/metadata",
+      repoUrl = "https://api.statistiken.bundesbank.de/rest",
+      formatter = list(
+        dataflow = function(obj){return(obj)},
+        datastructure = function(obj){return(obj)},
+        data = function(obj){return(obj)}
+      ),
+      #resource handler
+      handler = list(
+        
+        #dataflow resource (dataflow/agencyID/resourceID/version)
+        #-----------------------------------------------------------------------
+        dataflow = function(obj){
+          req <- sprintf("%s/dataflow/%s",obj@regUrl, obj@providerId)
+          if(!is.null(obj@resourceId)) req <- paste(req, obj@resourceId, sep = "/")
+          return(req)
+        },
+        
+        #datastructure resource (datastructure/agencyID/resourceID/version)
+        #--------------------------------------------------------------------------------
+        datastructure = function(obj){
+          req <- sprintf("%s/datastructure/%s",obj@regUrl, obj@providerId)
+          if(!is.null(obj@resourceId)) req <- paste(req, obj@resourceId, sep = "/")
+          req <- paste0(req, "?references=children") #TODO to see later to have arg for this
+          return(req)
+        },
+        
+        #data resource (data/flowRef/key/providerRef)
+        #----------------------------------------------------------
+        data = function(obj){
+          if(is.null(obj@flowRef)) stop("Missing flowRef value")
+          req <- sprintf("%s/data/%s/%s",obj@repoUrl, obj@flowRef, obj@key)
+          
+          #DataQuery
+          #-> temporal extent (if any)
+          addParams = FALSE
+          if(!is.null(obj@start)){
+            req <- paste0(req, "?")
+            addParams = TRUE
+            req <- paste0(req, "startPeriod=", obj@start)
+          }
+          if(!is.null(obj@end)){
+            if(!addParams){
+              req <- paste0(req, "?")
+            }else{
+              req <- paste0(req, "&")
+            }
+            req <- paste0(req, "endPeriod=", obj@end) 
+          }
+          
+          return(req)
+        }
+      ),
+      compliant = FALSE
+    )
+  )
+  
+  
   #other data providers
   #--------------------
   
@@ -440,7 +503,7 @@ setSDMXServiceProviders <- function(){ # nocov start
     #international
     BIS, ECB, ESTAT, IMF, OECD, UNICEF, CD2030, UNSD, ILO_Legacy, ILO, WBG_WITS, WB, PDH,
     #national
-    ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, LSD, NCSI, STAT_EE,
+    ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, LSD, NCSI, STAT_EE, BBK,
     #others
     KNOEMA
   )

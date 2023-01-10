@@ -729,6 +729,34 @@ test_that("STAT_EE - data",{
 })
 
 
+#BBK (Bundesbank)
+#-------------
+#-> dataflow
+test_that("BBK - dataflow",{
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "BBK", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
+test_that("BBK - datastructure",{
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "BBK", resource = "datastructure", resourceId = "BBK_SEDI")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+test_that("BBK - data",{
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "BBK", resource = "data", flowRef = "BBSIS", key = "D.I.ZST.B0.EUR.S1311.B.A604._Z.R.A.A._Z._Z.A")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXGenericData")
+  }
+})
+
+
 #other data providers
 
 #KNOEMA
