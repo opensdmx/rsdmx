@@ -154,16 +154,6 @@ setSDMXServiceProviders <- function(){ # nocov start
     )
   )  
   
-  #UN-FAO
-  FAO <- SDMXServiceProvider(
-    agencyId = "FAO", name = "Food and Agriculture Organization of the United Nations",
-    builder = SDMXREST21RequestBuilder(
-      regUrl = "http://data.fao.org/sdmx/registry",
-      repoUrl = "http://data.fao.org/sdmx/repository",
-      compliant = FALSE,
-      unsupportedResources = list("dataflow"))
-  )
-  
   #UN-ILO (Legacy)
   ILO_Legacy <- SDMXServiceProvider(
     agencyId = "ILO_Legacy", name = "International Labour Organization of the United Nations",
@@ -447,7 +437,7 @@ setSDMXServiceProviders <- function(){ # nocov start
   
   listOfProviders <- list(
     #international
-    BIS, ECB, ESTAT, IMF, OECD, UNICEF, CD2030, UNSD, FAO, ILO_Legacy, ILO, WBG_WITS, WB, PDH,
+    BIS, ECB, ESTAT, IMF, OECD, UNICEF, CD2030, UNSD, ILO_Legacy, ILO, WBG_WITS, WB, PDH,
     #national
     ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, LSD, NCSI, STAT_EE, UKDS,
     #others
