@@ -209,10 +209,10 @@ setSDMXServiceProviders <- function(){ # nocov start
   ABS <- SDMXServiceProvider(
     agencyId = "ABS", name = "Australian Bureau of Statistics",
     scale = "national", country = "AUS",
-    builder = SDMXDotStatRequestBuilder(
-      regUrl = "http://stat.data.abs.gov.au/restsdmx/sdmx.ashx",
-      repoUrl = "http://stat.data.abs.gov.au/restsdmx/sdmx.ashx", 
-      forceProviderId = TRUE, unsupportedResources = list("dataflow"))
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "https://api.data.abs.gov.au",
+      repoUrl = "https://api.data.abs.gov.au", 
+      compliant = TRUE)
   )
   
   #NBB {Belgium}
@@ -220,8 +220,8 @@ setSDMXServiceProviders <- function(){ # nocov start
     agencyId = "NBB", name = "National Bank of Belgium",
     scale = "national", country = "BEL",
     builder = SDMXDotStatRequestBuilder(
-      regUrl = "http://stat.nbb.be/RestSDMX/sdmx.ashx",
-      repoUrl = "http://stat.nbb.be/RestSDMX/sdmx.ashx", 
+      regUrl = "https://stat.nbb.be/RestSDMX/sdmx.ashx",
+      repoUrl = "https://stat.nbb.be/RestSDMX/sdmx.ashx", 
       unsupportedResources = list("dataflow"))
   )
   
@@ -376,15 +376,16 @@ setSDMXServiceProviders <- function(){ # nocov start
     )
   )
   
-  UKDS <- SDMXServiceProvider(
-    agencyId = "UKDS", name = "United Kingdom Data Service",
-    scale = "national", country = "UK",
-    builder = SDMXDotStatRequestBuilder(
-      regUrl = "http://stats.ukdataservice.ac.uk/restsdmx/sdmx.ashx",
-      repoUrl = "http://stats.ukdataservice.ac.uk/restsdmx/sdmx.ashx",
-      unsupportedResources = list("dataflow")
-    )
-  )
+  #UKDS removed - no support for SDMX-JSON in rsdmx at now
+  #UKDS <- SDMXServiceProvider(
+  #  agencyId = "UKDS", name = "United Kingdom Data Service",
+  #  scale = "national", country = "UK",
+  #  builder = SDMXDotStatRequestBuilder(
+  #    regUrl = "http://stats.ukdataservice.ac.uk/restsdmx/sdmx.ashx",
+  #    repoUrl = "http://stats.ukdataservice.ac.uk/restsdmx/sdmx.ashx",
+  #    unsupportedResources = list("dataflow")
+  #  )
+  #)
   
   #other data providers
   #--------------------
@@ -439,7 +440,7 @@ setSDMXServiceProviders <- function(){ # nocov start
     #international
     BIS, ECB, ESTAT, IMF, OECD, UNICEF, CD2030, UNSD, ILO_Legacy, ILO, WBG_WITS, WB, PDH,
     #national
-    ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, LSD, NCSI, STAT_EE, UKDS,
+    ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, LSD, NCSI, STAT_EE,
     #others
     KNOEMA
   )
