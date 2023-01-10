@@ -278,7 +278,7 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
       out <- requestURL(file, debug = debug)
       out_headers <- httr::headers(out)
     }
-    if(startsWith(out_headers[["content-type"]], "text/html")){
+    if(!is.null(out_headers[["content-type"]])) if(startsWith(out_headers[["content-type"]], "text/html")){
       out <- requestURL(file, contentType = FALSE, debug = debug)
       out_headers <- httr::headers(out)
     }
