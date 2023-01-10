@@ -1,7 +1,6 @@
 **rsdmx**
 =======
 [![Build Status](https://github.com/opensdmx/rsdmx/actions/workflows/r-cmd-check.yml/badge.svg?branch=master)](https://github.com/opensdmx/rsdmx/actions/workflows/r-cmd-check.yml)
-[![codecov.io](https://codecov.io/github/opensdmx/rsdmx/coverage.svg?branch=master)](https://codecov.io/github/opensdmx/rsdmx?branch=master)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/rsdmx)](https://cran.r-project.org/package=rsdmx)
 [![cran checks](https://badges.cranchecks.info/worst/rsdmx.svg)](https://cran.r-project.org/web/checks/check_results_rsdmx.html)
 [![Github_Status_Badge](https://img.shields.io/badge/Github-0.6--1-blue.svg)](https://github.com/opensdmx/rsdmx)
@@ -60,12 +59,8 @@ Copyright (C) 2014  Emmanuel Blondel
 
 Please note that following a new submission to CRAN, or eventually a modification of CRAN policies, the package might be temporarily archived, and removed from CRAN. In case you notice that the package is not back in few time, please contact me.
 
-#### on OpenCPU
-``rsdmx`` is available on the OpenCPU public cloud server. The package version corresponds to the ongoing revision (master branch in Github). See [https://public.opencpu.org/ocpu/github/opensdmx/rsdmx/](https://public.opencpu.org/ocpu/github/opensdmx/rsdmx/)
-
-### Mailing list
-
-A user google group is available at: [https://groups.google.com/forum/#!forum/rsdmx](https://groups.google.com/forum/#!forum/rsdmx)
+#### on R-Universe
+``rsdmx`` is available on the R-Universe public cloud server. The package version corresponds to the ongoing revision (master branch in Github). See [https://opensdmx.r-universe.dev/ui#package:rsdmx](https://opensdmx.r-universe.dev/ui#package:rsdmx)
 
 ## Quickstart
 
@@ -267,9 +262,8 @@ stats <- as.data.frame(dataset)
 ```
 
 You can try it out with other datasources, such as:
-* [**EUROSTAT portal**](http://ec.europa.eu/eurostat/web/sdmx-web-services/rest-sdmx-2.1): [http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/nama_10_gdp/.CLV10_MEUR.B1GQ.BE/?startperiod=2005&endPeriod=2011)
+* [**EUROSTAT portal**](https://ec.europa.eu/eurostat/web/main/home): [https://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/nama_10_gdp/.CLV10_MEUR.B1GQ.BE/?startperiod=2005&endPeriod=2011)
 * [**European Central Bank (ECB)**](https://sdw-wsrest.ecb.europa.eu): [https://sdw-wsrest.ecb.europa.eu/service/data/DD/M.SE.BSI_STF.RO.4F_N](https://sdw-wsrest.ecb.europa.eu/service/data/DD/M.SE.BSI_STF.RO.4F_N)
-* [**UN International Labour Organization (ILO)**](https://ilostat.ilo.org/): [http://www.ilo.org/ilostat/sdmx/ws/rest/data/ILO,DF_CP_CUB_EAP_DWAP_NOC_RT/ALL?format=generic_2_0&detail=dataonly](http://www.ilo.org/ilostat/sdmx/ws/rest/data/ILO,DF_CP_CUB_EAP_DWAP_NOC_RT/ALL?format=generic_2_0&detail=dataonly)
 
 The online rsdmx documentation also provides a list of data providers, either from international or national institutions.
 
@@ -322,12 +316,12 @@ sdmx.data <- setDSD(sdmx.data, sdmx.dsd)
 
 #### Read _local_ datasets
 
-This example shows you how to use ``rsdmx`` with _local_ SDMX files, previously downloaded from [EUROSTAT](http://ec.europa.eu/eurostat).
+This example shows you how to use ``rsdmx`` with _local_ SDMX files, previously downloaded from [EUROSTAT](https://ec.europa.eu/eurostat).
 
 ```{r, echo = FALSE}
 #bulk download from Eurostat
 tf <- tempfile(tmpdir = tdir <- tempdir()) #temp file and folder
-download.file("http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2Frd_e_gerdsc.sdmx.zip", tf)
+download.file("https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2Frd_e_gerdsc.sdmx.zip", tf)
 sdmx_files <- unzip(tf, exdir = tdir)
 
 sdmx <- readSDMX(sdmx_files[2], isURL = FALSE)
@@ -340,35 +334,16 @@ By default, ``readSDMX`` considers the data source is remote. To read a local fi
 
 ### Read metadata documents
 
-This section will introduce you on how to read SDMX **metadata** documents, including ``concepts``, ``codelists`` and complete ``data structure definitions`` (DSD)
+This section will introduce you on how to read SDMX **metadata** complete ``data structure definitions`` (DSD)
 
-#### Concepts
-
-Read concept schemes from [FAO data portal](http://data.fao.org/sdmx/index.html)
-
-```{r, echo = FALSE}
-csUrl <- "http://data.fao.org/sdmx/registry/conceptscheme/FAO/ALL/LATEST/?detail=full&references=none&version=2.1"
-csobj <- readSDMX(csUrl)
-csdf <- as.data.frame(csobj)
-head(csdf)
 ```
 
-#### Codelists
+#### Data Structures
 
-Read codelists from [FAO data portal](http://data.fao.org/sdmx/index.html)
-```{r, echo = FALSE}
-clUrl <- "http://data.fao.org/sdmx/registry/codelist/FAO/CL_FAO_MAJOR_AREA/0.1"
-clobj <- readSDMX(clUrl)
-cldf <- as.data.frame(clobj)
-head(cldf)
-```
-
-#### Data Structures (Key Families)
-
-This example illustrates how to read the complete list of data structures (or key families) from the [OECD StatExtracts portal](http://stats.oecd.org)
+This example illustrates how to read the complete list of data structures (or key families) from the [OECD StatExtracts portal](https://stats.oecd.org)
 
 ```{r, echo = FALSE}
-dsUrl <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/ALL"
+dsUrl <- "https://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/ALL"
 ds <- readSDMX(dsUrl)
 dsdf <- as.data.frame(ds)
 head(dsdf)
@@ -376,10 +351,10 @@ head(dsdf)
 
 #### Data Structure Definition (DSD)
 
-This example illustrates how to read a complete DSD using a [OECD StatExtracts portal](http://stats.oecd.org) data source.
+This example illustrates how to read a complete DSD using a [OECD StatExtracts portal](https://stats.oecd.org) data source.
 
 ```{r, echo = FALSE}
-dsdUrl <- "http://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/TABLE1"
+dsdUrl <- "https://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/TABLE1"
 dsd <- readSDMX(dsdUrl)
 ```
 

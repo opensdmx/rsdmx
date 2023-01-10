@@ -63,12 +63,12 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
     
     if(length(seriesXML) == 0){
       seriesXML <- try(getNodeSet(xmlObj, "//ns:Series", namespaces = ns), silent = TRUE)
-      if(class(seriesXML) == "try-error") seriesXML <- list()
+      if(is(seriesXML,"try-error")) seriesXML <- list()
     }
   }else{
     if(length(ns) > 0){
       seriesXML <- try(getNodeSet(xmlObj, "//ns:Series", namespaces = ns), silent = TRUE)
-      if(class(seriesXML) == "try-error") seriesXML <- list()
+      if(is(seriesXML,"try-error")) seriesXML <- list()
     }else{
       if(nrow(nsDefs.df) > 0){
         serieNs <- nsDefs.df[1,]
@@ -102,7 +102,7 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
     
     #obs children (in case we have)
     obsValues <- try(xmlToDataFrame(obsValueXML, stringsAsFactors = FALSE), silent=TRUE)
-    if(class(obsValues) == "try-error"){
+    if(is(obsValues,"try-error")){
       obsValues <- NULL
     }else{
       obsKeyNames <- names(lapply(obsValueXML, xmlChildren)[["Key"]])
@@ -115,7 +115,7 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
     keydf <- as.data.frame(t(as.data.frame(xmlAttrs(x), stringAsFactors = FALSE)), stringAsFactors = FALSE)
     if(nrow(obsAttrs) > 0){
       keydf <- keydf[rep(row.names(keydf), nrow(obsAttrs)),]
-      if(class(keydf) == "data.frame") row.names(keydf) <- 1:nrow(obsAttrs)
+      if(is(keydf,"data.frame")) row.names(keydf) <- 1:nrow(obsAttrs)
     }
     
     #single Serie as DataFrame

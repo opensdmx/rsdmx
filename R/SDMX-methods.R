@@ -56,7 +56,7 @@ namespaces.SDMX <- function(xmlObj){
 
 encodeSDMXOutput <- function(df){
   for(col in colnames(df)){
-    if(class(df[,col]) == "character") Encoding(df[,col]) <- "UTF-8"
+    if(is(df[,col],"character")) Encoding(df[,col]) <- "UTF-8"
   }
   return(df)
 }

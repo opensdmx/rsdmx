@@ -155,7 +155,7 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
   #check from arguments if request has to be performed
   buildRequest <- FALSE
   if(!missing(provider)){
-    if(class(provider) != "SDMXServiceProvider"){
+    if(!is(provider,"SDMXServiceProvider")){
       stop("Provider should be an instance of 'SDMXServiceProvider'")
     }else{
       providerId = slot(provider, "agencyId")

@@ -215,7 +215,7 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
     seriekeydf <- as.data.frame(lapply(seriekeydf, as.character), stringsAsFactors=FALSE)
     if(!is.null(obsdf)){
       seriekeydf <- seriekeydf[rep(base::row.names(seriekeydf), nrow(obsdf)),]
-      if(class(seriekeydf) != "data.frame"){
+      if(!is(seriekeydf,"data.frame")){
         seriekeydf <- data.frame(seriekeydf) 
       }
       base::row.names(seriekeydf) <- 1:nrow(obsdf)
