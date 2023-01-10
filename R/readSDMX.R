@@ -233,32 +233,54 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
       content <- readChar(file, file.info(file)$size)
     }
   }else{
-    requestURL <- function(file, debug = FALSE){
+    requestURL <- function(file, contentType = TRUE, debug = FALSE){
       rsdmxAgent <- paste("rsdmx/",as.character(packageVersion("rsdmx")),sep="")
       content <- NULL
       if(debug){
-        content <- httr::with_verbose(httr::GET(
-          file, httr::add_headers(
+        if(contentType){
+          content <- httr::with_verbose(httr::GET(
+            file, httr::add_headers(
+              'Accept' = "application/xml",
+              'Content-Type' = "application/xml",
+              'User-Agent' = rsdmxAgent, 
+              unlist(headers)
+            ), ...))
+        }else{
+          content <- httr::with_verbose(httr::GET(
+            file, httr::add_headers(
+              'Accept' = "application/xml",
+              'User-Agent' = rsdmxAgent, 
+              unlist(headers)
+            ), ...))
+        }
+      }else{
+        if(contentType){
+          content <- httr::GET(file, httr::add_headers(
             'Accept' = "application/xml",
             'Content-Type' = "application/xml",
             'User-Agent' = rsdmxAgent, 
             unlist(headers)
-          ), ...))
-      }else{
-        content <- httr::GET(file, httr::add_headers(
-          'Accept' = "application/xml",
-          'Content-Type' = "application/xml",
-          'User-Agent' = rsdmxAgent, 
-          unlist(headers)
-        ), ...)
+          ), ...)
+        }else{
+          content <- httr::GET(file, httr::add_headers(
+            'Accept' = "application/xml",
+            'User-Agent' = rsdmxAgent, 
+            unlist(headers)
+          ), ...)
+        }
       }
       return(content);
     }
-    out <- requestURL(file, debug)
+    out <- requestURL(file, debug = debug)
     out_headers <- httr::headers(out)
     if(httr::status_code(out) %in% c(301,302)){
       file <- out_headers[["Location"]]
-      out <- requestURL(file, debug)
+      out <- requestURL(file, debug = debug)
+      out_headers <- httr::headers(out)
+    }
+    if(startsWith(out_headers[["content-type"]], "text/html")){
+      out <- requestURL(file, contentType = FALSE, debug = debug)
+      out_headers <- httr::headers(out)
     }
     if(httr::status_code(out) >= 400) {
       stop("HTTP request failed with status: ",
