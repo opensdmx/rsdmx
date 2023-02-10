@@ -60,7 +60,7 @@ Copyright (C) 2014  Emmanuel Blondel
 Please note that following a new submission to CRAN, or eventually a modification of CRAN policies, the package might be temporarily archived, and removed from CRAN. In case you notice that the package is not back in few time, please contact me.
 
 #### on R-Universe
-``rsdmx`` is available on the R-Universe public cloud server. The package version corresponds to the ongoing revision (master branch in Github). See [https://opensdmx.r-universe.dev/ui#package:rsdmx](https://opensdmx.r-universe.dev/ui#package:rsdmx)
+``rsdmx`` is available on the R-Universe public cloud server. The package version corresponds to the ongoing revision (master branch in Github). See [https://opensdmx.r-universe.dev/ui/#package:rsdmx](https://opensdmx.r-universe.dev/ui/#package:rsdmx)
 
 ## Quickstart
 

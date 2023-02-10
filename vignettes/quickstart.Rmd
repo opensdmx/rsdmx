@@ -69,7 +69,7 @@ dataset <- readSDMX(myUrl)
 stats <- as.data.frame(dataset)
 ```
 
-You can try it out with other datasources, such as from the [**EUROSTAT portal**](https://ec.europa.eu/eurostat/web/sdmx-web-services/rest-sdmx-2.1): [https://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/nama_10_gdp/.CLV10_MEUR.B1GQ.BE/?startperiod=2005&endPeriod=2011](https://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/nama_10_gdp/.CLV10_MEUR.B1GQ.BE/?startperiod=2005&endPeriod=2011)
+You can try it out with other datasources, such as from the [**EUROSTAT portal**](https://ec.europa.eu/eurostat): [https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/NAMA_10_GDP/A.CP_MEUR.B1GQ.BE+LU](https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/NAMA_10_GDP/A.CP_MEUR.B1GQ.BE+LU)
 
 The online rsdmx documentation also provides a list of data providers, either from international or national institutions, and [more request examples](https://github.com/opensdmx/rsdmx/wiki#read-remote-datasets).
 
