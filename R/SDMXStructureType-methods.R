@@ -43,7 +43,7 @@ type.SDMXStructureType <- function(xmlObj, namespaces, resource){
       }else{
         #others
         structuresXML <- getNodeSet(xmlObj, "//ns:Structures", namespaces = messageNs)
-        strType <- paste(xmlName(xmlChildren(structuresXML[[1]])[[1]]), "Type", sep="") 
+        if(length(structuresXML)>0) strType <- paste(xmlName(xmlChildren(structuresXML[[1]])[[1]]), "Type", sep="") 
       }
     }
   }else{
