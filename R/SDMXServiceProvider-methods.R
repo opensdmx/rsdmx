@@ -89,8 +89,8 @@ setSDMXServiceProviders <- function(){ # nocov start
   ESTAT <- SDMXServiceProvider( 
     agencyId = "ESTAT", name = "Eurostat (Statistical office of the European Union)",
     builder = SDMXREST21RequestBuilder(
-      regUrl = "http://ec.europa.eu/eurostat/SDMX/diss-web/rest",
-      repoUrl = "http://ec.europa.eu/eurostat/SDMX/diss-web/rest",
+      regUrl = "https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1",
+      repoUrl = "https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1",
       compliant = TRUE)
   )
   ESTAT@builder@handler$dataflow = function(obj){

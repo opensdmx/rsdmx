@@ -118,7 +118,7 @@ test_that("ESTAT - dataflow",{
 #-> datastructure
 test_that("ESTAT - datastructure",{
   testthat::skip_on_cran()
-  sdmx <- readSDMX(providerId = "ESTAT", resource = "datastructure", resourceId = "DSD_tec00118")
+  sdmx <- readSDMX(providerId = "ESTAT", resource = "datastructure", resourceId = "NAMA_10_GDP")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXDataStructureDefinition")
   }
@@ -128,8 +128,7 @@ test_that("ESTAT - datastructure",{
 test_that("ESTAT - data",{
   testthat::skip_on_cran()
   sdmx <- readSDMX(providerId = "ESTAT", resource = "data",
-                   flowRef = "tec00118", key = "all",
-                   start = 2020, end = 2020)
+                   flowRef = "NAMA_10_GDP", key = "A.CP_MEUR.B1GQ.BE+LU")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXGenericData")
   }
