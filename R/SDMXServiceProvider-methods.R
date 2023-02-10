@@ -107,6 +107,50 @@ setSDMXServiceProviders <- function(){ # nocov start
     return(req)
   }
   
+  #ESTAT_COMEXT
+  ESTAT_COMEXT <- SDMXServiceProvider( 
+    agencyId = "ESTAT", name = "Eurostat (Statistical office of the European Union) - COMEXT",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "https://ec.europa.eu/eurostat/api/comext/dissemination/sdmx/2.1",
+      repoUrl = "https://ec.europa.eu/eurostat/api/comext/dissemination/sdmx/2.1",
+      compliant = TRUE)
+  )
+  ESTAT_COMEXT@builder@handler$dataflow = ESTAT@builder@handler$dataflow
+  ESTAT_COMEXT@builder@handler$datastructure = ESTAT@builder@handler$datastructure
+  
+  #ESTAT_GROW
+  ESTAT_GROW <- SDMXServiceProvider( 
+    agencyId = "ESTAT", name = "Eurostat (Statistical office of the European Union) - DG GROW",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "https://webgate.ec.europa.eu/grow/redisstat/api/dissemination/sdmx/2.1",
+      repoUrl = "https://webgate.ec.europa.eu/grow/redisstat/api/dissemination/sdmx/2.1",
+      compliant = TRUE)
+  )
+  ESTAT_GROW@builder@handler$dataflow = ESTAT@builder@handler$dataflow
+  ESTAT_GROW@builder@handler$datastructure = ESTAT@builder@handler$datastructure
+  
+  #ESTAT_COMP
+  ESTAT_COMP <- SDMXServiceProvider( 
+    agencyId = "ESTAT", name = "Eurostat (Statistical office of the European Union) - DG COMP",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "https://webgate.ec.europa.eu/comp/redisstat/api/dissemination/sdmx/2.1",
+      repoUrl = "https://webgate.ec.europa.eu/comp/redisstat/api/dissemination/sdmx/2.1",
+      compliant = TRUE)
+  )
+  ESTAT_COMP@builder@handler$dataflow = ESTAT@builder@handler$dataflow
+  ESTAT_COMP@builder@handler$datastructure = ESTAT@builder@handler$datastructure
+  
+  #ESTAT_EMPL
+  ESTAT_EMPL <- SDMXServiceProvider( 
+    agencyId = "ESTAT", name = "Eurostat (Statistical office of the European Union) - DG EMPL",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "https://webgate.ec.europa.eu/empl/redisstat/api/dissemination/sdmx/2.1",
+      repoUrl = "https://webgate.ec.europa.eu/empl/redisstat/api/dissemination/sdmx/2.1",
+      compliant = TRUE)
+  )
+  ESTAT_EMPL@builder@handler$dataflow = ESTAT@builder@handler$dataflow
+  ESTAT_EMPL@builder@handler$datastructure = ESTAT@builder@handler$datastructure
+  
   #IMF
   IMF <- SDMXServiceProvider(
     agencyId = "IMF", name = "International Monetary Fund",
@@ -501,7 +545,7 @@ setSDMXServiceProviders <- function(){ # nocov start
   
   listOfProviders <- list(
     #international
-    BIS, ECB, ESTAT, IMF, OECD, UNICEF, CD2030, UNSD, ILO_Legacy, ILO, WBG_WITS, WB, PDH,
+    BIS, ECB, ESTAT,ESTAT_COMEXT, ESTAT_COMP, ESTAT_GROW, ESTAT_EMPL, IMF, OECD, UNICEF, CD2030, UNSD, ILO_Legacy, ILO, WBG_WITS, WB, PDH,
     #national
     ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, LSD, NCSI, STAT_EE, BBK,
     #others
