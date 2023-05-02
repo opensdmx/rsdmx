@@ -165,9 +165,9 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
         if(any(obsAttrs.df == "NA")){
           obsAttrs.df[obsAttrs.df == "NA"] <- NA
         }
-
-        if(!is.na(obsAttrs.df) && ifelse(is.na(any(obsAttrs.df == "NULL")),FALSE,
-                                         any(obsAttrs.df == "NULL"))){
+        
+        if(any(is.na(obsAttrs.df))) obsAttrs.df[is.na(obsAttrs.df)] <- "NULL"
+        if(ifelse(is.na(any(obsAttrs.df == "NULL")),FALSE, any(obsAttrs.df == "NULL"))){
           obsAttrs.df[obsAttrs.df == "NULL"] <- NA
         }
   
