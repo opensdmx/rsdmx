@@ -18,7 +18,7 @@ SDMXCompactData <- function(xmlObj, namespaces){
 }
 
 #methods
-as.data.frame.SDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
+getSDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
   xmlObj <- x@xmlObj;
   dataset <- NULL
   
@@ -154,5 +154,5 @@ as.data.frame.SDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
 
 as.data.frame.SDMXCompactData <- function(x, row.names=NULL, optional=FALSE,
                                           labels = FALSE, ...){
-  return(as.data.frame.SDMXAllCompactData(x, "compact", labels));
+  return(getSDMXAllCompactData(x, nsExpr = "compact", labels = labels));
 }
