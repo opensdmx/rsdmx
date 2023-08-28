@@ -12,17 +12,6 @@ through theStatistical Data and Metadata Exchange (SDMX) framework. The package
 currently focuses on the SDMX XML standard format (SDMX-ML).
 - an web-service interface to well-known SDMX data providers
 }
-\details{
-\tabular{ll}{
-   Package: \tab rsdmx\cr
-   Type: \tab Package\cr
-   Version
-   : \tab 0.6\cr
-   Date: \tab 2021-02-05\cr
-   License: \tab GPL(>=2.0)\cr
-   LazyLoad: \tab yes\cr
- }
-}
 \author{
 Emmanuel Blondel \email{emmanuel.blondel1@gmail.com}
 }

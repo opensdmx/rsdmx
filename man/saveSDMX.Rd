@@ -17,12 +17,7 @@ saveSDMX(sdmxObj, file)
 \examples{
             
  \donttest{
-   # Not run by 'R CMD check'
-   # (reliable remote datasource but with possible occasional unavailability)
-   
-   #examples using embedded providers
-   sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "MIG",
-                     key = list("TOT", NULL, NULL), start = 2011, end = 2011)
+   sdmx <- system.file("extdata","Example_Eurostat_2.0.xml", package="rsdmx")
    saveSDMX(sdmx, "sdmx.rda")
  }
 

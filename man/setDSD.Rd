@@ -23,9 +23,9 @@ set the 'dsd' slot of a \code{SDMXData} object
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{SDMXData}: set the 'dsd' slot of a \code{SDMXData} object
-}}
+\item \code{setDSD(SDMXData)}: set the 'dsd' slot of a \code{SDMXData} object
 
+}}
 \seealso{
 \link{SDMXData-class}
 }

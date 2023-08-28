@@ -61,6 +61,4 @@ web request building}
 }
 \author{
 Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}
-
-Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}
 }

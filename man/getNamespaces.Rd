@@ -22,9 +22,9 @@ Access the namespaces of the SDMX-ML object
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{SDMX}: Access the namespaces of the SDMX-ML object
-}}
+\item \code{getNamespaces(SDMX)}: Access the namespaces of the SDMX-ML object
 
+}}
 \seealso{
 \link{SDMX-class}
 }
