@@ -101,8 +101,8 @@ as.data.frame.SDMXConcepts <- function(x, ...,
            obj <- switch(class(obj),
                      "character" = NA,
                      "logical" = NA,
-                     "list" = structure(as.list(rep(NA,2)),
-                                        .Names = names(conceptsList[[1]]@Name))
+                     "list" = structure(as.list(rep(NA,length(concept@Name))),
+                                        .Names = names(concept@Name))
            )
          }
          return(obj)
