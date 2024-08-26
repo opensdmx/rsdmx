@@ -292,13 +292,24 @@ setSDMXServiceProviders <- function(){ # nocov start
     )
   )
   
+  #ISTAT - LEGACY (Italy)
+  ISTAT_LEGACY <- SDMXServiceProvider(
+    agencyId = "ISTAT_LEGACY", name = "Istituto nazionale di statistica (Italia)",
+    scale = "national", country = "ITA",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "http://sdmx.istat.it/SDMXWS/rest",
+      repoUrl = "http://sdmx.istat.it/SDMXWS/rest",
+      compliant = TRUE
+    )
+  )
+  
   #ISTAT (Italy)
   ISTAT <- SDMXServiceProvider(
     agencyId = "ISTAT", name = "Istituto nazionale di statistica (Italia)",
     scale = "national", country = "ITA",
     builder = SDMXREST21RequestBuilder(
-      regUrl = "http://sdmx.istat.it/SDMXWS/rest",
-      repoUrl = "http://sdmx.istat.it/SDMXWS/rest",
+      regUrl = "https://esploradati.istat.it/SDMXWS/rest",
+      repoUrl = "https://esploradati.istat.it/SDMXWS/rest",
       compliant = TRUE
     )
   )
@@ -549,7 +560,7 @@ setSDMXServiceProviders <- function(){ # nocov start
     #international
     BIS, ECB, ESTAT,ESTAT_COMEXT, ESTAT_COMP, ESTAT_GROW, ESTAT_EMPL, IMF, OECD, UNICEF, CD2030, UNSD, ILO_Legacy, ILO, WBG_WITS, WB, PDH,
     #national
-    ABS, NBB, INSEE, INEGI, ISTAT, NOMIS, LSD, NCSI, STAT_EE, BBK,
+    ABS, NBB, INSEE, INEGI, ISTAT_LEGACY, ISTAT, NOMIS, LSD, NCSI, STAT_EE, BBK,
     #others
     KNOEMA
   )
