@@ -159,6 +159,14 @@ setSDMXServiceProviders <- function(){ # nocov start
       repoUrl = "https://sdmxcentral.imf.org/ws/public/sdmxapi/rest",
       compliant = TRUE)
   )
+  #IMF_DATA
+  IMF_DATA <- SDMXServiceProvider(
+    agencyId = "IMF_DATA", name = "International Monetary Fund - Data Portal",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "https://api.imf.org/external/sdmx/2.1",
+      repoUrl = "https://api.imf.org/external/sdmx/2.1",
+      compliant = TRUE)
+  )
     
   #OECD
   OECD <- SDMXServiceProvider(
@@ -558,7 +566,7 @@ setSDMXServiceProviders <- function(){ # nocov start
   
   listOfProviders <- list(
     #international
-    BIS, ECB, ESTAT,ESTAT_COMEXT, ESTAT_COMP, ESTAT_GROW, ESTAT_EMPL, IMF, OECD, UNICEF, CD2030, UNSD, ILO_Legacy, ILO, WBG_WITS, WB, PDH,
+    BIS, ECB, ESTAT,ESTAT_COMEXT, ESTAT_COMP, ESTAT_GROW, ESTAT_EMPL, IMF, IMF_DATA, OECD, UNICEF, CD2030, UNSD, ILO_Legacy, ILO, WBG_WITS, WB, PDH,
     #national
     ABS, NBB, INSEE, INEGI, ISTAT_LEGACY, ISTAT, NOMIS, LSD, NCSI, STAT_EE, BBK,
     #others
