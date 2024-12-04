@@ -159,6 +159,14 @@ setSDMXServiceProviders <- function(){ # nocov start
       repoUrl = "https://sdmxcentral.imf.org/ws/public/sdmxapi/rest",
       compliant = TRUE)
   )
+  #IMF_DATA
+  IMF_DATA <- SDMXServiceProvider(
+    agencyId = "IMF_DATA", name = "International Monetary Fund - Data Portal",
+    builder = SDMXREST21RequestBuilder(
+      regUrl = "https://api.imf.org/external/sdmx/2.1",
+      repoUrl = "https://api.imf.org/external/sdmx/2.1",
+      compliant = TRUE)
+  )
     
   #OECD
   OECD <- SDMXServiceProvider(
