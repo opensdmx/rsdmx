@@ -294,8 +294,8 @@ setSDMXServiceProviders <- function(){ # nocov start
     agencyId = "INEGI", name = "Instituto Nacional de Estad\u00edstica y Geograf\u00eda (M\u00e9jico)",
     scale = "national", country = "MEX",
     builder = SDMXREST21RequestBuilder(
-      regUrl = "http://sdmx.snieg.mx/service/Rest",
-      repoUrl = "http://sdmx.snieg.mx/service/Rest",
+      regUrl = "https://sdmx.snieg.mx/ServiceV6/rest",
+      repoUrl = "https://sdmx.snieg.mx/ServiceV6/rest",
       compliant = FALSE
     )
   )
