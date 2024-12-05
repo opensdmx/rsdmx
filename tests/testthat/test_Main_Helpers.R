@@ -190,7 +190,7 @@ test_that("OECD - datastructure",{
 test_that("OECD - data",{
   testthat::skip_on_cran()
   sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "DSD_PRICES@DF_PRICES_N_CP01",
-                   key = key = list("GRC", NULL, NULL, NULL, NULL, NULL, NULL, NULL), start = 2020, end = 2020)
+                   key = list("GRC", NULL, NULL, NULL, NULL, NULL, NULL, NULL), start = 2020, end = 2020)
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXMessageGroup")
   }
