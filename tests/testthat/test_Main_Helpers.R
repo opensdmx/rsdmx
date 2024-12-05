@@ -180,7 +180,7 @@ test_that("OECD - dataflow",{
 #-> datastructure
 test_that("OECD - datastructure",{
   testthat::skip_on_cran()
-  sdmx <- readSDMX(providerId = "OECD", resource = "datastructure", resourceId = "TABLE1")
+  sdmx <- readSDMX(providerId = "OECD", resource = "datastructure", resourceId = "DSD_PRICES")
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXDataStructureDefinition")
   }
@@ -189,8 +189,8 @@ test_that("OECD - datastructure",{
 #-> data
 test_that("OECD - data",{
   testthat::skip_on_cran()
-  sdmx <- readSDMX(providerId = "OECD", resource = "data",
-                   flowRef = "MIG", key = list("TOT", NULL, NULL), start = 2011, end = 2011)
+  sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "DSD_PRICES@DF_PRICES_N_CP01",
+                   key = list("GRC", NULL, NULL, NULL, NULL, NULL, NULL, NULL), start = 2020, end = 2020)
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXMessageGroup")
   }
@@ -582,7 +582,7 @@ test_that("ISTAT - datastructure",{
 test_that("ISTAT - data",{
   testthat::skip_on_cran()
   sdmx <- readSDMX(providerId = "ISTAT", resource = "data",
-                   flowRef = "12_60", start = 2015, end = 2015)
+                   flowRef = "12_60_DF_DCCV_CONSACQUA_1", start = 2015, end = 2015)
   if(!is.null(sdmx)){
     expect_is(sdmx, "SDMXGenericData")
   }
