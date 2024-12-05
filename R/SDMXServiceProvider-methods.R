@@ -222,8 +222,8 @@ setSDMXServiceProviders <- function(){ # nocov start
   ILO <- SDMXServiceProvider(
     agencyId = "ILO", name = "International Labour Organization of the United Nations",
     builder = SDMXREST21RequestBuilder(
-      regUrl = "https://www.ilo.org/sdmx/rest",
-      repoUrl = "https://www.ilo.org/sdmx/rest",
+      regUrl = "https://sdmx.ilo.org/rest",
+      repoUrl = "https://sdmx.ilo.org/rest",
       compliant = TRUE, skipProviderId = TRUE)                  
   )
   
@@ -231,8 +231,8 @@ setSDMXServiceProviders <- function(){ # nocov start
   WBG_WITS <- SDMXServiceProvider(
     agencyId = "WBG_WITS", name = "World Integrated Trade Solution",
     builder = SDMXREST21RequestBuilder(
-      regUrl = "http://wits.worldbank.org/API/V1/SDMX/V21/rest",
-      repoUrl = "http://wits.worldbank.org/API/V1/SDMX/V21/rest",
+      regUrl = "https://wits.worldbank.org/API/V1/SDMX/V21/rest",
+      repoUrl = "https://wits.worldbank.org/API/V1/SDMX/V21/rest",
       compliant = TRUE, skipProviderId = TRUE
     )
   )
