@@ -557,7 +557,7 @@ setSDMXServiceProviders <- function(){ # nocov start
     #international
     BIS, ECB, ESTAT,ESTAT_COMEXT, ESTAT_COMP, ESTAT_GROW, ESTAT_EMPL, IMF, IMF_DATA, OECD, UNICEF, CD2030, UNSD, ILO_Legacy, ILO, WBG_WITS, WB, PDH,
     #national
-    ABS, NBB, INSEE, INEGI, ISTAT_LEGACY, ISTAT, NOMIS, LSD, NCSI, STAT_EE, BBK,
+    ABS, NBB, INSEE, INEGI, ISTAT_LEGACY, ISTAT, NOMIS, LSD, NCSI, BBK,
     #others
     KNOEMA
   )
