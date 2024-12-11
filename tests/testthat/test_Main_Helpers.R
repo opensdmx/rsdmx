@@ -192,7 +192,7 @@ test_that("OECD - data",{
   sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "DSD_PRICES@DF_PRICES_N_CP01",
                    key = list("GRC", NULL, NULL, NULL, NULL, NULL, NULL, NULL), start = 2020, end = 2020)
   if(!is.null(sdmx)){
-    expect_is(sdmx, "SDMXMessageGroup")
+    expect_is(sdmx, "SDMXGenericData")
   }
 })
 
