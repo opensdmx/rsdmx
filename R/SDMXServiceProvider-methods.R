@@ -430,17 +430,6 @@ setSDMXServiceProviders <- function(){ # nocov start
     )
   )
   
-  #STAT_EE - Statistics Estonia database {Estonia}
-  STAT_EE <- SDMXServiceProvider(
-    agencyId = "STAT_EE", name = "Statistics Estonia database",
-    scale = "national", country = "EST",
-    builder = SDMXDotStatRequestBuilder(
-      regUrl = "http://andmebaas.stat.ee/restsdmx/sdmx.ashx",
-      repoUrl = "http://andmebaas.stat.ee/restsdmx/sdmx.ashx",
-      unsupportedResources = list("dataflow")
-    )
-  )
-  
   #UKDS removed - no support for SDMX-JSON in rsdmx at now
   #UKDS <- SDMXServiceProvider(
   #  agencyId = "UKDS", name = "United Kingdom Data Service",

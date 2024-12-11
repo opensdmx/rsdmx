@@ -704,29 +704,6 @@ test_that("NCSI - datastructure",{
 #  }
 #})
 
-#STAT_E (Estonia)
-#-------------
-
-#-> datastructure
-test_that("STAT_EE - datastructure",{
-  testthat::skip_on_cran()
-  sdmx <- readSDMX(providerId = "STAT_EE", resource = "datastructure", resourceId = "KK11")
-  if(!is.null(sdmx)){
-    expect_is(sdmx, "SDMXDataStructureDefinition")
-  }
-})
-
-#-> data
-test_that("STAT_EE - data",{
-  testthat::skip_on_cran()
-  sdmx <- readSDMX(providerId = "STAT_EE", resource = "data",
-                   flowRef = "KK11", key = "all", key.mode = "SDMX",
-                   start = "2015", end = "2015")
-  if(!is.null(sdmx)){
-    expect_is(sdmx, "SDMXMessageGroup")
-  }
-})
-
 
 #BBK (Bundesbank)
 #-------------
