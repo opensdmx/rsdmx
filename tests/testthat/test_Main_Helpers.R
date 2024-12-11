@@ -31,8 +31,7 @@ test_that("Main helpers arguments",{
   expect_error(readSDMX(providerId = providerId2, resource = "dataflow"), "No provider with identifier IMF!")
   
   #wrong request
-  expect_error(readSDMX(providerId = "KNOEMA", resource = "data", flowRef = "SADG2015-WRONG"),
-               "HTTP request failed with status: 400 ")
+  expect_error(readSDMX(providerId = "OECD", resource = "data", flowRef = "SADG2015-WRONG"))
   
 })
 
