@@ -87,7 +87,7 @@ test_that("readSDMX - Catch 404 bad request", {
   )
 })
 
-# Knoema is failing with 502 regardless of proxt settings
+# Knoema is failing with 502 regardless of proxy settings
 #test_that("readSDMX - Catch good request that fails for other reason (bad proxy)", {
 #  testthat::skip_on_travis()
 #  testthat::skip_on_cran()
