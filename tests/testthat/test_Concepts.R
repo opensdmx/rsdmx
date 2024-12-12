@@ -16,7 +16,7 @@ test_that("Concepts 2.0 - with Concepts (backward compatibility with 1.0)",{
   
   df <- as.data.frame(concepts)
   expect_is(df, "data.frame")
-  expect_equal(colnames(df), c("id", "version","en"))
+  expect_equal(colnames(df), c("id", "version","Name.en"))
   expect_equal(nrow(df), 15L)
 })
 
@@ -30,7 +30,7 @@ test_that("Concepts - 2.0 - with ConceptSchemes",{
   
   df <- as.data.frame(concepts)
   expect_is(df, "data.frame")
-  expect_equal(colnames(df), c("id", "urn","en"))
+  expect_equal(colnames(df), c("id", "urn","Name.en"))
   expect_equal(nrow(df), 15L)
 })
 
@@ -44,6 +44,6 @@ test_that("Concepts - 2.1 - with ConceptSchemes",{
   
   df <- as.data.frame(concepts)
   expect_is(df, "data.frame")
-  expect_equal(colnames(df), c("id", "urn","en"))
+  expect_equal(colnames(df), c("id", "urn","Name.en"))
   expect_equal(nrow(df), 15L)
 })
