@@ -295,26 +295,27 @@ test_that("UNSD - data",{
 
 #ILO_Legacy (UN-ILO)
 #------------
+#gives Unauthorized 403 status codes now
 
-#-> datastructure
-test_that("ILO - datastructure",{
-  testthat::skip_on_cran()
-  sdmx <- readSDMX(providerId = "ILO_Legacy", resource = "datastructure", resourceId = "YI_ALB_EAP_TEAP_SEX_AGE_NB")
-  if(!is.null(sdmx)){
-    expect_is(sdmx, "SDMXDataStructureDefinition")
-  }
-})
-
-#-> data
-test_that("ILO - data",{
-  testthat::skip_on_cran()
-  sdmx <- readSDMX(providerId = "ILO_Legacy", resource = "data",
-                   flowRef = "DF_CPI_FRA_CPI_TCPI_COI_RT", key = "ALL", key.mode = "SDMX",
-                   start = "2010-01-01", end = "2014-12-31")
-  if(!is.null(sdmx)){
-    expect_is(sdmx, "SDMXGenericData")
-  }
-})
+# #-> datastructure
+# test_that("ILO - datastructure",{
+#   testthat::skip_on_cran()
+#   sdmx <- readSDMX(providerId = "ILO_Legacy", resource = "datastructure", resourceId = "YI_ALB_EAP_TEAP_SEX_AGE_NB")
+#   if(!is.null(sdmx)){
+#     expect_is(sdmx, "SDMXDataStructureDefinition")
+#   }
+# })
+# 
+# #-> data
+# test_that("ILO - data",{
+#   testthat::skip_on_cran()
+#   sdmx <- readSDMX(providerId = "ILO_Legacy", resource = "data",
+#                    flowRef = "DF_CPI_FRA_CPI_TCPI_COI_RT", key = "ALL", key.mode = "SDMX",
+#                    start = "2010-01-01", end = "2014-12-31")
+#   if(!is.null(sdmx)){
+#     expect_is(sdmx, "SDMXGenericData")
+#   }
+# })
 
 #ILO (UN-ILO)
 #------------
