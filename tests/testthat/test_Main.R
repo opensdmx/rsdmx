@@ -78,22 +78,24 @@ test_that("readSDMX - SDMXDataStructureDefinition (DSD) - 2.0",{
   expect_is(dsd@datastructures, "SDMXDataStructures")
 })
 
-test_that("readSDMX - Catch 400 bad request", {
+test_that("readSDMX - Catch 404 bad request", {
   testthat::skip_on_travis()
   testthat::skip_on_cran()
   expect_error(
-    sdmx <- readSDMX(providerId = "KNOEMA", resource = "data", flowRef = "bad_ref")
+    sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "bad_ref"),
+    "HTTP request failed with status: 404"
   )
 })
 
-test_that("readSDMX - Catch good request that fails for other reason (bad proxy)", {
-  testthat::skip_on_travis()
-  testthat::skip_on_cran()
-  old_opts <- options()
-  options(RCurlOptions = list("proxy" = "bad_proxy"))
-  
-  expect_error(
-    sdmx <- readSDMX(providerId = "KNOEMA", resource = "data", flowRef = "SADG2015")
-  )
-  options(old_opts)
-})
+# Knoema is failing with 502 regardless of proxy settings
+#test_that("readSDMX - Catch good request that fails for other reason (bad proxy)", {
+#  testthat::skip_on_travis()
+#  testthat::skip_on_cran()
+#  old_opts <- options()
+#  options(RCurlOptions = list("proxy" = "bad_proxy"))
+#  
+#  expect_error(
+#    sdmx <- readSDMX(providerId = "KNOEMA", resource = "data", flowRef = "SADG2015")
+#  )
+#  options(old_opts)
+#})

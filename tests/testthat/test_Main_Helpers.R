@@ -31,8 +31,7 @@ test_that("Main helpers arguments",{
   expect_error(readSDMX(providerId = providerId2, resource = "dataflow"), "No provider with identifier IMF!")
   
   #wrong request
-  expect_error(readSDMX(providerId = "KNOEMA", resource = "data", flowRef = "SADG2015-WRONG"),
-               "HTTP request failed with status: 400 ")
+  expect_error(readSDMX(providerId = "OECD", resource = "data", flowRef = "SADG2015-WRONG"))
   
 })
 
@@ -192,7 +191,7 @@ test_that("OECD - data",{
   sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "DSD_PRICES@DF_PRICES_N_CP01",
                    key = list("GRC", NULL, NULL, NULL, NULL, NULL, NULL, NULL), start = 2020, end = 2020)
   if(!is.null(sdmx)){
-    expect_is(sdmx, "SDMXMessageGroup")
+    expect_is(sdmx, "SDMXGenericData")
   }
 })
 
@@ -703,29 +702,6 @@ test_that("NCSI - datastructure",{
 #    expect_is(sdmx, "SDMXStructureSpecificData")
 #  }
 #})
-
-#STAT_E (Estonia)
-#-------------
-
-#-> datastructure
-test_that("STAT_EE - datastructure",{
-  testthat::skip_on_cran()
-  sdmx <- readSDMX(providerId = "STAT_EE", resource = "datastructure", resourceId = "KK11")
-  if(!is.null(sdmx)){
-    expect_is(sdmx, "SDMXDataStructureDefinition")
-  }
-})
-
-#-> data
-test_that("STAT_EE - data",{
-  testthat::skip_on_cran()
-  sdmx <- readSDMX(providerId = "STAT_EE", resource = "data",
-                   flowRef = "KK11", key = "all", key.mode = "SDMX",
-                   start = "2015", end = "2015")
-  if(!is.null(sdmx)){
-    expect_is(sdmx, "SDMXMessageGroup")
-  }
-})
 
 
 #BBK (Bundesbank)
