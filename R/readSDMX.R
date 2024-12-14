@@ -423,7 +423,7 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
     
     #using helpers strategy (with a resource parameter)
     if(buildRequest && resource %in% c("data","dataflow")){
-      if(resource == "data" && providerId %in% c("ESTAT", "ISTAT", "ISTAT_LEGACY", "WBG_WITS", "CD2030")){
+      if(resource == "data" && providerId %in% c("ESTAT", "ISTAT", "ISTAT_LEGACY", "WBG_WITS", "CD2030", "IMF_DATA")){
         log$INFO("Attempt to fetch DSD ref from dataflow description")
         flow <- readSDMX(providerId = providerId, providerKey = providerKey, resource = "dataflow",
                          resourceId = flowRef, headers = headers, verbose = TRUE, logger = logger,  
