@@ -49,7 +49,7 @@ remotes::install_github("opensdmx/rsdmx")
 
 To load rsdmx in R, do the following:
 
-```{r,eval = FALSE,results="hide"}
+```{r,eval = TRUE,results="hide"}
 library(rsdmx)
 ```
 
@@ -61,12 +61,12 @@ This section will introduce you on how to read SDMX *dataset* documents, either 
 
 #### using the _raw_ approach (specifying the complete request URL)
 
-The following code snipet shows you how to read a dataset from a remote data source, taking as example the [OECD StatExtracts portal](https://stats.oecd.org): [https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011](https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011)
+The following code snipet shows you how to read a dataset from a remote data source, taking as example the [OECD StatExtracts portal](https://data-explorer.oecd.org/): [https://sdmx.oecd.org/public/rest/data/DSD_PRICES@DF_PRICES_N_CP01/GRC......./all/?startPeriod=2020&endPeriod=2020](https://sdmx.oecd.org/public/rest/data/DSD_PRICES@DF_PRICES_N_CP01/GRC......./all/?startPeriod=2020&endPeriod=2020)
 
-```{r,eval = FALSE,results="hide"}
-myUrl <- "https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011"
+```{r, echo = FALSE}
+myUrl <- "https://sdmx.oecd.org/public/rest/data/DSD_PRICES@DF_PRICES_N_CP01/GRC......./all/?startPeriod=2020&endPeriod=2020"
 dataset <- readSDMX(myUrl)
-stats <- as.data.frame(dataset)
+stats <- as.data.frame(dataset) 
 ```
 
 You can try it out with other datasources, such as from the [**EUROSTAT portal**](https://ec.europa.eu/eurostat): [https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/NAMA_10_GDP/A.CP_MEUR.B1GQ.BE+LU](https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/NAMA_10_GDP/A.CP_MEUR.B1GQ.BE+LU)
@@ -86,9 +86,9 @@ Note it is also possible to add an SDMX service provider at runtime. For registe
 
 Let's see how it would look like for querying an ``OECD`` datasource:
 
-```{r, eval = FALSE,message = FALSE,results="hide"}
-sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "MIG",
-                key = list("TOT", NULL, NULL), start = 2010, end = 2011)
+```{r, message = FALSE}
+sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "DSD_PRICES@DF_PRICES_N_CP01",
+                 key = list("GRC", NULL, NULL, NULL, NULL, NULL, NULL, NULL), start = 2020, end = 2020)
 df <- as.data.frame(sdmx)
 head(df)
 ```
@@ -102,10 +102,10 @@ To do so, you only need to append ``dsd = TRUE`` (default value is ``FALSE``),
 to the previous request, and specify ``labels = TRUE`` when calling ``as.data.frame``,
 as follows:
 
-```{r, eval = FALSE,message = FALSE,results="hide"}
-sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "MIG",
-                key = list("TOT", NULL, NULL), start = 2010, end = 2011,
-                dsd = TRUE)
+```{r, message = FALSE}
+sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "DSD_PRICES@DF_PRICES_N_CP01",
+                 key = list("GRC", NULL, NULL, NULL, NULL, NULL, NULL, NULL), start = 2020, end = 2020,
+                 dsd = TRUE)
 df <- as.data.frame(sdmx, labels = TRUE)
 head(df)
 ```
@@ -113,7 +113,7 @@ head(df)
 For embedded service providers that require a user authentication/subscription key or token,
 it is possible to specify it in ``readSDMX`` with the ``providerKey`` argument. If provided,
 and that the embedded provider requires a specific key parameter, the latter will be appended
-to the SDMX web-request. For example, it's the case for the new [UNESCO SDMX API](https://apiportal.uis.unesco.org/getting-started).
+to the SDMX web-request.
 
 Note that in case you are reading SDMX-ML documents with the native approach (with
 URLs), instead of the embedded providers, it is also possible to associate a DSD
@@ -121,11 +121,11 @@ to a dataset by using the function ``setDSD``. Let's try how it works:
 
 ```{r, eval = FALSE,message = FALSE,results="hide"}
 #data without DSD
-sdmx.data <- readSDMX(providerId = "OECD", resource = "data", flowRef = "MIG",
-                key = list("TOT", NULL, NULL), start = 2010, end = 2011)
+sdmx.data <- readSDMX(providerId = "OECD", resource = "data", flowRef = "DSD_PRICES@DF_PRICES_N_CP01",
+                 key = list("GRC", NULL, NULL, NULL, NULL, NULL, NULL, NULL), start = 2020, end = 2020)
 
 #DSD
-sdmx.dsd <- readSDMX(providerId = "OECD", resource = "datastructure", resourceId = "MIG")
+sdmx.dsd <- readSDMX(providerId = "OECD", resource = "datastructure", resourceId = "DSD_PRICES")
 
 #associate data and dsd
 sdmx.data <- setDSD(sdmx.data, sdmx.dsd)
@@ -156,10 +156,10 @@ This section will introduce you on how to read SDMX **metadata** complete ``data
 
 ### Data Structure Definition (DSD)
 
-This example illustrates how to read a complete DSD using a [OECD StatExtracts portal](https://stats.oecd.org) data source.
+This example illustrates how to read a complete DSD using a [OECD StatExtracts portal](https://data-explorer.oecd.org/) data source.
 
-```{r,eval = FALSE,results="hide"}
-dsdUrl <- "https://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/TABLE1"
+```{r, echo = FALSE}
+dsdUrl <- "https://sdmx.oecd.org/public/rest/datastructure/all/DSD_PRICES/latest/?references=children"
 dsd <- readSDMX(dsdUrl)
 ```
 

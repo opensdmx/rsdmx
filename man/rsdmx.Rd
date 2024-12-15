@@ -12,6 +12,15 @@ through theStatistical Data and Metadata Exchange (SDMX) framework. The package
 currently focuses on the SDMX XML standard format (SDMX-ML).
 - an web-service interface to well-known SDMX data providers
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/opensdmx/rsdmx}
+  \item \url{https://sdmx.org}
+  \item Report bugs at \url{https://github.com/opensdmx/rsdmx/issues}
+}
+
+}
 \author{
 Emmanuel Blondel \email{emmanuel.blondel1@gmail.com}
 }

@@ -4,9 +4,6 @@
 \name{rsdmxLogger}
 \alias{rsdmxLogger}
 \title{rsdmxLogger}
-\format{
-\code{\link{R6Class}} object.
-}
 \value{
 Object of \code{\link{R6Class}} for modelling a simple logger
 }

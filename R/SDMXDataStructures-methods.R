@@ -51,6 +51,7 @@ datastructures.SDMXDataStructures <- function(xmlObj, namespaces){
 }
 
 #methods
+#'@export
 as.data.frame.SDMXDataStructures <- function(x, ...){
   
   out <- do.call("rbind.fill",

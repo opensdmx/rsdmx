@@ -65,6 +65,7 @@ class.SDMXMessageGroup <- function(xmlObj){
   
 }
 
+#'@export
 as.data.frame.SDMXMessageGroup <- function(x, row.names=NULL, optional=FALSE,
                                            labels = FALSE, ...){
   #TODO support for other included message types

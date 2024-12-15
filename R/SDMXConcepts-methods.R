@@ -67,6 +67,7 @@ conceptSchemes.SDMXConcepts <- function(xmlObj, namespaces){
 
 #as.data.frame
 #=============
+#'@export
 as.data.frame.SDMXConcepts <- function(x, ...,
                                        conceptSchemeId = NULL,
                                        ignore.empty.slots = TRUE){

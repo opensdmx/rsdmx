@@ -151,7 +151,7 @@ getSDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
   return(encodeSDMXOutput(dataset))
 }
 
-
+#'@export
 as.data.frame.SDMXCompactData <- function(x, row.names=NULL, optional=FALSE,
                                           labels = FALSE, ...){
   return(getSDMXAllCompactData(x, nsExpr = "compact", labels = labels));

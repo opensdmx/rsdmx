@@ -18,6 +18,7 @@ SDMXGenericData <- function(xmlObj, namespaces){
 }
 
 #methods
+#'@export
 as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
                                           labels = FALSE, ...){
   xmlObj <- x@xmlObj;

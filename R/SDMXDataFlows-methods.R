@@ -58,6 +58,7 @@ dataflows.SDMXDataFlows <- function(xmlObj, namespaces){
 }
 
 #methods
+#'@export
 as.data.frame.SDMXDataFlows <- function(x, ...){
   
   out <- do.call("rbind.fill",

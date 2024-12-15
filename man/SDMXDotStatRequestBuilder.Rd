@@ -54,10 +54,6 @@ an authentication or subscription user key/token has to be provided to perform r
 
 \note{
 Internal class
- 
-dataflow' resource (path="GetKeyFamily/{resourceID}")
-datastructure' resource (path="GetDataStructure/{resourceID}/{agencyID}")
-data' resource (path="GetData/{flowRef}/{key}/{agencyId}")
 }
 \section{Warning}{
 

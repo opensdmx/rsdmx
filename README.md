@@ -60,7 +60,7 @@ Copyright (C) 2014  Emmanuel Blondel
 Please note that following a new submission to CRAN, or eventually a modification of CRAN policies, the package might be temporarily archived, and removed from CRAN. In case you notice that the package is not back in few time, please contact me.
 
 #### on R-Universe
-``rsdmx`` is available on the R-Universe public cloud server. The package version corresponds to the ongoing revision (master branch in Github). See [https://opensdmx.r-universe.dev/ui/#package:rsdmx](https://opensdmx.r-universe.dev/ui/#package:rsdmx)
+``rsdmx`` is available on the R-Universe public cloud server. The package version corresponds to the ongoing revision (master branch in Github). See [https://opensdmx.r-universe.dev/#package:rsdmx](https://opensdmx.r-universe.dev/#package:rsdmx)
 
 ## Quickstart
 
@@ -238,7 +238,7 @@ sdmx <- readSDMX(providerId = "MYORG", providerKey = NULL resource = "data", flo
 For embedded service providers that require a user authentication/subscription key or token,
 it is possible to specify it in ``readSDMX`` with the ``providerKey`` argument. If provided,
 and that the embedded provider requires a specific key parameter, the latter will be appended
-to the SDMX web-request. For example, it's the case for the new [UNESCO SDMX API](https://apiportal.uis.unesco.org/getting-started).
+to the SDMX web-request.
 
 
 
@@ -253,10 +253,10 @@ This section will introduce you on how to read SDMX *dataset* documents.
 #### Read _remote_ datasets
 
 
-The following code snipet shows you how to read a dataset from a remote data source, taking as example the [OECD StatExtracts portal](https://stats.oecd.org): [https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011](https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011)
+The following code snipet shows you how to read a dataset from a remote data source, taking as example the [OECD StatExtracts portal](https://data-explorer.oecd.org/): [https://sdmx.oecd.org/public/rest/data/DSD_PRICES@DF_PRICES_N_CP01/GRC......./all/?startPeriod=2020&endPeriod=2020](https://sdmx.oecd.org/public/rest/data/DSD_PRICES@DF_PRICES_N_CP01/GRC......./all/?startPeriod=2020&endPeriod=2020)
 
 ```{r, echo = FALSE}
-myUrl <- "https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/MIG/TOT../OECD?startTime=2000&endTime=2011"
+myUrl <- "https://sdmx.oecd.org/public/rest/data/DSD_PRICES@DF_PRICES_N_CP01/GRC......./all/?startPeriod=2020&endPeriod=2020"
 dataset <- readSDMX(myUrl)
 stats <- as.data.frame(dataset) 
 ```
@@ -273,8 +273,8 @@ you register in rsdmx.
 Let's see how it would look like for querying an ``OECD`` datasource:
 
 ```{r, message = FALSE}
-sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "MIG",
-                key = list("TOT", NULL, NULL), start = 2010, end = 2011)
+sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "DSD_PRICES@DF_PRICES_N_CP01",
+                 key = list("GRC", NULL, NULL, NULL, NULL, NULL, NULL, NULL), start = 2020, end = 2020)
 df <- as.data.frame(sdmx)
 head(df)
 ```
@@ -289,9 +289,9 @@ to the previous request, and specify ``labels = TRUE`` when calling ``as.data.fr
 as follows:
 
 ```{r, message = FALSE}
-sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "MIG",
-                key = list("TOT", NULL, NULL), start = 2010, end = 2011,
-                dsd = TRUE)
+sdmx <- readSDMX(providerId = "OECD", resource = "data", flowRef = "DSD_PRICES@DF_PRICES_N_CP01",
+                 key = list("GRC", NULL, NULL, NULL, NULL, NULL, NULL, NULL), start = 2020, end = 2020,
+                 dsd = TRUE)
 df <- as.data.frame(sdmx, labels = TRUE)
 head(df)
 ```
@@ -302,11 +302,11 @@ to a dataset by using the function ``setDSD``. Let's try how it works:
 
 ```{r, message = FALSE}
 #data without DSD
-sdmx.data <- readSDMX(providerId = "OECD", resource = "data", flowRef = "MIG",
-                key = list("TOT", NULL, NULL), start = 2010, end = 2011)
+sdmx.data <- readSDMX(providerId = "OECD", resource = "data", flowRef = "DSD_PRICES@DF_PRICES_N_CP01",
+                 key = list("GRC", NULL, NULL, NULL, NULL, NULL, NULL, NULL), start = 2020, end = 2020)
 
 #DSD
-sdmx.dsd <- readSDMX(providerId = "OECD", resource = "datastructure", resourceId = "MIG")
+sdmx.dsd <- readSDMX(providerId = "OECD", resource = "datastructure", resourceId = "DSD_PRICES")
 
 #associate data and dsd
 sdmx.data <- setDSD(sdmx.data, sdmx.dsd)
@@ -338,23 +338,12 @@ This section will introduce you on how to read SDMX **metadata** complete ``data
 
 ```
 
-#### Data Structures
-
-This example illustrates how to read the complete list of data structures (or key families) from the [OECD StatExtracts portal](https://stats.oecd.org)
-
-```{r, echo = FALSE}
-dsUrl <- "https://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/ALL"
-ds <- readSDMX(dsUrl)
-dsdf <- as.data.frame(ds)
-head(dsdf)
-```
-
 #### Data Structure Definition (DSD)
 
-This example illustrates how to read a complete DSD using a [OECD StatExtracts portal](https://stats.oecd.org) data source.
+This example illustrates how to read a complete DSD using a [OECD StatExtracts portal](https://data-explorer.oecd.org/) data source.
 
 ```{r, echo = FALSE}
-dsdUrl <- "https://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/TABLE1"
+dsdUrl <- "https://sdmx.oecd.org/public/rest/datastructure/all/DSD_PRICES/latest/?references=children"
 dsd <- readSDMX(dsdUrl)
 ```
 
@@ -364,7 +353,7 @@ dsd <- readSDMX(dsdUrl)
 #get codelists from DSD
 cls <- slot(dsd, "codelists")
 codelists <- sapply(slot(cls, "codelists"), function(x) slot(x, "id")) #get list of codelists
-codelist <- as.data.frame(slot(dsd, "codelists"), codelistId = "CL_TABLE1_FLOWS") #get a codelist
+codelist <- as.data.frame(slot(dsd, "codelists"), codelistId = "CL_TRANSFORMATION") #get a codelist
 ```
 
 In a similar way, the ``concepts`` of the dataset can be extracted from the DSD and read as ``data.frame``.

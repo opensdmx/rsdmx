@@ -17,16 +17,6 @@ function used internally by \pkg{rsdmx}, when loading the package,
 \seealso{
 \link{getSDMXServiceProviders} \link{addSDMXServiceProvider}
          \link{findSDMXServiceProvider} \link{readSDMX}
-
-dataflow' resource (path="dataset/{resourceId}/def.sdmx.xml")
-datastructure' resource (path="dataset/{resourceID}.structure.sdmx.xml")
-data' resource (path="dataset/{resourceID}.generic.sdmx.xml")
-dataflow' resource (path="/")
-datastructure' resource (path="/{resourceID})
-data' resource (path="getdata?dataflow={flowRef}&key={key})
-dataflow' resource (path="/")
-datastructure' resource (path="/{resourceID})
-data' resource (path="getdata?dataflow={flowRef}&key={key})
 }
 \author{
 Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}

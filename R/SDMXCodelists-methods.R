@@ -53,6 +53,7 @@ codelists.SDMXCodelists <- function(xmlObj, namespaces){
 
 #as.data.frame
 #=============
+#'@export
 as.data.frame.SDMXCodelists <- function(x, ...,
                                        codelistId = NULL,
                                        ignore.empty.slots = TRUE){

@@ -64,6 +64,7 @@ encodeSDMXOutput <- function(df){
 
 #' @name getNamespaces
 #' @docType methods
+#' @rdname SDMXStructureType-methods
 #' @aliases getNamespaces,SDMX-method
 #' @title getNamespaces
 #' @description Access the namespaces of the SDMX-ML object
@@ -76,11 +77,10 @@ encodeSDMXOutput <- function(df){
 #' @seealso \link{SDMX-class}
 #'
 #' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
+setGeneric("getNamespaces", function(obj) standardGeneric("getNamespaces"));
 
-if (!isGeneric("getNamespaces"))
-  setGeneric("getNamespaces", function(obj) standardGeneric("getNamespaces"));
-
-#' @describeIn getNamespaces Access the namespaces of the SDMX-ML object
+#' @rdname SDMXStructureType-methods
+#' @aliases getNamespaces,SDMX,ANY-method
 setMethod(f = "getNamespaces", signature = "SDMX", function(obj){
             return(namespaces.SDMX(obj@xmlObj));
           })

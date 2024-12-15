@@ -337,7 +337,7 @@ setSDMXServiceProviders <- function(){ # nocov start
       ),
       handler = list(
         
-        #'dataflow' resource (path="dataset/{resourceId}/def.sdmx.xml")
+        #dataflow resource (path="dataset/resourceId/def.sdmx.xml")
         #-----------------------------------------------------------------------
         dataflow = function(obj){  
           req <- sprintf("%s/dataset", obj@regUrl)
@@ -345,7 +345,7 @@ setSDMXServiceProviders <- function(){ # nocov start
           req <- paste(req, "def.sdmx.xml", sep="/")
           return(req)
         },
-        #'datastructure' resource (path="dataset/{resourceID}.structure.sdmx.xml")
+        #datastructure resource (path="dataset/resourceID.structure.sdmx.xml")
         #-----------------------------------------------------------------------
         datastructure = function(obj){
           req <- sprintf("%s/dataset", obj@regUrl)
@@ -354,7 +354,7 @@ setSDMXServiceProviders <- function(){ # nocov start
           req <- paste0(req, ".structure.sdmx.xml")
           return(req)
         },
-        #'data' resource (path="dataset/{resourceID}.generic.sdmx.xml")
+        #data resource (path="dataset/resourceID.generic.sdmx.xml")
         #----------------------------------------------------------
         data = function(obj){
           req <- sprintf("%s/dataset", obj@repoUrl)
@@ -393,18 +393,18 @@ setSDMXServiceProviders <- function(){ # nocov start
       ),
       handler = list(
         
-        #'dataflow' resource (path="/")
+        #dataflow resource (path="/")
         #-----------------------------------------------------------------------
         dataflow = function(obj){
           return(obj@regUrl)
         },
-        #'datastructure' resource (path="/{resourceID})
+        #datastructure resource (path="/resourceID)
         #-----------------------------------------------------------------------
         datastructure = function(obj){
           req <- paste(obj@regUrl, obj@resourceId, sep = "/")
           return(req)
         },
-        #'data' resource (path="getdata?dataflow={flowRef}&key={key})
+        #data resource (path="getdata?dataflow=flowRef&key=key)
         #----------------------------------------------------------
         data = function(obj){
           if(is.null(obj@flowRef)) stop("Missing flowRef value")
@@ -520,18 +520,18 @@ setSDMXServiceProviders <- function(){ # nocov start
       ),
       handler = list(
                                   
-        #'dataflow' resource (path="/")
+        #dataflow resource (path="/")
         #-----------------------------------------------------------------------
         dataflow = function(obj){
           return(obj@regUrl)
         },
-        #'datastructure' resource (path="/{resourceID})
+        #datastructure resource (path="/resourceID)
         #-----------------------------------------------------------------------
         datastructure = function(obj){
           req <- paste(obj@regUrl, obj@resourceId, sep = "/")
           return(req)
         },
-        #'data' resource (path="getdata?dataflow={flowRef}&key={key})
+        #data resource (path="getdata?dataflow=flowRef&key=key)
         #----------------------------------------------------------
         data = function(obj){
           if(is.null(obj@flowRef)) stop("Missing flowRef value")

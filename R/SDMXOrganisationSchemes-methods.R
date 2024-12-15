@@ -43,6 +43,7 @@ organisationSchemes.SDMXOrganisationSchemes <- function(xmlObj, namespaces){
 }
 
 #methods
+#'@export
 as.data.frame.SDMXOrganisationSchemes <- function(x, ...){
   
   out <- do.call("rbind.fill",

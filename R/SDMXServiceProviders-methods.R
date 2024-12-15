@@ -13,6 +13,7 @@ SDMXServiceProviders <- function(providers) {
   new("SDMXServiceProviders", providers = providers);
 }
 
+#'@export
 as.data.frame.SDMXServiceProviders <- function(x, ...){
   out <- as.data.frame(do.call("rbind",
            lapply(slot(x, "providers"),

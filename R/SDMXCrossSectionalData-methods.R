@@ -19,7 +19,7 @@ SDMXCrossSectionalData <- function(xmlObj, namespaces){
 
 #methods
 #=======
-
+#'@export
 as.data.frame.SDMXCrossSectionalData <- function(x, row.names=NULL, optional=FALSE,
                                                  labels = FALSE, ...){
   

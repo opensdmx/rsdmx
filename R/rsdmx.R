@@ -1,7 +1,6 @@
 #' @name rsdmx
 #' @aliases rsdmx-package
 #' @aliases rsdmx
-#' @docType package
 #' 
 #' @title Tools for Reading SDMX Data and Metadata
 #' @description
@@ -10,7 +9,14 @@
 #' through theStatistical Data and Metadata Exchange (SDMX) framework. The package 
 #' currently focuses on the SDMX XML standard format (SDMX-ML).
 #' - an web-service interface to well-known SDMX data providers
+#' 
+#' @import R6
+#' @import methods
+#' @import XML
+#' @import httr
+#' @import plyr
+#' @import utils
 #'  
 #'@author Emmanuel Blondel \email{emmanuel.blondel1@@gmail.com}
 #'
-NULL
+"_PACKAGE"

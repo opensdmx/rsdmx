@@ -131,6 +131,7 @@ attributes.SDMXComponents <- function(xmlObj, namespaces){
 }
 
 #methods
+#'@export
 as.data.frame.SDMXComponents <- function(x, ...){
  
   #dimensions

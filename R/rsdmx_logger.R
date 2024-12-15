@@ -4,7 +4,6 @@
 #' @export
 #' @keywords logger
 #' @return Object of \code{\link{R6Class}} for modelling a simple logger
-#' @format \code{\link{R6Class}} object.
 #'
 #' @section Abstract Methods:
 #' \describe{
