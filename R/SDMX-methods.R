@@ -65,7 +65,7 @@ encodeSDMXOutput <- function(df){
 
 #' @name getNamespaces
 #' @docType methods
-#' @rdname SDMXStructureType-methods
+#' @rdname SDMX-methods
 #' @aliases getNamespaces,SDMX-method
 #' @title getNamespaces
 #' @description Access the namespaces of the SDMX-ML object
@@ -80,7 +80,7 @@ encodeSDMXOutput <- function(df){
 #' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
 setGeneric("getNamespaces", function(obj) standardGeneric("getNamespaces"));
 
-#' @rdname SDMXStructureType-methods
+#' @rdname SDMX-methods
 #' @aliases getNamespaces,SDMX,ANY-method
 setMethod(f = "getNamespaces", signature = "SDMX", function(obj){
             return(namespaces.SDMX(obj@xmlObj));
@@ -111,7 +111,8 @@ setMethod(f = "getNamespaces", signature = "SDMX", function(obj){
 #' @seealso \link{SDMX-class} \link{getNamespaces} 
 #' 
 #' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
-
+#' @export
+#' 
 findNamespace <- function(namespaces, messageType){
   regexp <- paste(messageType, "$", sep = "")
   ns <- c(ns = namespaces$uri[grep(regexp, namespaces$uri, ignore.case = TRUE)])
@@ -137,8 +138,8 @@ findNamespace <- function(namespaces, messageType){
 #' @seealso \link{SDMX-class} \link{readSDMX}
 #' 
 #' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
-#' 
-
+#' @export
+#'
 isSoapRequestEnvelope <- function(xmlObj, namespaces){
   return(tolower(xmlName(xmlRoot(xmlObj))) == "envelope")
 }
@@ -160,7 +161,8 @@ isSoapRequestEnvelope <- function(xmlObj, namespaces){
 #' @seealso \link{SDMX-class} \link{readSDMX}
 #' 
 #' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
-   
+#' @export
+#' 
 getSoapRequestResult <- function(xmlObj){
   body <- xmlChildren(xmlRoot(xmlObj))
   response <- xmlChildren(body[[1]]); rm(body);
@@ -188,8 +190,8 @@ getSoapRequestResult <- function(xmlObj){
 #' @seealso \link{SDMX-class} \link{readSDMX}
 #' 
 #' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
+#' @export
 #' 
-
 isRegistryInterfaceEnvelope <- function(xmlObj, nativeRoot){
   root <- xmlRoot(xmlObj)
   if(nativeRoot) root <- root[[1]]
@@ -213,7 +215,8 @@ isRegistryInterfaceEnvelope <- function(xmlObj, nativeRoot){
 #' @seealso \link{SDMX-class} \link{readSDMX}
 #' 
 #' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
-
+#' @export
+#'
 getRegistryInterfaceResult <- function(xmlObj){
   sdmxDoc <- xmlDoc(xmlChildren(xmlRoot(xmlObj))[[1]])
   return(sdmxDoc)

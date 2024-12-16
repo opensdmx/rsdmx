@@ -62,7 +62,8 @@ SDMXServiceProvider <- function(agencyId, name,
 #' 
 #' @seealso \link{getSDMXServiceProviders} \link{addSDMXServiceProvider}
 #'          \link{findSDMXServiceProvider} \link{readSDMX}
-#'
+#' @export
+#' 
 setSDMXServiceProviders <- function(){ # nocov start
     
   #international data providers
@@ -601,7 +602,8 @@ setSDMXServiceProviders <- function(){ # nocov start
 #'   
 #' @seealso \link{getSDMXServiceProviders} \link{findSDMXServiceProvider}
 #'          \link{readSDMX}
-#'          
+#' @export
+#'         
 addSDMXServiceProvider <- function(provider){
   .rsdmx.options$providers <- new("SDMXServiceProviders",
                                   providers = c(slot(.rsdmx.options$providers, "providers"), provider)
@@ -626,7 +628,8 @@ addSDMXServiceProvider <- function(provider){
 #' 
 #' @seealso \link{addSDMXServiceProvider} \link{findSDMXServiceProvider}
 #'          \link{readSDMX}
-#'          
+#' @export
+#'        
 getSDMXServiceProviders <- function(){
   out <- .rsdmx.options$providers
   return(out)
@@ -656,7 +659,7 @@ getSDMXServiceProviders <- function(){
 #'   
 #' @seealso \link{getSDMXServiceProviders} \link{addSDMXServiceProvider}
 #'          \link{readSDMX}
-#'
+#' @export
 findSDMXServiceProvider <- function(agencyId){
   if(is.null(agencyId)) return(NULL)
   res <- unlist(lapply(slot(getSDMXServiceProviders(),"providers"),

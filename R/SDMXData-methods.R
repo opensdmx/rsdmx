@@ -140,9 +140,9 @@ addLabels.SDMXData <- function(data, dsd){
 #' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
 setGeneric("setDSD", function(obj, dsd) standardGeneric("setDSD"));
 
-#' @rdname SDMXStructureType-methods
-#' @aliases setDSD,SDMXData,ANY-method
-setMethod(f = "setDSD", signature = "SDMXData", function(obj, dsd){
+#' @rdname SDMX-methods
+#' @aliases setDSD,SDMXData,SDMXDataStructureDefinition-method
+setMethod(f = "setDSD", signature = c("SDMXData", "SDMXDataStructureDefinition"), function(obj, dsd){
   slot(obj, "dsd") <- dsd
   return(obj)
 })

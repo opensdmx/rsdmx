@@ -80,11 +80,11 @@ type.SDMXStructureType <- function(xmlObj, namespaces, resource){
 #generics
 #' @export
 #' @docType methods
-#' @rdname SDMXStructureType-methods
+#' @rdname SDMX-methods
 setGeneric("getStructureType", function(obj) standardGeneric("getStructureType"));
 
 #methods
-#' @rdname SDMXStructureType-methods
+#' @rdname SDMX-methods
 #' @aliases getStructureType,SDMXStructureType,ANY-method
 setMethod(f = "getStructureType", signature = "SDMXStructureType", function(obj){
             return(obj@subtype)

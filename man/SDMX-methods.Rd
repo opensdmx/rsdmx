@@ -9,8 +9,7 @@
 \alias{getNamespaces}
 \alias{getNamespaces,SDMX-method}
 \alias{getNamespaces,SDMX,ANY-method}
-\alias{setDSD,SDMXData-method}
-\alias{setDSD,SDMXData,ANY-method}
+\alias{setDSD,SDMXData,SDMXDataStructureDefinition-method}
 \title{getNamespaces}
 \usage{
 getStructureType(obj)
@@ -21,7 +20,7 @@ getNamespaces(obj)
 
 \S4method{getNamespaces}{SDMX}(obj)
 
-\S4method{setDSD}{SDMXData}(obj, dsd)
+\S4method{setDSD}{SDMXData,SDMXDataStructureDefinition}(obj, dsd)
 }
 \arguments{
 \item{obj}{An object deriving from class "SDMX"}
