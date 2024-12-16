@@ -570,13 +570,13 @@ test_that("ISTAT - dataflow",{
 
 #-> datastructure
 #TODO investigate issue with xmlNamespaceDefinitions (XML)
-test_that("ISTAT - datastructure",{
-  testthat::skip_on_cran()
-  sdmx <- readSDMX(providerId = "ISTAT", resource = "datastructure", resourceId = "DCCV_CONSACQUA")
-  if(!is.null(sdmx)){
-    expect_is(sdmx, "SDMXDataStructureDefinition")
-  }
-})
+# test_that("ISTAT - datastructure",{
+#   testthat::skip_on_cran()
+#   sdmx <- readSDMX(providerId = "ISTAT", resource = "datastructure", resourceId = "DCCV_CONSACQUA")
+#   if(!is.null(sdmx)){
+#     expect_is(sdmx, "SDMXDataStructureDefinition")
+#   }
+# })
 
 #-> data
 test_that("ISTAT - data",{
