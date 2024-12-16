@@ -3,7 +3,7 @@
 \docType{methods}
 \name{setDSD}
 \alias{setDSD}
-\alias{setDSD,SDMXData-method}
+\alias{setDSD,SDMXData,SDMXDataStructureDefinition-method}
 \title{setDSD}
 \usage{
 setDSD(obj, dsd)
@@ -17,7 +17,7 @@ setDSD(obj, dsd)
 the 'obj' object of class "SDMXData" enriched with the dsd
 }
 \description{
-set the 'dsd' slot of a \code{SDMXData} object
+set the dsd slot of a \code{SDMXData} object
 }
 \seealso{
 \link{SDMXData-class}

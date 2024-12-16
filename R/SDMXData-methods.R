@@ -126,10 +126,11 @@ addLabels.SDMXData <- function(data, dsd){
 #' @name setDSD
 #' @docType methods
 #' @rdname SDMXData-method
-#' @aliases setDSD,SDMXData-method
+#' @aliases setDSD,SDMXData,SDMXDataStructureDefinition-method
 #' @title setDSD
-#' @description set the 'dsd' slot of a \code{SDMXData} object
-#' @usage setDSD(obj, dsd)
+#' @description set the dsd slot of a \code{SDMXData} object
+#' @usage 
+#' setDSD(obj, dsd)
 #' 
 #' @param obj An object deriving from class "SDMXData"
 #' @param dsd An object of class "SDMXDataStructureDefinition"
@@ -140,9 +141,8 @@ addLabels.SDMXData <- function(data, dsd){
 #' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
 setGeneric("setDSD", function(obj, dsd) standardGeneric("setDSD"));
 
-#' @rdname SDMX-methods
-#' @aliases setDSD,SDMXData,SDMXDataStructureDefinition-method
-setMethod(f = "setDSD", signature = c("SDMXData", "SDMXDataStructureDefinition"), function(obj, dsd){
+#' @rdname SDMXData-methods
+setMethod(f = "setDSD", signature = c("SDMXData","SDMXDataStructureDefinition"), function(obj, dsd){
   slot(obj, "dsd") <- dsd
   return(obj)
 })
