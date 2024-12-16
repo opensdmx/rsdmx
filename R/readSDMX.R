@@ -131,7 +131,7 @@
 #' 
 #' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
 #'    
-
+#' @export
 readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
                      provider = NULL, providerId = NULL, providerKey = NULL,
                      agencyId = NULL, resource = NULL, resourceId = NULL, version = NULL,
