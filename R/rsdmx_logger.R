@@ -3,7 +3,7 @@
 #' @docType class
 #' @export
 #' @keywords logger
-#' @return Object of \code{\link{R6Class}} for modelling a simple logger
+#' @return Object for modelling a simple logger
 #'
 #' @section Abstract Methods:
 #' \describe{
