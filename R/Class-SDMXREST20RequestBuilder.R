@@ -17,6 +17,7 @@
 #' 
 #' @author Emmanuel Blondel, \email{emmanuel.blondel1@@gmail.com}
 #' 
+#' @export
 setClass("SDMXREST20RequestBuilder",
          contains = "SDMXRequestBuilder",
          representation(),
