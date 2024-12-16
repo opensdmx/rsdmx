@@ -19,7 +19,8 @@
 #' }
 #' 
 #' @note Logger class used internally by rsdmx
-#'
+#' @export
+#' 
 rsdmxLogger <- R6Class("rsdmxLogger",
    private = list(
      enabled = FALSE,

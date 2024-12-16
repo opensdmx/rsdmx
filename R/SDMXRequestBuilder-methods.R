@@ -65,7 +65,8 @@
 #'    repoUrl = "http://www.myorg.org/repository",
 #'    accessKey = NULL,
 #'    formatter = myFormatter, handler = myHandler, compliant = FALSE)
-#'
+#' @export
+#' 
 SDMXRequestBuilder <- function(regUrl, repoUrl, accessKey = NULL,
                                formatter, handler, compliant,
                                unsupportedResources = list(), headers = list()){

@@ -10,7 +10,8 @@
 #' @return an object of class "SDMXCode"
 #' 
 #' @seealso \link{readSDMX}
-#'
+#' @export
+#' 
 SDMXCode <- function(xmlObj, namespaces){
   
   messageNs <- findNamespace(namespaces, "message")

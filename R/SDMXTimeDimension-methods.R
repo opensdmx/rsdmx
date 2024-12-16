@@ -10,6 +10,8 @@
 #' @return an object of class "SDMXTimeDimension"
 #' 
 #' @seealso \link{readSDMX}
+#' 
+#' @export
 #'
 SDMXTimeDimension <- function(xmlObj, namespaces){
   

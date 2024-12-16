@@ -68,7 +68,6 @@ encapsulate it as slot, when parsing an SDMX-ML document.
     regUrl = "http://www.myorg/registry",
     repoUrl = "http://www.myorg/repository",
     compliant = TRUE)
-
 }
 \author{
 Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}

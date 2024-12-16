@@ -10,7 +10,8 @@
 #' @return an object of class "SDMXCrossSectionalData"
 #' 
 #' @seealso \link{readSDMX}
-#'
+#' @export
+#' 
 SDMXCrossSectionalData <- function(xmlObj, namespaces){
   new("SDMXCrossSectionalData",
       SDMXData(xmlObj, namespaces)

@@ -10,7 +10,8 @@
 #' @return an object of class "SDMXComponents"
 #' 
 #' @seealso \link{readSDMX}
-#'
+#' @export
+#' 
 SDMXComponents <- function(xmlObj, namespaces){
   new("SDMXComponents",
       Dimensions = dimensions.SDMXComponents(xmlObj, namespaces),

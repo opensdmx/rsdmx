@@ -28,6 +28,8 @@
 #'   provider <- SDMXServiceProvider(agencyId = "MYORG", name = "My Organization",
 #'                                   builder = myBuilder)
 #'                                   
+#' @export
+#'                                   
 SDMXServiceProvider <- function(agencyId, name,
                                 scale = "international", country = as.character(NA),
                                 builder) {

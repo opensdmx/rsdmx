@@ -10,7 +10,8 @@
 #' @return an object of class "SDMX"
 #' 
 #' @seealso \link{readSDMX}
-
+#' @export
+#' 
 SDMX <- function(xmlObj, namespaces){
 	schema <- SDMXSchema(xmlObj, namespaces);
 	header <- SDMXHeader(xmlObj, namespaces);

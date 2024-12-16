@@ -88,7 +88,6 @@ encapsulate it as slot, when parsing an SDMX-ML document.
    providerId = "", agencyId ="", resource = "data", resourceId = "",
    version = "", flowRef = "", key = NULL, start = NULL, end = NULL, compliant = FALSE
   )
-
 }
 \author{
 Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}

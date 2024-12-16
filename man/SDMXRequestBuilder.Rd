@@ -112,7 +112,6 @@ DataStructureDefinition)
    repoUrl = "http://www.myorg.org/repository",
    accessKey = NULL,
    formatter = myFormatter, handler = myHandler, compliant = FALSE)
-
 }
 \author{
 Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}

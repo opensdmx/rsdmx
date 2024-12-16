@@ -19,6 +19,8 @@
 #'  - \code{MessageGroupType}
 #' 
 #' @seealso \link{readSDMX}
+#' 
+#' @export
 #'
 SDMXType <- function(xmlObj){
 	new("SDMXType", type = type.SDMXType(xmlObj));

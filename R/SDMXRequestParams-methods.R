@@ -30,7 +30,8 @@
 #'    providerId = "", agencyId ="", resource = "data", resourceId = "",
 #'    version = "", flowRef = "", key = NULL, start = NULL, end = NULL, compliant = FALSE
 #'   )
-#'
+#' @export
+#' 
 SDMXRequestParams <- function(regUrl, repoUrl, accessKey, providerId, agencyId, resource, resourceId, version = NULL,
                               flowRef, key = NULL, start = NULL, end = NULL, compliant){
   new("SDMXRequestParams",

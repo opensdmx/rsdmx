@@ -24,6 +24,7 @@
 #' @param headers an object of class "list" that contains any additional headers for the request.
 #'
 #'@note Internal class
+#' @export
 #'  
 SDMXDotStatRequestBuilder <- function(regUrl, repoUrl, accessKey = NULL,
                                    unsupportedResources = list(), 

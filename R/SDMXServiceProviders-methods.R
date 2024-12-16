@@ -8,6 +8,8 @@
 #' @param providers an object of class "list" (of \link{SDMXServiceProvider}) 
 #'        configured by default and/or at runtime in \pkg{rsdmx}
 #' @return an object of class "SDMXServiceProviders"
+#' 
+#' @export
 #'
 SDMXServiceProviders <- function(providers) {
   new("SDMXServiceProviders", providers = providers);

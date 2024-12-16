@@ -62,6 +62,8 @@
 #' @param headers an object of class "list" that contains any additional headers for the request.
 #' @param ... (any other parameter to pass to httr::GET request)
 #' 
+#' @export
+#' 
 #' @return an object of class "SDMX"
 #' 
 #' @examples             

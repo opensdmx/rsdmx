@@ -20,7 +20,7 @@ saveSDMX(sdmxObj, file)
    sdmx <- system.file("extdata","Example_Eurostat_2.0.xml", package="rsdmx")
    saveSDMX(sdmx, "sdmx.rda")
  }
-
+ 
 }
 \author{
 Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}

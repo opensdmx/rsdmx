@@ -10,6 +10,8 @@
 #' @return an object of class "SDMXStructureSpecificTimeSeriesData"
 #' 
 #' @seealso \link{readSDMX}
+#' 
+#' @export
 #'
 SDMXStructureSpecificTimeSeriesData <- function(xmlObj, namespaces){
   new("SDMXStructureSpecificTimeSeriesData",

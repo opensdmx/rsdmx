@@ -11,7 +11,8 @@
 #' @return an object of class "SDMXAttribute"
 #' 
 #' @seealso \link{readSDMX}
-#'
+#' @export
+#' 
 SDMXAttribute <- function(xmlObj, namespaces){
   
   messageNs <- findNamespace(namespaces, "message")

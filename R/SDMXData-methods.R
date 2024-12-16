@@ -11,7 +11,8 @@
 #' @return an object of class "SDMXData"
 #' 
 #' @seealso \link{readSDMX}
-#'
+#' @export
+#' 
 SDMXData <- function(xmlObj, namespaces){
   
   sdmxObj <- SDMX(xmlObj, namespaces)

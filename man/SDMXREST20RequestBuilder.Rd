@@ -67,7 +67,6 @@ encapsulate it as slot, when parsing an SDMX-ML document.
   requestBuilder <- SDMXREST20RequestBuilder(
     regUrl = "http://www.myorg/registry",
     repoUrl = "http://www.myorg/repository", compliant = FALSE)
-
 }
 \author{
 Emmanuel Blondel, \email{emmanuel.blondel1@gmail.com}

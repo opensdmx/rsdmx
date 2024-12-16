@@ -33,7 +33,8 @@
 #'     regUrl = "http://www.myorg/registry",
 #'     repoUrl = "http://www.myorg/repository",
 #'     compliant = TRUE)
-#'
+#' @export
+#' 
 SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, compliant,
                                      unsupportedResources = list(), 
                                      skipProviderId = FALSE, forceProviderId = FALSE,

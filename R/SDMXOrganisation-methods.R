@@ -10,7 +10,8 @@
 #' @return an object of class "SDMXOrganisation"
 #' 
 #' @seealso \link{readSDMX}
-#'
+#' @export
+#' 
 SDMXOrganisation <- function(xmlObj, namespaces){
   obj <- organisation.SDMXOrganisation(xmlObj, namespaces, "SDMXOrganisation")
 }

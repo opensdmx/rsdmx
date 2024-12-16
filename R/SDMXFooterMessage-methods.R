@@ -9,7 +9,8 @@
 #' @return an object of class "SDMXFooterMessage"
 #' 
 #' @seealso   \link{SDMXFooter} \link{readSDMX}
-
+#' @export
+#' 
 SDMXFooterMessage <- function(xmlObj){
   
   #code

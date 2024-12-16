@@ -13,6 +13,8 @@
 #' @return an object of class "SDMXStructureType"
 #' 
 #' @seealso \link{readSDMX}
+#' 
+#' @export
 #'
 SDMXStructureType <- function(xmlObj, namespaces, resource){
 	new("SDMXStructureType",

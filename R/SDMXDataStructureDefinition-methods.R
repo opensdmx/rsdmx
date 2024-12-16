@@ -10,7 +10,8 @@
 #' @return an object of class "SDMXDataStructureDefinition"
 #' 
 #' @seealso \link{readSDMX}
-#'
+#' @export
+#' 
 SDMXDataStructureDefinition <- function(xmlObj, namespaces){
   new("SDMXDataStructureDefinition",
       SDMX(xmlObj, namespaces),

@@ -10,7 +10,8 @@
 #' @return an object of class "SDMXFooter"
 #' 
 #' @seealso \link{readSDMX}
-
+#' @export
+#' 
 SDMXFooter <- function(xmlObj, namespaces){
   
   messageList = list()

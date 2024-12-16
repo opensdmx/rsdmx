@@ -10,7 +10,8 @@
 #' @return an object of class "SDMXDimension"
 #' 
 #' @seealso \link{readSDMX}
-#'
+#' @export
+#' 
 SDMXDimension <- function(xmlObj, namespaces){
   
   sdmxVersion <- version.SDMXSchema(xmlDoc(xmlObj), namespaces)

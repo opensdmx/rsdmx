@@ -10,7 +10,8 @@
 #' @return an object of class "SDMXGenericData"
 #' 
 #' @seealso \link{readSDMX}
-#'
+#' @export
+#' 
 SDMXGenericData <- function(xmlObj, namespaces){
   new("SDMXGenericData",
       SDMXData(xmlObj, namespaces)
