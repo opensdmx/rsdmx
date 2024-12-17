@@ -1,0 +1,3067 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--NSI Web Service v8.19.2.2-->
+<message:Structure xmlns:message="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message" xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure" xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <message:Header>
+    <message:ID>IDREF3313</message:ID>
+    <message:Test>false</message:Test>
+    <message:Prepared>2024-12-17T00:41:26.1595+00:00</message:Prepared>
+    <message:Sender id="Unknown" />
+    <message:Receiver id="Unknown" />
+  </message:Header>
+  <message:Structures>
+    <structure:Codelists>
+      <structure:Codelist id="CL_COM_GEO_PICT" agencyID="SPC" version="3.0" isFinal="false">
+        <common:Name xml:lang="en">Common hierarchical codelist for PICTs</common:Name>
+        <common:Name xml:lang="fr">Liste hiérarchique de codes commune pour les PICTs</common:Name>
+        <structure:Code id="_T">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">10000</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">10000</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Pacific region</common:Name>
+          <common:Name xml:lang="fr">Région du Pacifique</common:Name>
+        </structure:Code>
+        <structure:Code id="MEL">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">20000</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">20000</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Melanesia</common:Name>
+          <common:Name xml:lang="fr">Mélanésie</common:Name>
+        </structure:Code>
+        <structure:Code id="MIC">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">30000</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">30000</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Micronesia</common:Name>
+          <common:Name xml:lang="fr">Micronésie</common:Name>
+        </structure:Code>
+        <structure:Code id="POL">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">40000</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">40000</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Polynesia</common:Name>
+          <common:Name xml:lang="fr">Polynésie</common:Name>
+        </structure:Code>
+        <structure:Code id="AS">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">100</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1700</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">American Samoa</common:Name>
+          <common:Name xml:lang="fr">Samoa américaines</common:Name>
+          <structure:Parent>
+            <Ref id="POL" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="AS-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">101</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1701</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Eastern</common:Name>
+          <common:Name xml:lang="fr">Eastern</common:Name>
+          <structure:Parent>
+            <Ref id="AS" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="AS-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">102</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1702</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Manu'a</common:Name>
+          <common:Name xml:lang="fr">Manu'a</common:Name>
+          <structure:Parent>
+            <Ref id="AS" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="AS-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">103</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1703</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Unorganized</common:Name>
+          <common:Name xml:lang="fr">Unorganized</common:Name>
+          <structure:Parent>
+            <Ref id="AS" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="AS-4">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">104</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1704</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Western</common:Name>
+          <common:Name xml:lang="fr">Western</common:Name>
+          <structure:Parent>
+            <Ref id="AS" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="CK">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">200</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">400</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Cook Islands</common:Name>
+          <common:Name xml:lang="fr">Îles Cook</common:Name>
+          <structure:Parent>
+            <Ref id="POL" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="CK-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">201</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">401</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Northern Group</common:Name>
+          <common:Name xml:lang="fr">Groupe du Nord</common:Name>
+          <structure:Parent>
+            <Ref id="CK" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="CK-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">202</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">402</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Rarotonga</common:Name>
+          <common:Name xml:lang="fr">Rarotonga</common:Name>
+          <structure:Parent>
+            <Ref id="CK" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="CK-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">203</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">403</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Southern Group</common:Name>
+          <common:Name xml:lang="fr">Groupe du Sud</common:Name>
+          <structure:Parent>
+            <Ref id="CK" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="FJ">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">300</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">200</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Fiji</common:Name>
+          <common:Name xml:lang="fr">Fidji</common:Name>
+          <structure:Parent>
+            <Ref id="MEL" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="FJ-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">301</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">201</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Central</common:Name>
+          <common:Name xml:lang="fr">Centre</common:Name>
+          <structure:Parent>
+            <Ref id="FJ" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="FJ-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">302</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">202</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Eastern</common:Name>
+          <common:Name xml:lang="fr">Est</common:Name>
+          <structure:Parent>
+            <Ref id="FJ" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="FJ-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">303</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">203</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Northern</common:Name>
+          <common:Name xml:lang="fr">Nord</common:Name>
+          <structure:Parent>
+            <Ref id="FJ" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="FJ-5">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">304</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">204</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Western</common:Name>
+          <common:Name xml:lang="fr">Ouest</common:Name>
+          <structure:Parent>
+            <Ref id="FJ" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="FM">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">800</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">100</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Micronesia (Federated States of)</common:Name>
+          <common:Name xml:lang="fr">États fédérés de Micronésie (pays)</common:Name>
+          <structure:Parent>
+            <Ref id="MIC" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="FM-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">801</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">101</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Chuuk</common:Name>
+          <common:Name xml:lang="fr">Chuuk</common:Name>
+          <structure:Parent>
+            <Ref id="FM" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="FM-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">802</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">102</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Kosrae</common:Name>
+          <common:Name xml:lang="fr">Kosrae</common:Name>
+          <structure:Parent>
+            <Ref id="FM" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="FM-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">803</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">103</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Pohnpei</common:Name>
+          <common:Name xml:lang="fr">Pohnpei</common:Name>
+          <structure:Parent>
+            <Ref id="FM" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="FM-4">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">804</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">104</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Yap</common:Name>
+          <common:Name xml:lang="fr">Yap</common:Name>
+          <structure:Parent>
+            <Ref id="FM" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">500</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">300</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Guam</common:Name>
+          <common:Name xml:lang="fr">Guam</common:Name>
+          <structure:Parent>
+            <Ref id="MIC" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">501</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">301</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Agana Heights</common:Name>
+          <common:Name xml:lang="fr">Agana Heights</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">502</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">302</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Agat</common:Name>
+          <common:Name xml:lang="fr">Agat</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">503</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">303</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Asan</common:Name>
+          <common:Name xml:lang="fr">Asan</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-4">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">504</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">304</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Barrigada</common:Name>
+          <common:Name xml:lang="fr">Barrigada</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-5">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">505</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">305</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Chalan-Pago-Ordot</common:Name>
+          <common:Name xml:lang="fr">Chalan-Pago-Ordot</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-6">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">506</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">306</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Dededo</common:Name>
+          <common:Name xml:lang="fr">Dededo</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-7">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">507</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">307</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Hagåtña</common:Name>
+          <common:Name xml:lang="fr">Hagåtña</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-8">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">508</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">308</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Inarajan</common:Name>
+          <common:Name xml:lang="fr">Inarajan</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-9">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">509</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">309</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Mangilao</common:Name>
+          <common:Name xml:lang="fr">Mangilao</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-10">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">510</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">310</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Merizo</common:Name>
+          <common:Name xml:lang="fr">Merizo</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-11">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">511</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">311</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Mongmong-Toto-Maite</common:Name>
+          <common:Name xml:lang="fr">Mongmong-Toto-Maite</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-12">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">512</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">312</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Piti</common:Name>
+          <common:Name xml:lang="fr">Piti</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-13">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">513</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">313</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Santa Rita</common:Name>
+          <common:Name xml:lang="fr">Santa Rita</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-14">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">514</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">314</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Sinajana</common:Name>
+          <common:Name xml:lang="fr">Sinajana</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-15">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">515</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">315</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Talofofo</common:Name>
+          <common:Name xml:lang="fr">Talofofo</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-16">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">516</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">316</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Tamuning</common:Name>
+          <common:Name xml:lang="fr">Tamuning</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-17">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">517</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">317</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Umatac</common:Name>
+          <common:Name xml:lang="fr">Umatac</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-18">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">518</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">318</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Yigo</common:Name>
+          <common:Name xml:lang="fr">Yigo</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="GU-19">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">519</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">319</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Yona</common:Name>
+          <common:Name xml:lang="fr">Yona</common:Name>
+          <structure:Parent>
+            <Ref id="GU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">600</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">800</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Kiribati</common:Name>
+          <common:Name xml:lang="fr">Kiribati</common:Name>
+          <structure:Parent>
+            <Ref id="MIC" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">601</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">801</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Banaba</common:Name>
+          <common:Name xml:lang="fr">Banaba</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">602</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">802</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Makin</common:Name>
+          <common:Name xml:lang="fr">Makin</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">603</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">803</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Butaritari</common:Name>
+          <common:Name xml:lang="fr">Butaritari</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-4">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">604</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">804</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Marakei</common:Name>
+          <common:Name xml:lang="fr">Marakei</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-5">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">605</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">805</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Abaiang</common:Name>
+          <common:Name xml:lang="fr">Abaiang</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-6">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">606</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">806</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Nth.Tarawa</common:Name>
+          <common:Name xml:lang="fr">Nth.Tarawa</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-7">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">607</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">807</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Sth.Tarawa</common:Name>
+          <common:Name xml:lang="fr">Sth.Tarawa</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-8">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">608</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">808</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Maiana</common:Name>
+          <common:Name xml:lang="fr">Maiana</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-9">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">609</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">809</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Abemama</common:Name>
+          <common:Name xml:lang="fr">Abemama</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-10">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">610</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">810</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Kuria</common:Name>
+          <common:Name xml:lang="fr">Kuria</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-11">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">611</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">811</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Aranuka</common:Name>
+          <common:Name xml:lang="fr">Aranuka</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-12">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">612</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">812</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Nonouti</common:Name>
+          <common:Name xml:lang="fr">Nonouti</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-13">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">613</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">813</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Tabiteuea.Nth</common:Name>
+          <common:Name xml:lang="fr">Tabiteuea.Nth</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-14">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">614</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">814</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Tabiteuea.Sth</common:Name>
+          <common:Name xml:lang="fr">Tabiteuea.Sth</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-15">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">615</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">815</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Beru</common:Name>
+          <common:Name xml:lang="fr">Beru</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-16">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">616</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">816</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Nikunau</common:Name>
+          <common:Name xml:lang="fr">Nikunau</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-17">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">617</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">817</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Onotoa</common:Name>
+          <common:Name xml:lang="fr">Onotoa</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-18">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">618</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">818</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Tamana</common:Name>
+          <common:Name xml:lang="fr">Tamana</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-19">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">619</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">819</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Arorae</common:Name>
+          <common:Name xml:lang="fr">Arorae</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-20">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">620</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">820</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Teeraina</common:Name>
+          <common:Name xml:lang="fr">Teeraina</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-21">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">621</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">821</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Tabuaeran</common:Name>
+          <common:Name xml:lang="fr">Tabuaeran</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-22">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">622</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">822</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Kiritimati</common:Name>
+          <common:Name xml:lang="fr">Kiritimati</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="KI-23">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">623</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">823</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Kanton</common:Name>
+          <common:Name xml:lang="fr">Kanton</common:Name>
+          <structure:Parent>
+            <Ref id="KI" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">700</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">600</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Marshall Islands</common:Name>
+          <common:Name xml:lang="fr">Îles Marshall (pays)</common:Name>
+          <structure:Parent>
+            <Ref id="MIC" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">701</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">601</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Ailinglaplap</common:Name>
+          <common:Name xml:lang="fr">Ailinglaplap</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">702</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">602</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Ailuk</common:Name>
+          <common:Name xml:lang="fr">Ailuk</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">703</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">603</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Arno</common:Name>
+          <common:Name xml:lang="fr">Arno</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-4">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">704</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">604</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Aur</common:Name>
+          <common:Name xml:lang="fr">Aur</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-5">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">705</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">605</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Eneu</common:Name>
+          <common:Name xml:lang="fr">Eneu</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-6">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">706</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">606</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Ebon</common:Name>
+          <common:Name xml:lang="fr">Ebon</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-7">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">707</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">607</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Enewetak</common:Name>
+          <common:Name xml:lang="fr">Enewetak</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-8">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">708</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">608</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Jabat</common:Name>
+          <common:Name xml:lang="fr">Jabat</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-9">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">709</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">609</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Jaluit</common:Name>
+          <common:Name xml:lang="fr">Jaluit</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-10">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">710</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">610</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Kili</common:Name>
+          <common:Name xml:lang="fr">Kili</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-11">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">711</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">611</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Kwajalein</common:Name>
+          <common:Name xml:lang="fr">Kwajalein</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-12">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">712</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">612</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Lae</common:Name>
+          <common:Name xml:lang="fr">Lae</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-13">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">713</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">613</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Lib</common:Name>
+          <common:Name xml:lang="fr">Lib</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-14">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">714</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">614</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Likiep</common:Name>
+          <common:Name xml:lang="fr">Likiep</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-15">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">715</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">615</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Majuro</common:Name>
+          <common:Name xml:lang="fr">Majuro</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-16">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">716</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">616</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Maloelap</common:Name>
+          <common:Name xml:lang="fr">Maloelap</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-17">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">717</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">617</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Mejit</common:Name>
+          <common:Name xml:lang="fr">Mejit</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-18">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">718</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">618</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Mili</common:Name>
+          <common:Name xml:lang="fr">Mili</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-19">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">719</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">619</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Namdrik</common:Name>
+          <common:Name xml:lang="fr">Namdrik</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-20">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">720</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">620</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Namu</common:Name>
+          <common:Name xml:lang="fr">Namu</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-21">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">721</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">621</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Rongelap</common:Name>
+          <common:Name xml:lang="fr">Rongelap</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-22">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">722</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">622</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Ujae</common:Name>
+          <common:Name xml:lang="fr">Ujae</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-24">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">723</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">623</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Utirik</common:Name>
+          <common:Name xml:lang="fr">Utirik</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-25">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">724</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">624</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Wotho</common:Name>
+          <common:Name xml:lang="fr">Wotho</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MH-26">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">725</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">625</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Wotje</common:Name>
+          <common:Name xml:lang="fr">Wotje</common:Name>
+          <structure:Parent>
+            <Ref id="MH" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MP">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1200</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">500</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Northern Mariana Islands</common:Name>
+          <common:Name xml:lang="fr">Îles Mariannes du Nord</common:Name>
+          <structure:Parent>
+            <Ref id="MIC" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MP-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1201</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">501</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Saipan</common:Name>
+          <common:Name xml:lang="fr">Saipan</common:Name>
+          <structure:Parent>
+            <Ref id="MP" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MP-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1202</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">502</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Tinian</common:Name>
+          <common:Name xml:lang="fr">Tinian</common:Name>
+          <structure:Parent>
+            <Ref id="MP" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="MP-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1203</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">503</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Rota</common:Name>
+          <common:Name xml:lang="fr">Rota</common:Name>
+          <structure:Parent>
+            <Ref id="MP" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NC">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1000</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1100</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">New Caledonia</common:Name>
+          <common:Name xml:lang="fr">Nouvelle-Calédonie</common:Name>
+          <structure:Parent>
+            <Ref id="MEL" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NC-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1001</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1101</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Loyalty Islands</common:Name>
+          <common:Name xml:lang="fr">Îles Loyauté</common:Name>
+          <structure:Parent>
+            <Ref id="NC" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NC-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1002</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1102</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Northern Province</common:Name>
+          <common:Name xml:lang="fr">Province Nord</common:Name>
+          <structure:Parent>
+            <Ref id="NC" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NC-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1003</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1103</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Southern Province</common:Name>
+          <common:Name xml:lang="fr">Province Sud</common:Name>
+          <structure:Parent>
+            <Ref id="NC" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NR">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">900</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">900</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Nauru</common:Name>
+          <common:Name xml:lang="fr">Nauru</common:Name>
+          <structure:Parent>
+            <Ref id="MIC" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NR-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">901</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">901</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Yaren</common:Name>
+          <common:Name xml:lang="fr">Yaren</common:Name>
+          <structure:Parent>
+            <Ref id="NR" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NR-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">902</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">902</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Boe</common:Name>
+          <common:Name xml:lang="fr">Boe</common:Name>
+          <structure:Parent>
+            <Ref id="NR" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NR-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">903</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">903</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Aiwo</common:Name>
+          <common:Name xml:lang="fr">Aiwo</common:Name>
+          <structure:Parent>
+            <Ref id="NR" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NR-4">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">904</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">904</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Buada</common:Name>
+          <common:Name xml:lang="fr">Buada</common:Name>
+          <structure:Parent>
+            <Ref id="NR" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NR-5">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">905</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">905</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Denigomodu</common:Name>
+          <common:Name xml:lang="fr">Denigomodu</common:Name>
+          <structure:Parent>
+            <Ref id="NR" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NR-6">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">906</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">906</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Nibok</common:Name>
+          <common:Name xml:lang="fr">Nibok</common:Name>
+          <structure:Parent>
+            <Ref id="NR" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NR-7">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">907</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">907</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Uaeboe</common:Name>
+          <common:Name xml:lang="fr">Uaeboe</common:Name>
+          <structure:Parent>
+            <Ref id="NR" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NR-8">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">908</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">908</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Baitsi</common:Name>
+          <common:Name xml:lang="fr">Baitsi</common:Name>
+          <structure:Parent>
+            <Ref id="NR" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NR-9">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">909</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">909</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Ewa</common:Name>
+          <common:Name xml:lang="fr">Ewa</common:Name>
+          <structure:Parent>
+            <Ref id="NR" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NR-13">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">910</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">910</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Anibare</common:Name>
+          <common:Name xml:lang="fr">Anibare</common:Name>
+          <structure:Parent>
+            <Ref id="NR" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NR-10">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">911</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">911</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Anetan</common:Name>
+          <common:Name xml:lang="fr">Anetan</common:Name>
+          <structure:Parent>
+            <Ref id="NR" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NR-11">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">912</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">912</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Anabar</common:Name>
+          <common:Name xml:lang="fr">Anabar</common:Name>
+          <structure:Parent>
+            <Ref id="NR" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NR-12">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">913</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">913</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Ijuw</common:Name>
+          <common:Name xml:lang="fr">Ijuw</common:Name>
+          <structure:Parent>
+            <Ref id="NR" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NR-14">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">914</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">914</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Meneng</common:Name>
+          <common:Name xml:lang="fr">Meneng</common:Name>
+          <structure:Parent>
+            <Ref id="NR" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NR-15">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">915</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">915</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Location</common:Name>
+          <common:Name xml:lang="fr">Location</common:Name>
+          <structure:Parent>
+            <Ref id="NR" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NU">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1100</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1000</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Niue</common:Name>
+          <common:Name xml:lang="fr">Niue</common:Name>
+          <structure:Parent>
+            <Ref id="POL" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NU-50">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1101</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1001</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Alofi South</common:Name>
+          <common:Name xml:lang="fr">Alofi South</common:Name>
+          <structure:Parent>
+            <Ref id="NU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NU-51">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1102</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1002</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Alofi North</common:Name>
+          <common:Name xml:lang="fr">Alofi North</common:Name>
+          <structure:Parent>
+            <Ref id="NU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NU-52">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1103</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1003</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Makefu</common:Name>
+          <common:Name xml:lang="fr">Makefu</common:Name>
+          <structure:Parent>
+            <Ref id="NU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NU-53">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1104</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1004</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Tuapa</common:Name>
+          <common:Name xml:lang="fr">Tuapa</common:Name>
+          <structure:Parent>
+            <Ref id="NU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NU-54">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1105</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1005</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Namukulu</common:Name>
+          <common:Name xml:lang="fr">Namukulu</common:Name>
+          <structure:Parent>
+            <Ref id="NU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NU-55">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1106</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1006</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Hikutavake</common:Name>
+          <common:Name xml:lang="fr">Hikutavake</common:Name>
+          <structure:Parent>
+            <Ref id="NU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NU-56">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1107</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1007</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Toi</common:Name>
+          <common:Name xml:lang="fr">Toi</common:Name>
+          <structure:Parent>
+            <Ref id="NU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NU-57">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1108</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1008</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Mutalau</common:Name>
+          <common:Name xml:lang="fr">Mutalau</common:Name>
+          <structure:Parent>
+            <Ref id="NU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NU-58">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1109</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1009</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Lakepa</common:Name>
+          <common:Name xml:lang="fr">Lakepa</common:Name>
+          <structure:Parent>
+            <Ref id="NU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NU-59">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1110</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1010</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Liku</common:Name>
+          <common:Name xml:lang="fr">Liku</common:Name>
+          <structure:Parent>
+            <Ref id="NU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NU-60">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1111</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1011</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Hakupu</common:Name>
+          <common:Name xml:lang="fr">Hakupu</common:Name>
+          <structure:Parent>
+            <Ref id="NU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NU-61">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1112</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1012</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Vaiea</common:Name>
+          <common:Name xml:lang="fr">Vaiea</common:Name>
+          <structure:Parent>
+            <Ref id="NU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NU-62">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1113</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1013</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Avatele</common:Name>
+          <common:Name xml:lang="fr">Avatele</common:Name>
+          <structure:Parent>
+            <Ref id="NU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="NU-63">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1114</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1014</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Tamakautoga</common:Name>
+          <common:Name xml:lang="fr">Tamakautoga</common:Name>
+          <structure:Parent>
+            <Ref id="NU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PF">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">400</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1400</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">French Polynesia</common:Name>
+          <common:Name xml:lang="fr">Polynésie française</common:Name>
+          <structure:Parent>
+            <Ref id="POL" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PF-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">401</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1401</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Îles Australes</common:Name>
+          <common:Name xml:lang="fr">Îles Australes</common:Name>
+          <structure:Parent>
+            <Ref id="PF" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PF-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">402</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1402</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Îles du Vent</common:Name>
+          <common:Name xml:lang="fr">Îles du Vent</common:Name>
+          <structure:Parent>
+            <Ref id="PF" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PF-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">403</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1403</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Îles Marquises</common:Name>
+          <common:Name xml:lang="fr">Îles Marquises</common:Name>
+          <structure:Parent>
+            <Ref id="PF" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PF-4">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">404</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1404</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Îles Sous-le-Vent</common:Name>
+          <common:Name xml:lang="fr">Îles Sous-le-Vent</common:Name>
+          <structure:Parent>
+            <Ref id="PF" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PF-5">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">405</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1405</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Îles Tuamotu-Gambier</common:Name>
+          <common:Name xml:lang="fr">Îles Tuamotu-Gambier</common:Name>
+          <structure:Parent>
+            <Ref id="PF" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1400</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1300</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Papua New Guinea</common:Name>
+          <common:Name xml:lang="fr">Papouasie-Nouvelle-Guinée</common:Name>
+          <structure:Parent>
+            <Ref id="MEL" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1401</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1301</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Bougainville</common:Name>
+          <common:Name xml:lang="fr">Bougainville</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1402</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1302</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Central</common:Name>
+          <common:Name xml:lang="fr">Central</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1403</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1303</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Chimbu</common:Name>
+          <common:Name xml:lang="fr">Chimbu</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-4">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1404</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1304</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">East New Britain</common:Name>
+          <common:Name xml:lang="fr">East New Britain</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-5">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1405</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1305</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">East Sepik</common:Name>
+          <common:Name xml:lang="fr">East Sepik</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-6">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1406</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1306</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Eastern Highlands</common:Name>
+          <common:Name xml:lang="fr">Eastern Highlands</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-7">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1407</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1307</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Enga</common:Name>
+          <common:Name xml:lang="fr">Enga</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-8">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1408</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1308</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Gulf</common:Name>
+          <common:Name xml:lang="fr">Gulf</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-9">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1409</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1309</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Hela</common:Name>
+          <common:Name xml:lang="fr">Hela</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-10">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1410</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1310</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Jiwaka</common:Name>
+          <common:Name xml:lang="fr">Jiwaka</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-11">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1411</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1311</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Madang</common:Name>
+          <common:Name xml:lang="fr">Madang</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-12">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1412</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1312</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Manus</common:Name>
+          <common:Name xml:lang="fr">Manus</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-13">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1413</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1313</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Milne Bay</common:Name>
+          <common:Name xml:lang="fr">Milne Bay</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-14">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1414</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1314</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Morobe</common:Name>
+          <common:Name xml:lang="fr">Morobe</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-15">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1415</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1315</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">National Capital District</common:Name>
+          <common:Name xml:lang="fr">National Capital District</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-16">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1416</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1316</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">New Ireland</common:Name>
+          <common:Name xml:lang="fr">New Ireland</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-17">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1417</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1317</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Oro</common:Name>
+          <common:Name xml:lang="fr">Oro</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-18">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1418</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1318</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Sandaun</common:Name>
+          <common:Name xml:lang="fr">Sandaun</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-19">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1419</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1319</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Southern Highlands</common:Name>
+          <common:Name xml:lang="fr">Southern Highlands</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-20">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1420</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1320</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">West New Britain</common:Name>
+          <common:Name xml:lang="fr">West New Britain</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-22">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1421</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1321</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Western</common:Name>
+          <common:Name xml:lang="fr">Western</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PG-21">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1422</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1322</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Western Highlands</common:Name>
+          <common:Name xml:lang="fr">Western Highlands</common:Name>
+          <structure:Parent>
+            <Ref id="PG" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PN">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1500</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">700</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Pitcairn</common:Name>
+          <common:Name xml:lang="fr">Îles Pitcairn</common:Name>
+          <structure:Parent>
+            <Ref id="POL" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PW">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1300</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1200</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Palau</common:Name>
+          <common:Name xml:lang="fr">Palaos</common:Name>
+          <structure:Parent>
+            <Ref id="MIC" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PW-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1301</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1201</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Koror</common:Name>
+          <common:Name xml:lang="fr">Koror</common:Name>
+          <structure:Parent>
+            <Ref id="PW" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PW-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1302</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1202</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Airai</common:Name>
+          <common:Name xml:lang="fr">Airai</common:Name>
+          <structure:Parent>
+            <Ref id="PW" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PW-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1303</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1203</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Outlying States</common:Name>
+          <common:Name xml:lang="fr">Outlying States</common:Name>
+          <structure:Parent>
+            <Ref id="PW" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PW-4">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1304</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1204</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">West Babeldaob</common:Name>
+          <common:Name xml:lang="fr">West Babeldaob</common:Name>
+          <structure:Parent>
+            <Ref id="PW" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="PW-5">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1305</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1205</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">East Babeldaob</common:Name>
+          <common:Name xml:lang="fr">East Babeldaob</common:Name>
+          <structure:Parent>
+            <Ref id="PW" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="SB">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1700</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1500</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Solomon Islands</common:Name>
+          <common:Name xml:lang="fr">Salomon</common:Name>
+          <structure:Parent>
+            <Ref id="MEL" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="SB-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1701</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1501</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Choiseul</common:Name>
+          <common:Name xml:lang="fr">Choiseul</common:Name>
+          <structure:Parent>
+            <Ref id="SB" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="SB-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1702</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1502</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Western</common:Name>
+          <common:Name xml:lang="fr">Western</common:Name>
+          <structure:Parent>
+            <Ref id="SB" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="SB-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1703</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1503</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Isabel</common:Name>
+          <common:Name xml:lang="fr">Isabel</common:Name>
+          <structure:Parent>
+            <Ref id="SB" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="SB-4">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1704</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1504</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Central</common:Name>
+          <common:Name xml:lang="fr">Central</common:Name>
+          <structure:Parent>
+            <Ref id="SB" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="SB-5">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1705</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1505</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Rennell-Bell</common:Name>
+          <common:Name xml:lang="fr">Rennell-Bell</common:Name>
+          <structure:Parent>
+            <Ref id="SB" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="SB-6">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1706</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1506</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Guadalcanal</common:Name>
+          <common:Name xml:lang="fr">Guadalcanal</common:Name>
+          <structure:Parent>
+            <Ref id="SB" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="SB-7">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1707</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1507</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Malaita</common:Name>
+          <common:Name xml:lang="fr">Malaita</common:Name>
+          <structure:Parent>
+            <Ref id="SB" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="SB-8">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1708</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1508</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Makira-Ulawa</common:Name>
+          <common:Name xml:lang="fr">Makira-Ulawa</common:Name>
+          <structure:Parent>
+            <Ref id="SB" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="SB-9">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1709</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1509</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Temotu</common:Name>
+          <common:Name xml:lang="fr">Temotu</common:Name>
+          <structure:Parent>
+            <Ref id="SB" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="SB-10">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1710</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1510</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Honiara</common:Name>
+          <common:Name xml:lang="fr">Honiara</common:Name>
+          <structure:Parent>
+            <Ref id="SB" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TK">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1800</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1800</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Tokelau</common:Name>
+          <common:Name xml:lang="fr">Tokelau</common:Name>
+          <structure:Parent>
+            <Ref id="POL" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TK-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1801</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1801</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Anafu</common:Name>
+          <common:Name xml:lang="fr">Anafu</common:Name>
+          <structure:Parent>
+            <Ref id="TK" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TK-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1802</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1802</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Fakaofo</common:Name>
+          <common:Name xml:lang="fr">Fakaofo</common:Name>
+          <structure:Parent>
+            <Ref id="TK" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TK-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1803</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1803</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Nukunonu</common:Name>
+          <common:Name xml:lang="fr">Nukunonu</common:Name>
+          <structure:Parent>
+            <Ref id="TK" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TO">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1900</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1900</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Tonga</common:Name>
+          <common:Name xml:lang="fr">Tonga</common:Name>
+          <structure:Parent>
+            <Ref id="POL" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TO-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1901</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1901</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Ha'apai</common:Name>
+          <common:Name xml:lang="fr">Ha'apai</common:Name>
+          <structure:Parent>
+            <Ref id="TO" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TO-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1902</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1902</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">'Eua</common:Name>
+          <common:Name xml:lang="fr">'Eua</common:Name>
+          <structure:Parent>
+            <Ref id="TO" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TO-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1903</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1903</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Niuas</common:Name>
+          <common:Name xml:lang="fr">Niuas</common:Name>
+          <structure:Parent>
+            <Ref id="TO" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TO-4">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1904</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1904</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Tongatapu</common:Name>
+          <common:Name xml:lang="fr">Tongatapu</common:Name>
+          <structure:Parent>
+            <Ref id="TO" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TO-5">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1905</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1905</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Vava'u</common:Name>
+          <common:Name xml:lang="fr">Vava'u</common:Name>
+          <structure:Parent>
+            <Ref id="TO" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TV">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2000</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2000</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Tuvalu</common:Name>
+          <common:Name xml:lang="fr">Tuvalu</common:Name>
+          <structure:Parent>
+            <Ref id="POL" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TV-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2001</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2001</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Nanumea</common:Name>
+          <common:Name xml:lang="fr">Nanumea</common:Name>
+          <structure:Parent>
+            <Ref id="TV" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TV-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2002</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2002</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Nanumanga</common:Name>
+          <common:Name xml:lang="fr">Nanumanga</common:Name>
+          <structure:Parent>
+            <Ref id="TV" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TV-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2003</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2003</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Niutao</common:Name>
+          <common:Name xml:lang="fr">Niutao</common:Name>
+          <structure:Parent>
+            <Ref id="TV" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TV-4">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2004</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2004</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Nui</common:Name>
+          <common:Name xml:lang="fr">Nui</common:Name>
+          <structure:Parent>
+            <Ref id="TV" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TV-5">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2005</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2005</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Vaitupu</common:Name>
+          <common:Name xml:lang="fr">Vaitupu</common:Name>
+          <structure:Parent>
+            <Ref id="TV" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TV-6">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2006</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2006</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Nukufetau</common:Name>
+          <common:Name xml:lang="fr">Nukufetau</common:Name>
+          <structure:Parent>
+            <Ref id="TV" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TV-7">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2007</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2007</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Funafuti</common:Name>
+          <common:Name xml:lang="fr">Funafuti</common:Name>
+          <structure:Parent>
+            <Ref id="TV" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TV-8">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2008</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2008</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Nukulaelae</common:Name>
+          <common:Name xml:lang="fr">Nukulaelae</common:Name>
+          <structure:Parent>
+            <Ref id="TV" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="TV-9">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2009</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2009</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Niulakita</common:Name>
+          <common:Name xml:lang="fr">Niulakita</common:Name>
+          <structure:Parent>
+            <Ref id="TV" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="VU">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2100</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2100</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Vanuatu</common:Name>
+          <common:Name xml:lang="fr">Vanuatu</common:Name>
+          <structure:Parent>
+            <Ref id="MEL" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="VU-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2101</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2101</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Torba</common:Name>
+          <common:Name xml:lang="fr">Torba</common:Name>
+          <structure:Parent>
+            <Ref id="VU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="VU-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2102</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2102</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Sanma</common:Name>
+          <common:Name xml:lang="fr">Sanma</common:Name>
+          <structure:Parent>
+            <Ref id="VU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="VU-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2103</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2103</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Penama</common:Name>
+          <common:Name xml:lang="fr">Penama</common:Name>
+          <structure:Parent>
+            <Ref id="VU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="VU-4">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2104</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2104</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Malampa</common:Name>
+          <common:Name xml:lang="fr">Malampa</common:Name>
+          <structure:Parent>
+            <Ref id="VU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="VU-5">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2105</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2105</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Shefa</common:Name>
+          <common:Name xml:lang="fr">Shefa</common:Name>
+          <structure:Parent>
+            <Ref id="VU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="VU-6">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2106</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2106</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Tafea</common:Name>
+          <common:Name xml:lang="fr">Tafea</common:Name>
+          <structure:Parent>
+            <Ref id="VU" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="WF">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2200</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2200</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Wallis and Futuna</common:Name>
+          <common:Name xml:lang="fr">Wallis-et-Futuna</common:Name>
+          <structure:Parent>
+            <Ref id="POL" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="WF-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2201</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2201</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Alo</common:Name>
+          <common:Name xml:lang="fr">Alo</common:Name>
+          <structure:Parent>
+            <Ref id="WF" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="WF-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2202</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2202</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Sigave</common:Name>
+          <common:Name xml:lang="fr">Sigave</common:Name>
+          <structure:Parent>
+            <Ref id="WF" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="WF-5">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2203</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2203</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Hahake</common:Name>
+          <common:Name xml:lang="fr">Hahake</common:Name>
+          <structure:Parent>
+            <Ref id="WF" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="WF-6">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2204</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2204</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Hihifo</common:Name>
+          <common:Name xml:lang="fr">Hihifo</common:Name>
+          <structure:Parent>
+            <Ref id="WF" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="WF-7">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">2205</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">2205</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Mua</common:Name>
+          <common:Name xml:lang="fr">Mua</common:Name>
+          <structure:Parent>
+            <Ref id="WF" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="WS">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1600</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1600</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Samoa</common:Name>
+          <common:Name xml:lang="fr">Samoa</common:Name>
+          <structure:Parent>
+            <Ref id="POL" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="WS-1">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1601</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1601</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Apia Urban Area</common:Name>
+          <common:Name xml:lang="fr">Apia Urban Area</common:Name>
+          <structure:Parent>
+            <Ref id="WS" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="WS-2">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1602</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1602</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">North West Upolu</common:Name>
+          <common:Name xml:lang="fr">North West Upolu</common:Name>
+          <structure:Parent>
+            <Ref id="WS" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="WS-3">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1603</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1603</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Rest of Upolu</common:Name>
+          <common:Name xml:lang="fr">Rest of Upolu</common:Name>
+          <structure:Parent>
+            <Ref id="WS" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="WS-4">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">1604</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">1604</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Savaii</common:Name>
+          <common:Name xml:lang="fr">Savaii</common:Name>
+          <structure:Parent>
+            <Ref id="WS" />
+          </structure:Parent>
+        </structure:Code>
+        <structure:Code id="_TXPNG">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">50000</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">50000</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Pacific region (excluding PNG)</common:Name>
+          <common:Name xml:lang="fr">Région du Pacifique (sans PNG)</common:Name>
+        </structure:Code>
+        <structure:Code id="MELXPNG">
+          <common:Annotations>
+            <common:Annotation>
+              <common:AnnotationType>ORDER</common:AnnotationType>
+              <common:AnnotationText xml:lang="en">60000</common:AnnotationText>
+              <common:AnnotationText xml:lang="fr">60000</common:AnnotationText>
+            </common:Annotation>
+          </common:Annotations>
+          <common:Name xml:lang="en">Melanesia (excluding PNG)</common:Name>
+          <common:Name xml:lang="fr">Mélanésie (sans PNG)</common:Name>
+        </structure:Code>
+      </structure:Codelist>
+    </structure:Codelists>
+  </message:Structures>
+</message:Structure>
