@@ -29,7 +29,7 @@ test_that("Codelists - 2.1", {
 
   df <- as.data.frame(codelists)
   expect_is(df, "data.frame")
-}
+})
 
 test_that("Hierarchical dodelists", {
   file <- system.file("extdata", "SDMXCodelists_Example_hierarchical_2.1.xml", package = "rsdmx")
