@@ -39,6 +39,8 @@ mandatory for some service providers.}
 
 \item{end}{an object of class "character" giving the end time}
 
+\item{references}{an object of class "character" giving the instructions to return (or not) the artefacts referenced by the artefact to be returned}
+
 \item{compliant}{an object of class "logical" indicating if the web-service is compliant with the SDMX REST web-service specifications}
 }
 \description{
@@ -71,6 +73,8 @@ an authentication or subscription user key/token has to be provided to perform r
 \item{\code{start}}{an object of class "character" giving the start time}
 
 \item{\code{end}}{an object of class "character" giving the end time}
+
+\item{\code{references}}{an object of class "character" giving the instructions to return (or not) the artefacts referenced by the artefact to be returned}
 
 \item{\code{compliant}}{an object of class "logical" indicating if the web-service is compliant with the SDMX REST web-service specifications}
 }}

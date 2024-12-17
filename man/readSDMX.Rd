@@ -75,6 +75,9 @@ an embedded service provider. Default is FALSE}
 be performed on the SDMX-ML document to check its SDMX compliance when reading it.
 Default is FALSE.}
 
+\item{references}{an object of class "character" giving the instructions to return (or not) the
+artefacts referenced by the artefact to be returned.}
+
 \item{verbose}{an Object of class "logical" that indicates if rsdmx logs should
 appear to user. Default is set to \code{FALSE} (see argument \code{logger}).}
 
