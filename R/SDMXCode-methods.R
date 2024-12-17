@@ -39,8 +39,16 @@ SDMXCode <- function(xmlObj, namespaces){
   urn = xmlGetAttr(xmlObj, "urn")
   if(is.null(urn)) urn <- as.character(NA)
   
-  parentCode = xmlGetAttr(xmlObj, "parentCode")
-  if(is.null(parentCode)) parentCode <- as.character(NA)
+  parentCode <- as.character(NA)
+  parentId <- xmlGetAttr(xmlObj, "parentCode")
+  if(!is.null(parentId)) parentCode <- parentId
+  parentNode <- getNodeSet(xmlDoc(xmlObj), "//ns:Parent//Ref", namespaces = strNs)
+  if(length(parentNode) == 1) parentCode <- xmlGetAttr(parentNode[[1]], "id")
+  if(length(parentNode)  > 1) {
+    parentCode <- sapply(parentNode, function(x) { xmlGetAttr(x, "id") })
+    # we collapse the vector of parent codes into a single string as required by the SDMXCode class
+    parentCode <- paste(parentCode, collapse = ",")
+  }
   
   #elements
   #========
