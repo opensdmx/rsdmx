@@ -29,9 +29,9 @@ test_that("Codelists - 2.1", {
 
   df <- as.data.frame(codelists)
   expect_is(df, "data.frame")
-}
+})
 
-test_that("Hierarchical dodelists", {
+test_that("Hierarchical codelists", {
   file <- system.file("extdata", "SDMXCodelists_Example_hierarchical_2.1.xml", package = "rsdmx")
   xmlObj <- xmlParse(file)
   ns <- namespaces.SDMX(xmlObj)
