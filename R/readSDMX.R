@@ -48,6 +48,8 @@
 #'        Recognized if a valid provider or provide id has been specified as argument.
 #' @param end an object of class "integer" or "character" giving the SDMX end time to apply. 
 #'        Recognized if a valid provider or provide id has been specified as argument.
+#' @param references an object of class "character" giving the instructions to return (or not) the
+#'        artefacts referenced by the artefact to be returned.
 #' @param dsd an Object of class "logical" if an attempt to inherit the DSD should be performed.
 #'        Active only if \code{"readSDMX"} is used as helper method (ie if data is fetched using 
 #'        an embedded service provider. Default is FALSE
@@ -138,7 +140,7 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
                      provider = NULL, providerId = NULL, providerKey = NULL,
                      agencyId = NULL, resource = NULL, resourceId = NULL, version = NULL,
                      flowRef = NULL, key = NULL, key.mode = "R", start = NULL, end = NULL, dsd = FALSE,
-                     headers = list(), validate = FALSE,
+                     headers = list(), validate = FALSE, references = NULL,
                      verbose = !is.null(logger), logger = "INFO", ...) {
   
   #logger
@@ -203,6 +205,7 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
                        key = key,
                        start = start,
                        end = end,
+                       references = references,
                        compliant = provider@builder@compliant
                      )
     #formatting requestParams
@@ -450,9 +453,16 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
       }
       
       if(resource == "data"){
-        dsdObj <- readSDMX(providerId = providerId, providerKey = providerKey,
-                           resource = "datastructure", resourceId = dsdRef, headers = headers,
-                           verbose = verbose, logger = logger, ...)
+        if providerId == "IMF_DATA"{
+          dsdObj <- readSDMX(providerId = providerId, providerKey = providerKey,
+                    resource = "datastructure", resourceId = dsdRef, headers = headers,
+                    verbose = verbose, references = "descendants", logger = logger, ...)
+        }else{
+          dsdObj <- readSDMX(providerId = providerId, providerKey = providerKey,
+                            resource = "datastructure", resourceId = dsdRef, headers = headers,
+                            verbose = verbose, logger = logger, ...)
+        }
+
         if(is.null(dsdObj)){
           log$WARN(sprintf("Impossible to fetch DSD for dataset '%s'", flowRef))
         }else{
