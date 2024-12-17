@@ -453,15 +453,15 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
       }
       
       if(resource == "data"){
-        if(providerId == "IMF_DATA"){
-          dsdObj <- readSDMX(providerId = providerId, providerKey = providerKey,
-                            resource = "datastructure", resourceId = dsdRef, headers = headers,
-                            verbose = verbose, references = "descendants", logger = logger, ...)
-        }else{
-          dsdObj <- readSDMX(providerId = providerId, providerKey = providerKey,
-                            resource = "datastructure", resourceId = dsdRef, headers = headers,
-                            verbose = verbose, logger = logger, ...)
-        }
+        #if(providerId == "IMF_DATA"){
+        #  dsdObj <- readSDMX(providerId = providerId, providerKey = providerKey,
+        #                    resource = "datastructure", resourceId = dsdRef, headers = headers,
+        #                    verbose = verbose, references = "descendants", logger = logger, ...)
+        #}else{
+        dsdObj <- readSDMX(providerId = providerId, providerKey = providerKey,
+                          resource = "datastructure", resourceId = dsdRef, headers = headers,
+                          verbose = verbose, logger = logger, ...)
+        #}
 
         if(is.null(dsdObj)){
           log$WARN(sprintf("Impossible to fetch DSD for dataset '%s'", flowRef))
