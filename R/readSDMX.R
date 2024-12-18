@@ -211,7 +211,7 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
     
     #allow IMF requests to 
     if(providerId == "IMF_DATA"){
-      if is.null(references){
+      if(is.null(references)){
         requestParams@references <- "descendants"
       }
     }
