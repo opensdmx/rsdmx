@@ -154,15 +154,7 @@ test_that("IMF - datastructure",{
   }
 })
 
-#-> data
-test_that("IMF - data",{
-  testthat::skip_on_cran()
-  #TODO to test, sounds it's not public anymore
-  #sdmx <- readSDMX(providerId = "IMF", resource = "data", flowRef = "BOP_GBPM6", start = 2020, end = 2020) 
-  #if(!is.null(sdmx)){
-  #  expect_is(sdmx, "SDMXStructureSpecificData")
-  #}
-})
+#No plans to dissiminate data on IMF provider, IMF data avaliable on IMF_DATA.
 
 #IMF_DATA
 #----

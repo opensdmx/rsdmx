@@ -29,7 +29,7 @@
 #'   params <- SDMXRequestParams(
 #'    regUrl = "", repoUrl ="", accessKey = NULL,
 #'    providerId = "", agencyId ="", resource = "data", resourceId = "",
-#'    version = "", flowRef = "", key = NULL, start = NULL, end = NULL, compliant = FALSE
+#'    version = "", flowRef = "", key = NULL, start = NULL, end = NULL, references = NULL, compliant = FALSE
 #'   )
 #' @export
 #' 

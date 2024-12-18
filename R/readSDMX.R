@@ -208,6 +208,14 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
                        references = references,
                        compliant = provider@builder@compliant
                      )
+    
+    #allow IMF requests to 
+    if(providerId == "IMF_DATA"){
+      if is.null(references){
+        requestParams@references <- "descendants"
+      }
+    }
+
     #formatting requestParams
     requestFormatter <- provider@builder@formatter
     requestParams <- switch(resource,
@@ -453,15 +461,10 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
       }
       
       if(resource == "data"){
-        #if(providerId == "IMF_DATA"){
-        #  dsdObj <- readSDMX(providerId = providerId, providerKey = providerKey,
-        #                    resource = "datastructure", resourceId = dsdRef, headers = headers,
-        #                    verbose = verbose, references = "descendants", logger = logger, ...)
-        #}else{
         dsdObj <- readSDMX(providerId = providerId, providerKey = providerKey,
                           resource = "datastructure", resourceId = dsdRef, headers = headers,
-                          verbose = verbose, logger = logger, ...)
-        #}
+                          verbose = verbose, references = references, logger = logger, ...)
+
 
         if(is.null(dsdObj)){
           log$WARN(sprintf("Impossible to fetch DSD for dataset '%s'", flowRef))
@@ -473,7 +476,7 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
         dsdObj <- lapply(1:length(dsdRef), function(x){
           flowDsd <- readSDMX(providerId = providerId, providerKey = providerKey,
                               resource = "datastructure", resourceId = dsdRef[[x]], headers = headers,
-                              verbose = verbose, logger = logger, ...)
+                              verbose = verbose, references = references, logger = logger, ...)
           if(is.null(flowDsd)){
             log$INFO(sprintf("Impossible to fetch DSD for dataflow '%s'",resourceId))
           }else{
