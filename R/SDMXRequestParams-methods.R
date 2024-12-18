@@ -5,7 +5,7 @@
 #' @usage
 #'  SDMXRequestParams(regUrl, repoUrl, accessKey,
 #'                    providerId, agencyId, resource, resourceId, version,
-#'                    flowRef, key, start, end, compliant)
+#'                    flowRef, key, start, end, references = NULL, compliant)
 #'
 #' @param regUrl an object of class "character" giving the base Url of the SDMX service registry
 #' @param repoUrl an object of class "character" giving the base Url of the SDMX service repository

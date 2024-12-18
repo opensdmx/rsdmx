@@ -7,7 +7,7 @@
 #'   provider = NULL, providerId = NULL, providerKey = NULL,
 #'   agencyId = NULL, resource = NULL, resourceId = NULL, version = NULL,
 #'   flowRef = NULL, key = NULL, key.mode = "R", start = NULL, end = NULL, dsd = FALSE,
-#'   headers = list(), validate = FALSE,
+#'   headers = list(), validate = FALSE, references = NULL,
 #'   verbose = !is.null(logger), logger = "INFO", ...)
 #'                 
 #' @param file path to SDMX-ML document that needs to be parsed

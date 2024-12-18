@@ -10,7 +10,7 @@
 \usage{
 SDMXRequestParams(regUrl, repoUrl, accessKey,
                    providerId, agencyId, resource, resourceId, version,
-                   flowRef, key, start, end, compliant)
+                   flowRef, key, start, end, references = NULL, compliant)
 }
 \arguments{
 \item{regUrl}{an object of class "character" giving the base Url of the SDMX service registry}
