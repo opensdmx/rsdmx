@@ -66,7 +66,7 @@ SDMXDimension <- function(xmlObj, namespaces){
     if(!is.null(conceptRefXML)){
       conceptRef = xmlGetAttr(conceptRefXML, "id")
       package = xmlGetAttr(conceptRefXML, "package")
-      if(pacakge == "conceptscheme"){
+      if(package == "conceptscheme"){
         conceptSchemeRef = xmlGetAttr(conceptRefXML, "maintainableParentID")
         conceptSchemeVersion = xmlGetAttr(conceptRefXML, "maintainableParentVersion") 
         conceptSchemeAgency = xmlGetAttr(conceptRefXML, "agencyID")
