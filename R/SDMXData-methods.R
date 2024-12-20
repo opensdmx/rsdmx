@@ -104,8 +104,8 @@ addLabels.SDMXData <- function(data, dsd){
             for(conceptScheme in conceptSchemes){
               if(conceptSchemeRef == conceptScheme@id &&
               conceptSchemeAgency == conceptScheme@agencyID &&
-              conceptSchemeVersion == conceptScheme@id){
-                for(concept in conceptScheme){
+              conceptSchemeVersion == conceptScheme@version){
+                for(concept in conceptScheme@Concept){
                   if(concept@id == column){
                     coreRepresentation = concept@coreRepresentation
                     if(coreRepresentation %in% codelists){
@@ -115,7 +115,7 @@ addLabels.SDMXData <- function(data, dsd){
                     } 
                   }
                 }
-                if(newCLFound){break}
+                if(clFound){break}
               }
             }
         }
