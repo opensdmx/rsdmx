@@ -130,6 +130,7 @@ SDMXDimension <- function(xmlObj, namespaces){
   if(is.null(conceptVersion)) conceptVersion <- as.character(NA)
   if(is.null(conceptAgency)) conceptAgency <- as.character(NA)
   if(is.null(conceptSchemeRef)) conceptSchemeRef <- as.character(NA)
+  if(is.null(conceptSchemeVersion)) conceptSchemeVersion <- as.character(NA)
   if(is.null(conceptSchemeAgency)) conceptSchemeAgency <- as.character(NA)
   
   if(is.null(codelist)) codelist <- as.character(NA)
