@@ -79,9 +79,9 @@ addLabels.SDMXData <- function(data, dsd){
       clName <- components[clMatcher, "codelist"]
       if(is.null(clName) || all(is.na(clName))){
         #try to grab codelist using regexpr on codelist
-        clMatcher <- regexpr(column, components$codelist, ignore.case = TRUE)
-        attr(clMatcher,"match.length")[is.na(clMatcher)] <- -1
-        clName <- components[attr(clMatcher,"match.length")>1, "codelist"]
+        clMatcher2 <- regexpr(column, components$codelist, ignore.case = TRUE)
+        attr(clMatcher2,"match.length")[is.na(clMatcher2)] <- -1
+        clName <- components[attr(clMatcher2,"match.length")>1, "codelist"]
         if(length(clName)>1) clName <- clName[1]
       }
       
@@ -90,6 +90,34 @@ addLabels.SDMXData <- function(data, dsd){
         codelists <- sapply(slot(slot(dsd,"codelists"), "codelists"), slot, "id")
         if(!(clName %in% codelists)){
           clName <- NULL
+        }
+        }else if(length(clName)==0){
+          #check if component has a conceptSchemeRef and if so try to resolve
+          #codelist from conceptscheme.
+          conceptSchemeRef <- components[clMatcher, "conceptSchemeRef"]
+          if(length(conceptSchemeRef)>0 && !is.na(conceptSchemeRef)){
+            codelists <- sapply(slot(slot(dsd,"codelists"), "codelists"), slot, "id")
+            conceptSchemeVersion <- components[clMatcher, "conceptSchemeVersion"]
+            conceptSchemeAgency <- components[clMatcher, "conceptSchemeAgency"]
+            conceptSchemes <- slot(slot(dsd, "concepts"), "conceptSchemes")
+            clFound <- FALSE
+            for(conceptScheme in conceptSchemes){
+              if(conceptSchemeRef == conceptScheme@id &&
+              conceptSchemeAgency == conceptScheme@agencyID &&
+              conceptSchemeVersion == conceptScheme@version){
+                for(concept in conceptScheme@Concept){
+                  if(concept@id == column){
+                    coreRepresentation = concept@coreRepresentation
+                    if(coreRepresentation %in% codelists){
+                      clName <- coreRepresentation
+                      clFound <- TRUE
+                      break
+                    } 
+                  }
+                }
+                if(clFound){break}
+              }
+            }
         }
       }
 
