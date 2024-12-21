@@ -208,13 +208,6 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
                        references = references,
                        compliant = provider@builder@compliant
                      )
-    
-    #allow IMF requests to use descendants instead of children
-    if(providerId == "IMF_DATA"){
-      if(is.null(references)){
-        requestParams@references <- "descendants"
-      }
-    }
 
     #formatting requestParams
     requestFormatter <- provider@builder@formatter
