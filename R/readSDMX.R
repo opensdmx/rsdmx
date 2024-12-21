@@ -7,7 +7,7 @@
 #'   provider = NULL, providerId = NULL, providerKey = NULL,
 #'   agencyId = NULL, resource = NULL, resourceId = NULL, version = NULL,
 #'   flowRef = NULL, key = NULL, key.mode = "R", start = NULL, end = NULL, dsd = FALSE,
-#'   headers = list(), validate = FALSE,
+#'   headers = list(), validate = FALSE, references = NULL,
 #'   verbose = !is.null(logger), logger = "INFO", ...)
 #'                 
 #' @param file path to SDMX-ML document that needs to be parsed
@@ -48,6 +48,8 @@
 #'        Recognized if a valid provider or provide id has been specified as argument.
 #' @param end an object of class "integer" or "character" giving the SDMX end time to apply. 
 #'        Recognized if a valid provider or provide id has been specified as argument.
+#' @param references an object of class "character" giving the instructions to return (or not) the
+#'        artefacts referenced by the artefact to be returned.
 #' @param dsd an Object of class "logical" if an attempt to inherit the DSD should be performed.
 #'        Active only if \code{"readSDMX"} is used as helper method (ie if data is fetched using 
 #'        an embedded service provider. Default is FALSE
@@ -138,7 +140,7 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
                      provider = NULL, providerId = NULL, providerKey = NULL,
                      agencyId = NULL, resource = NULL, resourceId = NULL, version = NULL,
                      flowRef = NULL, key = NULL, key.mode = "R", start = NULL, end = NULL, dsd = FALSE,
-                     headers = list(), validate = FALSE,
+                     headers = list(), validate = FALSE, references = NULL,
                      verbose = !is.null(logger), logger = "INFO", ...) {
   
   #logger
@@ -203,8 +205,10 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
                        key = key,
                        start = start,
                        end = end,
+                       references = references,
                        compliant = provider@builder@compliant
                      )
+
     #formatting requestParams
     requestFormatter <- provider@builder@formatter
     requestParams <- switch(resource,
@@ -451,8 +455,10 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
       
       if(resource == "data"){
         dsdObj <- readSDMX(providerId = providerId, providerKey = providerKey,
-                           resource = "datastructure", resourceId = dsdRef, headers = headers,
-                           verbose = verbose, logger = logger, ...)
+                          resource = "datastructure", resourceId = dsdRef, headers = headers,
+                          verbose = verbose, references = references, logger = logger, ...)
+
+
         if(is.null(dsdObj)){
           log$WARN(sprintf("Impossible to fetch DSD for dataset '%s'", flowRef))
         }else{
@@ -463,7 +469,7 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
         dsdObj <- lapply(1:length(dsdRef), function(x){
           flowDsd <- readSDMX(providerId = providerId, providerKey = providerKey,
                               resource = "datastructure", resourceId = dsdRef[[x]], headers = headers,
-                              verbose = verbose, logger = logger, ...)
+                              verbose = verbose, references = references, logger = logger, ...)
           if(is.null(flowDsd)){
             log$INFO(sprintf("Impossible to fetch DSD for dataflow '%s'",resourceId))
           }else{

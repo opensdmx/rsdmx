@@ -40,6 +40,11 @@ concepts.SDMXConcepts <- function(xmlObj, namespaces){
                               "//mes:Structures/str:Concepts/str:Concept",
                               namespaces = c(mes = as.character(messageNs),
                                              str = as.character(strNs)))
+    conceptsXML <- c(conceptsXML,
+                    getNodeSet(xmlObj,
+                              "//mes:Structures/str:Concepts/str:ConceptScheme/str:Concept",
+                              namespaces = c(mes = as.character(messageNs),
+                                             str = as.character(strNs))))
   }else{
     conceptsXML <- getNodeSet(xmlObj,
                               "//mes:Concepts/str:Concept",

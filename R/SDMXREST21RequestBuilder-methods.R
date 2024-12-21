@@ -82,7 +82,8 @@ SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, complian
       if(is.null(obj@version)) obj@version = "latest"
       req <- sprintf("%s/datastructure/%s/%s/%s/",obj@regUrl, obj@agencyId, obj@resourceId, obj@version)
       if(forceProviderId) req <- paste(req, obj@providerId, sep = "/")
-      req <- paste0(req, "?references=children") #TODO to see later to have arg for this
+      if(is.null(obj@references)) obj@references = "children"
+      req <- paste0(req, "?references=", obj@references)
       
       #require key
       if(!is.null(accessKey)){
