@@ -169,9 +169,12 @@ setSDMXServiceProviders <- function(){ # nocov start
       regUrl = "https://api.imf.org/external/sdmx/2.1",
       repoUrl = "https://api.imf.org/external/sdmx/2.1",
       compliant = TRUE,
-      formatter$datastructure = function(obj){
-        if(is.null(obj@references)) obj@references = "descendants"
-        return(obj)})
+      formatter = list(
+        datastructure = function(obj){
+          if(is.null(obj@references)) obj@references = "descendants"
+          return(obj)
+        }
+      )
   )
     
   #OECD
