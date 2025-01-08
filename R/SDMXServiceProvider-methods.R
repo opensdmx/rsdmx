@@ -175,6 +175,7 @@ setSDMXServiceProviders <- function(){ # nocov start
           return(obj)
         }
       )
+    )
   )
     
   #OECD
