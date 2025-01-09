@@ -8,7 +8,7 @@
 \alias{SDMXDotStatRequestBuilder,SDMXDotStatRequestBuilder-method}
 \title{Class "SDMXDotStatRequestBuilder"}
 \usage{
-SDMXDotStatRequestBuilder(regUrl, repoUrl, accessKey = NULL,
+SDMXDotStatRequestBuilder(regUrl, repoUrl, accessKey = NULL, formatter = NULL,
    unsupportedResources = list(), skipProviderId = FALSE, forceProviderId = FALSE,
    headers = list())
 }
@@ -19,6 +19,10 @@ SDMXDotStatRequestBuilder(regUrl, repoUrl, accessKey = NULL,
 
 \item{accessKey}{an object of class "character" indicating the name of request parameter for which
 an authentication or subscription user key (token) has to be provided to perform requests}
+
+\item{formatter}{an object of class "list" giving a formatting function (for each resource) that
+takes an object of class "SDMXRequestParams" as single argument. Such parameter allows
+to customize eventual params (e.g. specific data provider rules)}
 
 \item{unsupportedResources}{an object of class "list" giving eventual unsupported 
 REST resources. Default is an empty list object}

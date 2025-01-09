@@ -3,7 +3,7 @@
 #' @aliases SDMXREST21RequestBuilder,SDMXREST21RequestBuilder-method
 #' 
 #' @usage
-#'  SDMXREST21RequestBuilder(regUrl, repoUrl, accessKey = NULL, compliant,
+#'  SDMXREST21RequestBuilder(regUrl, repoUrl, accessKey = NULL, formatter = NULL, compliant,
 #'    unsupportedResources = list(), skipProviderId = FALSE, forceProviderId = FALSE,
 #'    headers = list())
 #'

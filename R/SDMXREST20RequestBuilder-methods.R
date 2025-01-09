@@ -3,7 +3,7 @@
 #' @aliases SDMXREST20RequestBuilder,SDMXREST20RequestBuilder-method
 #' 
 #' @usage
-#'  SDMXREST20RequestBuilder(regUrl, repoUrl, accessKey = NULL, compliant,
+#'  SDMXREST20RequestBuilder(regUrl, repoUrl, accessKey = NULL, formatter, compliant,
 #'    unsupportedResources = list(), skipProviderId = FALSE, forceProviderId = FALSE,
 #'    headers = list())
 #'

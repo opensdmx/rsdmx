@@ -3,7 +3,7 @@
 [![Build Status](https://github.com/opensdmx/rsdmx/actions/workflows/r-cmd-check.yml/badge.svg?branch=master)](https://github.com/opensdmx/rsdmx/actions/workflows/r-cmd-check.yml)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/rsdmx)](https://cran.r-project.org/package=rsdmx)
 [![cran checks](https://badges.cranchecks.info/worst/rsdmx.svg)](https://cran.r-project.org/web/checks/check_results_rsdmx.html)
-[![Github_Status_Badge](https://img.shields.io/badge/Github-0.6--4-blue.svg)](https://github.com/opensdmx/rsdmx)
+[![Github_Status_Badge](https://img.shields.io/badge/Github-0.6--5-blue.svg)](https://github.com/opensdmx/rsdmx)
 [![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](https://doi.org/10.5281/zenodo.592404)
 
 ``rsdmx``: Tools for reading SDMX data and metadata documents in R

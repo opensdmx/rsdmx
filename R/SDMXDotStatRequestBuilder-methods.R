@@ -3,7 +3,7 @@
 #' @aliases SDMXDotStatRequestBuilder,SDMXDotStatRequestBuilder-method
 #' 
 #' @usage
-#'  SDMXDotStatRequestBuilder(regUrl, repoUrl, accessKey = NULL,
+#'  SDMXDotStatRequestBuilder(regUrl, repoUrl, accessKey = NULL, formatter = NULL,
 #'    unsupportedResources = list(), skipProviderId = FALSE, forceProviderId = FALSE,
 #'    headers = list())
 #'
@@ -11,6 +11,9 @@
 #' @param repoUrl an object of class "character" giving the base Url of the SDMX service repository
 #' @param accessKey an object of class "character" indicating the name of request parameter for which
 #'        an authentication or subscription user key (token) has to be provided to perform requests 
+#' @param formatter an object of class "list" giving a formatting function (for each resource) that
+#'        takes an object of class "SDMXRequestParams" as single argument. Such parameter allows
+#'        to customize eventual params (e.g. specific data provider rules)
 #' @param unsupportedResources an object of class "list" giving eventual unsupported 
 #'        REST resources. Default is an empty list object
 #' @param skipProviderId an object of class "logical" indicating that the provider
@@ -27,19 +30,19 @@
 #' @export
 #'  
 SDMXDotStatRequestBuilder <- function(regUrl, repoUrl, accessKey = NULL,
+                                   formatter = NULL,
                                    unsupportedResources = list(), 
                                    skipProviderId = FALSE, forceProviderId = FALSE,
                                    headers = list()){    
 
   #params formatter
-  formatter = list(
-    #dataflow
-    dataflow = function(obj){return(obj)},
-    #datastructure
-    datastructure = function(obj){ return(obj)},
-    #data
-    data = function(obj){return(obj)}
-  )
+  if(is.null(formatter)) formatter = list()
+  #dataflow
+  if(is.null(formatter$dataflow)) formatter$dataflow = function(obj){return(obj)}
+  #datastructure
+  if(is.null(formatter$datastructure)) formatter$datastructure = function(obj){ return(obj)}
+  #data
+  if(is.null(formatter$data)) formatter$data = function(obj){return(obj)}
   
   #resource handler
   handler <- list(
