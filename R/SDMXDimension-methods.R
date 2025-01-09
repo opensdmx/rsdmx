@@ -45,6 +45,7 @@ SDMXDimension <- function(xmlObj, namespaces){
   conceptVersion <- NULL
   conceptAgency <- NULL
   conceptSchemeRef <- NULL
+  conceptSchemeVersion <- NULL
   conceptSchemeAgency <- NULL
   codelist <- NULL
   codelistVersion <- NULL
@@ -64,10 +65,16 @@ SDMXDimension <- function(xmlObj, namespaces){
     #concepts
     if(!is.null(conceptRefXML)){
       conceptRef = xmlGetAttr(conceptRefXML, "id")
-      conceptVersion = xmlGetAttr(conceptRefXML, "maintainableParentVersion")
-      conceptAgency = xmlGetAttr(conceptRefXML, "agencyID")
-      #TODO conceptSchemeRef?
-      #TODO conceptSchemeAgency
+      package = xmlGetAttr(conceptRefXML, "package")
+      if(package == "conceptscheme"){
+        conceptSchemeRef = xmlGetAttr(conceptRefXML, "maintainableParentID")
+        conceptSchemeVersion = xmlGetAttr(conceptRefXML, "maintainableParentVersion") 
+        conceptSchemeAgency = xmlGetAttr(conceptRefXML, "agencyID")
+      }else{
+        conceptVersion = xmlGetAttr(conceptRefXML, "maintainableParentVersion")
+        conceptAgency = xmlGetAttr(conceptRefXML, "agencyID")
+      }
+
     }
     
     #codelists
@@ -123,6 +130,7 @@ SDMXDimension <- function(xmlObj, namespaces){
   if(is.null(conceptVersion)) conceptVersion <- as.character(NA)
   if(is.null(conceptAgency)) conceptAgency <- as.character(NA)
   if(is.null(conceptSchemeRef)) conceptSchemeRef <- as.character(NA)
+  if(is.null(conceptSchemeVersion)) conceptSchemeVersion <- as.character(NA)
   if(is.null(conceptSchemeAgency)) conceptSchemeAgency <- as.character(NA)
   
   if(is.null(codelist)) codelist <- as.character(NA)
@@ -201,6 +209,7 @@ SDMXDimension <- function(xmlObj, namespaces){
             conceptVersion = conceptVersion,
             conceptAgency = conceptAgency,
             conceptSchemeRef = conceptSchemeRef,
+            conceptSchemeVersion = conceptSchemeVersion,
             conceptSchemeAgency = conceptSchemeAgency,
             codelist = codelist,
             codelistVersion = codelistVersion,

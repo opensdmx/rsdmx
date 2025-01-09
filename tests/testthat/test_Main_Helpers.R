@@ -154,14 +154,37 @@ test_that("IMF - datastructure",{
   }
 })
 
-#-> data
-test_that("IMF - data",{
+#No plans to dissiminate data on IMF provider, IMF data avaliable on IMF_DATA.
+
+#IMF_DATA
+#----
+
+#-> dataflow
+test_that("IMF_DATA - dataflow",{
   testthat::skip_on_cran()
-  #TODO to test, sounds it's not public anymore
-  #sdmx <- readSDMX(providerId = "IMF", resource = "data", flowRef = "BOP_GBPM6", start = 2020, end = 2020) 
-  #if(!is.null(sdmx)){
-  #  expect_is(sdmx, "SDMXStructureSpecificData")
-  #}
+  sdmx <- readSDMX(providerId = "IMF_DATA", resource = "dataflow")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataFlows")
+  }
+})
+
+#-> datastructure
+test_that("IMF_DATA - datastructure",{
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "IMF_DATA", resource = "datastructure", resourceId = "IMF.STA,DSD_CPI")
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXDataStructureDefinition")
+  }
+})
+
+#-> data
+test_that("IMF_DATA - data",{
+  testthat::skip_on_cran()
+  sdmx <- readSDMX(providerId = "IMF_DATA", resource = "data", flowRef = "IMF.STA,CPI",
+                   key = list("USA", "CPI", "CP01", "IX", "A"), start = 2020, end = 2020)
+  if(!is.null(sdmx)){
+    expect_is(sdmx, "SDMXStructureSpecificData")
+  }
 })
 
 #OECD

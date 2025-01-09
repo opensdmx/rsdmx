@@ -5,7 +5,7 @@
 #' @usage
 #'  SDMXRequestParams(regUrl, repoUrl, accessKey,
 #'                    providerId, agencyId, resource, resourceId, version,
-#'                    flowRef, key, start, end, compliant)
+#'                    flowRef, key, start, end, references = NULL, compliant)
 #'
 #' @param regUrl an object of class "character" giving the base Url of the SDMX service registry
 #' @param repoUrl an object of class "character" giving the base Url of the SDMX service repository
@@ -21,6 +21,7 @@
 #' @param key an object of class "character" giving the key (SDMX url formatted) to be used for the query
 #' @param start an object of class "character" giving the start time
 #' @param end an object of class "character" giving the end time
+#' @param references an object of class "character" giving the instructions to return (or not) the artefacts referenced by the artefact to be returned
 #' @param compliant an object of class "logical" indicating if the web-service is compliant with the SDMX REST web-service specifications
 #'             
 #' @examples
@@ -28,15 +29,15 @@
 #'   params <- SDMXRequestParams(
 #'    regUrl = "", repoUrl ="", accessKey = NULL,
 #'    providerId = "", agencyId ="", resource = "data", resourceId = "",
-#'    version = "", flowRef = "", key = NULL, start = NULL, end = NULL, compliant = FALSE
+#'    version = "", flowRef = "", key = NULL, start = NULL, end = NULL, references = NULL, compliant = FALSE
 #'   )
 #' @export
 #' 
 SDMXRequestParams <- function(regUrl, repoUrl, accessKey, providerId, agencyId, resource, resourceId, version = NULL,
-                              flowRef, key = NULL, start = NULL, end = NULL, compliant){
+                              flowRef, key = NULL, start = NULL, end = NULL, references = NULL, compliant){
   new("SDMXRequestParams",
       regUrl = regUrl, repoUrl = repoUrl, accessKey = accessKey, providerId = providerId,
        agencyId = agencyId, resource = resource, resourceId = resourceId, version = version,
-       flowRef = flowRef, key = key, start = start, end = end)
+       flowRef = flowRef, key = key, start = start, end = end, references = references)
 }
 
