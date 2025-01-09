@@ -17,7 +17,8 @@
 #' @slot flowRef an object of class "character" giving the flowRef to be queried
 #' @slot key an object of class "character" giving the key (SDMX url formatted) to be used for the query
 #' @slot start an object of class "character" giving the start time
-#' @slot end an object of class "character" giving the end time
+#' @slot end an object of class "character" giving the end time 
+#' @slot references an object of class "character" giving the instructions to return (or not) the artefacts referenced by the artefact to be returned
 #' @slot compliant an object of class "logical" indicating if the web-service is compliant with the SDMX REST web-service specifications
 #'
 #' @section Warning:
@@ -40,6 +41,7 @@ setClass("SDMXRequestParams",
            key = "character_OR_NULL",
            start = "character_OR_numeric_OR_NULL",
            end = "character_OR_numeric_OR_NULL",
+           references = "character_OR_NULL",
            compliant = "logical"
            ),
          prototype = list(),

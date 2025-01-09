@@ -168,7 +168,14 @@ setSDMXServiceProviders <- function(){ # nocov start
     builder = SDMXREST21RequestBuilder(
       regUrl = "https://api.imf.org/external/sdmx/2.1",
       repoUrl = "https://api.imf.org/external/sdmx/2.1",
-      compliant = TRUE)
+      compliant = TRUE,
+      formatter = list(
+        datastructure = function(obj){
+          if(is.null(obj@references)) obj@references = "descendants"
+          return(obj)
+        }
+      )
+    )
   )
     
   #OECD

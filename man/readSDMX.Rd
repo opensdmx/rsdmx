@@ -8,7 +8,7 @@ readSDMX(file = NULL, isURL = TRUE, isRData = FALSE,
   provider = NULL, providerId = NULL, providerKey = NULL,
   agencyId = NULL, resource = NULL, resourceId = NULL, version = NULL,
   flowRef = NULL, key = NULL, key.mode = "R", start = NULL, end = NULL, dsd = FALSE,
-  headers = list(), validate = FALSE,
+  headers = list(), validate = FALSE, references = NULL,
   verbose = !is.null(logger), logger = "INFO", ...)
 }
 \arguments{
@@ -74,6 +74,9 @@ an embedded service provider. Default is FALSE}
 \item{validate}{an object of class "logical" indicating if a validation check has to
 be performed on the SDMX-ML document to check its SDMX compliance when reading it.
 Default is FALSE.}
+
+\item{references}{an object of class "character" giving the instructions to return (or not) the
+artefacts referenced by the artefact to be returned.}
 
 \item{verbose}{an Object of class "logical" that indicates if rsdmx logs should
 appear to user. Default is set to \code{FALSE} (see argument \code{logger}).}

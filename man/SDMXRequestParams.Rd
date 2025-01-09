@@ -10,7 +10,7 @@
 \usage{
 SDMXRequestParams(regUrl, repoUrl, accessKey,
                    providerId, agencyId, resource, resourceId, version,
-                   flowRef, key, start, end, compliant)
+                   flowRef, key, start, end, references = NULL, compliant)
 }
 \arguments{
 \item{regUrl}{an object of class "character" giving the base Url of the SDMX service registry}
@@ -38,6 +38,8 @@ mandatory for some service providers.}
 \item{start}{an object of class "character" giving the start time}
 
 \item{end}{an object of class "character" giving the end time}
+
+\item{references}{an object of class "character" giving the instructions to return (or not) the artefacts referenced by the artefact to be returned}
 
 \item{compliant}{an object of class "logical" indicating if the web-service is compliant with the SDMX REST web-service specifications}
 }
@@ -72,6 +74,8 @@ an authentication or subscription user key/token has to be provided to perform r
 
 \item{\code{end}}{an object of class "character" giving the end time}
 
+\item{\code{references}}{an object of class "character" giving the instructions to return (or not) the artefacts referenced by the artefact to be returned}
+
 \item{\code{compliant}}{an object of class "logical" indicating if the web-service is compliant with the SDMX REST web-service specifications}
 }}
 
@@ -86,7 +90,7 @@ encapsulate it as slot, when parsing an SDMX-ML document.
   params <- SDMXRequestParams(
    regUrl = "", repoUrl ="", accessKey = NULL,
    providerId = "", agencyId ="", resource = "data", resourceId = "",
-   version = "", flowRef = "", key = NULL, start = NULL, end = NULL, compliant = FALSE
+   version = "", flowRef = "", key = NULL, start = NULL, end = NULL, references = NULL, compliant = FALSE
   )
 }
 \author{
