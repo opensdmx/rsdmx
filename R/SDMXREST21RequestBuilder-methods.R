@@ -13,6 +13,9 @@
 #'        service repository
 #' @param accessKey an object of class "character" indicating the name of request parameter for which
 #'        an authentication or subscription user key/token has to be provided to perform requests 
+#' @param formatter an object of class "list" giving a formatting function (for each resource) that
+#'        takes an object of class "SDMXRequestParams" as single argument. Such parameter allows
+#'        to customize eventual params (e.g. specific data provider rules)
 #' @param compliant an object of class "logical" indicating if the web-service 
 #'        is compliant with the SDMX REST web-service specifications
 #' @param unsupportedResources an object of class "list" giving eventual unsupported 
@@ -35,20 +38,20 @@
 #'     compliant = TRUE)
 #' @export
 #' 
-SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL, compliant,
+SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL,
+                                     formatter = NULL, compliant,
                                      unsupportedResources = list(), 
                                      skipProviderId = FALSE, forceProviderId = FALSE,
                                      headers = list()){
   
   #params formatter
-  formatter = list(
-    #dataflow
-    dataflow = function(obj){return(obj)},
-    #datastructure
-    datastructure = function(obj){ return(obj)},
-    #data
-    data = function(obj){return(obj)}
-  )
+  if(is.null(formatter)) formatter = list()
+  #dataflow
+  if(is.null(formatter$dataflow)) formatter$dataflow = function(obj){return(obj)}
+  #datastructure
+  if(is.null(formatter$datastructure)) formatter$datastructure = function(obj){ return(obj)}
+  #data
+  if(is.null(formatter$data)) formatter$data = function(obj){return(obj)}
   
   #resource handler
   handler <- list(
