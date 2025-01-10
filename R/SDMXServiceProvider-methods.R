@@ -160,7 +160,8 @@ setSDMXServiceProviders <- function(){ # nocov start
     builder = SDMXREST21RequestBuilder(
       regUrl = "https://sdmxcentral.imf.org/ws/public/sdmxapi/rest",
       repoUrl = "https://sdmxcentral.imf.org/ws/public/sdmxapi/rest",
-      compliant = TRUE)
+      compliant = TRUE,
+      unsupportedResources = list("dataflow"))
   )
   #IMF_DATA
   IMF_DATA <- SDMXServiceProvider(
