@@ -28,6 +28,8 @@
 #'        \code{FALSE}. For some providers, the \code{all} value for the provider
 #'        agency id is not allowed, in this case, the \code{agencyId} of the data 
 #'        provider has to be forced in the web-request.
+#' @param skipTrailingSlash Avoid to use a trailing slash at the end of the requests.
+#'        Default is \code{FALSE}.
 #' @param headers an object of class "list" that contains any additional headers for the request. 
 #'                
 #' @examples
@@ -42,6 +44,7 @@ SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL,
                                      formatter = NULL, compliant,
                                      unsupportedResources = list(), 
                                      skipProviderId = FALSE, forceProviderId = FALSE,
+                                     skipTrailingSlash = FALSE,
                                      headers = list()){
   
   #params formatter
@@ -62,7 +65,8 @@ SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL,
       if(is.null(obj@agencyId)) obj@agencyId = "all"
       if(is.null(obj@resourceId)) obj@resourceId = "all"
       if(is.null(obj@version)) obj@version = "latest"
-      req <- sprintf("%s/dataflow/%s/%s/%s/",obj@regUrl, obj@agencyId, obj@resourceId, obj@version)
+      req <- sprintf("%s/dataflow/%s/%s/%s",obj@regUrl, obj@agencyId, obj@resourceId, obj@version)
+      if(!skipTrailingSlash) req = paste0(req,"/")
       
       #require key
       if(!is.null(accessKey)){
@@ -83,7 +87,8 @@ SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL,
       if(is.null(obj@agencyId)) obj@agencyId = "all"
       if(is.null(obj@resourceId)) obj@resourceId = "all"
       if(is.null(obj@version)) obj@version = "latest"
-      req <- sprintf("%s/datastructure/%s/%s/%s/",obj@regUrl, obj@agencyId, obj@resourceId, obj@version)
+      req <- sprintf("%s/datastructure/%s/%s/%s",obj@regUrl, obj@agencyId, obj@resourceId, obj@version)
+      if(!skipTrailingSlash) req = paste0(req,"/")
       if(forceProviderId) req <- paste(req, obj@providerId, sep = "/")
       if(is.null(obj@references)) obj@references = "children"
       req <- paste0(req, "?references=", obj@references)

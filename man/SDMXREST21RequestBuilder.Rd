@@ -42,6 +42,9 @@ agencyId has to be added at the end of the request. Default value is
 agency id is not allowed, in this case, the \code{agencyId} of the data 
 provider has to be forced in the web-request.}
 
+\item{skipTrailingSlash}{Avoid to use a trailing slash at the end of the requests.
+Default is \code{FALSE}.}
+
 \item{headers}{an object of class "list" that contains any additional headers for the request.}
 }
 \description{
