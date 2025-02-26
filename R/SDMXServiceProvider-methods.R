@@ -84,23 +84,25 @@ setSDMXServiceProviders <- function(){ # nocov start
     agencyId = "ECB", name = "European Central Bank",
     builder = SDMXREST21RequestBuilder(
       regUrl = "https://data-api.ecb.europa.eu/service",
-      repoUrl = "https://sdw-wsrest.ecb.europa.eu/service",
+      repoUrl = "https://data-api.ecb.europa.eu/service",
       skipTrailingSlash = TRUE,
-      compliant = TRUE)
+      compliant = TRUE
+    )
   )
-
+  
   #EUROSTAT
   ESTAT <- SDMXServiceProvider( 
     agencyId = "ESTAT", name = "Eurostat (Statistical office of the European Union)",
     builder = SDMXREST21RequestBuilder(
       regUrl = "https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1",
       repoUrl = "https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1",
-      compliant = TRUE)
+      compliant = TRUE
+    )
   )
   ESTAT@builder@handler$dataflow = function(obj){
     if(is.null(obj@resourceId)) obj@resourceId = "all"
     if(is.null(obj@version)) obj@version = "latest"
-    req <- sprintf("%s/dataflow/ESTAT/%s/%s/",obj@regUrl, obj@resourceId, obj@version)        
+    req <- sprintf("%s/dataflow/ESTAT/%s/%s/",obj@regUrl, obj@resourceId, obj@version)
     return(req)
   }
   ESTAT@builder@handler$datastructure = function(obj){
@@ -117,7 +119,8 @@ setSDMXServiceProviders <- function(){ # nocov start
     builder = SDMXREST21RequestBuilder(
       regUrl = "https://ec.europa.eu/eurostat/api/comext/dissemination/sdmx/2.1",
       repoUrl = "https://ec.europa.eu/eurostat/api/comext/dissemination/sdmx/2.1",
-      compliant = TRUE)
+      compliant = TRUE
+    )
   )
   ESTAT_COMEXT@builder@handler$dataflow = ESTAT@builder@handler$dataflow
   ESTAT_COMEXT@builder@handler$datastructure = ESTAT@builder@handler$datastructure
@@ -128,7 +131,8 @@ setSDMXServiceProviders <- function(){ # nocov start
     builder = SDMXREST21RequestBuilder(
       regUrl = "https://webgate.ec.europa.eu/grow/redisstat/api/dissemination/sdmx/2.1",
       repoUrl = "https://webgate.ec.europa.eu/grow/redisstat/api/dissemination/sdmx/2.1",
-      compliant = TRUE)
+      compliant = TRUE
+    )
   )
   ESTAT_GROW@builder@handler$dataflow = ESTAT@builder@handler$dataflow
   ESTAT_GROW@builder@handler$datastructure = ESTAT@builder@handler$datastructure
@@ -139,7 +143,8 @@ setSDMXServiceProviders <- function(){ # nocov start
     builder = SDMXREST21RequestBuilder(
       regUrl = "https://webgate.ec.europa.eu/comp/redisstat/api/dissemination/sdmx/2.1",
       repoUrl = "https://webgate.ec.europa.eu/comp/redisstat/api/dissemination/sdmx/2.1",
-      compliant = TRUE)
+      compliant = TRUE
+    )
   )
   ESTAT_COMP@builder@handler$dataflow = ESTAT@builder@handler$dataflow
   ESTAT_COMP@builder@handler$datastructure = ESTAT@builder@handler$datastructure
@@ -150,7 +155,8 @@ setSDMXServiceProviders <- function(){ # nocov start
     builder = SDMXREST21RequestBuilder(
       regUrl = "https://webgate.ec.europa.eu/empl/redisstat/api/dissemination/sdmx/2.1",
       repoUrl = "https://webgate.ec.europa.eu/empl/redisstat/api/dissemination/sdmx/2.1",
-      compliant = TRUE)
+      compliant = TRUE
+    )
   )
   ESTAT_EMPL@builder@handler$dataflow = ESTAT@builder@handler$dataflow
   ESTAT_EMPL@builder@handler$datastructure = ESTAT@builder@handler$datastructure
@@ -161,8 +167,11 @@ setSDMXServiceProviders <- function(){ # nocov start
     builder = SDMXREST21RequestBuilder(
       regUrl = "https://sdmxcentral.imf.org/ws/public/sdmxapi/rest",
       repoUrl = "https://sdmxcentral.imf.org/ws/public/sdmxapi/rest",
-      compliant = TRUE)
+      compliant = TRUE,
+      unsupportedResources = list("data")
+    )
   )
+
   #IMF_DATA
   IMF_DATA <- SDMXServiceProvider(
     agencyId = "IMF_DATA", name = "International Monetary Fund - Data Portal",
@@ -198,7 +207,7 @@ setSDMXServiceProviders <- function(){ # nocov start
       compliant = TRUE
     )
   )
-   
+  
   #COUNTDOWN 2030
   CD2030 <- SDMXServiceProvider(
     agencyId = "CD2030", "United Nations International Children's Emergency Fund",
@@ -225,8 +234,10 @@ setSDMXServiceProviders <- function(){ # nocov start
     builder = SDMXREST21RequestBuilder(
       regUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
       repoUrl = "http://www.ilo.org/ilostat/sdmx/ws/rest",
-      compliant = FALSE, skipProviderId = TRUE,
-      unsupportedResources = list("dataflow"))                  
+      compliant = FALSE,
+      skipProviderId = TRUE,
+      unsupportedResources = list("dataflow")
+    )                  
   )
   
   #UN-ILO
@@ -235,7 +246,9 @@ setSDMXServiceProviders <- function(){ # nocov start
     builder = SDMXREST21RequestBuilder(
       regUrl = "https://sdmx.ilo.org/rest",
       repoUrl = "https://sdmx.ilo.org/rest",
-      compliant = TRUE, skipProviderId = TRUE)                  
+      compliant = TRUE,
+      skipProviderId = TRUE
+    )                  
   )
   
   #WBG_WITS (World Integrated Trade Solution)
@@ -244,7 +257,8 @@ setSDMXServiceProviders <- function(){ # nocov start
     builder = SDMXREST21RequestBuilder(
       regUrl = "https://wits.worldbank.org/API/V1/SDMX/V21/rest",
       repoUrl = "https://wits.worldbank.org/API/V1/SDMX/V21/rest",
-      compliant = TRUE, skipProviderId = TRUE
+      compliant = TRUE,
+      skipProviderId = TRUE
     )
   )
   
@@ -254,17 +268,19 @@ setSDMXServiceProviders <- function(){ # nocov start
     builder = SDMXREST21RequestBuilder(
       regUrl = "http://api.worldbank.org/v2/sdmx/rest",
       repoUrl = "http://api.worldbank.org/v2/sdmx/rest",
-      compliant = TRUE, skipProviderId = TRUE
+      compliant = TRUE,
+      skipProviderId = TRUE
     )
   )
-
+  
   #PDH.STAT (Pacific Data Hub by The Pacific Community)
   PDH <- SDMXServiceProvider(
     agencyId = "PDH", name = "Pacific Data Hub DotStat",
     builder = SDMXREST21RequestBuilder(
       regUrl = "https://stats-nsi-stable.pacificdata.org/rest",
       repoUrl = "https://stats-nsi-stable.pacificdata.org/rest",
-      compliant = FALSE) 
+      compliant = FALSE
+    ) 
   )
   
   #national data providers
@@ -276,8 +292,9 @@ setSDMXServiceProviders <- function(){ # nocov start
     scale = "national", country = "AUS",
     builder = SDMXREST21RequestBuilder(
       regUrl = "https://api.data.abs.gov.au",
-      repoUrl = "https://api.data.abs.gov.au", 
-      compliant = TRUE)
+      repoUrl = "https://api.data.abs.gov.au",
+      compliant = TRUE
+    )
   )
   
   #NBB {Belgium}
@@ -286,8 +303,9 @@ setSDMXServiceProviders <- function(){ # nocov start
     scale = "national", country = "BEL",
     builder = SDMXDotStatRequestBuilder(
       regUrl = "https://stat.nbb.be/RestSDMX/sdmx.ashx",
-      repoUrl = "https://stat.nbb.be/RestSDMX/sdmx.ashx", 
-      unsupportedResources = list("dataflow"))
+      repoUrl = "https://stat.nbb.be/RestSDMX/sdmx.ashx",
+      unsupportedResources = list("dataflow")
+    )
   )
   
   #INSEE {France}
@@ -296,8 +314,9 @@ setSDMXServiceProviders <- function(){ # nocov start
     scale = "national", country = "FRA",
     builder = SDMXREST21RequestBuilder(
       regUrl = "https://bdm.insee.fr/series/sdmx",
-      repoUrl = "https://bdm.insee.fr/series/sdmx", 
-      compliant = TRUE)
+      repoUrl = "https://bdm.insee.fr/series/sdmx",
+      compliant = TRUE
+    )
   )
   
   #INEGI (Mexico)
@@ -566,7 +585,7 @@ setSDMXServiceProviders <- function(){ # nocov start
   
   listOfProviders <- list(
     #international
-    BIS, ECB, ESTAT,ESTAT_COMEXT, ESTAT_COMP, ESTAT_GROW, ESTAT_EMPL, IMF, IMF_DATA, OECD, UNICEF, CD2030, UNSD, ILO_Legacy, ILO, WBG_WITS, WB, PDH,
+    BIS, ECB, ESTAT, ESTAT_COMEXT, ESTAT_COMP, ESTAT_GROW, ESTAT_EMPL, IMF, IMF_DATA, OECD, UNICEF, CD2030, UNSD, ILO_Legacy, ILO, WBG_WITS, WB, PDH,
     #national
     ABS, NBB, INSEE, INEGI, ISTAT_LEGACY, ISTAT, NOMIS, LSD, NCSI, BBK,
     #others
