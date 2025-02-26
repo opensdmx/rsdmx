@@ -83,7 +83,7 @@ setSDMXServiceProviders <- function(){ # nocov start
   ECB <- SDMXServiceProvider(
     agencyId = "ECB", name = "European Central Bank",
     builder = SDMXREST21RequestBuilder(
-      regUrl = "https://sdw-wsrest.ecb.europa.eu/service",
+      regUrl = "https://data-api.ecb.europa.eu/service",
       repoUrl = "https://sdw-wsrest.ecb.europa.eu/service",
       skipTrailingSlash = TRUE,
       compliant = TRUE)
