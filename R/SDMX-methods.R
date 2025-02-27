@@ -46,8 +46,7 @@ namespaces.SDMX <- function(xmlObj){
     colnames(nsDefs.df) <- "uri"
     
     nsDefs.df <- nsDefs.df[
-        regexpr("http://www.w3.org", nsDefs.df$uri,
-                "match.length", ignore.case = TRUE) == -1,]
+        attr(regexpr("http://www.w3.org", nsDefs.df$uri, ignore.case = TRUE), "match.length") == -1,]
     nsDefs.df <- as.data.frame(nsDefs.df, stringsAsFactors = FALSE)
     colnames(nsDefs.df) <- "uri"
   }

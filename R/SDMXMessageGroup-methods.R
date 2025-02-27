@@ -26,8 +26,7 @@ class.SDMXMessageGroup <- function(xmlObj){
   nsDefs.df <- namespaces.SDMX(xmlObj)
   #in case no ns found, try to find specific namespace
   ns.df <- nsDefs.df[
-    regexpr("http://www.sdmx.org", nsDefs.df$uri,
-            "match.length", ignore.case = TRUE) == -1,]
+    attr(regexpr("http://www.sdmx.org", nsDefs.df$uri, ignore.case = TRUE),"match.length") == -1,]
   ns.df <- as.data.frame(ns.df, stringsAsFactors = FALSE)
   colnames(ns.df) <- "uri"
   ns <- ns.df$uri

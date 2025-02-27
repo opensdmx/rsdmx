@@ -36,8 +36,7 @@ as.data.frame.SDMXCrossSectionalData <- function(x, row.names=NULL, optional=FAL
   ns <- findNamespace(nsDefs.df, "crosssection")
   
   authorityNs <- nsDefs.df[
-    regexpr("http://www.sdmx.org", nsDefs.df$uri,
-            "match.length", ignore.case = TRUE) == -1,]
+    attr(regexpr("http://www.sdmx.org", nsDefs.df$uri, ignore.case = TRUE),"match.length") == -1,]
   authorityNs <- as.data.frame(authorityNs, stringsAsFactors = FALSE)
   colnames(authorityNs) <- "uri"
   

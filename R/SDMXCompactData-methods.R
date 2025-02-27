@@ -34,8 +34,7 @@ getSDMXAllCompactData <- function(x, nsExpr, labels = FALSE, ...) {
   if(length(ns) > 1) ns <- ns[1]
   
   authorityNamespaces <- nsDefs.df[
-    regexpr("http://www.sdmx.org", nsDefs.df$uri,
-            "match.length", ignore.case = TRUE) == -1,]
+    attr(regexpr("http://www.sdmx.org", nsDefs.df$uri, ignore.case = TRUE), "match.length") == -1,]
   authorityNamespaces <- as.data.frame(authorityNamespaces, stringsAsFactors = FALSE)
   colnames(authorityNamespaces) <- "uri"
   
