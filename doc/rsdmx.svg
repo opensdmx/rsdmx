@@ -13,5 +13,5 @@
   <text x="100" y="140" font-size="80" fill="white" text-anchor="middle" font-family="Arial" font-weight="bold" opacity="1">R</text>
 
   <!-- SDMX logo centered in the hexagon, full width -->
-  <image href="https://github.com/opensdmx/rsdmx/raw/master/doc/sdmx.png" x="10" y="60" height="110px" width="180px" preserveAspectRatio="xMidYMid meet"/>
+  <image href="https://github.com/eblondel/rsdmx/raw/master/doc/sdmx.png" x="10" y="60" height="110px" width="180px" preserveAspectRatio="xMidYMid meet"/>
 </svg>

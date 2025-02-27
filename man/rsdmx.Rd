@@ -15,9 +15,9 @@ currently focuses on the SDMX XML standard format (SDMX-ML).
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/opensdmx/rsdmx}
+  \item \url{https://github.com/eblondel/rsdmx}
   \item \url{https://sdmx.org}
-  \item Report bugs at \url{https://github.com/opensdmx/rsdmx/issues}
+  \item Report bugs at \url{https://github.com/eblondel/rsdmx/issues}
 }
 
 }

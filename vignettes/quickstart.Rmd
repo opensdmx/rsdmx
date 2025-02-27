@@ -33,7 +33,7 @@ What ``rsdmx`` does support:
 
 * a SDMX format abstraction library, with focus on the the main SDMX standard XML format (SDMX-ML), and the support of the three format standard versions (``1.0``, ``2.0``, ``2.1``)
 
-* an interface to SDMX web-services for a list of well-known data providers, such as OECD, EUROSTAT, ECB, UN FAO, UN ILO, etc (a list that should grow in a near future!). See it [in action](https://github.com/opensdmx/rsdmx/blob/master/vignettes/quickstart.Rmd#using-the-helper-approach)!
+* an interface to SDMX web-services for a list of well-known data providers, such as OECD, EUROSTAT, ECB, UN FAO, UN ILO, etc (a list that should grow in a near future!). See it [in action](https://github.com/eblondel/rsdmx/blob/master/vignettes/quickstart.Rmd#using-the-helper-approach)!
 
 Let's see then how to use ``rsdmx``!
 
@@ -42,7 +42,7 @@ Let's see then how to use ``rsdmx``!
 ``rsdmx`` can be installed from CRAN or from its development repository hosted in Github. For the latter, you will need the ``remotes`` package and run:
 
 ```{r, eval=FALSE, results="hide"}
-remotes::install_github("opensdmx/rsdmx")
+remotes::install_github("eblondel/rsdmx")
 ```
 
 ## Load rsdmx
@@ -71,7 +71,7 @@ stats <- as.data.frame(dataset)
 
 You can try it out with other datasources, such as from the [**EUROSTAT portal**](https://ec.europa.eu/eurostat): [https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/NAMA_10_GDP/A.CP_MEUR.B1GQ.BE+LU](https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/NAMA_10_GDP/A.CP_MEUR.B1GQ.BE+LU)
 
-The online rsdmx documentation also provides a list of data providers, either from international or national institutions, and [more request examples](https://github.com/opensdmx/rsdmx/wiki#read-remote-datasets).
+The online rsdmx documentation also provides a list of data providers, either from international or national institutions, and [more request examples](https://github.com/eblondel/rsdmx/wiki#read-remote-datasets).
 
 #### using the _helper_ approach
 

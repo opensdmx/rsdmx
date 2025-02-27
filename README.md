@@ -1,10 +1,10 @@
 **rsdmx**
 =======
-[![Build Status](https://github.com/opensdmx/rsdmx/actions/workflows/r-cmd-check.yml/badge.svg?branch=master)](https://github.com/opensdmx/rsdmx/actions/workflows/r-cmd-check.yml)
+[![Build Status](https://github.com/eblondel/rsdmx/actions/workflows/r-cmd-check.yml/badge.svg?branch=master)](https://github.com/eblondel/rsdmx/actions/workflows/r-cmd-check.yml)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/rsdmx)](https://cran.r-project.org/package=rsdmx)
 [![cran checks](https://badges.cranchecks.info/worst/rsdmx.svg)](https://cran.r-project.org/web/checks/check_results_rsdmx.html)
-[![Github_Status_Badge](https://img.shields.io/badge/Github-0.6--5-blue.svg)](https://github.com/opensdmx/rsdmx)
-[![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](https://doi.org/10.5281/zenodo.592404)
+[![Github_Status_Badge](https://img.shields.io/badge/Github-0.6--5-blue.svg)](https://github.com/eblondel/rsdmx)
+[![DOI](https://zenodo.org/badge/5183/eblondel/rsdmx.svg)](https://doi.org/10.5281/zenodo.592404)
 
 ``rsdmx``: Tools for reading SDMX data and metadata documents in R
 
@@ -13,23 +13,23 @@
 ``rsdmx`` is a package to parse/read SDMX data and metadata in R. It provides:
 * a set of classes and methods to read data and metadata documents exchanged through the Statistical Data and Metadata Exchange (SDMX) framework. The package currently focuses on the SDMX XML standard format (SDMX-ML).
 * an interface to SDMX web-services for a list of well-known data providers, such as EUROSTAT, OECD, and others 
-[Learn more](https://github.com/opensdmx/rsdmx/wiki#package_overview).
+[Learn more](https://github.com/eblondel/rsdmx/wiki#package_overview).
 
 ### Citation
 
-We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/5183/opensdmx/rsdmx.svg)](https://doi.org/10.5281/zenodo.592404)
+We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/5183/eblondel/rsdmx.svg)](https://doi.org/10.5281/zenodo.592404)
 
 ### Collating scattered SDMX data sources
 
 In spite they are some R package initiatives relying on ``rsdmx`` that aim to provide a wrapper for a _single data source_ (e.g. OECD, EUROSTAT), it is strongly recommended to rely directly on ``rsdmx``. Indeed, one main objective of ``rsdmx`` is to **promote and facilitate collating scattered data** from a growing number of SDMX data providers, whatever the organization.
 
-It is already possible to query well-known datasources, using the embedded [helpers](https://github.com/opensdmx/rsdmx/blob/master/vignettes/quickstart.Rmd#using-the-helper-approach). Pull requests are welcome to support additional data providers by default in ``rsdmx``.
+It is already possible to query well-known datasources, using the embedded [helpers](https://github.com/eblondel/rsdmx/blob/master/vignettes/quickstart.Rmd#using-the-helper-approach). Pull requests are welcome to support additional data providers by default in ``rsdmx``.
 
 ### SDMX standards compliance
 
-[![SDMX_Compliance_Badge_1.0](https://img.shields.io/badge/SDMX--ML-1.0-blue.svg)](https://github.com/opensdmx/rsdmx)
-[![SDMX_Compliance_Badge_2.0](https://img.shields.io/badge/SDMX--ML-2.0-blue.svg)](https://github.com/opensdmx/rsdmx)
-[![SDMX_Compliance_Badge_2.1](https://img.shields.io/badge/SDMX--ML-2.1-blue.svg)](https://github.com/opensdmx/rsdmx)
+[![SDMX_Compliance_Badge_1.0](https://img.shields.io/badge/SDMX--ML-1.0-blue.svg)](https://github.com/eblondel/rsdmx)
+[![SDMX_Compliance_Badge_2.0](https://img.shields.io/badge/SDMX--ML-2.0-blue.svg)](https://github.com/eblondel/rsdmx)
+[![SDMX_Compliance_Badge_2.1](https://img.shields.io/badge/SDMX--ML-2.1-blue.svg)](https://github.com/eblondel/rsdmx)
 
 ### Status
 At now, the package allows to read:
@@ -41,7 +41,7 @@ At now, the package allows to read:
 
 ### Fundings
 
-``rsdmx`` is looking for **[sponsors](https://github.com/opensdmx/rsdmx/wiki#package_development_funding)**. You have been using ``rsdmx`` and you wish to support its development? Please help us to make the package growing!
+``rsdmx`` is looking for **[sponsors](https://github.com/eblondel/rsdmx/wiki#package_development_funding)**. You have been using ``rsdmx`` and you wish to support its development? Please help us to make the package growing!
 
 ### Author
 
@@ -60,7 +60,7 @@ Copyright (C) 2014  Emmanuel Blondel
 Please note that following a new submission to CRAN, or eventually a modification of CRAN policies, the package might be temporarily archived, and removed from CRAN. In case you notice that the package is not back in few time, please contact me.
 
 #### on R-Universe
-``rsdmx`` is available on the R-Universe public cloud server. The package version corresponds to the ongoing revision (master branch in Github). See [https://opensdmx.r-universe.dev/#package:rsdmx](https://opensdmx.r-universe.dev/#package:rsdmx)
+``rsdmx`` is available on the R-Universe public cloud server. The package version corresponds to the ongoing revision (master branch in Github). See [https://eblondel.r-universe.dev/#package:rsdmx](https://eblondel.r-universe.dev/#package:rsdmx)
 
 ## Quickstart
 
@@ -79,7 +79,7 @@ install.packages("rsdmx")
 or from its development repository hosted in Github (using the ``devtools`` package):
 
 ```{r, echo = FALSE}
-devtools::install_github("opensdmx/rsdmx")
+devtools::install_github("eblondel/rsdmx")
 ```
 
 ### Load rsdmx
