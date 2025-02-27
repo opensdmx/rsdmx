@@ -1,0 +1,17 @@
+<svg width="200" height="200" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Define gradients for the sky background -->
+    <linearGradient id="skyGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" style="stop-color:black;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:blue;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Hexagon background with shaded blue gradient -->
+  <polygon points="100,10 180,60 180,160 100,210 20,160 20,60" fill="url(#skyGradient)" stroke="white" stroke-width="5"/>
+
+  <!-- R Software logo in the background -->
+  <text x="100" y="140" font-size="80" fill="white" text-anchor="middle" font-family="Arial" font-weight="bold" opacity="1">R</text>
+
+  <!-- SDMX logo centered in the hexagon, full width -->
+  <image href="https://github.com/opensdmx/rsdmx/raw/master/doc/sdmx.png" x="10" y="60" height="110px" width="180px" preserveAspectRatio="xMidYMid meet"/>
+</svg>
