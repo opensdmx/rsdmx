@@ -9,8 +9,8 @@
 \title{Class "SDMXREST21RequestBuilder"}
 \usage{
 SDMXREST21RequestBuilder(regUrl, repoUrl, accessKey = NULL, formatter = NULL, compliant,
-   unsupportedResources = list(), skipProviderId = FALSE, forceProviderId = FALSE, skipTrailingSlash = FALSE,
-   headers = list())
+   unsupportedResources = list(), skipProviderId = FALSE, forceProviderId = FALSE, 
+   skipTrailingSlash = FALSE, headers = list())
 }
 \arguments{
 \item{regUrl}{an object of class "character" giving the base Url of the SDMX 
