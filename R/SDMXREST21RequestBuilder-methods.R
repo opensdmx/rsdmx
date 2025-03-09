@@ -113,10 +113,10 @@ SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL,
       if(is.null(obj@key)) obj@key = "all"
       req <- sprintf("%s/data/%s/%s",obj@repoUrl, obj@flowRef, obj@key)
       if(skipProviderId){
-        req <- paste0(req, "/")
+        if(!skipTrailingSlash) req <- paste0(req, "/")
       }else{
         req <- paste(req, ifelse(forceProviderId, obj@providerId, "all"), sep = "/")
-        req <- paste0(req, "/")
+        if(!skipTrailingSlash) req <- paste0(req, "/")
       }
       
       #DataQuery
