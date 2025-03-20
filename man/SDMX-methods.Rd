@@ -3,6 +3,7 @@
 \docType{methods}
 \name{getNamespaces}
 \alias{getNamespaces}
+\alias{getNamespaces,SDMX-methods}
 \alias{getNamespaces,SDMX-method}
 \alias{getNamespaces,SDMX,ANY-method}
 \title{getNamespaces}

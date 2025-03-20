@@ -3,10 +3,14 @@
 \docType{methods}
 \name{setDSD}
 \alias{setDSD}
+\alias{setDSD,SDMXData-methods,SDMXDataStructureDefinition-methods}
 \alias{setDSD,SDMXData,SDMXDataStructureDefinition-method}
+\alias{setDSD,SDMXData,SDMXDataStructureDefinition}
 \title{setDSD}
 \usage{
 setDSD(obj, dsd)
+
+\S4method{setDSD}{SDMXData,SDMXDataStructureDefinition}(obj, dsd)
 }
 \arguments{
 \item{obj}{An object deriving from class "SDMXData"}
