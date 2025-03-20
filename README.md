@@ -3,7 +3,7 @@
 [![Build Status](https://github.com/eblondel/rsdmx/actions/workflows/r-cmd-check.yml/badge.svg?branch=master)](https://github.com/eblondel/rsdmx/actions/workflows/r-cmd-check.yml)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/rsdmx)](https://cran.r-project.org/package=rsdmx)
 [![cran checks](https://badges.cranchecks.info/worst/rsdmx.svg)](https://cran.r-project.org/web/checks/check_results_rsdmx.html)
-[![Github_Status_Badge](https://img.shields.io/badge/Github-0.6--5-blue.svg)](https://github.com/eblondel/rsdmx)
+[![Github_Status_Badge](https://img.shields.io/badge/Github-0.6--6-blue.svg)](https://github.com/eblondel/rsdmx)
 [![R-Universe](https://eblondel.r-universe.dev/badges/rsdmx)](http://eblondel.r-universe.dev/#package:rsdmx)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.592404.svg)](https://doi.org/10.5281/zenodo.592404)
 
