@@ -291,8 +291,8 @@ setSDMXServiceProviders <- function(){ # nocov start
     agencyId = "ABS", name = "Australian Bureau of Statistics",
     scale = "national", country = "AUS",
     builder = SDMXREST21RequestBuilder(
-      regUrl = "https://api.data.abs.gov.au",
-      repoUrl = "https://api.data.abs.gov.au",
+      regUrl = "https://data.api.abs.gov.au/rest",
+      repoUrl = "https://data.api.abs.gov.au/rest",
       compliant = TRUE
     )
   )
